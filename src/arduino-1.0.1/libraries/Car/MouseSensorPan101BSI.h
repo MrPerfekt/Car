@@ -1,0 +1,162 @@
+/*
+* Copyright 2012 Andreas Gruber
+*/
+
+#include<arduino.h>
+
+class MouseCoordinates{
+public:
+	long x;
+	long y;
+	MouseCoordinates();
+	MouseCoordinates(long x,long y);
+	MouseCoordinates operator+= (const MouseCoordinates &coordinates);
+};
+/*!
+* Mouse Sensor
+*/
+class MouseSensorPan101{// : public Sensor{
+private:
+	enum Registers{
+		r_productID = 0x00,
+		//r_reserved = 0x01,
+		r_motionStatus = 0x02,
+		r_deltaX = 0x03,
+		r_deltaY = 0x04,
+		r_operationMode = 0x05,
+	};
+	enum MotionStatusBits{
+		ms_res = 0,//resolution ([0=800,1=400] counts per inch)
+		//ms_reserved = 1,
+		//ms_reserved = 2,
+		ms_dxovf = 3,//x overflow
+		ms_dyovf = 4,//y overflow
+		//ms_reserved = 5,
+		//ms_reserved = 6,
+		ms_motion = 7,//motion detected
+	};
+	enum OperationModeBits{
+		om_wakeup = 0,//if set to 1 => wakeup and reset to 0
+		om_slp1mu = 1,//if set to 1 => enter sleep1 mode and reset to 0
+		om_slp2mu = 2,//if set to 1 => enter sleep2 mode and reset to 0
+		om_slp2au = 3,//sleep mode2 [0=disable, 1=enable]
+		om_slpEnh = 4,//sleep mode [0=disable, 1=enable]
+		om_res = 5,//resolution ([0=800,1=400] counts per inch)
+		om_xyEnh = 6,//xy quadrature output [0=disable, 1=enable]
+		//om_reserved = 7,
+	};
+
+	int pinSCK;
+	int pinSDA;
+	int pinPD;
+public:  
+	enum PowerSettings{
+		ps_normal = om_wakeup,
+		ps_sleep1 = om_slp1mu,
+		ps_sleep2 = om_slp2mu,
+	};
+	enum Preferences{
+		enableSleepMode = om_slpEnh,
+		enableSleepMode2 = om_slp2au,
+		lowResolution = om_res,
+		enableQuadratureOutput = om_xyEnh,
+	};
+
+	unsigned char productID;
+	unsigned char operationMode;
+	MouseCoordinates*position;
+
+	/*!
+	* Initialice the IC
+	*/
+	MouseSensorPan101(int pinSCK,int pinSDA,int pinPD);
+	/*!
+	* Write a byte to the IC
+	* @param data a byte
+	*/
+	void writeByte(unsigned char data);
+	/*!
+	* Read a byte from the IC
+	* @return the byte
+	*/
+	unsigned char readByte();
+	/*!
+	* Write an register of the IC
+	* @param adr Address
+	* @param data Data
+	*/
+	void writeToAddress(unsigned char adr, unsigned char data);
+	/*!
+	* Read an register of the IC
+	* @param adr Address
+	* @return Data
+	*/
+	unsigned char readFromAddress(unsigned char adr);
+	/*!
+	* Reset the IC
+	*/
+	void reset();
+	/*!
+	* Turn off the IC
+	* Turn on with reset();
+	*/
+	void powerDown();
+	/*!
+	* Get the Product-ID
+	* @return Product-ID
+	*/
+	unsigned char readProductID();
+	/*!
+	* Get the operation mode
+	* @return operation mode
+	*/
+	unsigned char readOperationMode();
+	/*!
+	* Refresh the stored Product-ID
+	*/
+	void refreshStoredProductID();
+	/*!
+	* Refresh the stored operation mode
+	*/
+	void refreshStoredOperationMode();
+	/*!
+	* Upload the stored operation mode
+	*/
+	void uploadStoredOperationMode();
+	/*!
+	* Check if the IC is in sync with the microcontroller
+	* @return is in Synk
+	*/
+	bool isInSynk();
+	/*!
+	* Check and repair the connection
+	*/
+	void checkRepairConnection();
+	/*!
+	* Get the absolute Position 
+	* @return absolute Position
+	*/
+	MouseCoordinates& getPosition();
+	/*!
+	* Update and return the relativ Position
+	* @return relativ Position
+	*/
+	MouseCoordinates updatePosition();
+	/*!
+	* Set new power settings
+	* @param powerSettings powerSettings
+	*/
+	void setPowerSettings(PowerSettings powerSettings);
+	/*!
+	* Get preference
+	* Before: refreshStoredOperationMode();
+	* @param preferences NewOperationMode
+	*/
+	bool getPreference(Preferences preference);
+	/*!
+	* Set preference
+	* After: uploadStoredOperationMode();
+	* @param preferences NewOperationMode
+	*/
+	void setPreference(Preferences preference,bool value);
+};
