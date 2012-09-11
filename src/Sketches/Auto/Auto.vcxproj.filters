@@ -51,6 +51,12 @@
     <ClInclude Include="..\..\arduino-1.0.1\libraries\Car\WheelRotationSensors.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="..\..\arduino-1.0.1\libraries\Car\Coordinates.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\arduino-1.0.1\libraries\Car\MovementSensor.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\..\arduino-1.0.1\libraries\Car\Car.cpp">
@@ -78,6 +84,12 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="..\..\arduino-1.0.1\libraries\Car\WheelRotationSensors.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\arduino-1.0.1\libraries\Car\Coordinates.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\arduino-1.0.1\libraries\Car\MovementSensor.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>

@@ -6,6 +6,8 @@
 #define CAR
 
 #include "DefineLib.h"
+#include "Coordinates.h"
+#include "MouseSensorPan101BSI.h"
 #include "ServoProxy.h"
 #include "WheelRotationSensors.h"
 #include "VoltageDivider.h"
@@ -29,6 +31,10 @@ private:
 	static const int apinVolDivPowerSupplay = 0;  
 	static const unsigned long long volDivPowerSupplayRes1 = 966;
 	static const unsigned long long volDivPowerSupplayRes2 = 1989;
+	//MouseSensor
+	static const int pinMouseSensorSCK = 12;
+	static const int pinMouseSensorSDA = 10;
+	static const int pinMouseSensorPD = A1;
 	
 	Motor* motorPowerEngine;
 	ServoProxy* servoProxy;
@@ -36,6 +42,7 @@ private:
 	PositionCalculator* positionCalculator;
 	WheelSensor* wheelSensor;
 	VoltageDivider* powerSupplyVoltageDivider;
+	MouseSensorPan101*mouseSensor;
 	
 public:
 	Motor& getMotorPowerEngine();
@@ -44,6 +51,7 @@ public:
 	PositionCalculator& getPositionCalculator();
 	WheelSensor& getWheelSensor();
 	VoltageDivider& getPowerSupplyVoltageDivider();
+	MouseSensorPan101& getMouseSensor();
 
 	Car();
 };

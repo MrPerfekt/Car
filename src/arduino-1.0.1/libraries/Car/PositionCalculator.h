@@ -7,14 +7,7 @@
 
 #include <DefineLib.h>
 #include <WheelRotationSensors.h>
-
-class Coordinate{
-private:
-	long x;
-	long y;
-public:
-	Coordinate(long x,long y);
-};
+#include <Coordinates.h>
 
 class PositionCalculator{
 private:
@@ -22,7 +15,7 @@ private:
 	int angle;
 public:
 	PositionCalculator(WheelSensor&wheelSensor);
-	Coordinate& getPosition(bool rightSteeringSign);
+	Coordinates& getPosition(bool rightSteeringSign);
 	int getAngle();
 	int setSteeringAngle(int angle);
 	void update();

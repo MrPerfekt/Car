@@ -10,15 +10,19 @@
         <VCCodeMacro Name="__AVR_ATmega328P__" Value="" />
         <VCCodeMacro Name="F_CPU" Value="16000000L" />
         <VCCodeMacro Name="__AVR__" Value="" />
-        <VCCodeMacro Name="__cplusplus" Value="" />
         <VCCodeMacro Name="CAR" Value="" />
         <VCCodeMacro Name="DEFINE_LIB" Value="" />
-        <VCCodeMacro Name="SERVO_STEERING_DRIVER" Value="" />
-        <VCCodeMacro Name="WHEEL_ROTATION_SENSORS" Value="" />
-        <VCCodeMacro Name="VOLTAGE_DIVIDER" Value="" />
         <VCCodeMacro Name="MOTOR_TB6612FNG" Value="" />
+        <VCCodeMacro Name="MOUSE_SENSOR_PAN101BSI" Value="" />
         <VCCodeMacro Name="POSITION_CALCULATOR" Value="" />
+        <VCCodeMacro Name="SENSOR" Value="" />
+        <VCCodeMacro Name="SERVO_STEERING_DRIVER" Value="" />
         <VCCodeMacro Name="STEERING_MANAGER" Value="" />
+        <VCCodeMacro Name="VOLTAGE_DIVIDER" Value="" />
+        <VCCodeMacro Name="WHEEL_ROTATION_SENSORS" Value="" />
+        <VCCodeMacro Name="__cplusplus" Value="" />
+        <VCCodeMacro Name="COORDINATES" Value="" />
+        <VCCodeMacro Name="MOVEMENT_SENSOR" Value="" />
         <VCCodeMacro Name="__attribute__" Value="" />
         <VCCodeMacro Name="__inline__" Value="" />
         <VCCodeMacro Name="__asm__" Value="" />
@@ -26,14 +30,14 @@
         <VCCodeMacro Name="__ATTR_PURE__" Value="" />
         <VCCodeMacro Name="__ATTR_CONST__" Value="" />
         <VCCodeMacro Name="__inline__" Value="" />
-        <VCCodeMacro Name="__asm__" Value="" />
         <VCCodeMacro Name="ullong" Value="unsigned long long" />
-        <VCCodeMacro Name="__volatile__" Value="" />
+        <VCCodeMacro Name="__asm__" Value="" />
         <VCCodeMacro Name="ulong" Value="unsigned long" />
-        <VCCodeMacro Name="__builtin_va_list" Value="" />
+        <VCCodeMacro Name="__volatile__" Value="" />
         <VCCodeMacro Name="uint" Value="unsigned int" />
-        <VCCodeMacro Name="__builtin_va_start" Value="" />
+        <VCCodeMacro Name="__builtin_va_list" Value="" />
         <VCCodeMacro Name="llong" Value="long long" />
+        <VCCodeMacro Name="__builtin_va_start" Value="" />
         <VCCodeMacro Name="__builtin_va_end" Value="" />
         <VCCodeMacro Name="__DOXYGEN__" Value="" />
         <VCCodeMacro Name="prog_void" Value="" />

@@ -2,7 +2,12 @@
 * Copyright 2012 Andreas Gruber
 */
 
-#include<arduino.h>
+#ifndef MOUSE_SENSOR_PAN101BSI
+#define MOUSE_SENSOR_PAN101BSI
+
+#include "arduino.h"
+#include "Coordinates.h"
+#include "MovementSensor.h"
 
 class MouseCoordinates{
 public:
@@ -10,12 +15,13 @@ public:
 	long y;
 	MouseCoordinates();
 	MouseCoordinates(long x,long y);
-	MouseCoordinates operator+= (const MouseCoordinates &coordinates);
+	Coordinates getCoordinates(int resolution);
 };
+
 /*!
 * Mouse Sensor
 */
-class MouseSensorPan101{// : public Sensor{
+class MouseSensorPan101 : public MovementSensor{
 private:
 	enum Registers{
 		r_productID = 0x00,
@@ -56,15 +62,14 @@ public:
 		ps_sleep2 = om_slp2mu,
 	};
 	enum Preferences{
-		enableSleepMode = om_slpEnh,
-		enableSleepMode2 = om_slp2au,
-		lowResolution = om_res,
-		enableQuadratureOutput = om_xyEnh,
+		p_enableSleepMode = om_slpEnh,
+		p_enableSleepMode2 = om_slp2au,
+		p_lowResolution = om_res,
+		p_enableQuadratureOutput = om_xyEnh,
 	};
 
 	unsigned char productID;
 	unsigned char operationMode;
-	MouseCoordinates*position;
 
 	/*!
 	* Initialice the IC
@@ -133,15 +138,15 @@ public:
 	*/
 	void checkRepairConnection();
 	/*!
-	* Get the absolute Position 
-	* @return absolute Position
+	* Update and return the relativ Position
+	* @return relativ Position in mouse Coordinates
 	*/
-	MouseCoordinates& getPosition();
+	MouseCoordinates getMovementInMouseCoordinates();
 	/*!
 	* Update and return the relativ Position
 	* @return relativ Position
 	*/
-	MouseCoordinates updatePosition();
+	Coordinates getMovement();
 	/*!
 	* Set new power settings
 	* @param powerSettings powerSettings
@@ -159,4 +164,12 @@ public:
 	* @param preferences NewOperationMode
 	*/
 	void setPreference(Preferences preference,bool value);
+	/*!
+	* Get current resolution
+	* After: uploadStoredOperationMode();
+	* @return resolution
+	*/
+	unsigned int getResolution();
 };
+
+#endif

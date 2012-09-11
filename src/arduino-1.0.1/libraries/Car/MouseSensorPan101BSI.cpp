@@ -10,16 +10,16 @@ MouseCoordinates::MouseCoordinates()
 MouseCoordinates::MouseCoordinates(long x,long y)
 :x(x),y(y){
 }
-  
-MouseCoordinates MouseCoordinates::operator+= (const MouseCoordinates &coordinates){
-	this->x += coordinates.x;
-	this->y += coordinates.y;
+Coordinates MouseCoordinates::getCoordinates(int resolution){
+	Coordinates c;
+	c.x = x * 2540 / resolution;//zoll -> nm
+	c.y = y * 2540 / resolution;//zoll -> nm
+	return c;
 }
 
 
 MouseSensorPan101::MouseSensorPan101(int pinSCK,int pinSDA,int pinPD)
 :pinSCK(pinSCK),pinSDA(pinSDA),pinPD(pinPD){
-	position = new MouseCoordinates(0,0);
 	pinMode(pinSCK, OUTPUT);
 	pinMode(pinSDA, OUTPUT);
 	pinMode(pinPD, OUTPUT);
@@ -94,7 +94,7 @@ void MouseSensorPan101::checkRepairConnection(){
 	if(!isInSynk())
 		reset();
 }
-MouseCoordinates MouseSensorPan101::updatePosition(){
+MouseCoordinates MouseSensorPan101::getMovementInMouseCoordinates(){
 	MouseCoordinates curPosition;
 	unsigned char ino = readFromAddress(r_motionStatus);
 	//wenn 7tes bit vom Register 0x16 gesetzt ist wurde die Maus bewegt => Bewegungsdaten abfragen
@@ -107,12 +107,11 @@ MouseCoordinates MouseSensorPan101::updatePosition(){
 			curPosition.x += curPosition.x < 0 ? -128 : 128;
 		if(ino&(1<<ms_dyovf))
 			curPosition.y += curPosition.y < 0 ? -128 : 128;
-	}	
-	*position += curPosition;
+	}
 	return curPosition;
 }
-MouseCoordinates& MouseSensorPan101::getPosition(){
-	return *position;
+Coordinates MouseSensorPan101::getMovement(){
+	return getMovementInMouseCoordinates().getCoordinates(getResolution());
 }
 void MouseSensorPan101::setPowerSettings(PowerSettings powerSettings){
 	writeToAddress(r_operationMode,operationMode | (1 << powerSettings));
@@ -125,4 +124,7 @@ void MouseSensorPan101::setPreference(Preferences preference,bool value){
 		operationMode |= (1 << preference);
 	else
 		operationMode &= ~(1 << preference);
+}
+unsigned int MouseSensorPan101::getResolution(){
+	return getPreference(p_lowResolution) ? 400 : 800;
 }
