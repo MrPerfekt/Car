@@ -6,18 +6,18 @@
 #define STEERING_MANAGER
 
 #include <DefineLib.h>
-#include <ServoSteeringDriver.h>
+#include <ServoProxy.h>
 #include <MotorTB6612FNG.h>
 #include "PositionCalculator.h"
 
 
 class SteeringManager {
 private:
-	ServoSteeringDriver& servoSteeringDriver;
+	ServoProxy& servoProxy;
 	Motor& motorPowerEngine;
 	PositionCalculator& positionCalculator;
 public:
-	SteeringManager(ServoSteeringDriver& servoSteeringDriver,Motor& motorPowerEngine,PositionCalculator& positionCalculator);
+	SteeringManager(ServoProxy& servoSteeringDriver,Motor& motorPowerEngine,PositionCalculator& positionCalculator);
 	unsigned int getMaxRadius(bool rightTurn);
 	void setAngleOfRadius(int radius);
 	void driveTurn(int radius, int angle);

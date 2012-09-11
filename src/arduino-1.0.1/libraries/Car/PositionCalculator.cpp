@@ -8,8 +8,8 @@ Coordinate::Coordinate(long x,long y)
 	:x(x),y(y)
 {}
 
-PositionCalculator::PositionCalculator(WheelSensor& wheelSensor,Motor& motorPowerEngine,ServoSteeringDriver& servoSteeringDriver)
-	:wheelSensor(wheelSensor),motorPowerEngine(motorPowerEngine),servoSteeringDriver(servoSteeringDriver){
+PositionCalculator::PositionCalculator(WheelSensor& wheelSensor)
+	:wheelSensor(wheelSensor){
 }
 
 Coordinate& PositionCalculator::getPosition(bool rightSteeringSign){

@@ -7,12 +7,12 @@
 Car::Car(){
 	motorPowerEngine = new Motor(pinMotorPMW,pinMotorIn1,pinMotorIn2);
 
-	servoSteeringDriver = new ServoSteeringDriver(pinSteeringServo);
+	servoProxy = new ServoProxy(/*pinSteeringServo*/);
 
 	wheelSensor = new WheelSensor(pinWheelSensorR,pinWheelSensorL);
-	positionCalculator = new PositionCalculator(*wheelSensor,*motorPowerEngine,*servoSteeringDriver);
+	positionCalculator = new PositionCalculator(*wheelSensor);
 
-	steeringManager = new SteeringManager(*servoSteeringDriver,*motorPowerEngine,*positionCalculator);
+	steeringManager = new SteeringManager(*servoProxy,*motorPowerEngine,*positionCalculator);
 
 	powerSupplyVoltageDivider = new VoltageDivider(apinVolDivPowerSupplay,volDivPowerSupplayRes1,volDivPowerSupplayRes2);
 }
@@ -21,8 +21,8 @@ Motor& Car::getMotorPowerEngine(){
 	return *motorPowerEngine;
 }
 
-ServoSteeringDriver& Car::getServoSteeringDriver(){
-	return *servoSteeringDriver;
+ServoProxy& Car::getServoProxy(){
+	return *servoProxy;
 }
 
 SteeringManager& Car::getSteeringManager(){

@@ -7,10 +7,10 @@ const byte dummy = 0;
 
 #include <gLCD.h>
 #include <Servo.h>
-#include <CarFactory.h>
+#include <Car.h>
 
-CarFactory*car = new CarFactory();
-ServoSteeringDriver ssd = car->getServoSteeringDriver();
+Car*car = new Car();
+ServoProxy servop = car->getServoProxy();
 Motor& motor = car->getMotorPowerEngine();
 WheelSensor& wheelSensor = car->getWheelSensor();
 VoltageDivider& voltageDivider = car->getPowerSupplyVoltageDivider();
@@ -103,7 +103,7 @@ void setup(){
   
   Servo* servo = new Servo();
   servo->attach(7);
-  ssd.setSteeringServo(servo);
+  servop.setSteeringServo(servo);
   interrupts();
   
   driveTest();
@@ -153,15 +153,15 @@ void driveStraight(unsigned long distance){
 void driveTest(){
   updateDisplay();
   
-  ssd.setSteeringAngle(0);
+  servop.setSteeringAngle(0);
   motor.motorMove(255, 0);  
   driveStraight((unsigned long)1000000);
   
-  ssd.setSteeringAngle(ServoSteeringDriver::recommendedAngleLeft);
+  servop.setSteeringAngle(ServoProxy::recommendedAngleLeft);
   driveTurn(1000);
   
-  ssd.setSteeringAngle(ServoSteeringDriver::recommendedAngleRight);
+  servop.setSteeringAngle(ServoProxy::recommendedAngleRight);
   driveTurn(1000);
   motor.motorBreak();
-  ssd.setSteeringAngle(0);
+  servop.setSteeringAngle(0);
 }

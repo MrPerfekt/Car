@@ -4,8 +4,8 @@
 
 #include "SteeringManager.h"
 
-SteeringManager::SteeringManager(ServoSteeringDriver& servoSteeringDriver,Motor& motorPowerEngine,PositionCalculator& positionCalculator)
-	:servoSteeringDriver(servoSteeringDriver),motorPowerEngine(motorPowerEngine),positionCalculator(positionCalculator)
+SteeringManager::SteeringManager(ServoProxy& servoProxy,Motor& motorPowerEngine,PositionCalculator& positionCalculator)
+	:servoProxy(servoProxy),motorPowerEngine(motorPowerEngine),positionCalculator(positionCalculator)
 {}
 unsigned int SteeringManager::getMaxRadius(bool rightTurn){
 }

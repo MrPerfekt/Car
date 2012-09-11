@@ -6,7 +6,7 @@
 #define CAR
 
 #include "DefineLib.h"
-#include "ServoSteeringDriver.h"
+#include "ServoProxy.h"
 #include "WheelRotationSensors.h"
 #include "VoltageDivider.h"
 #include "MotorTB6612FNG.h"
@@ -31,7 +31,7 @@ private:
 	static const unsigned long long volDivPowerSupplayRes2 = 1989;
 	
 	Motor* motorPowerEngine;
-	ServoSteeringDriver* servoSteeringDriver;
+	ServoProxy* servoProxy;
 	SteeringManager* steeringManager;
 	PositionCalculator* positionCalculator;
 	WheelSensor* wheelSensor;
@@ -39,7 +39,7 @@ private:
 	
 public:
 	Motor& getMotorPowerEngine();
-	ServoSteeringDriver& getServoSteeringDriver();
+	ServoProxy& getServoProxy();
 	SteeringManager& getSteeringManager();
 	PositionCalculator& getPositionCalculator();
 	WheelSensor& getWheelSensor();
