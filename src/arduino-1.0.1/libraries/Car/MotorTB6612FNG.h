@@ -5,7 +5,8 @@
 #ifndef MOTOR_TB6612FNG
 #define MOTOR_TB6612FNG
 
-#include<DefineLib.h>
+#include "DefineLib.h"
+#include "Movement.h"
 
 static int mPinSTBY = -1; //standby nicht definiert
 

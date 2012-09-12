@@ -5,7 +5,7 @@
 #include "Car.h"
 	
 Car::Car(){	
-	mouseSensor = new MouseSensorPan101(pinMouseSensorSCK,pinMouseSensorSDA,pinMouseSensorPD);
+	mouseSensor = new MouseSensorPan101(pinMouseSensorSCK,pinMouseSensorSDA,pinMouseSensorPD,mouseSensorCenterDistance);
 	motorPowerEngine = new Motor(pinMotorPMW,pinMotorIn1,pinMotorIn2);
 	servoProxy = new ServoProxy(/*pinSteeringServo*/);
 	wheelSensor = new WheelSensor(pinWheelSensorR,pinWheelSensorL);

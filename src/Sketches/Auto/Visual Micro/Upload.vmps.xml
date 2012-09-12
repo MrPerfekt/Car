@@ -19,10 +19,11 @@
         <VCCodeMacro Name="SERVO_STEERING_DRIVER" Value="" />
         <VCCodeMacro Name="STEERING_MANAGER" Value="" />
         <VCCodeMacro Name="VOLTAGE_DIVIDER" Value="" />
-        <VCCodeMacro Name="WHEEL_ROTATION_SENSORS" Value="" />
+        <VCCodeMacro Name="MOVEMENT" Value="" />
         <VCCodeMacro Name="__cplusplus" Value="" />
         <VCCodeMacro Name="COORDINATES" Value="" />
         <VCCodeMacro Name="MOVEMENT_SENSOR" Value="" />
+        <VCCodeMacro Name="WHEEL_ROTATION_SENSORS" Value="" />
         <VCCodeMacro Name="__attribute__" Value="" />
         <VCCodeMacro Name="__inline__" Value="" />
         <VCCodeMacro Name="__asm__" Value="" />

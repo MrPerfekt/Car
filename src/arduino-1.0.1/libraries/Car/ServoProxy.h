@@ -25,8 +25,11 @@ public:
 
 	ServoProxy(/*int pinSteeringServo*/);
 	void setSteeringServo(Servo* newSteeringServo);
-	int getMaxAngle(bool rightSteeringSign);
-	int getMaxAngle(int steeringSign);
+	int getMaxServoAngle(bool rightSteeringSign);
+	int getMaxServoAngle(int steeringSign);
+	int setServoAngle(int angle);
+	int getMaxSteeringAngle(bool rightSteeringSign);
+	int getMaxSteeringAngle(int steeringSign);
 	int setSteeringAngle(int angle);
 };
 

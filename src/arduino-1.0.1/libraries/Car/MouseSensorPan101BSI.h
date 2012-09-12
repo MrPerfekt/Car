@@ -15,7 +15,7 @@ public:
 	long y;
 	MouseCoordinates();
 	MouseCoordinates(long x,long y);
-	Coordinates getCoordinates(int resolution);
+	Movement getMovement(unsigned int resolution,long centerDistance);
 };
 
 /*!
@@ -55,6 +55,7 @@ private:
 	int pinSCK;
 	int pinSDA;
 	int pinPD;
+	long centerDistance;
 public:  
 	enum PowerSettings{
 		ps_normal = om_wakeup,
@@ -73,8 +74,12 @@ public:
 
 	/*!
 	* Initialice the IC
+	* @param pinSCK The pin where SCK is connected
+	* @param pinSDA The pin where SDA is connected
+	* @param pinPD The pin where PD is connected
+	* @param centerDistance The distance to the center where the car can't move left or right
 	*/
-	MouseSensorPan101(int pinSCK,int pinSDA,int pinPD);
+	MouseSensorPan101(int pinSCK,int pinSDA,int pinPD,long centerDistance);
 	/*!
 	* Write a byte to the IC
 	* @param data a byte
@@ -139,14 +144,14 @@ public:
 	void checkRepairConnection();
 	/*!
 	* Update and return the relativ Position
-	* @return relativ Position in mouse Coordinates
+	* @return relativ Position in MouseCoordinates
 	*/
-	MouseCoordinates getMovementInMouseCoordinates();
+	MouseCoordinates getMovementMouseCoordinates();
 	/*!
 	* Update and return the relativ Position
 	* @return relativ Position
 	*/
-	Coordinates getMovement();
+	Movement getMovement();
 	/*!
 	* Set new power settings
 	* @param powerSettings powerSettings

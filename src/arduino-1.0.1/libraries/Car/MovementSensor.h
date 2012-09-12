@@ -6,10 +6,10 @@
 #define MOVEMENT_SENSOR
 
 #include "Sensor.h"
-#include "Coordinates.h"
+#include "Movement.h"
 
 class MovementSensor : public Sensor{
-	Coordinates getMovement();
+	Movement getMovement();
 };
 
 #endif

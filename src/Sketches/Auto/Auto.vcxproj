@@ -74,13 +74,14 @@
     <ClInclude Include="..\..\arduino-1.0.1\libraries\Car\DefineLib.h" />
     <ClInclude Include="..\..\arduino-1.0.1\libraries\Car\MotorTB6612FNG.h" />
     <ClInclude Include="..\..\arduino-1.0.1\libraries\Car\MouseSensorPan101BSI.h" />
+    <ClInclude Include="..\..\arduino-1.0.1\libraries\Car\Movement.h" />
     <ClInclude Include="..\..\arduino-1.0.1\libraries\Car\MovementSensor.h" />
     <ClInclude Include="..\..\arduino-1.0.1\libraries\Car\PositionCalculator.h" />
     <ClInclude Include="..\..\arduino-1.0.1\libraries\Car\Sensor.h" />
     <ClInclude Include="..\..\arduino-1.0.1\libraries\Car\ServoProxy.h" />
     <ClInclude Include="..\..\arduino-1.0.1\libraries\Car\SteeringManager.h" />
     <ClInclude Include="..\..\arduino-1.0.1\libraries\Car\VoltageDivider.h" />
-    <ClInclude Include="..\..\arduino-1.0.1\libraries\Car\WheelRotationSensors.h" />
+    <ClInclude Include="..\..\arduino-1.0.1\libraries\Car\WheelSensors.h" />
     <ClInclude Include="Visual Micro\.Auto.vsarduino.h" />
   </ItemGroup>
   <ItemGroup>
@@ -88,13 +89,14 @@
     <ClCompile Include="..\..\arduino-1.0.1\libraries\Car\Coordinates.cpp" />
     <ClCompile Include="..\..\arduino-1.0.1\libraries\Car\MotorTB6612FNG.cpp" />
     <ClCompile Include="..\..\arduino-1.0.1\libraries\Car\MouseSensorPan101BSI.cpp" />
+    <ClCompile Include="..\..\arduino-1.0.1\libraries\Car\Movement.cpp" />
     <ClCompile Include="..\..\arduino-1.0.1\libraries\Car\MovementSensor.cpp" />
     <ClCompile Include="..\..\arduino-1.0.1\libraries\Car\PositionCalculator.cpp" />
     <ClCompile Include="..\..\arduino-1.0.1\libraries\Car\Sensor.cpp" />
     <ClCompile Include="..\..\arduino-1.0.1\libraries\Car\ServoProxy.cpp" />
     <ClCompile Include="..\..\arduino-1.0.1\libraries\Car\SteeringManager.cpp" />
     <ClCompile Include="..\..\arduino-1.0.1\libraries\Car\VoltageDivider.cpp" />
-    <ClCompile Include="..\..\arduino-1.0.1\libraries\Car\WheelRotationSensors.cpp" />
+    <ClCompile Include="..\..\arduino-1.0.1\libraries\Car\WheelSensors.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

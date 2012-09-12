@@ -6,18 +6,18 @@
 #define POSITION_CALCULATOR
 
 #include <DefineLib.h>
-#include <WheelRotationSensors.h>
+#include <MovementSensor.h>
 #include <Coordinates.h>
 
 class PositionCalculator{
 private:
-	WheelSensor& wheelSensor;
+	MovementSensor& movementSensor;
 	int angle;
 public:
-	PositionCalculator(WheelSensor&wheelSensor);
+	PositionCalculator(MovementSensor& movementSensor);
 	Coordinates& getPosition(bool rightSteeringSign);
 	int getAngle();
-	int setSteeringAngle(int angle);
+	int getDistance();
 	void update();
 };
 

@@ -9,7 +9,7 @@
 #include "Coordinates.h"
 #include "MouseSensorPan101BSI.h"
 #include "ServoProxy.h"
-#include "WheelRotationSensors.h"
+#include "WheelSensors.h"
 #include "VoltageDivider.h"
 #include "MotorTB6612FNG.h"
 #include "PositionCalculator.h"
@@ -35,6 +35,7 @@ private:
 	static const int pinMouseSensorSCK = 12;
 	static const int pinMouseSensorSDA = 10;
 	static const int pinMouseSensorPD = A1;
+	static const long mouseSensorCenterDistance = 300000;
 	
 	Motor* motorPowerEngine;
 	ServoProxy* servoProxy;

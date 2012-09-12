@@ -2,7 +2,8 @@
 * Copyright 2012 Andreas Gruber
 */
 
-#include<MouseSensorPan101BSI.h>
+#include "MouseSensorPan101BSI.h"
+#include "DefineLib.h"
 
 MouseCoordinates::MouseCoordinates()
 :x(0),y(0){
@@ -10,16 +11,16 @@ MouseCoordinates::MouseCoordinates()
 MouseCoordinates::MouseCoordinates(long x,long y)
 :x(x),y(y){
 }
-Coordinates MouseCoordinates::getCoordinates(int resolution){
-	Coordinates c;
-	c.x = x * 2540 / resolution;//zoll -> nm
-	c.y = y * 2540 / resolution;//zoll -> nm
-	return c;
+Movement MouseCoordinates::getMovement(unsigned int resolution,long centerDistance){
+	Movement m;
+	m.distance = x * 2540 / resolution;//zoll -> nm
+	m.angle = (int)(y * 2540.0 * /*zoll -> nm*/ 1000.0 /*360°*/ / resolution /*res*/ / 2.0 * resolution * pi /* u */);
+	return m;
 }
 
 
-MouseSensorPan101::MouseSensorPan101(int pinSCK,int pinSDA,int pinPD)
-:pinSCK(pinSCK),pinSDA(pinSDA),pinPD(pinPD){
+MouseSensorPan101::MouseSensorPan101(int pinSCK,int pinSDA,int pinPD,long centerDistance)
+:pinSCK(pinSCK),pinSDA(pinSDA),pinPD(pinPD),centerDistance(centerDistance){
 	pinMode(pinSCK, OUTPUT);
 	pinMode(pinSDA, OUTPUT);
 	pinMode(pinPD, OUTPUT);
@@ -94,24 +95,24 @@ void MouseSensorPan101::checkRepairConnection(){
 	if(!isInSynk())
 		reset();
 }
-MouseCoordinates MouseSensorPan101::getMovementInMouseCoordinates(){
-	MouseCoordinates curPosition;
+MouseCoordinates MouseSensorPan101::getMovementMouseCoordinates(){
+	MouseCoordinates coordinates;
 	unsigned char ino = readFromAddress(r_motionStatus);
 	//wenn 7tes bit vom Register 0x16 gesetzt ist wurde die Maus bewegt => Bewegungsdaten abfragen
 	if(ino&(1<<ms_motion)){
 		//read delta position
-		curPosition.x = (signed char)readFromAddress(r_deltaX);
-		curPosition.y = (signed char)readFromAddress(r_deltaY);
+		coordinates.x = (signed char)readFromAddress(r_deltaX);
+		coordinates.y = (signed char)readFromAddress(r_deltaY);
 		//Check overflow
 		if(ino&(1<<ms_dxovf))
-			curPosition.x += curPosition.x < 0 ? -128 : 128;
+			coordinates.x += coordinates.x < 0 ? -128 : 128;
 		if(ino&(1<<ms_dyovf))
-			curPosition.y += curPosition.y < 0 ? -128 : 128;
+			coordinates.y += coordinates.y < 0 ? -128 : 128;
 	}
-	return curPosition;
+	return coordinates;
 }
-Coordinates MouseSensorPan101::getMovement(){
-	return getMovementInMouseCoordinates().getCoordinates(getResolution());
+Movement MouseSensorPan101::getMovement(){
+	return getMovementMouseCoordinates().getMovement(getResolution(),centerDistance);
 }
 void MouseSensorPan101::setPowerSettings(PowerSettings powerSettings){
 	writeToAddress(r_operationMode,operationMode | (1 << powerSettings));

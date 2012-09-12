@@ -4,16 +4,15 @@
 
 #include "PositionCalculator.h"
 
-PositionCalculator::PositionCalculator(WheelSensor& wheelSensor)
-	:wheelSensor(wheelSensor){
+PositionCalculator::PositionCalculator(MovementSensor& movementSensor)
+	:movementSensor(movementSensor){
 }
-
-Coordinates& PositionCalculator::getPosition(bool rightSteeringSign){
+Coordinates& PositionCalculator::getPosition(bool leftSteeringSign){
 	return *(new Coordinates(0,0));
 }
-
 int PositionCalculator::getAngle(){
 }
-
-int PositionCalculator::setSteeringAngle(int angle){
+int PositionCalculator::getDistance(){
+}
+void PositionCalculator::update(){
 }
