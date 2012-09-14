@@ -5,6 +5,7 @@
 #include "Car.h"
 	
 Car::Car(){	
+	displayProxy = new DisplayProxy(pinDisplayRST, pinDisplayCS, pinDisplayClk, pinDisplayData);
 	mouseSensor = new MouseSensorPan101(pinMouseSensorSCK,pinMouseSensorSDA,pinMouseSensorPD,mouseSensorCenterDistance);
 	motorPowerEngine = new Motor(pinMotorPMW,pinMotorIn1,pinMotorIn2);
 	servoProxy = new ServoProxy(/*pinSteeringServo*/);

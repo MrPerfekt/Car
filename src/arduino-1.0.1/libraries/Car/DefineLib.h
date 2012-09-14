@@ -16,6 +16,4 @@
 #define uint unsigned int
 #define llong long long
 
-static const double pi = 3.14159265; 
-
 #endif

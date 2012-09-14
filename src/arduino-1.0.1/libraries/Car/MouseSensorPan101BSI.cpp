@@ -14,7 +14,7 @@ MouseCoordinates::MouseCoordinates(long x,long y)
 Movement MouseCoordinates::getMovement(unsigned int resolution,long centerDistance){
 	Movement m;
 	m.distance = x * 2540 / resolution;//zoll -> nm
-	m.angle = (int)(y * 2540.0 * /*zoll -> nm*/ 1000.0 /*360°*/ / resolution /*res*/ / 2.0 * resolution * pi /* u */);
+	m.angle = (int)(y * 2540.0 * /*zoll -> nm*/ 1000.0 /*360°*/ / resolution /*res*/ / 2.0 * resolution * M_PI /* u */);
 	return m;
 }
 

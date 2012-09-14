@@ -9,6 +9,7 @@
 #include "Movement.h"
 
 class MovementSensor : public Sensor{
+public:
 	Movement getMovement();
 };
 

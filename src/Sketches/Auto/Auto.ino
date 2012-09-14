@@ -24,7 +24,7 @@ const char Data = 11;
 
 gLCD graphic(RST,CS,Clk,Data,1);
 
-void setupDisplay(){    
+void setupDisplay(){
   graphic.Init(0,2,0,1,1);
   graphic.Contrast(0x2B);//Range: -0x3F to 0x3F
   graphic.SetBackColour(15,15,15);

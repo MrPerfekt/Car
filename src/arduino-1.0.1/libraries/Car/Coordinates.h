@@ -13,5 +13,6 @@ public:
 	Coordinates();
 	Coordinates(long x,long y);
 	Coordinates operator+= (const Coordinates &coordinates);
+	Coordinates operator-= (const Coordinates &coordinates);
 };
 #endif

@@ -8,6 +8,7 @@
 #include "arduino.h"
 #include "Coordinates.h"
 #include "MovementSensor.h"
+#include "math.h"
 
 class MouseCoordinates{
 public:

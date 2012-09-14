@@ -14,6 +14,7 @@
 #include "MotorTB6612FNG.h"
 #include "PositionCalculator.h"
 #include "SteeringManager.h"
+#include "DisplayProxy.h"
 
 class Car {
 private:
@@ -36,6 +37,11 @@ private:
 	static const int pinMouseSensorSDA = 10;
 	static const int pinMouseSensorPD = A1;
 	static const long mouseSensorCenterDistance = 300000;
+	//Display
+	static const char pinDisplayRST = 8;
+	static const char pinDisplayCS = 9;
+	static const char pinDisplayClk = 13;
+	static const char pinDisplayData = 11;
 	
 	Motor* motorPowerEngine;
 	ServoProxy* servoProxy;
@@ -43,8 +49,9 @@ private:
 	PositionCalculator* positionCalculator;
 	WheelSensor* wheelSensor;
 	VoltageDivider* powerSupplyVoltageDivider;
-	MouseSensorPan101*mouseSensor;
-	
+	MouseSensorPan101* mouseSensor;
+	DisplayProxy* displayProxy;
+
 public:
 	Motor& getMotorPowerEngine();
 	ServoProxy& getServoProxy();

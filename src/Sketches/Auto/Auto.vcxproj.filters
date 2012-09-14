@@ -60,6 +60,12 @@
     <ClInclude Include="..\..\arduino-1.0.1\libraries\Car\Movement.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="..\..\arduino-1.0.1\libraries\Car\MotionLogger.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\arduino-1.0.1\libraries\Car\DisplayProxy.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\..\arduino-1.0.1\libraries\Car\Car.cpp">
@@ -96,6 +102,12 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="..\..\arduino-1.0.1\libraries\Car\Movement.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\arduino-1.0.1\libraries\Car\MotionLogger.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\arduino-1.0.1\libraries\Car\DisplayProxy.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>

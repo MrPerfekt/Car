@@ -72,6 +72,8 @@
     <ClInclude Include="..\..\arduino-1.0.1\libraries\Car\Car.h" />
     <ClInclude Include="..\..\arduino-1.0.1\libraries\Car\Coordinates.h" />
     <ClInclude Include="..\..\arduino-1.0.1\libraries\Car\DefineLib.h" />
+    <ClInclude Include="..\..\arduino-1.0.1\libraries\Car\DisplayProxy.h" />
+    <ClInclude Include="..\..\arduino-1.0.1\libraries\Car\MotionLogger.h" />
     <ClInclude Include="..\..\arduino-1.0.1\libraries\Car\MotorTB6612FNG.h" />
     <ClInclude Include="..\..\arduino-1.0.1\libraries\Car\MouseSensorPan101BSI.h" />
     <ClInclude Include="..\..\arduino-1.0.1\libraries\Car\Movement.h" />
@@ -87,6 +89,8 @@
   <ItemGroup>
     <ClCompile Include="..\..\arduino-1.0.1\libraries\Car\Car.cpp" />
     <ClCompile Include="..\..\arduino-1.0.1\libraries\Car\Coordinates.cpp" />
+    <ClCompile Include="..\..\arduino-1.0.1\libraries\Car\DisplayProxy.cpp" />
+    <ClCompile Include="..\..\arduino-1.0.1\libraries\Car\MotionLogger.cpp" />
     <ClCompile Include="..\..\arduino-1.0.1\libraries\Car\MotorTB6612FNG.cpp" />
     <ClCompile Include="..\..\arduino-1.0.1\libraries\Car\MouseSensorPan101BSI.cpp" />
     <ClCompile Include="..\..\arduino-1.0.1\libraries\Car\Movement.cpp" />

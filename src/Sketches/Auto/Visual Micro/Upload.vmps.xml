@@ -24,6 +24,7 @@
         <VCCodeMacro Name="COORDINATES" Value="" />
         <VCCodeMacro Name="MOVEMENT_SENSOR" Value="" />
         <VCCodeMacro Name="WHEEL_ROTATION_SENSORS" Value="" />
+        <VCCodeMacro Name="MOTION_LOGGER" Value="" />
         <VCCodeMacro Name="__attribute__" Value="" />
         <VCCodeMacro Name="__inline__" Value="" />
         <VCCodeMacro Name="__asm__" Value="" />

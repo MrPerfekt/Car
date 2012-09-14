@@ -10,8 +10,3 @@ Movement::Movement()
 Movement::Movement(long distance,int angle)
 :distance(distance),angle(angle){
 }
-Movement Movement::getMovementByCoordinates(long x,long y){
-	Movement m;
-	m.distance = 0;
-	m.angle = 0;
-}

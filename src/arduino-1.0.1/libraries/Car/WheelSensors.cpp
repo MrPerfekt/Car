@@ -57,7 +57,7 @@ double WheelSensor::calculateAngleDeg(){
 }
 long WheelSensor::calculateAngleMilli(){
 	//1000 = 360°
-	return ((long)wheels[WR]->rotationCount - (long)wheels[WL]->rotationCount) * (long)Wheel::stepDistance * (long)1000 / (2 * Wheel::wheelDistance * pi);
+	return ((long)wheels[WR]->rotationCount - (long)wheels[WL]->rotationCount) * (long)Wheel::stepDistance * (long)1000 / (2 * Wheel::wheelDistance * M_PI);
 }
 
 ulong WheelSensor::calculateDistance(){

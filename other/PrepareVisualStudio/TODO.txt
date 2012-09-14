@@ -1,0 +1,2 @@
+Install Visual Micro
+Copy usertype.dat to the directory where devenv.exe is. ("C:\Program Files (x86)\Microsoft Visual Studio 10.0\Common7\IDE")
