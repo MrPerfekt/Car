@@ -11,9 +11,4 @@
 	#include "WProgram.h"
 #endif
 
-#define ullong unsigned long long
-#define ulong unsigned long
-#define uint unsigned int
-#define llong long long
-
 #endif

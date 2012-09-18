@@ -23,7 +23,7 @@ void motorEnableStandby(){
 
 
 //== class Motor ==
-Motor::Motor(int pinPWM,int pinIN1,int pinIN2){
+Motor::Motor(uint8_t pinPWM,uint8_t pinIN1,uint8_t pinIN2){
 	mPinPWM = pinPWM;
 	mPinIN1 = pinIN1;
 	mPinIN2 = pinIN2;
@@ -48,7 +48,7 @@ void Motor::waitDeadTime(){
 	}
 }
 
-void Motor::motorWriteStatus(int speed, boolean inPin1, boolean inPin2){
+void Motor::motorWriteStatus(uint8_t speed, bool inPin1, bool inPin2){
 	/*
 	Serial.print(speed);
 	Serial.println(" ");
@@ -68,14 +68,10 @@ void Motor::motorWriteStatus(int speed, boolean inPin1, boolean inPin2){
 	analogWrite(mPinPWM, speed);
 }
 
-void Motor::motorMove(int speed, int direction){
-	//Move specific motor at speed and direction
-	//motor: 0 for B 1 for A
-	//speed: 0 is off, and 255 is full speed
-	//direction: 0 clockwise, 1 counter-clockwise
-	boolean inPin1;
-	boolean inPin2;
-	if(direction == 0){      
+void Motor::motorMove(uint8_t speed, bool clockwise){
+	bool inPin1;
+	bool inPin2;
+	if(clockwise){      
 	  inPin1 = HIGH;
 	  inPin2 = LOW;
 	}else{

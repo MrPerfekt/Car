@@ -12,11 +12,11 @@
 
 class MouseCoordinates{
 public:
-	long x;
-	long y;
+	int32_t x;
+	int32_t y;
 	MouseCoordinates();
-	MouseCoordinates(long x,long y);
-	Movement getMovement(unsigned int resolution,long centerDistance);
+	MouseCoordinates(int32_t x,int32_t y);
+	Movement getMovement(uint16_t resolution,int32_t centerDistance);
 };
 
 /*!
@@ -53,9 +53,9 @@ private:
 		//om_reserved = 7,
 	};
 
-	int pinSCK;
-	int pinSDA;
-	int pinPD;
+	uint8_t pinSCK;
+	uint8_t pinSDA;
+	uint8_t pinPD;
 	long centerDistance;
 public:  
 	enum PowerSettings{
@@ -70,8 +70,8 @@ public:
 		p_enableQuadratureOutput = om_xyEnh,
 	};
 
-	unsigned char productID;
-	unsigned char operationMode;
+	uint8_t productID;
+	uint8_t operationMode;
 
 	/*!
 	* Initialice the IC
@@ -80,29 +80,29 @@ public:
 	* @param pinPD The pin where PD is connected
 	* @param centerDistance The distance to the center where the car can't move left or right
 	*/
-	MouseSensorPan101(int pinSCK,int pinSDA,int pinPD,long centerDistance);
+	MouseSensorPan101(uint8_t pinSCK,uint8_t pinSDA,uint8_t pinPD,uint32_t centerDistance);
 	/*!
 	* Write a byte to the IC
 	* @param data a byte
 	*/
-	void writeByte(unsigned char data);
+	void writeByte(uint8_t data);
 	/*!
 	* Read a byte from the IC
 	* @return the byte
 	*/
-	unsigned char readByte();
+	uint8_t readByte();
 	/*!
 	* Write an register of the IC
 	* @param adr Address
 	* @param data Data
 	*/
-	void writeToAddress(unsigned char adr, unsigned char data);
+	void writeToAddress(uint8_t adr, uint8_t data);
 	/*!
 	* Read an register of the IC
 	* @param adr Address
 	* @return Data
 	*/
-	unsigned char readFromAddress(unsigned char adr);
+	uint8_t readFromAddress(uint8_t adr);
 	/*!
 	* Reset the IC
 	*/
@@ -116,12 +116,12 @@ public:
 	* Get the Product-ID
 	* @return Product-ID
 	*/
-	unsigned char readProductID();
+	uint8_t readProductID();
 	/*!
 	* Get the operation mode
 	* @return operation mode
 	*/
-	unsigned char readOperationMode();
+	uint8_t readOperationMode();
 	/*!
 	* Refresh the stored Product-ID
 	*/
@@ -175,7 +175,7 @@ public:
 	* After: uploadStoredOperationMode();
 	* @return resolution
 	*/
-	unsigned int getResolution();
+	uint16_t getResolution();
 };
 
 #endif

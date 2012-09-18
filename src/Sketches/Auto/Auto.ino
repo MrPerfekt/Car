@@ -41,15 +41,15 @@ void updateDisplay(){
   strR += ".";
   strR += (int)(angle * 100)%100;
   
-  ulong distance = wheelSensor.calculateDistance() / 1000;
+  uint32_t distance = wheelSensor.calculateDistance() / 1000;
   String strD = "d: ";
   strD += distance;
   
-  uint suplV = voltageDivider.calculateSuplyPotential();
+  uint16_t suplV = voltageDivider.calculateSuplyPotential();
   String strU = "u: ";
   strU += suplV;
   
-  uint cSpeed = wheelSensor.calculateCurrentSpeed();
+  uint16_t cSpeed = wheelSensor.calculateCurrentSpeed();
   String strV = "v: ";
   strV += cSpeed;
   
@@ -143,8 +143,8 @@ void driveTurn(int angle){
 void driveStraight(unsigned long distance){
   //distance: in nanometer
   //ahead: true=forwad false=backward
-  ulong startDistance = wheelSensor.calculateDistance();
-  ulong finishDistance = startDistance + distance;
+  uint32_t startDistance = wheelSensor.calculateDistance();
+  uint32_t finishDistance = startDistance + distance;
   while(wheelSensor.calculateDistance() < finishDistance){
     updateDisplay();
   }

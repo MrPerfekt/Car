@@ -1,6 +1,6 @@
 <VisualMicro>
   <Program Name="Auto" Ext=".ino" Location="C:\Users\Andreas\Desktop\Car\src\Sketches\Auto">
-    <Compile IsCompiled="0" ConfigurationName="Debug" StopOnError="False" OptimiseLibs="True" OptimiseCore="True" BuildPath="C:\Users\Andreas\AppData\Local\VMicro\Arduino\Builds\Auto\uno" IncludeDebug="0" IncludesDebug="0" SketchName="Auto" CompilerErrors="1" />
+    <Compile CompilerErrors="0" ConfigurationName="Debug" StopOnError="False" OptimiseLibs="True" OptimiseCore="True" BuildPath="C:\Users\Andreas\AppData\Local\VMicro\Arduino\Builds\Auto\uno" IncludeDebug="0" IncludesDebug="0" SketchName="Auto" IsCompiled="1" />
     <Platform Name="Arduino">
       <Board Name="uno" Description="Arduino Uno" CoreFolder="C:\Users\Andreas\Desktop\Car\src\arduino-1.0.1\hardware\arduino\cores\arduino" VariantFullPath="C:\Users\Andreas\Desktop\Car\src\arduino-1.0.1\hardware\arduino\variants\standard" />
     </Platform>
@@ -33,13 +33,9 @@
         <VCCodeMacro Name="__ATTR_PURE__" Value="" />
         <VCCodeMacro Name="__ATTR_CONST__" Value="" />
         <VCCodeMacro Name="__inline__" Value="" />
-        <VCCodeMacro Name="ullong" Value="unsigned long long" />
         <VCCodeMacro Name="__asm__" Value="" />
-        <VCCodeMacro Name="ulong" Value="unsigned long" />
         <VCCodeMacro Name="__volatile__" Value="" />
-        <VCCodeMacro Name="uint" Value="unsigned int" />
         <VCCodeMacro Name="__builtin_va_list" Value="" />
-        <VCCodeMacro Name="llong" Value="long long" />
         <VCCodeMacro Name="__builtin_va_start" Value="" />
         <VCCodeMacro Name="__builtin_va_end" Value="" />
         <VCCodeMacro Name="__DOXYGEN__" Value="" />

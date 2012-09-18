@@ -25,6 +25,7 @@
         <VCCodeMacro Name="MOVEMENT_SENSOR" Value="" />
         <VCCodeMacro Name="WHEEL_ROTATION_SENSORS" Value="" />
         <VCCodeMacro Name="MOTION_LOGGER" Value="" />
+        <VCCodeMacro Name="DISPLAY_PROXY" Value="" />
         <VCCodeMacro Name="__attribute__" Value="" />
         <VCCodeMacro Name="__inline__" Value="" />
         <VCCodeMacro Name="__asm__" Value="" />
@@ -32,13 +33,9 @@
         <VCCodeMacro Name="__ATTR_PURE__" Value="" />
         <VCCodeMacro Name="__ATTR_CONST__" Value="" />
         <VCCodeMacro Name="__inline__" Value="" />
-        <VCCodeMacro Name="ullong" Value="unsigned long long" />
         <VCCodeMacro Name="__asm__" Value="" />
-        <VCCodeMacro Name="ulong" Value="unsigned long" />
         <VCCodeMacro Name="__volatile__" Value="" />
-        <VCCodeMacro Name="uint" Value="unsigned int" />
         <VCCodeMacro Name="__builtin_va_list" Value="" />
-        <VCCodeMacro Name="llong" Value="long long" />
         <VCCodeMacro Name="__builtin_va_start" Value="" />
         <VCCodeMacro Name="__builtin_va_end" Value="" />
         <VCCodeMacro Name="__DOXYGEN__" Value="" />

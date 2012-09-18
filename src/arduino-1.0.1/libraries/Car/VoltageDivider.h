@@ -10,12 +10,12 @@
 class VoltageDivider {
 private:
 	//Pin definition
-	int voltagePin;
-	uint vdResistor1;
-	uint vdResistorGes;
+	uint8_t voltagePin;
+	uint16_t vdResistor1;
+	uint16_t vdResistorGes;
 public:	
 	//Variables
-	VoltageDivider(int pin,int r1,int r2);
-	uint calculateSuplyPotential();
+	VoltageDivider(uint8_t pin,uint16_t r1,uint16_t r2);
+	uint16_t calculateSuplyPotential();
 };
 #endif

@@ -51,7 +51,7 @@ private:
 	VoltageDivider* powerSupplyVoltageDivider;
 	MouseSensorPan101* mouseSensor;
 	DisplayProxy* displayProxy;
-
+	MovementSensor* movementSensor;
 public:
 	Motor& getMotorPowerEngine();
 	ServoProxy& getServoProxy();
@@ -60,6 +60,7 @@ public:
 	WheelSensor& getWheelSensor();
 	VoltageDivider& getPowerSupplyVoltageDivider();
 	MouseSensorPan101& getMouseSensor();
+	MovementSensor& getMovementSensor();
 
 	Car();
 };

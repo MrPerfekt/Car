@@ -10,50 +10,37 @@ SteeringManager::SteeringManager(ServoProxy& servoProxy,Motor& motorPowerEngine,
 unsigned int SteeringManager::getMaxRadius(bool rightTurn){
 }
 void SteeringManager::setAngleOfRadius(int radius){
+	servoProxy.setSteeringAngle(radius);
 }
 void SteeringManager::driveTurn(int radius, int angle){
 }
 void SteeringManager::driveTurn(unsigned int radius, unsigned int angle, bool forward, bool rightTurn){
 }
 void SteeringManager::driveStraight(long distance){
+	bool forward = distance >= 0;
+	if(!forward) distance *= -1;
+	driveStraight(distance,forward);
 }
-void SteeringManager::driveStraight(unsigned long distance,bool forward){
+void SteeringManager::driveStraight(int32_t distance,bool forward){
+	stopConditionValue = positionCalculator.distance + (forward ? distance : -distance);
+	state = forward ? ss_driveStraightForward : ss_driveStraightBackward;
+	servoProxy.setSteeringAngle(0);
+	motorPowerEngine.motorMove(255,forward);
 }
-
-
-
-
-
-
-
-/*
-void driveTurn(int angle){
-  int startAngle = wheelSensor->calculateAngleMilli();
-  int currentAngle;
-  do{
-    currentAngle = wheelSensor->calculateAngleMilli() - startAngle;
-    if(currentAngle < 0) currentAngle *= -1;
-    updateDisplay();
-  }while(currentAngle < angle);
+bool SteeringManager::update(){
+	if(state == ss_stop) {
+		motorPowerEngine.motorBreak();
+		return true;
+	}
+	positionCalculator.update();
+	servoProxy.correctSteeringAngle(positionCalculator.currentMovement.angle);
+	if((state == ss_driveStraightForward && stopConditionValue < positionCalculator.distance) ||
+		(state == ss_driveStraightBackward && stopConditionValue > positionCalculator.distance) ||
+		((state == ss_driveTurnLeftForward || state == ss_driveTurnRightBackward) && stopConditionValue < positionCalculator.angle) ||
+		((state == ss_driveTurnLeftBackward || state == ss_driveTurnRightForward) && stopConditionValue > positionCalculator.angle)
+		){
+		state = ss_stop;
+		return true;
+	}
+	false;
 }
-void driveStraight(unsigned long distance){
-  //distance: in millimeter
-  //ahead: true=forwad false=backward
-  unsigned long startDistance = wheelSensor->calculateDistance();
-  unsigned long finishDistance = startDistance + distance;
-  while(wheelSensor->calculateDistance() < finishDistance)
-    updateDisplay();
-}
-
-void driveTest(){
-  servo.write(posMiddle);
-  motor->motorMove(255, 0);
-  driveStraight((unsigned long)1000000);
-  servo.write(posRight);
-  driveTurn(1000);
-  servo.write(posLeft);
-  driveTurn(1000);
-  motor->motorBreak();
-  servo.write(posMiddle);
-}
-*/
