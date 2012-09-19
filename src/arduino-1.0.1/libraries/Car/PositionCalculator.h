@@ -13,14 +13,13 @@
 class PositionCalculator{
 private:
 	MovementSensor& movementSensor;
+public:
 	int angle;
 	long distance;
 	Coordinates position;
-public:
+	Movement currentMovement;
 	PositionCalculator(MovementSensor& movementSensor);
 	Coordinates& getPosition(bool rightSteeringSign);
-	int getAngle();
-	int getDistance();
 	void update();
 };
 

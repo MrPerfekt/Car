@@ -8,9 +8,9 @@
 #include "Sensor.h"
 #include "Movement.h"
 
-class MovementSensor : public Sensor{
+class MovementSensor : public Sensor {
 public:
-	Movement getMovement();
+	virtual Movement getMovement() = 0;
 };
 
 #endif

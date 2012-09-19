@@ -1,7 +1,0 @@
-ok	CarFactory -> Car
-ok	Observer Pattern -> X
-ok	WheelRotationSensor -> ? Problem: Interupt ?
-ok	ServoSteeringDriver -> ServoProxy
-ok	PositionCalculator::Motor -> X
-ok	PositionCalculator::ServoProxy -> X
-ok	TortoiseGit installieren

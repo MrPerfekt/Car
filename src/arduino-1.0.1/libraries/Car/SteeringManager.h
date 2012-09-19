@@ -5,25 +5,47 @@
 #ifndef STEERING_MANAGER
 #define STEERING_MANAGER
 
-#include <DefineLib.h>
-#include <ServoProxy.h>
-#include <MotorTB6612FNG.h>
+#include "DefineLib.h"
+#include "ServoProxy.h"
+#include "MotorTB6612FNG.h"
 #include "PositionCalculator.h"
+#include "Movement.h"
 
 
 class SteeringManager {
 private:
+	enum SteeringState{
+		ss_stop,
+		ss_driveStraightForward,
+		ss_driveStraightBackward,
+		ss_driveTurnLeftForward,
+		ss_driveTurnLeftBackward,
+		ss_driveTurnRightForward,
+		ss_driveTurnRightBackward,
+	};
 	ServoProxy& servoProxy;
 	Motor& motorPowerEngine;
 	PositionCalculator& positionCalculator;
+	uint32_t stopConditionValue;
+	uint8_t state;//TODO: optimice this or implement an enum
+	int32_t steeringWheelsPosition;
 public:
-	SteeringManager(ServoProxy& servoSteeringDriver,Motor& motorPowerEngine,PositionCalculator& positionCalculator);
+	SteeringManager(ServoProxy& servoSteeringDriver,Motor& motorPowerEngine,PositionCalculator& positionCalculator,int32_t steeringWheelsPosition);
 	unsigned int getMaxRadius(bool rightTurn);
+	int16_t calculateSteeringWheelAngle(const Movement& movement);
+	int16_t calculateSteeringWheelAngle(int32_t radius);
 	void setAngleOfRadius(int radius);
-	void driveTurn(int radius, int angle);
-	void driveTurn(unsigned int radius, unsigned int angle, bool forward, bool rightTurn);
-	void driveStraight(long distance);
-	void driveStraight(unsigned long distance,bool forward);
+	void driveTurn(int32_t radius, int16_t angle);
+	void driveTurn(int32_t radius, int16_t angle, bool forward, bool leftTurn);
+	void driveStraight(int32_t distance);
+	void driveStraight(int32_t distance,bool forward);
+	/*1
+	* Update the current steering action
+	* If the action has finished update() will return true
+	* If update() is executed again after finishing it will stop the motor
+	* return true if the current action has finished
+	*/
+	bool update();
 };
 
 #endif

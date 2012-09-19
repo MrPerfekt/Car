@@ -18,7 +18,9 @@
 
 class Car {
 private:
-	//Pins
+	//Constants
+	//Car measures
+	static const long steeringWheelsPosition = 250000;
 	//Steering Servo
 	static const int pinSteeringServo = 7;
 	//Motor
@@ -51,7 +53,7 @@ private:
 	VoltageDivider* powerSupplyVoltageDivider;
 	MouseSensorPan101* mouseSensor;
 	DisplayProxy* displayProxy;
-
+	MovementSensor* movementSensor;
 public:
 	Motor& getMotorPowerEngine();
 	ServoProxy& getServoProxy();
@@ -60,6 +62,7 @@ public:
 	WheelSensor& getWheelSensor();
 	VoltageDivider& getPowerSupplyVoltageDivider();
 	MouseSensorPan101& getMouseSensor();
+	MovementSensor& getMovementSensor();
 
 	Car();
 };

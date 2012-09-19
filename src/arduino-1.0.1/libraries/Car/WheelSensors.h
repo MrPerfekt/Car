@@ -18,10 +18,10 @@ void rotateWheelL();
 
 class Wheel{
 public:
-	static const uint wheelSteps = 12;
-	static const ulong wheelDistance = 155000;//nm
-	static const ulong circumference = 94000;// 6762 / 72 mm = 94 * 1000 nm
-	static const ulong stepDistance = circumference / wheelSteps;
+	static const uint16_t wheelSteps = 12;
+	static const uint32_t wheelDistance = 155000;//nm
+	static const uint32_t circumference = 94000;// 6762 / 72 mm = 94 * 1000 nm
+	static const uint32_t stepDistance = circumference / wheelSteps;
 	//static const int debounceMinRotTime = -1;//10;//10ms
 	
 	//Pin definition
@@ -29,10 +29,10 @@ public:
 	int wheelInt;
 
 	//Variables
-	volatile ulong rotationCount;
-	volatile ulong lastRotationTime;
-	volatile ulong lastRotationPeriod;
-	volatile ulong secToLastRotationPeriod;
+	volatile uint32_t rotationCount;
+	volatile uint32_t lastRotationTime;
+	volatile uint32_t lastRotationPeriod;
+	volatile uint32_t secToLastRotationPeriod;
 
 	Wheel(int wPin);
 };
@@ -45,12 +45,14 @@ public:
 	static const byte WR = 0;
 	static const byte WL = 1;
 
-	WheelSensor(int wPinWR,int wPinWL);
+	WheelSensor(uint8_t wPinWR,uint8_t wPinWL);
 	void rotateWheel(byte wheel);
 	double calculateAngleDeg();
-	long calculateAngleMilli();
-	ulong calculateDistance();
-	uint calculateCurrentSpeed();
+	int32_t calculateAngleMilli();
+	uint32_t calculateDistance();
+	uint16_t calculateCurrentSpeed();
+	void resetData();
+	Movement getMovement();
 };
 
 #endif

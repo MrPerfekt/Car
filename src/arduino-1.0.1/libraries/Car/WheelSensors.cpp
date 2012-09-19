@@ -20,7 +20,7 @@ Wheel::Wheel(int wPin)
 	secToLastRotationPeriod = 0;
 }
 
-WheelSensor::WheelSensor(int wPinWR,int wPinWL){
+WheelSensor::WheelSensor(uint8_t wPinWR,uint8_t wPinWL){
 	wheels[WR] = new Wheel(wPinWR);
 	wheels[WL] = new Wheel(wPinWL);
 	wheelSensorInstance = this;
@@ -60,23 +60,32 @@ long WheelSensor::calculateAngleMilli(){
 	return ((long)wheels[WR]->rotationCount - (long)wheels[WL]->rotationCount) * (long)Wheel::stepDistance * (long)1000 / (2 * Wheel::wheelDistance * M_PI);
 }
 
-ulong WheelSensor::calculateDistance(){
+uint32_t WheelSensor::calculateDistance(){
 	//nm
 	return (wheels[WR]->rotationCount + wheels[WL]->rotationCount) * Wheel::stepDistance / 2;
 }
 
-uint WheelSensor::calculateCurrentSpeed(){
+uint16_t WheelSensor::calculateCurrentSpeed(){
 	//nm/ms = mm/s;
-	ulong cTime = millis();
-	ulong cRotTimeL = cTime - wheels[WL]->lastRotationTime;
-	ulong cRotTimeR = cTime - wheels[WR]->lastRotationTime;
+	uint32_t cTime = millis();
+	uint32_t cRotTimeL = cTime - wheels[WL]->lastRotationTime;
+	uint32_t cRotTimeR = cTime - wheels[WR]->lastRotationTime;
 
 	if(cRotTimeL > 1000 && cRotTimeR > 1000) return 0;
 
-	ulong minLRPL = cRotTimeL > wheels[WL]->lastRotationPeriod * 2 ? cRotTimeL : wheels[WL]->lastRotationPeriod;
-	ulong minLRPR = cRotTimeR > wheels[WR]->lastRotationPeriod * 2 ? cRotTimeR : wheels[WR]->lastRotationPeriod;
-	ulong minSLRPL = cRotTimeL > wheels[WL]->secToLastRotationPeriod * 2 ? cRotTimeL : wheels[WL]->secToLastRotationPeriod;
-	ulong minSLRPR = cRotTimeR > wheels[WR]->secToLastRotationPeriod * 2 ? cRotTimeR : wheels[WR]->secToLastRotationPeriod;
+	uint32_t minLRPL = cRotTimeL > wheels[WL]->lastRotationPeriod * 2 ? cRotTimeL : wheels[WL]->lastRotationPeriod;
+	uint32_t minLRPR = cRotTimeR > wheels[WR]->lastRotationPeriod * 2 ? cRotTimeR : wheels[WR]->lastRotationPeriod;
+	uint32_t minSLRPL = cRotTimeL > wheels[WL]->secToLastRotationPeriod * 2 ? cRotTimeL : wheels[WL]->secToLastRotationPeriod;
+	uint32_t minSLRPR = cRotTimeR > wheels[WR]->secToLastRotationPeriod * 2 ? cRotTimeR : wheels[WR]->secToLastRotationPeriod;
 
-	return (uint)((Wheel::stepDistance * 2 ) / (minLRPL + minLRPR + minSLRPL + minSLRPR));
+	return (uint16_t)((Wheel::stepDistance * 2 ) / (minLRPL + minLRPR + minSLRPL + minSLRPR));
+}
+void WheelSensor::resetData(){
+	wheels[WL]->rotationCount = 0;
+	wheels[WR]->rotationCount = 0;
+}
+Movement WheelSensor::getMovement(){
+	Movement mov(calculateDistance(),calculateAngleMilli());
+	resetData();
+	return mov;
 }

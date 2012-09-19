@@ -12,10 +12,10 @@ ServoProxy::ServoProxy(/*int pinSteeringServo*/){
 	//setSteeringAngle(0);
 }
 
-int convertServoToSteeringAngle(int servoAngle){
+int ServoProxy::convertServoToSteeringAngle(int servoAngle){
 	return servoAngle;
 }
-int convertSteeringToServoAngle(int steeringAngle){
+int ServoProxy::convertSteeringToServoAngle(int steeringAngle){
 	return steeringAngle;
 }
 
@@ -43,7 +43,7 @@ int ServoProxy::setServoAngle(int angle){
 		returnState = steerLeftSign;
 	}
 	steeringServo->write((int)( 
-	(((double)angle+(double)absAngleMiddle+(double)500)*(double)180)/(double)1000
+	(((double)angle+(double)absServoAngleMiddle+(double)500)*(double)180)/(double)1000
 	));
 }
 int ServoProxy::getMaxSteeringAngle(bool rightSteeringSign){
@@ -53,5 +53,12 @@ int ServoProxy::getMaxSteeringAngle(int steeringSign){
 	return convertServoToSteeringAngle(getMaxServoAngle(steeringSign));
 }
 int ServoProxy::setSteeringAngle(int angle){
+	currentSteeringAngle = angle;
+	setUpdatedSteeringAngle(angle);
+}
+int ServoProxy::setUpdatedSteeringAngle(int angle){
 	return convertSteeringToServoAngle(setServoAngle(angle));
+}
+int ServoProxy::correctSteeringAngle(int currentRealAngle){
+	setUpdatedSteeringAngle(2 * currentRealAngle - currentRealAngle);
 }

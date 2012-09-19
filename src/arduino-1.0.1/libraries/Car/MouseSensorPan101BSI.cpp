@@ -11,15 +11,15 @@ MouseCoordinates::MouseCoordinates()
 MouseCoordinates::MouseCoordinates(long x,long y)
 :x(x),y(y){
 }
-Movement MouseCoordinates::getMovement(unsigned int resolution,long centerDistance){
+Movement MouseCoordinates::getMovement(uint16_t resolution,int32_t centerDistance){
 	Movement m;
 	m.distance = x * 2540 / resolution;//zoll -> nm
-	m.angle = (int)(y * 2540.0 * /*zoll -> nm*/ 1000.0 /*360°*/ / resolution /*res*/ / 2.0 * resolution * M_PI /* u */);
+	m.angle = (int)(y * 1000.0 / 2.54 * /*zoll -> nm*/ 1000.0 /*360°*/ / resolution /*res*/ / (2.0 * centerDistance * M_PI) /* u */);
 	return m;
 }
 
 
-MouseSensorPan101::MouseSensorPan101(int pinSCK,int pinSDA,int pinPD,long centerDistance)
+MouseSensorPan101::MouseSensorPan101(uint8_t pinSCK,uint8_t pinSDA,uint8_t pinPD,uint32_t centerDistance)
 :pinSCK(pinSCK),pinSDA(pinSDA),pinPD(pinPD),centerDistance(centerDistance){
 	pinMode(pinSCK, OUTPUT);
 	pinMode(pinSDA, OUTPUT);
@@ -31,9 +31,9 @@ MouseSensorPan101::MouseSensorPan101(int pinSCK,int pinSDA,int pinPD,long center
 	refreshStoredProductID();
 	refreshStoredOperationMode();
 }
-void MouseSensorPan101::writeByte(unsigned char data){
+void MouseSensorPan101::writeByte(uint8_t data){
 	pinMode(pinSDA, OUTPUT);
-	for (signed char i=7; i>=0; i--){
+	for (int8_t i=7; i>=0; i--){
 		digitalWrite(pinSCK,LOW);
 		digitalWrite(pinSDA,(data & (1<<i)) == 0 ? LOW : HIGH); //Bit schreiben
 		digitalWrite(pinSCK,HIGH); //Sensor uebernimmt auf steigender Flanke
@@ -42,9 +42,9 @@ void MouseSensorPan101::writeByte(unsigned char data){
 	pinMode(pinSDA, INPUT);
 	digitalWrite(pinSDA,LOW); //HI-Z state
 }
-unsigned char MouseSensorPan101::readByte(){
+uint8_t MouseSensorPan101::readByte(){
 	pinMode(pinSDA, INPUT);
-	unsigned char data=0;
+	uint8_t data=0;
 	delayMicroseconds(3);	//IC Zeit lassen um die Daten aus dem Register zu holen
 	for (signed char i=7; i>-1; i--){
 		digitalWrite(pinSCK,LOW); //IC bereitet Daten auf fallender Flanke vor !
@@ -54,12 +54,12 @@ unsigned char MouseSensorPan101::readByte(){
 	}
 	return data;
 }
-void MouseSensorPan101::writeToAddress(unsigned char adr, unsigned char data){
+void MouseSensorPan101::writeToAddress(uint8_t adr, uint8_t data){
 	adr |= 1<<7; //rl MSB muss 1 sein für Write Operation
 	writeByte(adr);  
 	writeByte(data);
 }
-unsigned char MouseSensorPan101::readFromAddress(unsigned char adr){
+uint8_t MouseSensorPan101::readFromAddress(uint8_t adr){
 	writeByte(adr);
 	return readByte();
 }
@@ -72,10 +72,10 @@ void MouseSensorPan101::reset(){
 void MouseSensorPan101::powerDown(){
 	digitalWrite(pinPD,HIGH);
 }
-unsigned char MouseSensorPan101::readProductID(){
+uint8_t MouseSensorPan101::readProductID(){
 	return readFromAddress(r_productID);
 }
-unsigned char MouseSensorPan101::readOperationMode(){
+uint8_t MouseSensorPan101::readOperationMode(){
 	return readFromAddress(r_operationMode);
 }
 void MouseSensorPan101::refreshStoredProductID(){
@@ -97,12 +97,12 @@ void MouseSensorPan101::checkRepairConnection(){
 }
 MouseCoordinates MouseSensorPan101::getMovementMouseCoordinates(){
 	MouseCoordinates coordinates;
-	unsigned char ino = readFromAddress(r_motionStatus);
+	uint8_t ino = readFromAddress(r_motionStatus);
 	//wenn 7tes bit vom Register 0x16 gesetzt ist wurde die Maus bewegt => Bewegungsdaten abfragen
 	if(ino&(1<<ms_motion)){
 		//read delta position
-		coordinates.x = (signed char)readFromAddress(r_deltaX);
-		coordinates.y = (signed char)readFromAddress(r_deltaY);
+		coordinates.x = (int8_t)readFromAddress(r_deltaX);
+		coordinates.y = (int8_t)readFromAddress(r_deltaY);
 		//Check overflow
 		if(ino&(1<<ms_dxovf))
 			coordinates.x += coordinates.x < 0 ? -128 : 128;
@@ -126,6 +126,6 @@ void MouseSensorPan101::setPreference(Preferences preference,bool value){
 	else
 		operationMode &= ~(1 << preference);
 }
-unsigned int MouseSensorPan101::getResolution(){
+uint16_t MouseSensorPan101::getResolution(){
 	return getPreference(p_lowResolution) ? 400 : 800;
 }

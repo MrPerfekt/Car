@@ -4,12 +4,12 @@
 
 #include "VoltageDivider.h"
 
-VoltageDivider::VoltageDivider(int pin,int r1,int r2){
+VoltageDivider::VoltageDivider(uint8_t pin,uint16_t r1,uint16_t r2){
 	voltagePin = pin;
 	vdResistor1 = r1;
 	vdResistorGes = r1+r2;
 }
 
-uint VoltageDivider::calculateSuplyPotential(){//return mV
-	return (unsigned int)((analogRead(voltagePin) * (unsigned long long)5000 * vdResistorGes) / 1024 / vdResistor1);
+uint16_t VoltageDivider::calculateSuplyPotential(){//return mV
+	return (uint16_t)((analogRead(voltagePin) * (uint32_t)5000 * vdResistorGes) / 1024 / vdResistor1);
 }

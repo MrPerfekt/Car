@@ -5,15 +5,35 @@
 //constants
 const byte dummy = 0;
 
+
 #include <gLCD.h>
 #include <Servo.h>
 #include <Car.h>
+/*
+#include <WheelSensors.h>
+#include <VoltageDivider.h>
+#include <SteeringManager.h>
+#include <ServoProxy.h>
+#include <Sensor.h>
+#include <PositionCalculator.h>
+#include <MovementSensor.h>
+#include <Movement.h>
+#include <MouseSensorPan101BSI.h>
+#include <MotorTB6612FNG.h>
+#include <MotionLogger.h>
+#include <DisplayProxy.h>
+#include <DefineLib.h>
+#include <Coordinates.h>
+#include <Car.h>
+#include <BumperSensor.h>
+*/
 
 Car*car = new Car();
 ServoProxy servop = car->getServoProxy();
 Motor& motor = car->getMotorPowerEngine();
 WheelSensor& wheelSensor = car->getWheelSensor();
 VoltageDivider& voltageDivider = car->getPowerSupplyVoltageDivider();
+SteeringManager& steeringManager = car->getSteeringManager();
 
 //========== DISPLAY ==========
 
@@ -41,15 +61,15 @@ void updateDisplay(){
   strR += ".";
   strR += (int)(angle * 100)%100;
   
-  ulong distance = wheelSensor.calculateDistance() / 1000;
+  uint32_t distance = wheelSensor.calculateDistance() / 1000;
   String strD = "d: ";
   strD += distance;
   
-  uint suplV = voltageDivider.calculateSuplyPotential();
+  uint16_t suplV = voltageDivider.calculateSuplyPotential();
   String strU = "u: ";
   strU += suplV;
   
-  uint cSpeed = wheelSensor.calculateCurrentSpeed();
+  uint16_t cSpeed = wheelSensor.calculateCurrentSpeed();
   String strV = "v: ";
   strV += cSpeed;
   
@@ -129,7 +149,21 @@ void loop(){
 #endif
 }
 
-
+#if true
+void driveTest(){
+  updateDisplay();
+  
+  steeringManager.driveStraight(1000000);
+  while(!steeringManager.update())
+	  updateDisplay();
+  steeringManager.driveTurn(1000,1000);
+  while(!steeringManager.update())
+	  updateDisplay();
+  steeringManager.driveTurn(-1000,1000);
+  while(!steeringManager.update())
+	  updateDisplay();
+}
+#elif
 void driveTurn(int angle){
   
   int startAngle = wheelSensor.calculateAngleMilli();
@@ -143,8 +177,8 @@ void driveTurn(int angle){
 void driveStraight(unsigned long distance){
   //distance: in nanometer
   //ahead: true=forwad false=backward
-  ulong startDistance = wheelSensor.calculateDistance();
-  ulong finishDistance = startDistance + distance;
+  uint32_t startDistance = wheelSensor.calculateDistance();
+  uint32_t finishDistance = startDistance + distance;
   while(wheelSensor.calculateDistance() < finishDistance){
     updateDisplay();
   }
@@ -165,3 +199,4 @@ void driveTest(){
   motor.motorBreak();
   servop.setSteeringAngle(0);
 }
+#endif
