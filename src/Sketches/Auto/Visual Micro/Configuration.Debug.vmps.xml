@@ -1,8 +1,8 @@
 <VisualMicro>
-  <Program Name="Auto" Ext=".ino" Location="C:\Users\Andreas\Desktop\Car\src\Sketches\Auto">
-    <Compile IsCompiled="0" CompilerErrors="0" ConfigurationName="Debug" StopOnError="False" OptimiseLibs="True" OptimiseCore="True" BuildPath="C:\Users\Andreas\AppData\Local\VMicro\Arduino\Builds\Auto\uno" />
+  <Program Name="Auto" Ext=".ino" Location="C:\Dokumente und Einstellungen\Andreas Gruber\Desktop\Car\src\Sketches\Auto">
+    <Compile IsCompiled="0" CompilerErrors="0" ConfigurationName="Debug" StopOnError="False" OptimiseLibs="True" OptimiseCore="True" BuildPath="C:\Dokumente und Einstellungen\Andreas Gruber\Lokale Einstellungen\Anwendungsdaten\VMicro\Arduino\Builds\Auto\uno" />
     <Platform Name="Arduino">
-      <Board Name="uno" Description="Arduino Uno" CoreFolder="C:\Users\Andreas\Desktop\Car\src\arduino-1.0.1\hardware\arduino\cores\arduino" VariantFullPath="C:\Users\Andreas\Desktop\Car\src\arduino-1.0.1\hardware\arduino\variants\standard" />
+      <Board Name="uno" Description="Arduino Uno" CoreFolder="C:\Dokumente und Einstellungen\Andreas Gruber\Desktop\Car\src\arduino-1.0.1\hardware\arduino\cores\arduino" VariantFullPath="C:\Dokumente und Einstellungen\Andreas Gruber\Desktop\Car\src\arduino-1.0.1\hardware\arduino\variants\standard" />
     </Platform>
   </Program>
 </VisualMicro>

@@ -1,8 +1,8 @@
 <VisualMicro>
-  <Program Name="Auto" Ext=".ino" Location="C:\Users\Andreas\Desktop\Car\src\Sketches\Auto">
-    <Compile CompilerErrors="0" ConfigurationName="Debug" StopOnError="False" OptimiseLibs="True" OptimiseCore="True" BuildPath="C:\Users\Andreas\AppData\Local\VMicro\Arduino\Builds\Auto\uno" IncludeDebug="0" IncludesDebug="0" SketchName="Auto" IsCompiled="1" />
+  <Program Name="Auto" Ext=".ino" Location="C:\Dokumente und Einstellungen\Andreas Gruber\Desktop\Car\src\Sketches\Auto">
+    <Compile CompilerErrors="0" ConfigurationName="Debug" StopOnError="False" OptimiseLibs="True" OptimiseCore="True" BuildPath="C:\Dokumente und Einstellungen\Andreas Gruber\Lokale Einstellungen\Anwendungsdaten\VMicro\Arduino\Builds\Auto\uno" IncludeDebug="0" IncludesDebug="0" SketchName="Auto" IsCompiled="1" />
     <Platform Name="Arduino">
-      <Board Name="uno" Description="Arduino Uno" CoreFolder="C:\Users\Andreas\Desktop\Car\src\arduino-1.0.1\hardware\arduino\cores\arduino" VariantFullPath="C:\Users\Andreas\Desktop\Car\src\arduino-1.0.1\hardware\arduino\variants\standard" />
+      <Board Name="uno" Description="Arduino Uno" CoreFolder="C:\Dokumente und Einstellungen\Andreas Gruber\Desktop\Car\src\arduino-1.0.1\hardware\arduino\cores\arduino" VariantFullPath="C:\Dokumente und Einstellungen\Andreas Gruber\Desktop\Car\src\arduino-1.0.1\hardware\arduino\variants\standard" />
     </Platform>
     <VCCodeModel>
       <VCCodeMacros>
@@ -11,20 +11,21 @@
         <VCCodeMacro Name="F_CPU" Value="16000000L" />
         <VCCodeMacro Name="__AVR__" Value="" />
         <VCCodeMacro Name="CAR" Value="" />
+        <VCCodeMacro Name="COORDINATES" Value="" />
         <VCCodeMacro Name="DEFINE_LIB" Value="" />
+        <VCCodeMacro Name="DISPLAY_PROXY" Value="" />
+        <VCCodeMacro Name="MOTION_LOGGER" Value="" />
         <VCCodeMacro Name="MOTOR_TB6612FNG" Value="" />
         <VCCodeMacro Name="MOUSE_SENSOR_PAN101BSI" Value="" />
+        <VCCodeMacro Name="MOVEMENT" Value="" />
+        <VCCodeMacro Name="MOVEMENT_SENSOR" Value="" />
         <VCCodeMacro Name="POSITION_CALCULATOR" Value="" />
         <VCCodeMacro Name="SENSOR" Value="" />
         <VCCodeMacro Name="SERVO_STEERING_DRIVER" Value="" />
         <VCCodeMacro Name="STEERING_MANAGER" Value="" />
         <VCCodeMacro Name="VOLTAGE_DIVIDER" Value="" />
-        <VCCodeMacro Name="MOVEMENT" Value="" />
-        <VCCodeMacro Name="__cplusplus" Value="" />
-        <VCCodeMacro Name="COORDINATES" Value="" />
-        <VCCodeMacro Name="MOVEMENT_SENSOR" Value="" />
         <VCCodeMacro Name="WHEEL_ROTATION_SENSORS" Value="" />
-        <VCCodeMacro Name="MOTION_LOGGER" Value="" />
+        <VCCodeMacro Name="__cplusplus" Value="" />
         <VCCodeMacro Name="__attribute__" Value="" />
         <VCCodeMacro Name="__inline__" Value="" />
         <VCCodeMacro Name="__asm__" Value="" />
