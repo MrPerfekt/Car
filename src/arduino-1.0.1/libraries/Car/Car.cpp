@@ -10,11 +10,18 @@ Car::Car(){
 	mouseSensor = new MouseSensorPan101(pinMouseSensorSCK,pinMouseSensorSDA,pinMouseSensorPD,mouseSensorCenterDistance);
 	wheelSensor = new WheelSensor(pinWheelSensorR,pinWheelSensorL);
 	movementSensor = mouseSensor;
+	/*
+	MouseSensorPan101 *ms = mouseSensor;
+	ms->getMovement();
+	MovementSensor *mvs = mouseSensor;
+	mvs->getMovement();
+	*/
+	//movementSensor->getMovement();
 
 	motorPowerEngine = new Motor(pinMotorPMW,pinMotorIn1,pinMotorIn2);
 	servoProxy = new ServoProxy(/*pinSteeringServo*/);
 	positionCalculator = new PositionCalculator(*movementSensor);
-	steeringManager = new SteeringManager(*servoProxy,*motorPowerEngine,*positionCalculator);
+	steeringManager = new SteeringManager(*servoProxy,*motorPowerEngine,*positionCalculator,steeringWheelsPosition);
 	powerSupplyVoltageDivider = new VoltageDivider(apinVolDivPowerSupplay,volDivPowerSupplayRes1,volDivPowerSupplayRes2);
 }
 

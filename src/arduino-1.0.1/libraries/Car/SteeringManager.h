@@ -28,12 +28,15 @@ private:
 	PositionCalculator& positionCalculator;
 	uint32_t stopConditionValue;
 	uint8_t state;//TODO: optimice this or implement an enum
+	int32_t steeringWheelsPosition;
 public:
-	SteeringManager(ServoProxy& servoSteeringDriver,Motor& motorPowerEngine,PositionCalculator& positionCalculator);
+	SteeringManager(ServoProxy& servoSteeringDriver,Motor& motorPowerEngine,PositionCalculator& positionCalculator,int32_t steeringWheelsPosition);
 	unsigned int getMaxRadius(bool rightTurn);
+	int16_t calculateSteeringWheelAngle(const Movement& movement);
+	int16_t calculateSteeringWheelAngle(int32_t radius);
 	void setAngleOfRadius(int radius);
-	void driveTurn(int16_t radius, int16_t angle);
-	void driveTurn(uint16_t radius, uint16_t angle, bool forward, bool rightTurn);
+	void driveTurn(int32_t radius, int16_t angle);
+	void driveTurn(int32_t radius, int16_t angle, bool forward, bool leftTurn);
 	void driveStraight(int32_t distance);
 	void driveStraight(int32_t distance,bool forward);
 	/*1

@@ -1,39 +1,43 @@
-﻿Build started 11.09.2012 19:44:09.
-     1>Project "C:\Dokumente und Einstellungen\Andreas Gruber\Desktop\Car\src\Sketches\Auto\Auto.vcxproj" on node 2 (build target(s)).
-     1>InitializeBuildStatus:
-         Creating "Debug\Auto.unsuccessfulbuild" because "AlwaysCreate" was specified.
-       ClCompile:
-         C:\Programme\Microsoft Visual Studio 10.0\VC\bin\CL.exe /c /I"C:\Users\Andreas\Desktop\Car\src\arduino-1.0.1\hardware\arduino\cores\arduino" /I"C:\Users\Andreas\Desktop\Car\src\arduino-1.0.1\hardware\arduino\variants\standard" /I"C:\Users\Andreas\Desktop\Car\src\arduino-1.0.1\libraries\gLCD" /I"C:\Users\Andreas\Desktop\Car\src\arduino-1.0.1\libraries\gLCD\utility" /I"C:\Users\Andreas\Desktop\Car\src\arduino-1.0.1\libraries\Servo" /I"C:\Users\Andreas\Desktop\Car\src\arduino-1.0.1\libraries\Servo\utility" /I"C:\Users\Andreas\Desktop\Car\src\arduino-1.0.1\libraries\Car" /I"C:\Users\Andreas\Desktop\Car\src\arduino-1.0.1\libraries\Car\utility" /I"c:\users\andreas\desktop\car\src\arduino-1.0.1\hardware\tools\avr\avr\include\\" /I"c:\users\andreas\desktop\car\src\arduino-1.0.1\hardware\tools\avr\avr\include\avr\\" /I"c:\users\andreas\desktop\car\src\arduino-1.0.1\hardware\tools\avr\avr\\" /I"c:\users\andreas\desktop\car\src\arduino-1.0.1\hardware\tools\avr\lib\gcc\avr\4.3.2\include\\" /ZI /nologo /W3 /WX- /Od /Oy- /D ARDUINO=101 /D __AVR_ATmega328P__ /D F_CPU=16000000L /D __AVR__ /D __cplusplus /D _MBCS /X /Gm /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Fo"Debug\\" /Fd"Debug\vc100.pdb" /Gd /TP /FI"C:\Users\Andreas\Desktop\Car\src\Sketches\Auto\Visual Micro\.Auto.vsarduino.h" /analyze- /errorReport:prompt "..\..\arduino-1.0.1\libraries\Car\Car.cpp" "..\..\arduino-1.0.1\libraries\Car\MotorTB6612FNG.cpp" "..\..\arduino-1.0.1\libraries\Car\MouseSensorPan101BSI.cpp" "..\..\arduino-1.0.1\libraries\Car\PositionCalculator.cpp" "..\..\arduino-1.0.1\libraries\Car\Sensor.cpp" "..\..\arduino-1.0.1\libraries\Car\ServoProxy.cpp" "..\..\arduino-1.0.1\libraries\Car\SteeringManager.cpp" "..\..\arduino-1.0.1\libraries\Car\VoltageDivider.cpp" "..\..\arduino-1.0.1\libraries\Car\WheelRotationSensors.cpp"
-         WheelRotationSensors.cpp
-     1>c1xx : warning C4117: macro name '__cplusplus' is reserved, '#define' ignored
-     1>c:\dokumente und einstellungen\andreas gruber\desktop\car\src\arduino-1.0.1\libraries\car\wheelrotationsensors.cpp : fatal error C1083: Cannot open include file: 'C:\Users\Andreas\Desktop\Car\src\Sketches\Auto\Visual Micro\.Auto.vsarduino.h': No such file or directory
-         VoltageDivider.cpp
-     1>c1xx : warning C4117: macro name '__cplusplus' is reserved, '#define' ignored
-     1>c:\dokumente und einstellungen\andreas gruber\desktop\car\src\arduino-1.0.1\libraries\car\voltagedivider.cpp : fatal error C1083: Cannot open include file: 'C:\Users\Andreas\Desktop\Car\src\Sketches\Auto\Visual Micro\.Auto.vsarduino.h': No such file or directory
-         SteeringManager.cpp
-     1>c1xx : warning C4117: macro name '__cplusplus' is reserved, '#define' ignored
-     1>c:\dokumente und einstellungen\andreas gruber\desktop\car\src\arduino-1.0.1\libraries\car\steeringmanager.cpp : fatal error C1083: Cannot open include file: 'C:\Users\Andreas\Desktop\Car\src\Sketches\Auto\Visual Micro\.Auto.vsarduino.h': No such file or directory
-         ServoProxy.cpp
-     1>c1xx : warning C4117: macro name '__cplusplus' is reserved, '#define' ignored
-     1>c:\dokumente und einstellungen\andreas gruber\desktop\car\src\arduino-1.0.1\libraries\car\servoproxy.cpp : fatal error C1083: Cannot open include file: 'C:\Users\Andreas\Desktop\Car\src\Sketches\Auto\Visual Micro\.Auto.vsarduino.h': No such file or directory
-         Sensor.cpp
-     1>c1xx : warning C4117: macro name '__cplusplus' is reserved, '#define' ignored
-     1>c:\dokumente und einstellungen\andreas gruber\desktop\car\src\arduino-1.0.1\libraries\car\sensor.cpp : fatal error C1083: Cannot open include file: 'C:\Users\Andreas\Desktop\Car\src\Sketches\Auto\Visual Micro\.Auto.vsarduino.h': No such file or directory
-         PositionCalculator.cpp
-     1>c1xx : warning C4117: macro name '__cplusplus' is reserved, '#define' ignored
-     1>c:\dokumente und einstellungen\andreas gruber\desktop\car\src\arduino-1.0.1\libraries\car\positioncalculator.cpp : fatal error C1083: Cannot open include file: 'C:\Users\Andreas\Desktop\Car\src\Sketches\Auto\Visual Micro\.Auto.vsarduino.h': No such file or directory
-         MouseSensorPan101BSI.cpp
-     1>c1xx : warning C4117: macro name '__cplusplus' is reserved, '#define' ignored
-     1>c:\dokumente und einstellungen\andreas gruber\desktop\car\src\arduino-1.0.1\libraries\car\mousesensorpan101bsi.cpp : fatal error C1083: Cannot open include file: 'C:\Users\Andreas\Desktop\Car\src\Sketches\Auto\Visual Micro\.Auto.vsarduino.h': No such file or directory
-         MotorTB6612FNG.cpp
-     1>c1xx : warning C4117: macro name '__cplusplus' is reserved, '#define' ignored
-     1>c:\dokumente und einstellungen\andreas gruber\desktop\car\src\arduino-1.0.1\libraries\car\motortb6612fng.cpp : fatal error C1083: Cannot open include file: 'C:\Users\Andreas\Desktop\Car\src\Sketches\Auto\Visual Micro\.Auto.vsarduino.h': No such file or directory
-         Car.cpp
-     1>c1xx : warning C4117: macro name '__cplusplus' is reserved, '#define' ignored
-     1>c:\dokumente und einstellungen\andreas gruber\desktop\car\src\arduino-1.0.1\libraries\car\car.cpp : fatal error C1083: Cannot open include file: 'C:\Users\Andreas\Desktop\Car\src\Sketches\Auto\Visual Micro\.Auto.vsarduino.h': No such file or directory
-         Generating Code...
-     1>Done Building Project "C:\Dokumente und Einstellungen\Andreas Gruber\Desktop\Car\src\Sketches\Auto\Auto.vcxproj" (build target(s)) -- FAILED.
-
-Build FAILED.
-
-Time Elapsed 00:00:04.10
+﻿  WheelSensors.cpp
+c1xx : warning C4117: macro name '__cplusplus' is reserved, '#define' ignored
+c:\users\andreas\dropbox\car\src\arduino-1.0.1\libraries\car\wheelsensors.cpp : fatal error C1083: Cannot open include file: 'C:\Users\Andreas\Desktop\Car\src\Sketches\Auto\Visual Micro\.Auto.vsarduino.h': No such file or directory
+  VoltageDivider.cpp
+c1xx : warning C4117: macro name '__cplusplus' is reserved, '#define' ignored
+c:\users\andreas\dropbox\car\src\arduino-1.0.1\libraries\car\voltagedivider.cpp : fatal error C1083: Cannot open include file: 'C:\Users\Andreas\Desktop\Car\src\Sketches\Auto\Visual Micro\.Auto.vsarduino.h': No such file or directory
+  SteeringManager.cpp
+c1xx : warning C4117: macro name '__cplusplus' is reserved, '#define' ignored
+c:\users\andreas\dropbox\car\src\arduino-1.0.1\libraries\car\steeringmanager.cpp : fatal error C1083: Cannot open include file: 'C:\Users\Andreas\Desktop\Car\src\Sketches\Auto\Visual Micro\.Auto.vsarduino.h': No such file or directory
+  ServoProxy.cpp
+c1xx : warning C4117: macro name '__cplusplus' is reserved, '#define' ignored
+c:\users\andreas\dropbox\car\src\arduino-1.0.1\libraries\car\servoproxy.cpp : fatal error C1083: Cannot open include file: 'C:\Users\Andreas\Desktop\Car\src\Sketches\Auto\Visual Micro\.Auto.vsarduino.h': No such file or directory
+  Sensor.cpp
+c1xx : warning C4117: macro name '__cplusplus' is reserved, '#define' ignored
+c:\users\andreas\dropbox\car\src\arduino-1.0.1\libraries\car\sensor.cpp : fatal error C1083: Cannot open include file: 'C:\Users\Andreas\Desktop\Car\src\Sketches\Auto\Visual Micro\.Auto.vsarduino.h': No such file or directory
+  PositionCalculator.cpp
+c1xx : warning C4117: macro name '__cplusplus' is reserved, '#define' ignored
+c:\users\andreas\dropbox\car\src\arduino-1.0.1\libraries\car\positioncalculator.cpp : fatal error C1083: Cannot open include file: 'C:\Users\Andreas\Desktop\Car\src\Sketches\Auto\Visual Micro\.Auto.vsarduino.h': No such file or directory
+  MovementSensor.cpp
+c1xx : warning C4117: macro name '__cplusplus' is reserved, '#define' ignored
+c:\users\andreas\dropbox\car\src\arduino-1.0.1\libraries\car\movementsensor.cpp : fatal error C1083: Cannot open include file: 'C:\Users\Andreas\Desktop\Car\src\Sketches\Auto\Visual Micro\.Auto.vsarduino.h': No such file or directory
+  Movement.cpp
+c1xx : warning C4117: macro name '__cplusplus' is reserved, '#define' ignored
+c:\users\andreas\dropbox\car\src\arduino-1.0.1\libraries\car\movement.cpp : fatal error C1083: Cannot open include file: 'C:\Users\Andreas\Desktop\Car\src\Sketches\Auto\Visual Micro\.Auto.vsarduino.h': No such file or directory
+  MouseSensorPan101BSI.cpp
+c1xx : warning C4117: macro name '__cplusplus' is reserved, '#define' ignored
+c:\users\andreas\dropbox\car\src\arduino-1.0.1\libraries\car\mousesensorpan101bsi.cpp : fatal error C1083: Cannot open include file: 'C:\Users\Andreas\Desktop\Car\src\Sketches\Auto\Visual Micro\.Auto.vsarduino.h': No such file or directory
+  MotorTB6612FNG.cpp
+c1xx : warning C4117: macro name '__cplusplus' is reserved, '#define' ignored
+c:\users\andreas\dropbox\car\src\arduino-1.0.1\libraries\car\motortb6612fng.cpp : fatal error C1083: Cannot open include file: 'C:\Users\Andreas\Desktop\Car\src\Sketches\Auto\Visual Micro\.Auto.vsarduino.h': No such file or directory
+  MotionLogger.cpp
+c1xx : warning C4117: macro name '__cplusplus' is reserved, '#define' ignored
+c:\users\andreas\dropbox\car\src\arduino-1.0.1\libraries\car\motionlogger.cpp : fatal error C1083: Cannot open include file: 'C:\Users\Andreas\Desktop\Car\src\Sketches\Auto\Visual Micro\.Auto.vsarduino.h': No such file or directory
+  DisplayProxy.cpp
+c1xx : warning C4117: macro name '__cplusplus' is reserved, '#define' ignored
+c:\users\andreas\dropbox\car\src\arduino-1.0.1\libraries\car\displayproxy.cpp : fatal error C1083: Cannot open include file: 'C:\Users\Andreas\Desktop\Car\src\Sketches\Auto\Visual Micro\.Auto.vsarduino.h': No such file or directory
+  Coordinates.cpp
+c1xx : warning C4117: macro name '__cplusplus' is reserved, '#define' ignored
+c:\users\andreas\dropbox\car\src\arduino-1.0.1\libraries\car\coordinates.cpp : fatal error C1083: Cannot open include file: 'C:\Users\Andreas\Desktop\Car\src\Sketches\Auto\Visual Micro\.Auto.vsarduino.h': No such file or directory
+  Car.cpp
+c1xx : warning C4117: macro name '__cplusplus' is reserved, '#define' ignored
+c:\users\andreas\dropbox\car\src\arduino-1.0.1\libraries\car\car.cpp : fatal error C1083: Cannot open include file: 'C:\Users\Andreas\Desktop\Car\src\Sketches\Auto\Visual Micro\.Auto.vsarduino.h': No such file or directory
+  Generating Code...

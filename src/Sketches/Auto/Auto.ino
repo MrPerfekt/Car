@@ -5,15 +5,35 @@
 //constants
 const byte dummy = 0;
 
+
 #include <gLCD.h>
 #include <Servo.h>
 #include <Car.h>
+/*
+#include <WheelSensors.h>
+#include <VoltageDivider.h>
+#include <SteeringManager.h>
+#include <ServoProxy.h>
+#include <Sensor.h>
+#include <PositionCalculator.h>
+#include <MovementSensor.h>
+#include <Movement.h>
+#include <MouseSensorPan101BSI.h>
+#include <MotorTB6612FNG.h>
+#include <MotionLogger.h>
+#include <DisplayProxy.h>
+#include <DefineLib.h>
+#include <Coordinates.h>
+#include <Car.h>
+#include <BumperSensor.h>
+*/
 
 Car*car = new Car();
 ServoProxy servop = car->getServoProxy();
 Motor& motor = car->getMotorPowerEngine();
 WheelSensor& wheelSensor = car->getWheelSensor();
 VoltageDivider& voltageDivider = car->getPowerSupplyVoltageDivider();
+SteeringManager& steeringManager = car->getSteeringManager();
 
 //========== DISPLAY ==========
 
@@ -129,7 +149,21 @@ void loop(){
 #endif
 }
 
-
+#if true
+void driveTest(){
+  updateDisplay();
+  
+  steeringManager.driveStraight(1000000);
+  while(!steeringManager.update())
+	  updateDisplay();
+  steeringManager.driveTurn(1000,1000);
+  while(!steeringManager.update())
+	  updateDisplay();
+  steeringManager.driveTurn(-1000,1000);
+  while(!steeringManager.update())
+	  updateDisplay();
+}
+#elif
 void driveTurn(int angle){
   
   int startAngle = wheelSensor.calculateAngleMilli();
@@ -165,3 +199,4 @@ void driveTest(){
   motor.motorBreak();
   servop.setSteeringAngle(0);
 }
+#endif
