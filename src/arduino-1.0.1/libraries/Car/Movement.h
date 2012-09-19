@@ -5,13 +5,15 @@
 #ifndef MOVEMENT
 #define MOVEMENT
 
+#include "DefineLib.h"
+
 class Movement{
 private:
 public:
-	long distance;
-	int angle;
+	int32_t distance;
+	int16_t angle;
 	Movement();
-	Movement(long distance,int angle);
+	Movement(int32_t distance,int16_t angle);
 };
 
 #endif

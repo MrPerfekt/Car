@@ -46,11 +46,11 @@ int16_t SteeringManager::calculateSteeringWheelAngle(int32_t radius){
 	return (int16_t)atan((double)steeringWheelsPosition/radius);
 }
 bool SteeringManager::update(){
+	positionCalculator.update();
 	if(state == ss_stop) {
 		motorPowerEngine.motorBreak();
 		return true;
 	}
-	positionCalculator.update();
 	servoProxy.correctSteeringAngle(calculateSteeringWheelAngle(positionCalculator.currentMovement));
 	if((state == ss_driveStraightForward && stopConditionValue < positionCalculator.distance) ||
 		(state == ss_driveStraightBackward && stopConditionValue > positionCalculator.distance) ||

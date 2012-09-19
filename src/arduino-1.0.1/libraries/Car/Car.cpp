@@ -9,14 +9,7 @@ Car::Car(){
 
 	mouseSensor = new MouseSensorPan101(pinMouseSensorSCK,pinMouseSensorSDA,pinMouseSensorPD,mouseSensorCenterDistance);
 	wheelSensor = new WheelSensor(pinWheelSensorR,pinWheelSensorL);
-	movementSensor = mouseSensor;
-	/*
-	MouseSensorPan101 *ms = mouseSensor;
-	ms->getMovement();
-	MovementSensor *mvs = mouseSensor;
-	mvs->getMovement();
-	*/
-	//movementSensor->getMovement();
+	movementSensor = wheelSensor;//mouseSensor
 
 	motorPowerEngine = new Motor(pinMotorPMW,pinMotorIn1,pinMotorIn2);
 	servoProxy = new ServoProxy(/*pinSteeringServo*/);
@@ -41,7 +34,7 @@ PositionCalculator& Car::getPositionCalculator(){
 	return *positionCalculator;
 }
 
-WheelSensor& Car::getWheelSensor(){
+WheelSensor& Car::getWheelSensor(){	
 	return *wheelSensor;
 }
 
