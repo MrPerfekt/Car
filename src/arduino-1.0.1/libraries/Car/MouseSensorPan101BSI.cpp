@@ -11,16 +11,15 @@ MouseCoordinates::MouseCoordinates()
 MouseCoordinates::MouseCoordinates(long x,long y)
 :x(x),y(y){
 }
-Movement MouseCoordinates::getMovement(uint16_t resolution,int32_t centerDistance){
+Movement MouseCoordinates::getMovement(uint16_t resolution,double centerDistance){
 	Movement m;
-	m.distance = y * 2540 / resolution;//zoll -> nm
-	Serial.println(x);
-	m.angle = (int)(x * 1000.0 * 2.54 * /*zoll -> nm*/ 1000.0 /*360°*/ / resolution /*res*/ / (2.0 * centerDistance * M_PI) /* u */);
+	m.distance = y * 25.4 / resolution;//zoll -> mm
+	m.angle = x * 25.4 * /*zoll -> mm*/ circle /*360°*/ / resolution /*res*/ / (2.0 * centerDistance * M_PI) /* u */;
 	return m;
 }
 
 
-MouseSensorPan101::MouseSensorPan101(uint8_t pinSCK,uint8_t pinSDA,uint8_t pinPD,uint32_t centerDistance)
+MouseSensorPan101::MouseSensorPan101(uint8_t pinSCK,uint8_t pinSDA,uint8_t pinPD,double centerDistance)
 :pinSCK(pinSCK),pinSDA(pinSDA),pinPD(pinPD),centerDistance(centerDistance){
 	pinMode(pinSCK, OUTPUT);
 	pinMode(pinSDA, OUTPUT);

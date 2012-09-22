@@ -20,31 +20,32 @@ class Car {
 private:
 	//Constants
 	//Car measures
-	static const long steeringWheelsPosition = 230000;
+	static const uint32_t steeringWheelsPosition = 230;
 	//Steering Servo
-	static const int pinSteeringServo = 7;
+	static const uint8_t pinSteeringServo = 7;
 	//Motor
-	static const int pinMotorPMW = 5;  
-	static const int pinMotorIn1 = 6;  
-	static const int pinMotorIn2 = 4;  
+	static const uint8_t pinMotorPMW = 5;
+	static const uint8_t pinMotorIn1 = 6;
+	static const uint8_t pinMotorIn2 = 4;
 	//Wheels
-	static const int pinWheelSensorR = 2;  
-	static const int pinWheelSensorL = 3; 
+	static const uint8_t pinWheelSensorR = 2;
+	static const uint8_t pinWheelSensorL = 3;
 	//Power Supplay Voltage Divider
-	static const int apinVolDivPowerSupplay = 0;  
+	static const uint8_t apinVolDivPowerSupplay = 0;
 	static const unsigned long long volDivPowerSupplayRes1 = 966;
 	static const unsigned long long volDivPowerSupplayRes2 = 1989;
 	//MouseSensor
-	static const int pinMouseSensorSCK = 12;
-	static const int pinMouseSensorSDA = 10;
-	static const int pinMouseSensorPD = A1;
-	static const long mouseSensorCenterDistance = 300000;
+	static const uint8_t pinMouseSensorSCK = 12;
+	static const uint8_t pinMouseSensorSDA = 10;
+	static const uint8_t pinMouseSensorPD = A1;
+	static const uint32_t mouseSensorCenterDistance = 300;
 	//Display
-	static const char pinDisplayRST = 8;
-	static const char pinDisplayCS = 9;
-	static const char pinDisplayClk = 13;
-	static const char pinDisplayData = 11;
+	static const uint8_t pinDisplayRST = 8;
+	static const uint8_t pinDisplayCS = 9;
+	static const uint8_t pinDisplayClk = 13;
+	static const uint8_t pinDisplayData = 11;
 	
+	DisplayProxy* displayProxy;
 	Motor* motorPowerEngine;
 	ServoProxy* servoProxy;
 	SteeringManager* steeringManager;
@@ -52,7 +53,6 @@ private:
 	WheelSensor* wheelSensor;
 	VoltageDivider* powerSupplyVoltageDivider;
 	MouseSensorPan101* mouseSensor;
-	DisplayProxy* displayProxy;
 	MovementSensor* movementSensor;
 public:
 	Motor& getMotorPowerEngine();

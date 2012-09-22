@@ -63,9 +63,6 @@
     <ClInclude Include="..\..\arduino-1.0.1\libraries\Car\DisplayProxy.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Visual Micro\.Auto.vsarduino.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\..\arduino-1.0.1\libraries\Car\Car.cpp">
@@ -108,6 +105,9 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="..\..\arduino-1.0.1\libraries\Car\DisplayProxy.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\arduino-1.0.1\libraries\Car\DefineLib.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>

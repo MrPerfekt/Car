@@ -26,45 +26,45 @@ private:
 	ServoProxy& servoProxy;
 	Motor& motorPowerEngine;
 	PositionCalculator& positionCalculator;
-	int32_t stopConditionValue;
+	double stopConditionValue;
 	uint8_t state;
-	int32_t steeringWheelsPosition;
+	double steeringWheelsPosition;
 	/*!
 	* Calculates the angle of the steering wheels
 	* param movement From this movement the angle is calculatet
 	* return angle of the steering wheels
 	*/
-	int16_t calculateSteeringWheelAngle(const Movement& movement);
+	double calculateSteeringWheelAngle(const Movement& movement);
 	/*!
 	* Calculates the angle of the steering wheels
 	* param movement From this driving radius the angle is calculatet
 	* return angle of the steering wheels
 	*/
-	int16_t calculateSteeringWheelAngle(int32_t radius);
+	double calculateSteeringWheelAngle(double radius);
 	/*!
 	* Calculates the radius, the car will drive with this angle of the steering wheels
 	* param steeringWheelAngle The angle of the steering wheels
 	* return The radius of the cars movement
 	*/
-	int32_t calculateRadius(int16_t steeringWheelAngle);
+	double calculateRadius(double steeringWheelAngle);
 	/*!
 	* Set the steering angle by the radius the car should drive
 	* param radius Radius of the turn
 	*/
-	void setSteeringAngleByRadius(int16_t radius);
+	void setSteeringAngleByRadius(double radius);
 public:
-	SteeringManager(ServoProxy& servoSteeringDriver,Motor& motorPowerEngine,PositionCalculator& positionCalculator,int32_t steeringWheelsPosition);
+	SteeringManager(ServoProxy& servoSteeringDriver,Motor& motorPowerEngine,PositionCalculator& positionCalculator,double steeringWheelsPosition);
 	/*!
 	* Get the maximal radius of the car
 	* param leftTurn If the car should drive a left [= true] or a right [= false] turn
 	* return The maximal radius 
 	*/
-	int16_t getMaxRadius(bool leftTurn);
-	void driveStraight(int32_t distance);
-	void driveStraight(int32_t distance,bool forward);
-	void driveTurn(int32_t radius, int16_t angle);
-	void driveTurn(int32_t radius, int16_t angle, bool forward, bool leftTurn);
-	/*1
+	double getMaxRadius(bool leftTurn);
+	void driveStraight(double distance);
+	void driveStraight(double distance,bool forward);
+	void driveTurn(double radius, double angle);
+	void driveTurn(double radius, double angle, bool forward, bool leftTurn);
+	/*!
 	* Update the current steering action
 	* If the action has finished update() will return true
 	* If update() is executed again after finishing it will stop the motor

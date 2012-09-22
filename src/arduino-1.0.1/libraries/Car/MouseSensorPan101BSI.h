@@ -16,7 +16,7 @@ public:
 	int32_t y;
 	MouseCoordinates();
 	MouseCoordinates(int32_t x,int32_t y);
-	Movement getMovement(uint16_t resolution,int32_t centerDistance);
+	Movement getMovement(uint16_t resolution,double centerDistance);
 };
 
 /*!
@@ -56,7 +56,7 @@ private:
 	uint8_t pinSCK;
 	uint8_t pinSDA;
 	uint8_t pinPD;
-	long centerDistance;
+	double centerDistance;
 public:  
 	enum PowerSettings{
 		ps_normal = om_wakeup,
@@ -80,7 +80,7 @@ public:
 	* @param pinPD The pin where PD is connected
 	* @param centerDistance The distance to the center where the car can't move left or right
 	*/
-	MouseSensorPan101(uint8_t pinSCK,uint8_t pinSDA,uint8_t pinPD,uint32_t centerDistance);
+	MouseSensorPan101(uint8_t pinSCK,uint8_t pinSDA,uint8_t pinPD,double centerDistance);
 	/*!
 	* Write a byte to the IC
 	* @param data a byte

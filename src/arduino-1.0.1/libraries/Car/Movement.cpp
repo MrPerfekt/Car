@@ -7,6 +7,6 @@
 Movement::Movement()
 :distance(0),angle(0){
 }
-Movement::Movement(long distance,int angle)
+Movement::Movement(double distance,double angle)
 :distance(distance),angle(angle){
 }

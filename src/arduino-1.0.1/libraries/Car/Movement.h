@@ -10,10 +10,10 @@
 class Movement{
 private:
 public:
-	int32_t distance;
-	int16_t angle;
+	double distance;
+	double angle;
 	Movement();
-	Movement(int32_t distance,int16_t angle);
+	Movement(double distance,double angle);
 };
 
 #endif

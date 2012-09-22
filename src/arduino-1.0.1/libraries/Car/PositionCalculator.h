@@ -14,8 +14,8 @@ class PositionCalculator{
 private:
 	MovementSensor& movementSensor;
 public:
-	int16_t angle;
-	int32_t distance;
+	double angle;
+	double distance;
 	Coordinates position;
 	Movement currentMovement;
 	PositionCalculator(MovementSensor& movementSensor);

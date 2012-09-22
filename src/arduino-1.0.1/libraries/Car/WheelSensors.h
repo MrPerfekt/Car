@@ -18,10 +18,10 @@ void rotateWheelL();
 
 class Wheel{
 public:
-	static const uint16_t wheelSteps = 12;
-	static const uint32_t wheelDistance = 155000;//nm
-	static const uint32_t circumference = 94000;// 6762 / 72 mm = 94 * 1000 nm
-	static const uint32_t stepDistance = circumference / wheelSteps;
+	static const uint32_t wheelSteps = 12;
+	static const uint32_t wheelDistance = 155;//mm
+	static const uint32_t circumference = 94;// 6762 / 72 mm = 94
+	static double stepDistance(){return (double)circumference / (double)wheelSteps;}
 	//static const int debounceMinRotTime = -1;//10;//10ms
 	
 	//Pin definition
@@ -47,10 +47,9 @@ public:
 
 	WheelSensor(uint8_t wPinWR,uint8_t wPinWL);
 	void rotateWheel(byte wheel);
-	double calculateAngleDeg();
-	int32_t calculateAngleMilli();
-	uint32_t calculateDistance();
-	uint16_t calculateCurrentSpeed();
+	double calculateAngle();
+	double calculateDistance();
+	double calculateCurrentSpeed();
 	void resetData();
 	Movement getMovement();
 };

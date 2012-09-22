@@ -54,11 +54,11 @@ void setupDisplay(){
 }
 
 void updateDisplay(){  
-	int32_t distance = positionCalculator.distance / 1000;
+	int32_t distance = positionCalculator.distance;
 	String strD = "d: ";
 	strD += distance;
 
-	double angle = positionCalculator.angle * M_PI / 500;
+	double angle = positionCalculator.angle;
 	if(angle < 0) angle *= -1;
 	String strR = "r: ";
 	strR += (int)angle;
@@ -125,12 +125,9 @@ void setup(){
 	servo->attach(7);
 	servop.setSteeringServo(servo);
 	interrupts();
-	/*
-	while(true){
-		steeringManager.update();
-		updateDisplay();
-	}
-	*/
+
+	Serial.print("Free SRam: ");
+	Serial.println(freeSRam());
 	driveTest();
 }
 
@@ -158,7 +155,7 @@ void driveTest(){
   updateDisplay();
   
   Serial.println("drive");
-  steeringManager.driveStraight(1000000);
+  steeringManager.driveStraight(1000);
   int i = 0;
   while(!steeringManager.update()){
 	  i++;
@@ -168,7 +165,7 @@ void driveTest(){
 	  }
   }
   Serial.println("turn");
-  steeringManager.driveTurn(2000000,1000);
+  steeringManager.driveTurn(2000,circle);
   while(!steeringManager.update()){
 	  i++;
 	  if(i == 1){
@@ -177,7 +174,7 @@ void driveTest(){
 	  }
   }
   Serial.println("turn");
-  steeringManager.driveTurn(-2000000,1000);
+  steeringManager.driveTurn(-2000,circle);
   while(!steeringManager.update()){
 	  i++;
 	  if(i == 1){

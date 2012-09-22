@@ -4,44 +4,44 @@
 
 #include "SteeringManager.h"
 
-SteeringManager::SteeringManager(ServoProxy& servoProxy,Motor& motorPowerEngine,PositionCalculator& positionCalculator,int32_t steeringWheelsPosition)
+SteeringManager::SteeringManager(ServoProxy& servoProxy,Motor& motorPowerEngine,PositionCalculator& positionCalculator,double steeringWheelsPosition)
 	:servoProxy(servoProxy),motorPowerEngine(motorPowerEngine),positionCalculator(positionCalculator),steeringWheelsPosition(steeringWheelsPosition)
 {}
-int16_t SteeringManager::calculateSteeringWheelAngle(const Movement& movement){
-	return calculateSteeringWheelAngle((int32_t)((movement.distance*1000) / (movement.angle*2*M_PI))/*calculates radius*/);
+double SteeringManager::calculateSteeringWheelAngle(const Movement& movement){
+	return calculateSteeringWheelAngle(movement.distance / (movement.angle / circle) / (2*M_PI)/*calculates radius*/);
 }
-int16_t SteeringManager::calculateSteeringWheelAngle(int32_t radius){
-	return (int16_t)(atan((double)steeringWheelsPosition/radius)*500.0/M_PI);
+double SteeringManager::calculateSteeringWheelAngle(double radius){
+	return atan(steeringWheelsPosition/radius)/(2*M_PI)*circle;
 }
-int32_t SteeringManager::calculateRadius(int16_t steeringWheelAngle){
-	return (int32_t)(steeringWheelsPosition/tan(steeringWheelAngle*M_PI/500.0));
+double SteeringManager::calculateRadius(double steeringWheelAngle){
+	return steeringWheelsPosition/tan(steeringWheelAngle*2*M_PI/circle);
 }
-void SteeringManager::setSteeringAngleByRadius(int radius){
+void SteeringManager::setSteeringAngleByRadius(double radius){
 	servoProxy.setSteeringAngle(calculateSteeringWheelAngle(radius));
 }
 
-int16_t SteeringManager::getMaxRadius(bool leftTurn){
+double SteeringManager::getMaxRadius(bool leftTurn){
 	return calculateRadius(servoProxy.getMaxSteeringAngle(leftTurn));
 }
-void SteeringManager::driveStraight(int32_t distance){
+void SteeringManager::driveStraight(double distance){
 	bool forward = distance >= 0;
 	if(!forward) distance *= -1;
 	driveStraight(distance,forward);
 }
-void SteeringManager::driveStraight(int32_t distance,bool forward){
+void SteeringManager::driveStraight(double distance,bool forward){
 	servoProxy.setSteeringAngle(0);
 	stopConditionValue = positionCalculator.distance + (forward ? distance : -distance);
 	state = forward ? ss_driveStraightForward : ss_driveStraightBackward;
 	motorPowerEngine.motorMove(255,forward);
 }
-void SteeringManager::driveTurn(int32_t radius, int16_t angle){
+void SteeringManager::driveTurn(double radius, double angle){
 	bool forward = angle >= 0;
 	if(!forward) angle *= -1;
 	bool leftTurn = radius >= 0;
 	if(!leftTurn) radius *= -1;
 	driveTurn(radius,angle,forward,leftTurn);
 }
-void SteeringManager::driveTurn(int32_t radius, int16_t angle, bool forward, bool leftTurn){
+void SteeringManager::driveTurn(double radius, double angle, bool forward, bool leftTurn){
 	setSteeringAngleByRadius(radius * (leftTurn ? 1 : -1) );
 	stopConditionValue = positionCalculator.angle + angle * (forward ? 1 : -1) * (leftTurn ? 1 : -1);
 	if(leftTurn)
