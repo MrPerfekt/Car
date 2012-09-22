@@ -20,7 +20,7 @@ class Car {
 private:
 	//Constants
 	//Car measures
-	static const long steeringWheelsPosition = 250000;
+	static const long steeringWheelsPosition = 230000;
 	//Steering Servo
 	static const int pinSteeringServo = 7;
 	//Motor

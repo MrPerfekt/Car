@@ -125,15 +125,16 @@ void setup(){
 	servo->attach(7);
 	servop.setSteeringServo(servo);
 	interrupts();
-	//while(true){
-	//	steeringManager.update();
-	//	updateDisplay();
-	//}
+	/*
+	while(true){
+		steeringManager.update();
+		updateDisplay();
+	}
+	*/
 	driveTest();
 }
 
 void loop(){
- 
 	delay(100);
 	updateDisplay();
 
@@ -156,17 +157,36 @@ void loop(){
 void driveTest(){
   updateDisplay();
   
+  Serial.println("drive");
   steeringManager.driveStraight(1000000);
-  while(!steeringManager.update())
-	  updateDisplay();
+  int i = 0;
+  while(!steeringManager.update()){
+	  i++;
+	  if(i == 1){
+		  updateDisplay();
+		  i = 0;
+	  }
+  }
+  Serial.println("turn");
+  steeringManager.driveTurn(2000000,1000);
+  while(!steeringManager.update()){
+	  i++;
+	  if(i == 1){
+		  updateDisplay();
+		  i = 0;
+	  }
+  }
+  Serial.println("turn");
+  steeringManager.driveTurn(-2000000,1000);
+  while(!steeringManager.update()){
+	  i++;
+	  if(i == 1){
+		  updateDisplay();
+		  i = 0;
+	  }
+  }
+  Serial.println("end");
   steeringManager.update();
-  return;
-  steeringManager.driveTurn(1000,1000);
-  while(!steeringManager.update())
-	  updateDisplay();
-  steeringManager.driveTurn(-1000,1000);
-  while(!steeringManager.update())
-	  updateDisplay();
 }
 #elif
 void driveTurn(int angle){

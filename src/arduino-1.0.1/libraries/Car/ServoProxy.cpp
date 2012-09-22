@@ -18,21 +18,13 @@ int ServoProxy::convertServoToSteeringAngle(int servoAngle){
 int ServoProxy::convertSteeringToServoAngle(int steeringAngle){
 	return steeringAngle;
 }
-
-void ServoProxy::setSteeringServo(Servo* newSteeringServo){
-	steeringServo = newSteeringServo;
-	setSteeringAngle(0);
+int16_t ServoProxy::getMaxServoAngle(bool leftSteeringSign){
+	return leftSteeringSign ? maxAngleLeft : maxAngleRight;
 }
-
-int ServoProxy::getMaxServoAngle(bool rightSteeringSign){
-	return rightSteeringSign ? maxAngleLeft : maxAngleRight;
-}
-
-int ServoProxy::getMaxServoAngle(int steeringSign){
+int16_t ServoProxy::getMaxServoAngle(int steeringSign){
 	return getMaxServoAngle((steeringSign > 0) == (steerRightSign > 0));
 }
-
-int ServoProxy::setServoAngle(int angle){
+uint8_t ServoProxy::setServoAngle(int angle){
 	int returnState = 0;
 	if(angle > maxAngleRight * steerRightSign){
 		angle = maxAngleRight;
@@ -46,19 +38,25 @@ int ServoProxy::setServoAngle(int angle){
 	(((double)angle+(double)absServoAngleMiddle+(double)500)*(double)180)/(double)1000
 	));
 }
-int ServoProxy::getMaxSteeringAngle(bool rightSteeringSign){
-	return convertServoToSteeringAngle(getMaxServoAngle(rightSteeringSign));
+uint8_t ServoProxy::setUpdatedSteeringAngle(int angle){
+	return setServoAngle(convertSteeringToServoAngle(angle));
 }
-int ServoProxy::getMaxSteeringAngle(int steeringSign){
+
+void ServoProxy::setSteeringServo(Servo* newSteeringServo){
+	steeringServo = newSteeringServo;
+	setSteeringAngle(0);
+}
+int16_t ServoProxy::getMaxSteeringAngle(bool leftSteeringSign){
+	return convertServoToSteeringAngle(getMaxServoAngle(leftSteeringSign));
+}
+int16_t ServoProxy::getMaxSteeringAngle(int steeringSign){
 	return convertServoToSteeringAngle(getMaxServoAngle(steeringSign));
 }
-int ServoProxy::setSteeringAngle(int angle){
+uint8_t ServoProxy::setSteeringAngle(int angle){
+	currentSollAngle = angle;
 	currentSteeringAngle = angle;
 	setUpdatedSteeringAngle(angle);
 }
-int ServoProxy::setUpdatedSteeringAngle(int angle){
-	return convertSteeringToServoAngle(setServoAngle(angle));
-}
-int ServoProxy::correctSteeringAngle(int currentRealAngle){
-	setUpdatedSteeringAngle(2 * currentRealAngle - currentRealAngle);
+uint8_t ServoProxy::correctSteeringAngle(int16_t currentRealAngle){
+	setUpdatedSteeringAngle(currentSollAngle + (currentSteeringAngle - currentRealAngle));
 }

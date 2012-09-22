@@ -11,5 +11,5 @@ VoltageDivider::VoltageDivider(uint8_t pin,uint16_t r1,uint16_t r2){
 }
 
 uint16_t VoltageDivider::calculateSuplyPotential(){//return mV
-	return (uint16_t)((analogRead(voltagePin) * (uint32_t)5000 * vdResistorGes) / 1024 / vdResistor1);
+	return (uint16_t)((analogRead(voltagePin) * 5000.0 * vdResistorGes) / 1024.0 / vdResistor1);
 }

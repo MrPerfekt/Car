@@ -13,13 +13,13 @@ class Servo;
 //1000 = 360°
 class ServoProxy {
 private:
-	static const int absServoAngleMiddle = -16;					//85°
+	static const int absServoAngleMiddle = -16;	//85°
 	static int convertServoToSteeringAngle(int servoAngle);
 	static int convertSteeringToServoAngle(int steeringAngle);
 	int getMaxServoAngle(bool rightSteeringSign);
 	int getMaxServoAngle(int steeringSign);
-	int setServoAngle(int angle);
-	int setUpdatedSteeringAngle(int angle);
+	uint8_t setServoAngle(int angle);
+	uint8_t setUpdatedSteeringAngle(int angle);
 public:
 	static const int steerLeftSign = 1;
 	static const int steerRightSign = -1;
@@ -27,14 +27,15 @@ public:
 	static const int recommendedAngleLeft = 200;			//(posMiddle + posMaxLeft) / 2;
 	static const int maxAngleRight = -260 - absServoAngleMiddle;//50°
 	static const int recommendedAngleRight = -200;			//(posMiddle + posMaxRight) / 2;
-	int currentSteeringAngle;
+	int16_t currentSollAngle;
+	int16_t currentSteeringAngle;
 
 	ServoProxy(/*int pinSteeringServo*/);
 	void setSteeringServo(Servo* newSteeringServo);
-	int getMaxSteeringAngle(bool rightSteeringSign);
-	int getMaxSteeringAngle(int steeringSign);
-	int setSteeringAngle(int angle);
-	int correctSteeringAngle(int currentRealAngle);
+	int16_t getMaxSteeringAngle(bool rightSteeringSign);
+	int16_t getMaxSteeringAngle(int steeringSign);
+	uint8_t setSteeringAngle(int angle);
+	uint8_t correctSteeringAngle(int currentRealAngle);
 };
 
 #endif
