@@ -1,0 +1,15 @@
+\select@language {english}
+\contentsline {chapter}{\numberline {1}Environment}{3}
+\contentsline {section}{\numberline {1.1}AVR}{3}
+\contentsline {subsection}{\numberline {1.1.1}ATmega 2560}{3}
+\contentsline {subsubsection}{Summary}{4}
+\contentsline {section}{\numberline {1.2}Arduino}{4}
+\contentsline {subsection}{\numberline {1.2.1}Arduino Mega 2560}{4}
+\contentsline {subsection}{\numberline {1.2.2}Datatypes}{5}
+\contentsline {subsection}{\numberline {1.2.3}Microcontroller I/O}{5}
+\contentsline {subsubsection}{Digital input Pins}{5}
+\contentsline {subsubsection}{Digital output Pins}{5}
+\contentsline {subsubsection}{Analog inupt Pins}{5}
+\contentsline {subsubsection}{Analog Output / PWM Pins}{5}
+\contentsline {subsubsection}{UART}{5}
+\contentsline {subsubsection}{I2C}{6}
