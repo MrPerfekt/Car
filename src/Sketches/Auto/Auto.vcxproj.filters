@@ -18,9 +18,6 @@
     <None Include="Auto.ino" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="..\..\arduino-1.0.1\libraries\Car\DefineLib.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="..\..\arduino-1.0.1\libraries\Car\MotorTB6612FNG.h">
       <Filter>Header Files</Filter>
     </ClInclude>
@@ -42,9 +39,6 @@
     <ClInclude Include="..\..\arduino-1.0.1\libraries\Car\VoltageDivider.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\arduino-1.0.1\libraries\Car\Coordinates.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="..\..\arduino-1.0.1\libraries\Car\MovementSensor.h">
       <Filter>Header Files</Filter>
     </ClInclude>
@@ -55,9 +49,6 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="..\..\arduino-1.0.1\libraries\Car\MotionLogger.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\arduino-1.0.1\libraries\Car\DisplayProxy.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="Visual Micro\.Auto.vsarduino.h">
@@ -86,9 +77,6 @@
     <ClCompile Include="..\..\arduino-1.0.1\libraries\Car\VoltageDivider.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\arduino-1.0.1\libraries\Car\Coordinates.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="..\..\arduino-1.0.1\libraries\Car\MovementSensor.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -101,11 +89,53 @@
     <ClCompile Include="..\..\arduino-1.0.1\libraries\Car\MotionLogger.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\arduino-1.0.1\libraries\Car\DisplayProxy.cpp">
-      <Filter>Source Files</Filter>
+    <ClCompile Include="..\..\libraries\Car\BumperSensor.cpp">
+      <Filter>Resource Files</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\arduino-1.0.1\libraries\Car\DefineLib.cpp">
-      <Filter>Source Files</Filter>
+    <ClCompile Include="..\..\libraries\Car\Car.cpp">
+      <Filter>Resource Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\libraries\Car\Coordinates.cpp">
+      <Filter>Resource Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\libraries\Car\DefineLib.cpp">
+      <Filter>Resource Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\libraries\Car\DisplayProxy.cpp">
+      <Filter>Resource Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\libraries\Car\MotionLogger.cpp">
+      <Filter>Resource Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\libraries\Car\MotorTB6612FNG.cpp">
+      <Filter>Resource Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\libraries\Car\MouseSensorPan101BSI.cpp">
+      <Filter>Resource Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\libraries\Car\Movement.cpp">
+      <Filter>Resource Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\libraries\Car\MovementSensor.cpp">
+      <Filter>Resource Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\libraries\Car\PositionCalculator.cpp">
+      <Filter>Resource Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\libraries\Car\Sensor.cpp">
+      <Filter>Resource Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\libraries\Car\ServoProxy.cpp">
+      <Filter>Resource Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\libraries\Car\SteeringManager.cpp">
+      <Filter>Resource Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\libraries\Car\VoltageDivider.cpp">
+      <Filter>Resource Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\libraries\Car\WheelSensors.cpp">
+      <Filter>Resource Files</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>
