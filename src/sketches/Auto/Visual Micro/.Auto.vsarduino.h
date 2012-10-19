@@ -39,4 +39,4 @@ void driveTest();
 
 #include "C:\Program Files (x86)\arduino-1.0.1\hardware\arduino\variants\standard\pins_arduino.h" 
 #include "C:\Program Files (x86)\arduino-1.0.1\hardware\arduino\cores\arduino\arduino.h"
-#include "C:\Users\Andreas\Desktop\Car\src\Sketches\Auto\Auto.ino"
+#include "C:\Users\Andreas\Desktop\Car\src\sketches\Auto\Auto.ino"

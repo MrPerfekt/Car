@@ -18,44 +18,6 @@
     <None Include="Auto.ino" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="..\..\arduino-1.0.1\libraries\Car\MotorTB6612FNG.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\arduino-1.0.1\libraries\Car\MouseSensorPan101BSI.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\arduino-1.0.1\libraries\Car\PositionCalculator.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\arduino-1.0.1\libraries\Car\Sensor.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\arduino-1.0.1\libraries\Car\ServoProxy.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\arduino-1.0.1\libraries\Car\SteeringManager.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\arduino-1.0.1\libraries\Car\VoltageDivider.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\arduino-1.0.1\libraries\Car\MovementSensor.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\arduino-1.0.1\libraries\Car\WheelSensors.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\arduino-1.0.1\libraries\Car\Movement.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Visual Micro\.Auto.vsarduino.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-  </ItemGroup>
-  <ItemGroup>
-    <ClCompile Include="..\..\arduino-1.0.1\libraries\Car\MotorTB6612FNG.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="..\..\arduino-1.0.1\libraries\Car\MouseSensorPan101BSI.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
