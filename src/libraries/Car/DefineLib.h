@@ -17,6 +17,6 @@
 */
 static const double circle = 360;//= 2*M_PI;
 
-int freeSRam ();
+uint16_t freeSRam ();
 
 #endif
