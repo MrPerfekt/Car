@@ -53,7 +53,7 @@ void WheelSensor::rotateWheel(byte wheel){
 }
 
 double WheelSensor::calculateAngle(){
-	return (double)(wheels[WR]->rotationCount - wheels[WL]->rotationCount) * Wheel::stepDistance() * circle / (2 * (double)Wheel::wheelDistance * M_PI);
+	return ((double)wheels[WR]->rotationCount - (double)wheels[WL]->rotationCount) * Wheel::stepDistance() * circle / (2 * (double)Wheel::wheelDistance * M_PI);
 }
 
 double WheelSensor::calculateDistance(){

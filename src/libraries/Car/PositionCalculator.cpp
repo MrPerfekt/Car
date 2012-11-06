@@ -4,6 +4,13 @@
 
 #include "PositionCalculator.h"
 
+Coordinates PositionCalculator::getCurrentPosition(){
+	return position;
+}
+Movement PositionCalculator::getCurrentMovement(){
+	return currentMovement;
+}
+
 PositionCalculator::PositionCalculator(MovementSensor& movementSensor)
 	:movementSensor(movementSensor),angle(0),distance(0){
 }

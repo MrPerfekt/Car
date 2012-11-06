@@ -13,11 +13,13 @@
 class PositionCalculator{
 private:
 	MovementSensor& movementSensor;
+	Coordinates position;
+	Movement currentMovement;
 public:
 	double angle;
 	double distance;
-	Coordinates position;
-	Movement currentMovement;
+	Coordinates getCurrentPosition();
+	Movement getCurrentMovement();
 	PositionCalculator(MovementSensor& movementSensor);
 	void update();
 };

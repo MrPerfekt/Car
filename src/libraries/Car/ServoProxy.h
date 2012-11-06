@@ -9,33 +9,34 @@
 
 class Servo;
 
-//all angles are in milli angle 
-//1000 = 360°
+//The servo steering direction is against proportional to the steering wheels.
+//The next thing is, that the servo rotates against the mathematical angle.
+//So the software kan believ that the servo rotates in the mathematical angle and the angle is proportional to the steering wheels.
 class ServoProxy {
 private:
-	static const int absServoAngleMiddle = -16;	//85°
-	static int convertServoToSteeringAngle(int servoAngle);
-	static int convertSteeringToServoAngle(int steeringAngle);
-	int getMaxServoAngle(bool rightSteeringSign);
-	int getMaxServoAngle(int steeringSign);
-	uint8_t setServoAngle(int angle);
-	uint8_t setUpdatedSteeringAngle(int angle);
+	static double convertServoToSteeringAngle(double servoAngle);
+	static double convertSteeringToServoAngle(double steeringAngle);
+	double getMaxServoAngle(bool rightSteeringSign);
+	double getMaxServoAngle(int steeringSign);
+	uint8_t setServoAngle(double angle);
+	uint8_t setUpdatedSteeringAngle(double angle);
 public:
+	static const int absServoAngleMiddle = 85;
 	static const int steerLeftSign = 1;
 	static const int steerRightSign = -1;
-	static const int maxAngleLeft = 280 - absServoAngleMiddle;	//138°
-	static const int recommendedAngleLeft = 200;			//(posMiddle + posMaxLeft) / 2;
-	static const int maxAngleRight = -260 - absServoAngleMiddle;//50°
-	static const int recommendedAngleRight = -200;			//(posMiddle + posMaxRight) / 2;
-	int16_t currentSollAngle;
-	int16_t currentSteeringAngle;
+	static const int maxAngleLeft = steerLeftSign*35 + absServoAngleMiddle;//138°
+	static const int recommendedAngleLeft = maxAngleLeft-steerLeftSign*10;//(posMiddle + posMaxLeft) / 2;
+	static const int maxAngleRight = steerRightSign*53 + absServoAngleMiddle;//50°
+	static const int recommendedAngleRight = maxAngleRight-steerRightSign*10;			//(posMiddle + posMaxRight) / 2;
+	double currentSollAngle;
+	double currentSteeringAngle;
 
 	ServoProxy(/*int pinSteeringServo*/);
 	void setSteeringServo(Servo* newSteeringServo);
-	int16_t getMaxSteeringAngle(bool rightSteeringSign);
-	int16_t getMaxSteeringAngle(int steeringSign);
-	uint8_t setSteeringAngle(int angle);
-	uint8_t correctSteeringAngle(int currentRealAngle);
+	double getMaxSteeringAngle(bool rightSteeringSign);
+	double getMaxSteeringAngle(int steeringSign);
+	uint8_t setSteeringAngle(double angle);
+	uint8_t correctSteeringAngle(double currentRealAngle);
 };
 
 #endif

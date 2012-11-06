@@ -1,11 +1,33 @@
 <VisualMicro>
-  <Program Name="MemoryTest" Ext=".ino" Location="C:\Users\Andreas\Dropbox\Car\src\Sketches\MemoryTest">
-    <Compile CompilerErrors="0" ConfigurationName="Debug" StopOnError="False" OptimiseLibs="True" OptimiseCore="True" BuildPath="C:\Users\Andreas\AppData\Local\VMicro\Arduino\Builds\MemoryTest\uno" IncludeDebug="0" IncludesDebug="0" SketchName="MemoryTest" IsCompiled="1" />
+  <Program Name="MemoryTest" Ext=".ino" Location="C:\Dokumente und Einstellungen\Andreas Gruber\Desktop\Car\src\Sketches\MemoryTest">
+    <Compile CompilerErrors="0" ConfigurationName="Debug" StopOnError="False" OptimiseLibs="True" OptimiseCore="True" BuildPath="C:\Dokumente und Einstellungen\Andreas Gruber\Lokale Einstellungen\Anwendungsdaten\VMicro\Arduino\Builds\MemoryTest\mega2560" IncludeDebug="0" IncludesDebug="0" SketchName="MemoryTest" IsCompiled="1" />
     <Platform Name="Arduino">
-      <Board Name="uno" Description="Arduino Uno" CoreFolder="C:\Users\Andreas\Dropbox\Car\src\arduino-1.0.1\hardware\arduino\cores\arduino" VariantFullPath="C:\Users\Andreas\Dropbox\Car\src\arduino-1.0.1\hardware\arduino\variants\standard" />
+      <Board Name="mega2560" Description="Arduino Mega 2560 or Mega ADK" CoreFolder="C:\Programme\arduino-1.0.1\hardware\arduino\cores\arduino" VariantFullPath="C:\Programme\arduino-1.0.1\hardware\arduino\variants\mega" />
     </Platform>
     <VCCodeModel>
-      <VCCodeMacros />
+      <VCCodeMacros>
+        <VCCodeMacro Name="ARDUINO" Value="101" />
+        <VCCodeMacro Name="__AVR_ATmega2560__" Value="" />
+        <VCCodeMacro Name="F_CPU" Value="16000000L" />
+        <VCCodeMacro Name="__AVR__" Value="" />
+        <VCCodeMacro Name="__cplusplus" Value="" />
+        <VCCodeMacro Name="__attribute__" Value="" />
+        <VCCodeMacro Name="__inline__" Value="" />
+        <VCCodeMacro Name="__asm__" Value="" />
+        <VCCodeMacro Name="__extension__" Value="" />
+        <VCCodeMacro Name="__ATTR_PURE__" Value="" />
+        <VCCodeMacro Name="__ATTR_CONST__" Value="" />
+        <VCCodeMacro Name="__inline__" Value="" />
+        <VCCodeMacro Name="__asm__" Value="" />
+        <VCCodeMacro Name="__volatile__" Value="" />
+        <VCCodeMacro Name="__builtin_va_list" Value="" />
+        <VCCodeMacro Name="__builtin_va_start" Value="" />
+        <VCCodeMacro Name="__builtin_va_end" Value="" />
+        <VCCodeMacro Name="__DOXYGEN__" Value="" />
+        <VCCodeMacro Name="prog_void" Value="" />
+        <VCCodeMacro Name="PGM_VOID_P" Value="int" />
+        <VCCodeMacro Name="NOINLINE" Value="__attribute__((noinline))" />
+      </VCCodeMacros>
       <VCCodeVariables>
         <VCCodeVariable Name="dummy" />
       </VCCodeVariables>

@@ -12,7 +12,7 @@ MouseCoordinates::MouseCoordinates(long x,long y)
 :x(x),y(y){
 }
 Movement MouseCoordinates::getMovement(uint16_t resolution,double centerDistance){
-	Movement m;
+	Movement m = Movement();
 	m.distance = y * 25.4 / resolution;//zoll -> mm
 	m.angle = x * 25.4 * /*zoll -> mm*/ circle /*360°*/ / resolution /*res*/ / (2.0 * centerDistance * M_PI) /* u */;
 	return m;

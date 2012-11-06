@@ -8,7 +8,7 @@ SteeringManager::SteeringManager(ServoProxy& servoProxy,Motor& motorPowerEngine,
 	:servoProxy(servoProxy),motorPowerEngine(motorPowerEngine),positionCalculator(positionCalculator),steeringWheelsPosition(steeringWheelsPosition)
 {}
 double SteeringManager::calculateSteeringWheelAngle(const Movement& movement){
-	return calculateSteeringWheelAngle(movement.distance / (movement.angle / circle) / (2*M_PI)/*calculates radius*/);
+	return calculateSteeringWheelAngle(movement.distance * circle / movement.angle / (2*M_PI)/*calculates radius*/);
 }
 double SteeringManager::calculateSteeringWheelAngle(double radius){
 	return atan(steeringWheelsPosition/radius)/(2*M_PI)*circle;
@@ -55,7 +55,7 @@ bool SteeringManager::update(){
 		motorPowerEngine.motorBreak();
 		return true;
 	}
-	servoProxy.correctSteeringAngle(calculateSteeringWheelAngle(positionCalculator.currentMovement));
+	servoProxy.correctSteeringAngle(calculateSteeringWheelAngle(positionCalculator.getCurrentMovement()));
 	if((state == ss_driveStraightForward && stopConditionValue <= positionCalculator.distance) ||
 		(state == ss_driveStraightBackward && stopConditionValue >= positionCalculator.distance) ||
 		((state == ss_driveTurnLeftForward || state == ss_driveTurnRightBackward) && stopConditionValue <= positionCalculator.angle) ||

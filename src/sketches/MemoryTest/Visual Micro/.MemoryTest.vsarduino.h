@@ -1,6 +1,6 @@
-//Board = Arduino Uno
+//Board = Arduino Mega 2560 or Mega ADK
 #define ARDUINO 101
-#define __AVR_ATmega328P__
+#define __AVR_ATmega2560__
 #define F_CPU 16000000L
 #define __AVR__
 #define __cplusplus
@@ -28,6 +28,6 @@ uint16_t freeSRam ();
 //already defined in arduno.h
 //already defined in arduno.h
 
-#include "C:\Users\Andreas\Dropbox\Car\src\arduino-1.0.1\hardware\arduino\variants\standard\pins_arduino.h" 
-#include "C:\Users\Andreas\Dropbox\Car\src\arduino-1.0.1\hardware\arduino\cores\arduino\arduino.h"
-#include "C:\Users\Andreas\Dropbox\Car\src\Sketches\MemoryTest\MemoryTest.ino"
+#include "C:\Programme\arduino-1.0.1\hardware\arduino\variants\mega\pins_arduino.h" 
+#include "C:\Programme\arduino-1.0.1\hardware\arduino\cores\arduino\arduino.h"
+#include "C:\Dokumente und Einstellungen\Andreas Gruber\Desktop\Car\src\Sketches\MemoryTest\MemoryTest.ino"

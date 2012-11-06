@@ -1,6 +1,6 @@
-//Board = Arduino Uno
+//Board = Arduino Mega 2560 or Mega ADK
 #define ARDUINO 101
-#define __AVR_ATmega328P__
+#define __AVR_ATmega2560__
 #define F_CPU 16000000L
 #define __AVR__
 #define __cplusplus
@@ -37,12 +37,6 @@ void driveTurn(int angle);
 void driveStraight(unsigned long distance);
 void driveTest();
 
-<<<<<<< HEAD:src/Sketches/Auto/Visual Micro/.Auto.vsarduino.h
 #include "C:\Programme\arduino-1.0.1\hardware\arduino\variants\mega\pins_arduino.h" 
 #include "C:\Programme\arduino-1.0.1\hardware\arduino\cores\arduino\arduino.h"
 #include "C:\Dokumente und Einstellungen\Andreas Gruber\Desktop\Car\src\Sketches\Auto\Auto.ino"
-=======
-#include "C:\Program Files (x86)\arduino-1.0.1\hardware\arduino\variants\standard\pins_arduino.h" 
-#include "C:\Program Files (x86)\arduino-1.0.1\hardware\arduino\cores\arduino\arduino.h"
-#include "C:\Users\Andreas\Desktop\Car\src\sketches\Auto\Auto.ino"
->>>>>>> 2167188b4a93512874c85e90ea5fa22e48990d3b:src/sketches/Auto/Visual Micro/.Auto.vsarduino.h

@@ -17,4 +17,9 @@
   <ItemGroup>
     <None Include="MemoryTest.ino" />
   </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="Visual Micro\.MemoryTest.vsarduino.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+  </ItemGroup>
 </Project>

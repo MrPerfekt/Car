@@ -165,7 +165,7 @@ void driveTest(){
 	  }
   }
   Serial.println("turn");
-  steeringManager.driveTurn(2000,circle);
+  steeringManager.driveTurn(500,circle);
   while(!steeringManager.update()){
 	  i++;
 	  if(i == 1){
@@ -174,7 +174,7 @@ void driveTest(){
 	  }
   }
   Serial.println("turn");
-  steeringManager.driveTurn(-2000,circle);
+  steeringManager.driveTurn(-500,circle);
   while(!steeringManager.update()){
 	  i++;
 	  if(i == 1){
