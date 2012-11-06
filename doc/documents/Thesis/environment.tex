@@ -111,11 +111,9 @@ Here the data types of AVRs are described because they differ significantly from
 One example is the type int which only has a size of 2 bytes instead of 4 bytes like on an PC.
 Another very interesting type is floating-point numbers. 
 On AVRs floating-point calculations have some significant characteristics.
-A very interesting fact is that floating-point calculations are much slower than integer calculations in relation to regular CPUs because AVRs have no floating point unit.
-This means that floating-point calculations have to be emulated with other operations.
-Also the precision of floating-point calculations differs from usual PCs.
+A very interesting fact is that floating-point calculations are much slower than integer calculations in relation to regular CPUs because AVRs have no floating point unit. This means that floating-point calculations have to be emulated by other operations. Also the precision of floating-point calculations differs from usual PCs.
 On a PC a float has a size of 4 bytes and a double has a size of 8 bytes.
-On AVRs a double is as large as a float and has 4 bytes. In result of this fact the usual precision are 6-7 digits. % <--- Fragen
+On AVRs a double is as large as a float and has 4 bytes. As a consequence the usual precision is six to seven digits.
 See table~\ref{tab:datatypes} for details.
 
 \begin{table}
@@ -207,7 +205,7 @@ In truth PWM switches the pin frequently on and off.
 Many electronic components allow to give the required input via PWM.
 If a real analog signal is required smoothing capacitors can be used.
 This capacitors work as low pass filter and return a real analog voltage.
-For an illustration of PWM see figure~\ref{fig:pwm}. %<-- Fragen
+For an illustration of PWM see figure~\ref{fig:pwm}. 
 Example for electronic components which can be controlled with PWM and their usage are:
 \begin{itemize}
 \item Led
@@ -233,20 +231,12 @@ Then the following code line can be executed.\\
 
 \subsubsection{UART}\label{sec:uart}
 The term UART means Universal Asynchronous Receiver Transmitter also known as RS-232.
-UART is a serial interface and it is one of the most important interfaces on PCs and microcontrollers.
-%<--Fragen
-%Today in regular new PC the RS-232 interfaces are out of date because the USB have suppressed the RS-232.
-RS-232 interfaces are nowadays replaced by USB
-%To convert from from the serial interface USB to the serial interface RS-232 there exists several ICs like the CP2102.
-%Another possibility to convert this serial interfaces is to program a microcontroller to an converter like it is realized on the Arduino.
-%On the Arduino~Mega~2560 the USB to serial interface is programmed on an ATmega16u2.
-To use the RS-232 interface on newer PCs it is possible to tunnel the RS-232 trough USB or Bluetooth. 
+UART is a serial interface and was one of the most important interfaces on PCs until it got replaced by USB. On microcontrollers it still plays an important role nowadays.
+To use the RS-232 interface on newer PCs it is possible to tunnel it trough USB or Bluetooth. 
 The OS of the PC creates a virtual RS-232 interface.
-To create a tunnel of a RS-232 interface above USB it is possible to use an IC which have such a function.
-A example for such a chip is the CP2102.
-Another possibility is to program a microcontroller to a RS-232 tunnel.
+To create a tunnel of a RS-232 interface above USB it is possible to use an IC which provides such functionality.
+Another possibility is to completely emulate the RS-232 tunnel via software.
 This is also the method which is used on the Arduino.
-As an example on the Arduino~Mega~2560 the serial interface is created by an ATmega16u2.
 
 To use the UART on the Arduino the following code has to be executed.\\
 Before the serial connection is used it has to be started: \\
