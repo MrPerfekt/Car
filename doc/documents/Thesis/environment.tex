@@ -2,12 +2,12 @@
 \section{Introduction} \label{sec:introduction}
 In this chapter the setup of the autonomous vehicle is presented. 
 Here all microcontroller which were cousidered to be used are listed.
-Also the main usage of most of them are shown.
+Also the main usage of most of them is shown.
 Another topic of this chapter is an introduction to the environment of Arduino.
-Last but not least the different types of sensors are shown.
+Last but not least the different types which were used in this project of sensors are shown.
 
 \section{AVR} \label{sec:AVR}
-In this section all informations and pictures are taken from \cite{web:Atmel} otherwise it is described separately.
+Throughout this section all informations and pictures are taken from \cite{web:Atmel}, otherwise it is described separately.
 
 AVR is the name of a microcontroller-family which is produced by the company Atmel.
 Atmel currently produces different types of microcontrollers.
@@ -21,25 +21,24 @@ These types can be grouped in:
 \item tinyAVR
 \end{itemize}
 
-These families differ in size of memory, clock rate and the supply voltage which is need from the controller.
-As example the tinyAVR also known as ATtiny is a very small cheap microcontroller which only need a power supply down to 0,7 V.
-Beside these listed chips there are yet another which handle battery management.
+These families differ in size of memory, clock rate and the supply voltage which is needed by the controller.
+As an example the tinyAVR also known as ATtiny is a very small and cheap microcontroller which only needs a power supply of 0,7 V.
+Beside these listed chips there are other ones which have the function to handle the battery management of Li-Ion batteries.
 In addition to AVR Atmel also produces other chip-families.
 For details we refer to \url{ http://www.atmel.com/products/microcontrollers/avr/default.aspx }
 
-For this thesis mostly megaAVR also known ATmega are used because this are the most popular and so they are used on the arduino boards.
+For this thesis mostly megaAVR also known ATmega are used because these are the most popular ones and so they are used on the Arduino boards.
 These boards are shown in \ref{sec:arduino}.
 
 \subsection{ATmega~2560} \label{sec:atmega2560}
 In this section all informations and pictures are taken from \cite{manual:atmega2560}.
 
-This information 
 We start with a brief description of the AVR microcontroller which is used on the Arduino~Mega~2560 boards.
-These boards will be shown in \ref{sec:arduino}
+These boards will be shown in \ref{sec:arduino}.
 ATmega~2560 is part of many different electronic projects.
-It is a very many-sidet microcontroller because has a lot of different hardware implemented features.
+It is a very many-sided microcontroller because it has has a lot of different features implemented in hardware.
 This chip contains a lot of input and output interfaces so it can communicate with other chips without wasting invaluable computing time.
-Another advantage of these hardware implemented I/O interfaces is that no code have to be written .
+Another advantage of this these hardware implemented I/O interfaces is that no code has to be written .
 
 In the following the main technical features will be summarized:
 \subsubsection{Summary} \label{sec:atmega2560Summary}
@@ -60,32 +59,31 @@ TWI / I2C		& 1		\\
 
 
 \section{Arduino} \label {sec:arduino}
-In this section all informations and pictures are taken from \cite{web:arduino} otherwise it is described separately.
+In this section all information and pictures are taken from \cite{web:arduino} otherwise it is described separately.
 
-The term Arduino stand for a full environment to program different microcontroller.
+The term Arduino stands for a full environment to program different microcontrollers.
 All parts of the Arduino environment are a open source. 
-On part of this environment are the Arduino-Boards.
-These boards differs in size, functions, prize, ... .
+The environment is offered with different boards which vary in size, features, price, ... .
 On each board there is the full hardware to program and run the microcontroller.
 So a USB to serial converter is installed on-board.
-Most boards also contains a voltage regulator to feed it by an external power supply too and a circuit to switch to the USB power supply.
-At least each boar contain a button to reset the microcontroller.
+Most boards also contain a voltage regulator to feed it by an external power supply too and a circuit to switch to the USB power supply.
+At least each board contain a button to reset the microcontroller.
 
 Another Part of the Arduino environment is the Arduino software.
-With this software it is possible to compile c++ code with the avr-gcc compiler which is part of the GNU Compiler Collection.
+With this software it is possible to compile C++ code with the avr-gcc compiler which is part of the GNU Compiler Collection.
 This software can also transfer the compiled sketch to the USB to serial converter and this chip programs the microcontroller.
 
-The most useful part of the Arduino environment is the library.
+A further part of the Arduino environment is the library.
 This library contains code to address the pins.
-In result of that the sketch code is more compact and so it is easier to read the code.
-The result of this is that the amount of bugs are reduced.
+In result of that the sketch code is more compact and therefore easier to read.
 
 
 \subsection{Arduino Shields} \label{sec:arduinoShields}
 Shields are boards which have the design that they can be plugged on top of the Arduino.
-Those shields are used to extend the Arduinos capabilities.
+Those shields are used to extend the Arduino capabilities.
 Most shields are designed for the Arduino~UNO but the design of the Arduino~Mega is compatible for most of the shields of the Arduino~UNO.
-But this is not a backward compatibility. Shields for the Arduino~Mega does not fit on a Arduino~UNO.
+But the shields of the Arduino~Mega does not fit on an Arduino~UNO because it has much more pins and functions than the Arduino~UNO.
+
 Examples for Arduino Shields are:
 \begin{itemize}
 \item MotorDriver Shields
@@ -106,21 +104,16 @@ Examples for Arduino Shields are:
 The Arduino~Mega~2560 is a microcontroller board based on the ATmega~2560.
 Basically this is a board holding an ATmega~2560 so the technical features from the ATmega~2560 are also applicable for the Arduino~Mega~2560.
 See figure~\ref{fig:mega2560} for an image of this microcontroller.
-% and adding some convenient features to plug in extra...
-
-%The design of the Arduino Mega has the advantage that it is backward compatible to the Arduion UNO controller. In particlular the shields
-%(see section~\ref{sec:arduinoShields} for details) from the Arduino UNO are compatible with the Arduino Mega.
 
 
 \subsection{Datatypes} \label {sec:datatypes}
 Here the data types of AVRs are described because they differ significantly from the sizes normally used on ``regular'' PCs.
 One example is the type int which only has a size of 2 bytes instead of 4 bytes like on an PC.
-Another very interesting types are floating-point numbers. 
+Another very interesting type is floating-point numbers. 
 On AVRs floating-point calculations have some significant characteristics.
-A very interesting fact is that floating-point calculations are much slower than integer calculations.
-Also the precision of floating-point calculations differs from usual PCs.
+A very interesting fact is that floating-point calculations are much slower than integer calculations in relation to regular CPUs because AVRs have no floating point unit. This means that floating-point calculations have to be emulated by other operations. Also the precision of floating-point calculations differs from usual PCs.
 On a PC a float has a size of 4 bytes and a double has a size of 8 bytes.
-On AVRs a double is as large as float and has 4 bytes in result of this fact the usual precision are 6-7 digits.
+On AVRs a double is as large as a float and has 4 bytes. As a consequence the usual precision is six to seven digits.
 See table~\ref{tab:datatypes} for details.
 
 \begin{table}
@@ -153,7 +146,7 @@ float, double					& $32$ 	& $-3.4028235*10^{38}$	& $3.4028235*10^{38}$	\\
 
 
 \subsection{Microcontroller I/O} \label{sec:microcontrollerIO}
-In this section the interface to the Arduinos I/O is described.
+In this section the interface to the Arduino I/O is described.
 First the basic analog and digital I/O is shown.
 This is followed by a description of the UART API. 
 Finally the I2C is described.
@@ -161,12 +154,12 @@ For the more complex parts of the I/O we give small code snippets to illustrate 
 
 
 \subsubsection{Input Pins:} \label{sec:inputPins}
-The following instruction describe how a value can be read from a pin.
+The following instruction describes how a value can be read from a pin.
 \begin{itemize}
-\item First the pin have to be set as an input pin.\\
+\item First the pin has to be brought into input mode.\\
 \lstinline|pinMode(pin, INPUT);|
 
-\item Then the internal pull up Resistor can either on or off.\\
+\item Then the internal pull up resistor can either be switched on or off.\\
 Turn on:\\
 \lstinline|digitalWrite(pin, HIGH);|\\
 Turn off:\\
@@ -174,22 +167,22 @@ Turn off:\\
 
 \item If the microcontroller has the right settings the pin can be read.
 One possibility is to read a digital value.
-This return False if the voltage is lower than 2 volts and True if the voltage is above 3 volts.
+This returns False if the voltage is lower than 2 volts and True if the voltage is above 3 volts.
 If the voltage is between 2 and 3 volts either True or False can be returned.
 In this case the result can be random.\\
 \lstinline|value = digitalRead(pin);|\\
 The other possibility is to read an analog value.
-This return a value with a resolution of 10 Bit.
+This returns a value with a resolution of 10 Bit.
 So it will return a value between 0 and 1024.
-0 stand for 0 v and 1024 stand for 5V.\\
+0 stand for 0V and 1024 stand for 5V.\\
 \lstinline|value = analogRead(Apin)|\\
 \end{itemize}
 
 \subsubsection{Digital Output Pins}\label{sec:digitalOutputPins}
-The digital output of the Arduinos ports can be used to send data or switch some components off and on.
+The digital output of the Arduino ports can be used to send data or switch some components off and on.
 Very interesting is that the the high output voltage is lower than the supply voltage and the low output voltage is higher than the supply voltage.
 This is because the transistors inside the IC have a small voltage drop.
-Before the digital output pins can be used the pinmode have to be set to output:\\
+Before the digital output pins can be used the pinmode has to be set to output:\\
 \lstinline|pinMode(pin, OUTPUT);|\\
 To write a low voltage on the port this code line have to be executed:\\
 \lstinline|digitalWrite(pin, LOW);|\\
@@ -199,43 +192,59 @@ This code line write a high voltage on the port:\\
 
 \subsubsection{Analog Output Pins - PWM}\label{sec:analogOutputPinsPWM}
 \begin{figure}
-\includegraphics[scale=0.5]{picturesArduino/arduinoMega2560_R3_Front.jpg}
-\includegraphics[scale=0.5]{picturesArduino/arduinoMega2560_R3_Back.jpg}
-\caption{Board of the Arduino Mega 2560}
+\makebox[\linewidth]{
+\includegraphics[scale=0.5]{picturesArduino/pwm.jpg}
+}
+\caption{Schematic of PWM}
 \label{fig:pwm}
 \end{figure}
 
-Before the code to set an analog voltage on the output pin is shown PWM have to be explained.
-
-PWM which stand for pulse width modulation is one of many methods to produce a analog voltage.
+PWM, which stand for pulse width modulation, is one of many methods to produce an analog voltage.
 The main thing to know that PWM in the strict sense doesn't make a real analog voltage.
-In truth PWM switch the pin frequently on and off. 
-The most electronic components allow to give the input via PWM as example almost all motor drivers.
-If a real analog signal required smoothing capacitors can be used.
-This will return a real analog voltage.
-See figure~\ref{fig:pwm}.
+In truth PWM switches the pin frequently on and off. 
+Many electronic components allow to give the required input via PWM.
+If a real analog signal is required smoothing capacitors can be used.
+This capacitors work as low pass filter and return a real analog voltage.
+For an illustration of PWM see figure~\ref{fig:pwm}. 
+Example for electronic components which can be controlled with PWM and their usage are:
+\begin{itemize}
+\item Led
+	\subitem Car's brake light
+	\subitem Background lighting of displays
+\item Motor driver
+	\subitem CPU air cooler
+	\subitem Speed control of model cars
+\item Servo
+	\subitem Steering control of model cars
+	\subitem Arms of industrial robots
+\item Smoothing capacitors
+	\subitem Data transfer
+	\subitem Reference voltage for sensors
 
-The resolution of the PWM pins are 8 bit so the minimal value is 0 which equates to the low level voltage and the maximal value is 255 which equates the high level voltage. 
-To output a PWM signal the port has to be set as output. See section~\ref{sec:digitalOutputPins}.
+\end{itemize}
+
+The resolution of the PWM pins are 8 bit so the minimal value is 0 which equals to the low level voltage and the maximal value is 255 which equals to the high level voltage. 
+To output a PWM signal the port has to be set as output. A general description can be found in the section~\ref{sec:digitalOutputPins}. %<-- Fragen
 Then the following code line can be executed.\\
 \lstinline|analogWrite(PWMpin, value);|
 
 
 \subsubsection{UART}\label{sec:uart}
 The term UART means Universal Asynchronous Receiver Transmitter also known as RS-232.
-UART is a serial interface and it is one of the most important on PCs and microcontroller.
-Today in regular new PC the RS-232 interfaces are out of date because the USB have suppressed the RS-232.
-To convert from from the serial interface USB to the serial interface RS-232 there exists several ICs like the CP2102.
-Another possibility to convert this serial interfaces is to program a microcontroller to an converter like it is realized on the Arduino.
-On the Arduino~Mega~2560 the USB to serial interface is programmed on a ATmega16u2.
+UART is a serial interface and was one of the most important interfaces on PCs until it got replaced by USB. On microcontrollers it still plays an important role nowadays.
+To use the RS-232 interface on newer PCs it is possible to tunnel it trough USB or Bluetooth. 
+The OS of the PC creates a virtual RS-232 interface.
+To create a tunnel of a RS-232 interface above USB it is possible to use an IC which provides such functionality.
+Another possibility is to completely emulate the RS-232 tunnel via software.
+This is also the method which is used on the Arduino.
 
 To use the UART on the Arduino the following code has to be executed.\\
 Before the serial connection is used it has to be started: \\
 \lstinline|Serial.beginn(speed);| \\
-Then date which have a size of one byte can be written to the serial port.
-If there is more than one byte this method have to be called for each byte: \\
+Then data which have a size of one byte can be written to the serial port.
+If there is more than one byte this method has to be called for each byte: \\
 \lstinline|Serial.write(value);| \\
-Or something can be printed the serial port. 
+Or something can be printed to the serial port. 
 This can be used instead of Serial.write:\\
 \lstinline|Serial.println(value);| \\
 
@@ -254,7 +263,7 @@ char c = Serial.read();
 The I2C bus is also a serial bus like UART with the difference that I2C uses a master and slave administration.
 Another difference is, that more then two devices can be joined to the I2C bus.
 The address has 7 bits and so it can be set from 0 to 127.
-In result of that the maximal number of devices is 128.
+This result in a maximal number of devices of 128.
 
 To use the I2C bus on the Arduino the following code has to be executed.\\
 At first the I2C bus has to be started: \\

@@ -81,19 +81,26 @@
 \include{environment}
 
 
-\chapter{Positioning}
-\begin{table}
-{\large
-\begin{center}
+\chapter{Positioning}\label{chap:positioning}
+\section{Introduction}\label{sec:introduction}
+A autonomous vehicle has as a main function to control all actors on its own.
+This means that no human give a sign to the car that now its the time to turn the motor on.
+To decide how the single components have to act at which time 
+the car need information about its own position which are as good as possible.
+This chapter will present some sensors which can be used to get information about the position and rate them in different categories.
+Another part of this chapter is to calculate the most possible current position based on the input data of different sensors.
 
-Sensor Types\\
+\section{Sensor Types}
 \begin{itemize}
 \item absolute sensors
 	\subitem lateration
 		\subsubitem GPS	
-	\subitem environment detection
-		\subsubitem camera
-		\subsubitem bumper
+\item environment detection
+	\subitem image recognition
+	\subitem bumper
+	\subitem distance sensor
+		\subsubitem ultrasonic
+		\subsubitem infrared sensor
 \item relative sensors
 	\subitem touchless
 		\subsubitem gyro sensor
@@ -102,23 +109,10 @@ Sensor Types\\
 	\subitem other
 		\subsubitem rotary encoder
 		\subsubitem mouse sensor
-%	\begin{itemize}
-%	\item test
-%	\end{iitemize}
 \end{itemize}
 
-\begin{tabular}{|l|}
-\hline
-Sensor Name\\
-\hline
+\section{Tolerance and errors}
 
-\hline
-\end{tabular}
-\end{center}
-}
-\caption{Sizes of data types on the AVR}
-\label{tab:positioningSensors}
-\end{table}
 
 
 
