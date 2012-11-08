@@ -6,24 +6,50 @@
 #include <Servo.h>
 	
 Servo* steeringServo;
-ServoProxy::ServoProxy(/*int pinSteeringServo*/){
-	//steeringServo = new Servo();
-	//steeringServo.attach(7);
-	//setSteeringAngle(0);
-}
 
+//================Convert================
 double ServoProxy::convertServoToSteeringAngle(double servoAngle){
 	return servoAngle;
 }
 double ServoProxy::convertSteeringToServoAngle(double steeringAngle){
 	return steeringAngle;
 }
+
+double ServoProxy::convertRadiusToSteeringWheelAngle(double radius){
+	return atan(steeringWheelsPosition/radius)/(2*M_PI)*circle;
+}
+double ServoProxy::convertSteeringWheelAngleToRadius(double steeringWheelAngle){
+	return steeringWheelsPosition/tan(steeringWheelAngle*2*M_PI/circle);
+}
+
+double ServoProxy::convertRadiusToServoAngle(double radius){
+	return convertSteeringToServoAngle(convertRadiusToSteeringWheelAngle(radius));
+}
+double ServoProxy::convertServoAngleToRadius(double servoAngle){
+	return convertSteeringWheelAngleToRadius(convertServoToSteeringAngle(servoAngle));
+}
+//================Get max angle================
 double ServoProxy::getMaxServoAngle(bool leftSteeringSign){
 	return leftSteeringSign ? maxAngleLeft : maxAngleRight;
 }
 double ServoProxy::getMaxServoAngle(int steeringSign){
 	return getMaxServoAngle((steeringSign > 0) == (steerRightSign > 0));
 }
+double ServoProxy::getMaxSteeringAngle(int steeringSign){
+	return convertServoToSteeringAngle(getMaxServoAngle(steeringSign));
+}
+double ServoProxy::getMaxRadius(int steeringSign){
+	return convertServoAngleToRadius(getMaxServoAngle(steeringSign));
+}
+//================Constructor================
+ServoProxy::ServoProxy(double steeringWheelsPosition)
+	:steeringWheelsPosition(steeringWheelsPosition){
+}
+void ServoProxy::setSteeringServo(Servo* newSteeringServo){
+	steeringServo = newSteeringServo;
+	setSteeringAngle(0);
+}
+//================Set Methods================
 uint8_t ServoProxy::setServoAngle(double angle){
 	uint16_t servoAngle = (angle/circle*360.0 + absServoAngleMiddle);
 	//===========
@@ -47,21 +73,15 @@ uint8_t ServoProxy::setUpdatedSteeringAngle(double angle){
 	return setServoAngle(convertSteeringToServoAngle(angle));
 }
 
-void ServoProxy::setSteeringServo(Servo* newSteeringServo){
-	steeringServo = newSteeringServo;
-	setSteeringAngle(0);
-}
-double ServoProxy::getMaxSteeringAngle(bool leftSteeringSign){
-	return convertServoToSteeringAngle(getMaxServoAngle(leftSteeringSign));
-}
-double ServoProxy::getMaxSteeringAngle(int steeringSign){
-	return convertServoToSteeringAngle(getMaxServoAngle(steeringSign));
-}
 uint8_t ServoProxy::setSteeringAngle(double angle){
 	currentSollAngle = angle;
 	currentSteeringAngle = angle;
-	setUpdatedSteeringAngle(angle);
+	return setUpdatedSteeringAngle(angle);
 }
+uint8_t ServoProxy::setRadius(double radius){
+	return setSteeringAngle(convertRadiusToSteeringWheelAngle(radius));
+}
+//================Correct Methods================
 uint8_t ServoProxy::correctSteeringAngle(double currentRealAngle){
 	/*
 	if(currentSollAngle > currentRealAngle)
@@ -71,9 +91,11 @@ uint8_t ServoProxy::correctSteeringAngle(double currentRealAngle){
 	setUpdatedSteeringAngle(currentSteeringAngle);
 	*/
 
-	currentSteeringAngle += (currentRealAngle - currentSollAngle);
-	setUpdatedSteeringAngle(currentSteeringAngle);
+	//currentSteeringAngle += (currentRealAngle - currentSollAngle);
+	//setUpdatedSteeringAngle(currentSteeringAngle);
 	
-	//setUpdatedSteeringAngle(currentSteeringAngle += (currentRealAngle - currentSollAngle));
-	//setUpdatedSteeringAngle(currentSollAngle + (currentSteeringAngle - currentRealAngle));
+	return setUpdatedSteeringAngle(currentSteeringAngle += (currentRealAngle - currentSollAngle));
+}
+uint8_t ServoProxy::correcRadius(double currentRadius){
+	return correctSteeringAngle(convertRadiusToSteeringWheelAngle(currentRadius));
 }

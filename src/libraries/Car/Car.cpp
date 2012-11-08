@@ -12,9 +12,9 @@ Car::Car(){
 	movementSensor = wheelSensor;//mouseSensor
 
 	motorPowerEngine = new Motor(pinMotorPMW,pinMotorIn1,pinMotorIn2);
-	servoProxy = new ServoProxy(/*pinSteeringServo*/);
+	servoProxy = new ServoProxy(steeringWheelsPosition);
 	positionCalculator = new PositionCalculator(*movementSensor);
-	steeringManager = new SteeringManager(*servoProxy,*motorPowerEngine,*positionCalculator,steeringWheelsPosition);
+	steeringManager = new SteeringManager(*servoProxy,*motorPowerEngine,*positionCalculator);
 	powerSupplyVoltageDivider = new VoltageDivider(apinVolDivPowerSupplay,volDivPowerSupplayRes1,volDivPowerSupplayRes2);
 }
 
