@@ -54,11 +54,11 @@ void setupDisplay(){
 }
 
 void updateDisplay(){  
-	int32_t distance = positionCalculator.distance;
+	int32_t distance = positionCalculator.fullMovement.distance;
 	String strD = "d: ";
 	strD += distance;
 
-	double angle = positionCalculator.angle;
+	double angle = positionCalculator.fullMovement.angle;
 	if(angle < 0) angle *= -1;
 	String strR = "r: ";
 	strR += (int)angle;
@@ -134,29 +134,15 @@ void setup(){
 void loop(){
 	delay(100);
 	updateDisplay();
-
-#if false
-	int val0 = analogRead(0);
-	int val1 = analogRead(1);
-  
-	Serial.print(val0);
-	Serial.print("  ");
-	Serial.print(val1);
-	Serial.print("  ");
-	Serial.print(rotationCount[WL]);
-	Serial.print(" - ");
-	Serial.println(rotationCount[WR]);
-	//delay(10);
-#endif
 }
 
-#if true
 void driveTest(){
   updateDisplay();
   
   Serial.println("drive");
-  steeringManager.driveStraight(1000);
   int i = 0;
+
+  steeringManager.driveStraight(1000);
   while(!steeringManager.update()){
 	  i++;
 	  if(i == 1){
@@ -164,6 +150,8 @@ void driveTest(){
 		  i = 0;
 	  }
   }
+  steeringManager.update();
+  
   Serial.println("turn");
   steeringManager.driveTurn(500,circle);
   while(!steeringManager.update()){
@@ -185,40 +173,3 @@ void driveTest(){
   Serial.println("end");
   steeringManager.update();
 }
-#elif
-void driveTurn(int angle){
-  
-  int startAngle = wheelSensor.calculateAngleMilli();
-  int currentAngle;
-  do{
-    currentAngle = wheelSensor.calculateAngleMilli() - startAngle;
-    if(currentAngle < 0) currentAngle *= -1;
-    updateDisplay();
-  }while(currentAngle < angle);
-}
-void driveStraight(unsigned long distance){
-  //distance: in nanometer
-  //ahead: true=forwad false=backward
-  uint32_t startDistance = wheelSensor.calculateDistance();
-  uint32_t finishDistance = startDistance + distance;
-  while(wheelSensor.calculateDistance() < finishDistance){
-    updateDisplay();
-  }
-  //testSetDelay(LOW);
-}
-void driveTest(){
-  updateDisplay();
-  
-  servop.setSteeringAngle(0);
-  motor.motorMove(255, 0);  
-  driveStraight((unsigned long)1000000);
-  
-  servop.setSteeringAngle(ServoProxy::recommendedAngleLeft);
-  driveTurn(1000);
-  
-  servop.setSteeringAngle(ServoProxy::recommendedAngleRight);
-  driveTurn(1000);
-  motor.motorBreak();
-  servop.setSteeringAngle(0);
-}
-#endif

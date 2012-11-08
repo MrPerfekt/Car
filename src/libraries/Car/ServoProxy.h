@@ -17,10 +17,10 @@ private:
 	static const int absServoAngleMiddle = 85;
 	static const int steerLeftSign = 1;
 	static const int steerRightSign = -1;
-	static const int maxAngleLeft = steerLeftSign*35 + absServoAngleMiddle;//138°
-	static const int recommendedAngleLeft = maxAngleLeft-steerLeftSign*10;//(posMiddle + posMaxLeft) / 2;
-	static const int maxAngleRight = steerRightSign*53 + absServoAngleMiddle;//50°
-	static const int recommendedAngleRight = maxAngleRight-steerRightSign*10;			//(posMiddle + posMaxRight) / 2;
+	static const int maxAngleLeft = steerLeftSign*30 + absServoAngleMiddle;//138°
+	static const int recommendedAngleLeft = maxAngleLeft-steerLeftSign*20;//(posMiddle + posMaxLeft) / 2;
+	static const int maxAngleRight = steerRightSign*35 + absServoAngleMiddle;//50°
+	static const int recommendedAngleRight = maxAngleRight-steerRightSign*20;			//(posMiddle + posMaxRight) / 2;
 	double currentSollAngle;
 	double currentSteeringAngle;
 	double steeringWheelsPosition;

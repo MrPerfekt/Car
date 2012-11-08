@@ -9,7 +9,7 @@ Car::Car(){
 
 	mouseSensor = new MouseSensorPan101(pinMouseSensorSCK,pinMouseSensorSDA,pinMouseSensorPD,mouseSensorCenterDistance);
 	wheelSensor = new WheelSensor(pinWheelSensorR,pinWheelSensorL);
-	movementSensor = wheelSensor;//mouseSensor
+	movementSensor = mouseSensor;//wheelSensor
 
 	motorPowerEngine = new Motor(pinMotorPMW,pinMotorIn1,pinMotorIn2);
 	servoProxy = new ServoProxy(steeringWheelsPosition);

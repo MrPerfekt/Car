@@ -14,10 +14,8 @@ double SteeringManager::calculateRadiusByMovement(const Movement& movement){
 
 void SteeringManager::driveStraight(double distance){
 	bool forward = distance >= 0;
-	if(!forward) distance *= -1;
-
 	servoProxy.setSteeringAngle(0);
-	stopConditionValue = positionCalculator.distance + (forward ? distance : -distance);
+	stopConditionValue = positionCalculator.fullMovement.distance + (forward ? distance : -distance);
 	state = forward ? ss_driveStraightForward : ss_driveStraightBackward;
 	motorPowerEngine.motorMove(255,forward);
 }
@@ -25,11 +23,12 @@ void SteeringManager::driveTurn(double radius, double angle){
 	bool leftTurn = radius >= 0;
 	bool forward = angle >= 0;
 	servoProxy.setRadius(radius);
-	stopConditionValue = positionCalculator.angle + angle * /*(forward ? 1 : -1) * */ (leftTurn ? 1 : -1);
+	stopConditionValue = positionCalculator.fullMovement.angle + angle * /*(forward ? 1 : -1) * */ (leftTurn ? 1 : -1);
 	if(leftTurn)
 		state = forward ? ss_driveTurnLeftForward : ss_driveTurnLeftBackward;
 	else
 		state = forward ? ss_driveTurnRightForward : ss_driveTurnRightBackward;
+	motorPowerEngine.motorMove(255,forward);
 }
 bool SteeringManager::update(){
 	positionCalculator.update();
@@ -37,11 +36,13 @@ bool SteeringManager::update(){
 		motorPowerEngine.motorBreak();
 		return true;
 	}
-	servoProxy.correcRadius(calculateRadiusByMovement(positionCalculator.getCurrentMovement()));
-	if((state == ss_driveStraightForward && stopConditionValue <= positionCalculator.distance) ||
-		(state == ss_driveStraightBackward && stopConditionValue >= positionCalculator.distance) ||
-		((state == ss_driveTurnLeftForward || state == ss_driveTurnRightBackward) && stopConditionValue <= positionCalculator.angle) ||
-		((state == ss_driveTurnLeftBackward || state == ss_driveTurnRightForward) && stopConditionValue >= positionCalculator.angle) ){
+	Movement m = positionCalculator.getCurrentMovement();
+	if(m.distance == 0) return false;
+	servoProxy.correcRadius(calculateRadiusByMovement(m));
+	if((state == ss_driveStraightForward && stopConditionValue <= positionCalculator.fullMovement.distance) ||
+		(state == ss_driveStraightBackward && stopConditionValue >= positionCalculator.fullMovement.distance) ||
+		((state == ss_driveTurnLeftForward || state == ss_driveTurnRightBackward) && stopConditionValue <= positionCalculator.fullMovement.angle) ||
+		((state == ss_driveTurnLeftBackward || state == ss_driveTurnRightForward) && stopConditionValue >= positionCalculator.fullMovement.angle) ){
 		state = ss_stop;
 		return true;
 	}
