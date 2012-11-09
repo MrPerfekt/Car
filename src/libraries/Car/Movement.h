@@ -14,6 +14,8 @@ public:
 	double angle;
 	Movement();
 	Movement(double distance,double angle);
+	Movement& operator+=(const Movement &move);
+
 };
 
 #endif

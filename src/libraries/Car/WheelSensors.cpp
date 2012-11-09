@@ -80,7 +80,7 @@ void WheelSensor::resetData(){
 	wheels[WR]->rotationCount = 0;
 }
 Movement WheelSensor::getMovement(){
-	Movement mov(calculateDistance(),calculateAngle());
+	Movement mov = Movement(calculateDistance(),calculateAngle());
 	resetData();
 	return mov;
 }

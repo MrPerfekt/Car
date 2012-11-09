@@ -16,8 +16,7 @@ private:
 	Coordinates position;
 	Movement currentMovement;
 public:
-	double angle;
-	double distance;
+	Movement fullMovement;
 	Coordinates getCurrentPosition();
 	Movement getCurrentMovement();
 	PositionCalculator(MovementSensor& movementSensor);

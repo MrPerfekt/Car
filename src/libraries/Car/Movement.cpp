@@ -10,3 +10,8 @@ Movement::Movement()
 Movement::Movement(double distance,double angle)
 :distance(distance),angle(angle){
 }
+Movement& Movement::operator+=(const Movement &move){
+	this->angle += move.angle;
+	this->distance += move.distance;
+	return *this;
+}
