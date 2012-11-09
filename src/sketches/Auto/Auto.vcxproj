@@ -68,10 +68,12 @@
     <None Include="Auto.ino">
       <FileType>CppCode</FileType>
     </None>
+    <None Include="ClassDiagram.cd" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\..\libraries\Car\BumperSensor.cpp" />
     <ClCompile Include="..\..\libraries\Car\Car.cpp" />
+    <ClCompile Include="..\..\libraries\Car\Config.cpp" />
     <ClCompile Include="..\..\libraries\Car\Coordinates.cpp" />
     <ClCompile Include="..\..\libraries\Car\DefineLib.cpp" />
     <ClCompile Include="..\..\libraries\Car\DisplayProxy.cpp" />
@@ -90,6 +92,7 @@
   <ItemGroup>
     <ClInclude Include="..\..\libraries\Car\BumperSensor.h" />
     <ClInclude Include="..\..\libraries\Car\Car.h" />
+    <ClInclude Include="..\..\libraries\Car\Config.h" />
     <ClInclude Include="..\..\libraries\Car\Coordinates.h" />
     <ClInclude Include="..\..\libraries\Car\DefineLib.h" />
     <ClInclude Include="..\..\libraries\Car\DisplayProxy.h" />
