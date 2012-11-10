@@ -1,5 +1,5 @@
-/*
-* Copyright 2012 Andreas Gruber
+/*!
+Copyright 2012 Andreas Gruber
 */
 
 #ifndef POSITION_CALCULATOR
@@ -20,6 +20,10 @@ public:
 	Coordinates getCurrentPosition();
 	Movement getCurrentMovement();
 	PositionCalculator(MovementSensor& movementSensor);
+	/*!
+	This method updates the position and the currentMovement of the positionCalculator
+	Note: Before this method can be used movementSensor.update() have to be invoked.
+	*/
 	void update();
 };
 

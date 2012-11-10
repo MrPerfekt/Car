@@ -1,5 +1,5 @@
-/*
-* Copyright 2012 Andreas Gruber
+/*!
+Copyright 2012 Andreas Gruber
 */
 
 #include "ServoProxy.h"
@@ -16,10 +16,10 @@ double ServoProxy::convertSteeringToServoAngle(double steeringAngle){
 }
 
 double ServoProxy::convertRadiusToSteeringWheelAngle(double radius){
-	return atan(steeringWheelsPosition/radius)/(2*M_PI)*circle;
+	return atan(Config::getSteeringWheelsPosition()/radius)/(2*M_PI)*circle;
 }
 double ServoProxy::convertSteeringWheelAngleToRadius(double steeringWheelAngle){
-	return steeringWheelsPosition/tan(steeringWheelAngle*2*M_PI/circle);
+	return Config::getSteeringWheelsPosition()/tan(steeringWheelAngle*2*M_PI/circle);
 }
 
 double ServoProxy::convertRadiusToServoAngle(double radius){
@@ -42,8 +42,7 @@ double ServoProxy::getMaxRadius(int steeringSign){
 	return convertServoAngleToRadius(getMaxServoAngle(steeringSign));
 }
 //================Constructor================
-ServoProxy::ServoProxy(double steeringWheelsPosition)
-	:steeringWheelsPosition(steeringWheelsPosition){
+ServoProxy::ServoProxy(){
 }
 void ServoProxy::setSteeringServo(Servo* newSteeringServo){
 	steeringServo = newSteeringServo;

@@ -1,5 +1,5 @@
-/*
-* Copyright 2012 Andreas Gruber
+/*!
+Copyright 2012 Andreas Gruber
 */
 
 #ifndef VOLTAGE_DIVIDER
@@ -16,6 +16,6 @@ private:
 public:	
 	//Variables
 	VoltageDivider(uint8_t pin,uint16_t r1,uint16_t r2);
-	uint16_t calculateSuplyPotential();
+	double calculateSuplyPotential();
 };
 #endif

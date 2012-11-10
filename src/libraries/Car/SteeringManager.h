@@ -1,5 +1,5 @@
-/*
-* Copyright 2012 Andreas Gruber
+/*!
+Copyright 2012 Andreas Gruber
 */
 
 #ifndef STEERING_MANAGER
@@ -11,9 +11,8 @@
 #include "PositionCalculator.h"
 #include "Movement.h"
 
-
-class SteeringManager {
-private:
+class SteeringManager {	
+public:
 	enum SteeringState{
 		ss_stop,
 		ss_driveStraightForward,
@@ -23,11 +22,12 @@ private:
 		ss_driveTurnRightForward,
 		ss_driveTurnRightBackward,
 	};
+private:
 	ServoProxy& servoProxy;
 	Motor& motorPowerEngine;
 	PositionCalculator& positionCalculator;
 	double stopConditionValue;
-	uint8_t state;
+	SteeringState state;
 	double steeringWheelsPosition;
 	/*!
 	*/
@@ -44,6 +44,10 @@ private:
 	*/
 	double calculateSteeringWheelAngle(const Movement& movement);
 public:
+	/*!
+	@return The state of the current steering action.
+	*/
+	SteeringState getState();
 	SteeringManager(ServoProxy& servoSteeringDriver,Motor& motorPowerEngine,PositionCalculator& positionCalculator);
 	/*!
 	Get the maximal radius of the car
@@ -56,12 +60,16 @@ public:
 	void driveTurn(double radius, double angle);
 	void driveTurn(double radius, double angle, bool forward, bool leftTurn);
 	/*!
-	Update the current steering action
-	If the action has finished update() will return true
-	If update() is executed again after finishing it will stop the motor
-	\return true if the current action has finished
+	Update the current steering action.
+	The progress or the state of the steering action can be called with getState().
+	Note: Before this method can be executed positionCalculator.update() have to be invoked.
 	*/
-	bool update();
+	void update();
+	/*!
+	Stop all motors and finish all steering actions.
+	This mehtod have to be called after the last task for the steeringManager.
+	*/
+	void stop();
 };
 
 #endif

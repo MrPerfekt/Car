@@ -1,5 +1,5 @@
-/*
-* Copyright 2012 Andreas Gruber
+/*!
+Copyright 2012 Andreas Gruber
 */
 
 #include "WheelSensors.h"
@@ -20,9 +20,9 @@ Wheel::Wheel(int wPin)
 	secToLastRotationPeriod = 0;
 }
 
-WheelSensor::WheelSensor(uint8_t wPinWR,uint8_t wPinWL){
-	wheels[WR] = new Wheel(wPinWR);
-	wheels[WL] = new Wheel(wPinWL);
+WheelSensor::WheelSensor(){
+	wheels[WR] = new Wheel(Config::getPinWheelSensorR());
+	wheels[WL] = new Wheel(Config::getPinWheelSensorL());
 	wheelSensorInstance = this;
 
 	pinMode(wheels[WR]->wheelPin, INPUT);
@@ -83,4 +83,6 @@ Movement WheelSensor::getMovement(){
 	Movement mov = Movement(calculateDistance(),calculateAngle());
 	resetData();
 	return mov;
+}
+void WheelSensor::update(){
 }

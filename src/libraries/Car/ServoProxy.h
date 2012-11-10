@@ -1,5 +1,5 @@
-/*
-* Copyright 2012 Andreas Gruber
+/*!
+Copyright 2012 Andreas Gruber
 */
 
 #ifndef SERVO_STEERING_DRIVER
@@ -23,7 +23,6 @@ private:
 	static const int recommendedAngleRight = maxAngleRight-steerRightSign*20;			//(posMiddle + posMaxRight) / 2;
 	double currentSollAngle;
 	double currentSteeringAngle;
-	double steeringWheelsPosition;
 
 	double getMaxServoAngle(bool rightSteeringSign);
 	double getMaxServoAngle(int steeringSign);
@@ -85,7 +84,7 @@ public:
 	After creating a new ServoProxy setSteeringServo have to be called.
 	\param steeringWheelsPosition Position of the Steering wheels to the drive axle.
 	*/
-	ServoProxy(double steeringWheelsPosition);
+	ServoProxy();
 	/*!
 	Sets the steering servo which have to be used to control the car. 
 	\param newSteeringServo The steering servo

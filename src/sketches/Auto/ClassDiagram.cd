@@ -10,7 +10,7 @@
   <Class Name="Car" Collapsed="true">
     <Position X="7.5" Y="0.5" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>gAiEAQgRBkwBJEACAIAAEABACQAAFAAJAAAAAIAYEAY=</HashCode>
+      <HashCode>gAgEAAoABgQBAEAAAAAAEABAAQAAAAAIAAAAAIAcAAQ=</HashCode>
       <FileName>C:\Users\Andreas\Desktop\Car\src\libraries\Car\Car.h</FileName>
     </TypeIdentifier>
   </Class>
@@ -24,7 +24,7 @@
   <Class Name="DisplayProxy" Collapsed="true">
     <Position X="11" Y="0.5" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAAAAAAEAAAAAAIABAACQAAQQAAAAAAAAEAAEAAAAgA=</HashCode>
+      <HashCode>AAAAAAAAAAAAAAIAAAAAQAAQQAAAAAAAAEAAEAAAAAA=</HashCode>
       <FileName>C:\Users\Andreas\Desktop\Car\src\libraries\Car\DisplayProxy.h</FileName>
     </TypeIdentifier>
   </Class>
@@ -38,69 +38,42 @@
   <Class Name="Motor" Collapsed="true">
     <Position X="7.5" Y="1.5" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>gAAAAAYAAAAAAAAIAJABAAAABQAlAAAAAAABIBEAAgQ=</HashCode>
+      <HashCode>gAAAAAYAAAAAAAAIAJABAAAABQAlAAAAAAABAAAAAgQ=</HashCode>
       <FileName>C:\Users\Andreas\Desktop\Car\src\libraries\Car\MotorTB6612FNG.h</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="MouseCoordinates" Collapsed="true">
     <Position X="9.25" Y="1.5" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAAAAAAAAAAAIAAAAAAAAAAAAAAAAAAAAABkAAAAAAA=</HashCode>
+      <HashCode>AAAAAAAAAAAAIAAAAAAAAQAAAAAAAAAAAABkAAAAAAA=</HashCode>
       <FileName>C:\Users\Andreas\Desktop\Car\src\libraries\Car\MouseSensorPan101BSI.h</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="MouseSensorPan101" Collapsed="true">
     <Position X="5" Y="3.25" Width="1.5" />
-    <NestedTypes>
-      <Enum Name="MouseSensorPan101::Registers" Collapsed="true">
-        <TypeIdentifier>
-          <NewMemberFileName>C:\Users\Andreas\Desktop\Car\src\libraries\Car\MouseSensorPan101BSI.h</NewMemberFileName>
-        </TypeIdentifier>
-      </Enum>
-      <Enum Name="MouseSensorPan101::MotionStatusBits" Collapsed="true">
-        <TypeIdentifier>
-          <NewMemberFileName>C:\Users\Andreas\Desktop\Car\src\libraries\Car\MouseSensorPan101BSI.h</NewMemberFileName>
-        </TypeIdentifier>
-      </Enum>
-      <Enum Name="MouseSensorPan101::OperationModeBits" Collapsed="true">
-        <TypeIdentifier>
-          <NewMemberFileName>C:\Users\Andreas\Desktop\Car\src\libraries\Car\MouseSensorPan101BSI.h</NewMemberFileName>
-        </TypeIdentifier>
-      </Enum>
-      <Enum Name="MouseSensorPan101::PowerSettings" Collapsed="true">
-        <TypeIdentifier>
-          <NewMemberFileName>C:\Users\Andreas\Desktop\Car\src\libraries\Car\MouseSensorPan101BSI.h</NewMemberFileName>
-        </TypeIdentifier>
-      </Enum>
-      <Enum Name="MouseSensorPan101::Preferences" Collapsed="true">
-        <TypeIdentifier>
-          <NewMemberFileName>C:\Users\Andreas\Desktop\Car\src\libraries\Car\MouseSensorPan101BSI.h</NewMemberFileName>
-        </TypeIdentifier>
-      </Enum>
-    </NestedTypes>
     <TypeIdentifier>
-      <HashCode>BAICIDAEAgACAAAAAAAwAQABRCBAAAwIAABEEgAAgAA=</HashCode>
+      <HashCode>BAICIDAEAgACAAAAAAAwAQABxCBAAAwIAABEEgAEAAA=</HashCode>
       <FileName>C:\Users\Andreas\Desktop\Car\src\libraries\Car\MouseSensorPan101BSI.h</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="Movement" Collapsed="true">
     <Position X="11" Y="1.5" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAAAAAAAAAAAAAAABAAAAAAAAEAAAAAAAAAAAABAAAA=</HashCode>
+      <HashCode>AAAAAAAAAAAAAAAABAAAAQAAAEAAAAAAAAAAAABAAAA=</HashCode>
       <FileName>C:\Users\Andreas\Desktop\Car\src\libraries\Car\Movement.h</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="MovementSensor" Collapsed="true">
     <Position X="3.75" Y="1.75" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAEAAAAAAA=</HashCode>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAEAAAEAAA=</HashCode>
       <FileName>C:\Users\Andreas\Desktop\Car\src\libraries\Car\MovementSensor.h</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="PositionCalculator" Collapsed="true">
     <Position X="12.75" Y="1.5" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAAACAAAAAAAAAAAAAAAIAQAAEAAAAQAAEAAAABUAAA=</HashCode>
+      <HashCode>AAAACAAAAAAAAAAAAAAAIAQAQAAAAAQAAEAAAAAUAAA=</HashCode>
       <FileName>C:\Users\Andreas\Desktop\Car\src\libraries\Car\PositionCalculator.h</FileName>
     </TypeIdentifier>
   </Class>
@@ -114,14 +87,14 @@
   <Class Name="ServoProxy" Collapsed="true">
     <Position X="7.5" Y="2.5" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>gAAAACAwCAEAAACgAAAAAAgAAIQBQFAlQIQAAggIKEA=</HashCode>
+      <HashCode>gAAAACAgCAEAAACgAAAAAAgAAIQBQFAlQIQAAggIKEA=</HashCode>
       <FileName>C:\Users\Andreas\Desktop\Car\src\libraries\Car\ServoProxy.h</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="SteeringManager" Collapsed="true">
     <Position X="9.25" Y="2.5" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AggEQAAQAAAAAAAAAAAAAAgAAAAAAAAEAAAEBIAERAg=</HashCode>
+      <HashCode>QggEQAAQAAAAAAAAAAAAAAgAAAAgAAAEAAAEBIAERAg=</HashCode>
       <FileName>C:\Users\Andreas\Desktop\Car\src\libraries\Car\SteeringManager.h</FileName>
     </TypeIdentifier>
   </Class>
@@ -142,7 +115,7 @@
   <Class Name="WheelSensor" Collapsed="true">
     <Position X="2.75" Y="3.25" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAAAAAIAAAAAIASAACAAAAAAAAhAAAAAAAAEEAAAAgA=</HashCode>
+      <HashCode>AAAAAAIAAAAAIASAACAAAAAAAAhAAAAAAAAEEAAEAgA=</HashCode>
       <FileName>C:\Users\Andreas\Desktop\Car\src\libraries\Car\WheelSensors.h</FileName>
     </TypeIdentifier>
   </Class>
@@ -150,7 +123,7 @@
     <Position X="7.5" Y="3.75" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
-      <FileName>Visual Micro\.Auto.vsarduino.h</FileName>
+      <FileName>c:\program files (x86)\arduino-1.0.1\hardware\arduino\cores\arduino\arduino.h</FileName>
     </TypeIdentifier>
   </Typedef>
   <Font Name="Segoe UI" Size="9" />

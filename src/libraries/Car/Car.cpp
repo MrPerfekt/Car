@@ -1,51 +1,60 @@
-/*
-* Copyright 2012 Andreas Gruber
+/*!
+Copyright 2012 Andreas Gruber
 */
 
 #include "Car.h"
-	
-Car::Car(){	
-	displayProxy = new DisplayProxy(pinDisplayRST, pinDisplayCS, pinDisplayClk, pinDisplayData);
-
-	mouseSensor = new MouseSensorPan101(pinMouseSensorSCK,pinMouseSensorSDA,pinMouseSensorPD,mouseSensorCenterDistance);
-	wheelSensor = new WheelSensor(pinWheelSensorR,pinWheelSensorL);
-	movementSensor = mouseSensor;//wheelSensor
-
-	motorPowerEngine = new Motor(pinMotorPMW,pinMotorIn1,pinMotorIn2);
-	servoProxy = new ServoProxy(steeringWheelsPosition);
-	positionCalculator = new PositionCalculator(*movementSensor);
-	steeringManager = new SteeringManager(*servoProxy,*motorPowerEngine,*positionCalculator);
-	powerSupplyVoltageDivider = new VoltageDivider(apinVolDivPowerSupplay,volDivPowerSupplayRes1,volDivPowerSupplayRes2);
-}
 
 Motor& Car::getMotorPowerEngine(){
 	return *motorPowerEngine;
 }
-
 ServoProxy& Car::getServoProxy(){
 	return *servoProxy;
 }
-
 SteeringManager& Car::getSteeringManager(){
 	return *steeringManager;
 }
-
 PositionCalculator& Car::getPositionCalculator(){
 	return *positionCalculator;
 }
-
 WheelSensor& Car::getWheelSensor(){	
 	return *wheelSensor;
 }
-
 MouseSensorPan101& Car::getMouseSensor(){
 	return *mouseSensor;
 }
-
 MovementSensor& Car::getMovementSensor(){
 	return *movementSensor;
 }
-
 VoltageDivider& Car::getPowerSupplyVoltageDivider(){
 	return *powerSupplyVoltageDivider;
+}
+MotionLogger& Car::getMotionLogger(){
+	return *motionLogger;
+}
+	
+Car::Car(){	
+	displayProxy = new DisplayProxy();
+
+	mouseSensor = new MouseSensorPan101();
+	wheelSensor = new WheelSensor();
+	movementSensor = mouseSensor;//wheelSensor
+
+	motorPowerEngine = new Motor();
+	servoProxy = new ServoProxy();
+	positionCalculator = new PositionCalculator(*movementSensor);
+	steeringManager = new SteeringManager(*servoProxy,*motorPowerEngine,*positionCalculator);
+	powerSupplyVoltageDivider = new VoltageDivider(Config::getAPinVolDivPowerSupplay(),Config::getVolDivPowerSupplayRes1(),Config::getVolDivPowerSupplayRes2());
+
+	motionLogger = new MotionLogger(*positionCalculator);
+}
+
+void Car::update(){
+	wheelSensor->update();
+	positionCalculator->update();
+	wheelSensor->update();
+	steeringManager->update();
+	wheelSensor->update();
+	
+	//motionLogger->update();
+	//displayProxy->update();
 }

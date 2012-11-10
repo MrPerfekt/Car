@@ -1,5 +1,5 @@
-/*
-* Copyright 2012 Andreas Gruber
+/*!
+Copyright 2012 Andreas Gruber
 */
 
 //constants
@@ -8,24 +8,6 @@ const byte dummy = 0;
 #include <gLCD.h>
 #include <Servo.h>
 #include <Car.h>
-/*
-#include <WheelSensors.h>
-#include <VoltageDivider.h>
-#include <SteeringManager.h>
-#include <ServoProxy.h>
-#include <Sensor.h>
-#include <PositionCalculator.h>
-#include <MovementSensor.h>
-#include <Movement.h>
-#include <MouseSensorPan101BSI.h>
-#include <MotorTB6612FNG.h>
-#include <MotionLogger.h>
-#include <DisplayProxy.h>
-#include <DefineLib.h>
-#include <Coordinates.h>
-#include <Car.h>
-#include <BumperSensor.h>
-*/
 
 Car*car = new Car();
 ServoProxy servop = car->getServoProxy();
@@ -46,7 +28,7 @@ gLCD graphic(RST,CS,Clk,Data,1);
 
 void setupDisplay(){
 	graphic.Init(0,2,0,1,1);
-	graphic.Contrast(0x2B);//Range: -0x3F to 0x3F
+	graphic.Contrast(0x2B);//! Range: -0x3F to 0x3F
 	graphic.SetBackColour(15,15,15);
 	graphic.SetForeColour(0,0,15); 
   
@@ -73,14 +55,14 @@ void updateDisplay(){
 	String strV = "v: ";
 	strV += cSpeed;
   
-	graphic.Box(20,20,20+8*7,20+7,0B0000);
-	graphic.Print(strD,20,20,0);
-	graphic.Box(20,40,20+8*7,40+9,0B0000);
-	graphic.Print(strR,20,40,0);
-	graphic.Box(20,60,20+8*7,60+7,0B0000);
-	graphic.Print(strU,20,60,0);
-	graphic.Box(20,80,20+8*7,80+7,0B0000);
-	graphic.Print(strV,20,80,0);
+	//graphic.Box(20,20,20+8*7,20+7,0B0000);
+	graphic.Print(strD,20,20,0B0100);
+	//graphic.Box(20,40,20+8*7,40+9,0B0000);
+	graphic.Print(strR,20,40,0B0100);
+	//graphic.Box(20,60,20+8*7,60+7,0B0000);
+	graphic.Print(strU,20,60,0B0100);
+	//graphic.Box(20,80,20+8*7,80+7,0B0000);
+	graphic.Print(strV,20,80,0B0100);
 }
 
 
@@ -122,7 +104,7 @@ void setup(){
 
   
 	Servo* servo = new Servo();
-	servo->attach(7);
+	servo->attach(Config::getPinSteeringServo());
 	servop.setSteeringServo(servo);
 	interrupts();
 
@@ -137,39 +119,27 @@ void loop(){
 }
 
 void driveTest(){
-  updateDisplay();
+	updateDisplay();
   
-  Serial.println("drive");
-  int i = 0;
-
-  steeringManager.driveStraight(1000);
-  while(!steeringManager.update()){
-	  i++;
-	  if(i == 1){
-		  updateDisplay();
-		  i = 0;
-	  }
-  }
-  steeringManager.update();
-  
-  Serial.println("turn");
-  steeringManager.driveTurn(500,circle);
-  while(!steeringManager.update()){
-	  i++;
-	  if(i == 1){
-		  updateDisplay();
-		  i = 0;
-	  }
-  }
-  Serial.println("turn");
-  steeringManager.driveTurn(-500,circle);
-  while(!steeringManager.update()){
-	  i++;
-	  if(i == 1){
-		  updateDisplay();
-		  i = 0;
-	  }
-  }
-  Serial.println("end");
-  steeringManager.update();
+	int i = 0;
+	Serial.println("drive");
+	steeringManager.driveStraight(1000);
+	do{
+		car->update();
+		updateDisplay();
+	}while(steeringManager.getState() != SteeringManager::ss_stop);
+	Serial.println("turn");
+	steeringManager.driveTurn(500,circle);
+	do{
+		car->update();
+		updateDisplay();
+	}while(steeringManager.getState() != SteeringManager::ss_stop);
+	Serial.println("turn");
+	steeringManager.driveTurn(-500,circle);
+	do{
+		car->update();
+		updateDisplay();
+	}while(steeringManager.getState() != SteeringManager::ss_stop);
+	Serial.println("end");
+	steeringManager.stop();
 }

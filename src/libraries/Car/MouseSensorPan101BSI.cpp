@@ -1,5 +1,5 @@
-/*
-* Copyright 2012 Andreas Gruber
+/*!
+Copyright 2012 Andreas Gruber
 */
 
 #include "MouseSensorPan101BSI.h"
@@ -8,19 +8,23 @@
 MouseCoordinates::MouseCoordinates()
 :x(0),y(0){
 }
-MouseCoordinates::MouseCoordinates(long x,long y)
+MouseCoordinates::MouseCoordinates(int32_t x,int32_t y)
 :x(x),y(y){
 }
-Movement MouseCoordinates::getMovement(uint16_t resolution,double centerDistance){
+Movement MouseCoordinates::getMovement(uint16_t resolution){
 	Movement m = Movement();
 	m.distance = y * 25.4 / resolution;//zoll -> mm
-	m.angle = x * 25.4 * /*zoll -> mm*/ circle /*360°*/ / resolution /*res*/ / (2.0 * centerDistance * M_PI) /* u */;
+	m.angle = x * 25.4 * /*zoll -> mm*/ circle /*360°*/ / resolution /*res*/ / (2.0 * Config::getMouseSensorCenterDistance() * M_PI) /* u */;
 	return m;
+}
+MouseCoordinates MouseCoordinates::operator+= (const MouseCoordinates &coordinates){
+	this->x += coordinates.x;
+	this->y += coordinates.y;
 }
 
 
-MouseSensorPan101::MouseSensorPan101(uint8_t pinSCK,uint8_t pinSDA,uint8_t pinPD,double centerDistance)
-:pinSCK(pinSCK),pinSDA(pinSDA),pinPD(pinPD),centerDistance(centerDistance){
+MouseSensorPan101::MouseSensorPan101()
+	:pinSCK(Config::getPinMouseSensorSCK()),pinSDA(Config::getPinMouseSensorSDA()),pinPD(Config::getPinMouseSensorPD()){
 	pinMode(pinSCK, OUTPUT);
 	pinMode(pinSDA, OUTPUT);
 	pinMode(pinPD, OUTPUT);
@@ -111,8 +115,13 @@ MouseCoordinates MouseSensorPan101::getMovementMouseCoordinates(){
 	}
 	return coordinates;
 }
+void MouseSensorPan101::update(){
+	currentMouseCoordinates += getMovementMouseCoordinates();
+}
 Movement MouseSensorPan101::getMovement(){
-	return getMovementMouseCoordinates().getMovement(getResolution(),centerDistance);
+	Movement m = currentMouseCoordinates.getMovement(getResolution());
+	currentMouseCoordinates = MouseCoordinates(); 
+	return m;
 }
 void MouseSensorPan101::setPowerSettings(PowerSettings powerSettings){
 	writeToAddress(r_operationMode,operationMode | (1 << powerSettings));

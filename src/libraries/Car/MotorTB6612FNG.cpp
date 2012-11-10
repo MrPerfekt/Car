@@ -1,5 +1,5 @@
-/*
-* Copyright 2012 Andreas Gruber
+/*!
+Copyright 2012 Andreas Gruber
 */
 
 #include "MotorTB6612FNG.h"
@@ -23,15 +23,12 @@ void motorEnableStandby(){
 
 
 //== class Motor ==
-Motor::Motor(uint8_t pinPWM,uint8_t pinIN1,uint8_t pinIN2){
-	mPinPWM = pinPWM;
-	mPinIN1 = pinIN1;
-	mPinIN2 = pinIN2;
+Motor::Motor(){
 	curMotorState = msUndefined;
 
-	pinMode(mPinPWM, OUTPUT);
-	pinMode(mPinIN1, OUTPUT);
-	pinMode(mPinIN2, OUTPUT);
+	pinMode(Config::getPinMotorPMW(), OUTPUT);
+	pinMode(Config::getPinMotorIn1(), OUTPUT);
+	pinMode(Config::getPinMotorIn2(), OUTPUT);
 }
 
 byte Motor::motorCalculateState(boolean inPin1, boolean inPin2){
@@ -61,11 +58,11 @@ void Motor::motorWriteStatus(uint8_t speed, bool inPin1, bool inPin2){
 	if(curMotorState != newMotorState){
 		waitDeadTime();
 		curMotorState = newMotorState;
-		digitalWrite(mPinIN1, inPin1);
-		digitalWrite(mPinIN2, inPin2);
+		digitalWrite(Config::getPinMotorIn1(), inPin1);
+		digitalWrite(Config::getPinMotorIn2(), inPin2);
 	}
 	motorDisableStandby();
-	analogWrite(mPinPWM, speed);
+	analogWrite(Config::getPinMotorPMW(), speed);
 }
 
 void Motor::motorMove(uint8_t speed, bool clockwise){

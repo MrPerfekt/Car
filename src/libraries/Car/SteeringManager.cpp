@@ -1,8 +1,12 @@
-/*
-* Copyright 2012 Andreas Gruber
+/*!
+Copyright 2012 Andreas Gruber
 */
 
 #include "SteeringManager.h"
+
+SteeringManager::SteeringState SteeringManager::getState(){
+	return state;
+}
 
 SteeringManager::SteeringManager(ServoProxy& servoProxy,Motor& motorPowerEngine,PositionCalculator& positionCalculator)
 	:servoProxy(servoProxy),motorPowerEngine(motorPowerEngine),positionCalculator(positionCalculator),steeringWheelsPosition(steeringWheelsPosition)
@@ -30,21 +34,18 @@ void SteeringManager::driveTurn(double radius, double angle){
 		state = forward ? ss_driveTurnRightForward : ss_driveTurnRightBackward;
 	motorPowerEngine.motorMove(255,forward);
 }
-bool SteeringManager::update(){
-	positionCalculator.update();
-	if(state == ss_stop) {
-		motorPowerEngine.motorBreak();
-		return true;
-	}
+void SteeringManager::update(){
 	Movement m = positionCalculator.getCurrentMovement();
-	if(m.distance == 0) return false;
+	if(m.distance == 0) return;
 	servoProxy.correcRadius(calculateRadiusByMovement(m));
 	if((state == ss_driveStraightForward && stopConditionValue <= positionCalculator.fullMovement.distance) ||
 		(state == ss_driveStraightBackward && stopConditionValue >= positionCalculator.fullMovement.distance) ||
 		((state == ss_driveTurnLeftForward || state == ss_driveTurnRightBackward) && stopConditionValue <= positionCalculator.fullMovement.angle) ||
 		((state == ss_driveTurnLeftBackward || state == ss_driveTurnRightForward) && stopConditionValue >= positionCalculator.fullMovement.angle) ){
 		state = ss_stop;
-		return true;
 	}
-	return false;
+}
+void SteeringManager::stop(){
+	state = ss_stop;
+	motorPowerEngine.motorBreak();
 }

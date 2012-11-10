@@ -1,5 +1,5 @@
-/*
-* Copyright 2012 Andreas Gruber
+/*!
+Copyright 2012 Andreas Gruber
 */
 
 #ifndef MOTOR_TB6612FNG
@@ -17,11 +17,6 @@ void motorEnableStandby();
 
 class Motor {
 private:
-	//PINs
-	uint8_t mPinPWM; //Speed control 
-	uint8_t mPinIN1; //Direction
-	uint8_t mPinIN2; //Direction
-
 	uint8_t motorCalculateState(boolean inPin1, boolean inPin2);
 	void waitDeadTime();
 public:
@@ -35,7 +30,7 @@ public:
 
 	uint8_t curMotorState;
 
-	Motor(uint8_t pinPWM,uint8_t pinIN1,uint8_t pinIN2);
+	Motor();
 	void motorWriteStatus(uint8_t speed, bool inPin1, bool inPin2);
 	/*!
 	* Move specific motor at speed and direction

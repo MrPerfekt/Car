@@ -1,5 +1,5 @@
-/*
-* Copyright 2012 Andreas Gruber
+/*!
+Copyright 2012 Andreas Gruber
 */
 
 #ifndef WHEEL_ROTATION_SENSORS
@@ -41,17 +41,17 @@ class WheelSensor : public MovementSensor{
 private:
 	Wheel* wheels[2];
 public:
-	
 	static const byte WR = 0;
 	static const byte WL = 1;
 
-	WheelSensor(uint8_t wPinWR,uint8_t wPinWL);
+	WheelSensor();
 	void rotateWheel(byte wheel);
 	double calculateAngle();
 	double calculateDistance();
 	double calculateCurrentSpeed();
 	void resetData();
 	Movement getMovement();
+	void update();
 };
 
 #endif

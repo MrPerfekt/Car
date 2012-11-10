@@ -1,5 +1,5 @@
-/*
-* Copyright 2012 Andreas Gruber
+/*!
+Copyright 2012 Andreas Gruber
 */
 
 #ifndef COORDINATES
@@ -8,10 +8,10 @@
 class Coordinates{
 private:
 public:
-	long x;
-	long y;
+	double x;
+	double y;
 	Coordinates();
-	Coordinates(long x,long y);
+	Coordinates(double x,double y);
 	Coordinates operator+= (const Coordinates &coordinates);
 	Coordinates operator-= (const Coordinates &coordinates);
 };
