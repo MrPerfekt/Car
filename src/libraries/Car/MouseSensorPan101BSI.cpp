@@ -120,7 +120,7 @@ void MouseSensorPan101::update(){
 }
 Movement MouseSensorPan101::getMovement(){
 	Movement m = currentMouseCoordinates.getMovement(getResolution());
-	currentMouseCoordinates = MouseCoordinates(); 
+	currentMouseCoordinates = MouseCoordinates();
 	return m;
 }
 void MouseSensorPan101::setPowerSettings(PowerSettings powerSettings){

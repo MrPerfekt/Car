@@ -55,14 +55,14 @@ void updateDisplay(){
 	String strV = "v: ";
 	strV += cSpeed;
   
-	//graphic.Box(20,20,20+8*7,20+7,0B0000);
-	graphic.Print(strD,20,20,0B0100);
-	//graphic.Box(20,40,20+8*7,40+9,0B0000);
-	graphic.Print(strR,20,40,0B0100);
-	//graphic.Box(20,60,20+8*7,60+7,0B0000);
-	graphic.Print(strU,20,60,0B0100);
-	//graphic.Box(20,80,20+8*7,80+7,0B0000);
-	graphic.Print(strV,20,80,0B0100);
+	graphic.Box(20,20,20+8*7,20+7,0B0000);
+	graphic.Print(strD,20,20,0B0000);
+	graphic.Box(20,40,20+8*7,40+9,0B0000);
+	graphic.Print(strR,20,40,0B0000);
+	graphic.Box(20,60,20+8*7,60+7,0B0000);
+	graphic.Print(strU,20,60,0B0000);
+	graphic.Box(20,80,20+8*7,80+7,0B0000);
+	graphic.Print(strV,20,80,0B0000);
 }
 
 
@@ -129,6 +129,7 @@ void driveTest(){
 		updateDisplay();
 	}while(steeringManager.getState() != SteeringManager::ss_stop);
 	Serial.println("turn");
+	/*
 	steeringManager.driveTurn(500,circle);
 	do{
 		car->update();
@@ -141,5 +142,6 @@ void driveTest(){
 		updateDisplay();
 	}while(steeringManager.getState() != SteeringManager::ss_stop);
 	Serial.println("end");
+	*/
 	steeringManager.stop();
 }

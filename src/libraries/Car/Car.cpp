@@ -33,11 +33,15 @@ MotionLogger& Car::getMotionLogger(){
 }
 	
 Car::Car(){	
-	displayProxy = new DisplayProxy();
+	//displayProxy = new DisplayProxy();
 
 	mouseSensor = new MouseSensorPan101();
 	wheelSensor = new WheelSensor();
-	movementSensor = mouseSensor;//wheelSensor
+#if true
+	movementSensor = wheelSensor;
+#else
+	movementSensor = mouseSensor;
+#endif
 
 	motorPowerEngine = new Motor();
 	servoProxy = new ServoProxy();
@@ -49,11 +53,11 @@ Car::Car(){
 }
 
 void Car::update(){
-	wheelSensor->update();
+	movementSensor->update();
 	positionCalculator->update();
-	wheelSensor->update();
+	movementSensor->update();
 	steeringManager->update();
-	wheelSensor->update();
+	movementSensor->update();
 	
 	//motionLogger->update();
 	//displayProxy->update();

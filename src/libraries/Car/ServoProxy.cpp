@@ -88,6 +88,9 @@ uint8_t ServoProxy::correctSteeringAngle(double currentRealAngle){
 
 	//currentSteeringAngle += (currentRealAngle - currentSollAngle);
 	//setUpdatedSteeringAngle(currentSteeringAngle);
+	Serial.print(currentSteeringAngle);
+	Serial.print(currentRealAngle);
+	Serial.println(currentSollAngle);
 	return setUpdatedSteeringAngle(currentSteeringAngle -= (currentRealAngle - currentSollAngle));
 }
 uint8_t ServoProxy::correcRadius(double currentRadius){
