@@ -39,9 +39,9 @@ void Motor::waitDeadTime(){
 	//Wait the dead-time to prevent damaging of the motordriver
 	if(curMotorState != msWaitDeadTime){
 		//Serial.println("Wait Dead Time");
-		curMotorState = msWaitDeadTime;
 		motorStop();
-		delay(10);
+		curMotorState = msWaitDeadTime;
+		delayMicroseconds(delayTimeMicroseconds);
 	}
 }
 

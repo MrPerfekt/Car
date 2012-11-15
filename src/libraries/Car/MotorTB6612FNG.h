@@ -17,6 +17,7 @@ void motorEnableStandby();
 
 class Motor {
 private:
+	static const uint8_t delayTimeMicroseconds = 10; //230 ns (Datasheet)
 	uint8_t motorCalculateState(boolean inPin1, boolean inPin2);
 	void waitDeadTime();
 public:
