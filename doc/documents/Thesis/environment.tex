@@ -1,5 +1,4 @@
-\chapter{Environment} \label{chap:environment}
-\section{Introduction} \label{sec:introduction}
+\section{Introduction} \label{sec:environmentIntroduction}
 In this chapter the setup of the autonomous vehicle is presented. 
 Here all microcontroller which were cousidered to be used are listed.
 Also the main usage of most of them is shown.
@@ -65,7 +64,7 @@ The term Arduino stands for a full environment to program different microcontrol
 All parts of the Arduino environment are a open source. 
 The environment is offered with different boards which vary in size, features, price, ... .
 On each board there is the full hardware to program and run the microcontroller.
-So a USB to serial converter is installed on-board.
+So a USB to serial tunneler is installed on-board.
 Most boards also contain a voltage regulator to feed it by an external power supply too and a circuit to switch to the USB power supply.
 At least each board contain a button to reset the microcontroller.
 
@@ -111,7 +110,8 @@ Here the data types of AVRs are described because they differ significantly from
 One example is the type int which only has a size of 2 bytes instead of 4 bytes like on an PC.
 Another very interesting type is floating-point numbers. 
 On AVRs floating-point calculations have some significant characteristics.
-A very interesting fact is that floating-point calculations are much slower than integer calculations in relation to regular CPUs because AVRs have no floating point unit. This means that floating-point calculations have to be emulated by other operations. Also the precision of floating-point calculations differs from usual PCs.
+A very interesting fact is that floating-point calculations are much slower than integer calculations in relation to regular CPUs because AVRs have no floating point unit.
+This means that floating-point calculations have to be emulated by other operations. Also the precision of floating-point calculations differs from usual PCs.
 On a PC a float has a size of 4 bytes and a double has a size of 8 bytes.
 On AVRs a double is as large as a float and has 4 bytes. As a consequence the usual precision is six to seven digits.
 See table~\ref{tab:datatypes} for details.
@@ -224,7 +224,8 @@ Example for electronic components which can be controlled with PWM and their usa
 \end{itemize}
 
 The resolution of the PWM pins are 8 bit so the minimal value is 0 which equals to the low level voltage and the maximal value is 255 which equals to the high level voltage. 
-To output a PWM signal the port has to be set as output. A general description can be found in the section~\ref{sec:digitalOutputPins}. %<-- Fragen
+To output a PWM signal the port has to be set as output. 
+A general description can be found in the section~\ref{sec:digitalOutputPins}.
 Then the following code line can be executed.\\
 \lstinline|analogWrite(PWMpin, value);|
 

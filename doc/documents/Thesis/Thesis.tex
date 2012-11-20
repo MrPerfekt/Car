@@ -1,122 +1,21 @@
 \documentclass[11pt]{report}
-\usepackage[german,english]{babel}
-
-%\documentclass[english, 10pt]{report}
-\usepackage{amssymb}
-\usepackage{babel}
-\usepackage{caption}
-\usepackage{courier}
-\usepackage{epstopdf}
-\usepackage{fancyhdr}
-\usepackage[T1]{fontenc}
-\usepackage{geometry}                % See geometry.pdf to learn the layout options. There are lots.
-\usepackage{graphicx}
-\usepackage{hyperref}
-%\usepackage[latin9]{inputenc}
-\usepackage[utf8]{inputenc}
-\usepackage{listings}
-\usepackage{moreverb}
-\usepackage{multirow}
-%\usepackage[parfill]{parskip}    % Activate to begin paragraphs with an empty line rather than an indent
-\usepackage{verbatim}
-\usepackage{xcolor}
-
-
-\geometry{a4paper}                   % ... or a4paper or a5paper or ... 
-%\geometry{landscape}                % Activate for for rotated page geometry
-
-%
-% Listings to view code
-%
- \lstset{
-         basicstyle=\footnotesize\ttfamily, % Standardschrift
-         numbers=left,               % Ort der Zeilennummern
-         numberstyle=\tiny,          % Stil der Zeilennummern
-         %stepnumber=2,               % Abstand zwischen den Zeilennummern
-         numbersep=5pt,              % Abstand der Nummern zum Text
-         tabsize=2,                  % Groesse von Tabs
-         extendedchars=true,         %
-         breaklines=true,            % Zeilen werden Umgebrochen
-         keywordstyle=\color{red},
-    		frame=b,         
- %        keywordstyle=[1]\textbf,    % Stil der Keywords
- %        keywordstyle=[2]\textbf,    %
- %        keywordstyle=[3]\textbf,    %
- %        keywordstyle=[4]\textbf,   \sqrt{\sqrt{}} %
-         stringstyle=\color{white}\ttfamily, % Farbe der String
-         showspaces=false,           % Leerzeichen anzeigen ?
-         showtabs=false,             % Tabs anzeigen ?
-         xleftmargin=17pt,
-         framexleftmargin=17pt,
-         framexrightmargin=5pt,
-         framexbottommargin=4pt,
-         %backgroundcolor=\color{lightgray},
-         showstringspaces=false      % Leerzeichen in Strings anzeigen ?        
- }
- \lstloadlanguages{% Check Dokumentation for further languages ...
-         %[Visual]Basic
-         %Pascal
-         %C
-         C++
-         %XML
-         %HTML
-         %Java
- }
-    %\DeclareCaptionFont{blue}{\color{blue}} 
-
-  %\captionsetup[lstlisting]{singlelinecheck=false, labelfont={blue}, textfont={blue}}
-\DeclareCaptionFont{white}{\color{white}}
-\DeclareCaptionFormat{listing}{\colorbox[cmyk]{0.43, 0.35, 0.35,0.01}{\parbox{\textwidth}{\hspace{15pt}#1#2#3}}}
-\captionsetup[lstlisting]{format=listing,labelfont=white,textfont=white, singlelinecheck=false, margin=0pt, font={bf,footnotesize}}
-%
-% End Listings
-%
-
+\include{settings}
 \begin{document}
-
 \include{titlepage}
 \include{declarationOfAcademicHonesty}
 \include{abstract}
 \tableofcontents
+
+\chapter{Environment} \label{chap:environment}
 \include{environment}
 
-
 \chapter{Positioning}\label{chap:positioning}
-\section{Introduction}\label{sec:introduction}
-A autonomous vehicle has as a main function to control all actors on its own.
-This means that no human give a sign to the car that now its the time to turn the motor on.
-To decide how the single components have to act at which time 
-the car need information about its own position which are as good as possible.
-This chapter will present some sensors which can be used to get information about the position and rate them in different categories.
-Another part of this chapter is to calculate the most possible current position based on the input data of different sensors.
+\include{positioning}
 
-\section{Sensor Types}
-\begin{itemize}
-\item absolute sensors
-	\subitem lateration
-		\subsubitem GPS	
-\item environment detection
-	\subitem image recognition
-	\subitem bumper
-	\subitem distance sensor
-		\subsubitem ultrasonic
-		\subsubitem infrared sensor
-\item relative sensors
-	\subitem touchless
-		\subsubitem gyro sensor
-		\subsubitem acceleration
-		\subsubitem magnetometer
-	\subitem other
-		\subsubitem rotary encoder
-		\subsubitem mouse sensor
-\end{itemize}
+\chapter{Electronic Circuits}\label{chap:electronicCircuits}
 
-\section{Tolerance and errors}
-
-
-
-
+\listoffigures
+\listoftables
 \bibliography{bibliography}{}
 \bibliographystyle{plain}
-
 \end{document}
