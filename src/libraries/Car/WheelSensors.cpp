@@ -6,14 +6,7 @@ Copyright 2012 Andreas Gruber
 
 //========== wheels [int] ==========
 
-Wheel::Wheel(int wPin)
-:wheelPin(wPin) {
-	if(wPin == 2)
-		wheelInt = 0;
-	else if(wPin == 3)
-		wheelInt = 1;
-	//else
-		//this shouldn't happen
+Wheel::Wheel() {
 	rotationCount = 0;
 	lastRotationTime = 0;
 	lastRotationPeriod = 0;
@@ -21,30 +14,36 @@ Wheel::Wheel(int wPin)
 }
 
 WheelSensor::WheelSensor(){
-	wheels[WR] = new Wheel(Config::getPinWheelSensorR());
-	wheels[WL] = new Wheel(Config::getPinWheelSensorL());
+	wheels[WR] = new Wheel();
+	wheels[WL] = new Wheel();
 	wheelSensorInstance = this;
-
-	pinMode(wheels[WR]->wheelPin, INPUT);
-	pinMode(wheels[WL]->wheelPin, INPUT);
-	attachInterrupt(wheels[WR]->wheelInt, rotateWheelR, CHANGE);
-	attachInterrupt(wheels[WL]->wheelInt, rotateWheelL, CHANGE);
+	
+	pinMode(Config::getPinWheelSensorL0(), INPUT);
+	pinMode(Config::getPinWheelSensorL1(), INPUT);
+	pinMode(Config::getPinWheelSensorR0(), INPUT);
+	pinMode(Config::getPinWheelSensorR1(), INPUT);
+	attachInterrupt(Config::getIntWheelSensorL0(), rotateWheelL0, CHANGE);
+	attachInterrupt(Config::getIntWheelSensorL1(), rotateWheelL1, CHANGE);
+	attachInterrupt(Config::getIntWheelSensorR0(), rotateWheelR0, CHANGE);
+	attachInterrupt(Config::getIntWheelSensorR1(), rotateWheelR1, CHANGE);
 }
 
-void rotateWheelR(){
+void rotateWheelL0(){
+	wheelSensorInstance->rotateWheel(WheelSensor::WL);
+}
+void rotateWheelL1(){
+	wheelSensorInstance->rotateWheel(WheelSensor::WL);
+}
+void rotateWheelR0(){
 	wheelSensorInstance->rotateWheel(WheelSensor::WR);
 }
-
-void rotateWheelL(){
-	wheelSensorInstance->rotateWheel(WheelSensor::WL);
+void rotateWheelR1(){
+	wheelSensorInstance->rotateWheel(WheelSensor::WR);
 }
 
 void WheelSensor::rotateWheel(byte wheel){
 	unsigned long cTime = millis();
 	unsigned long cRotTime = cTime - wheels[wheel]->lastRotationTime;
-
-	// Serial.println(wheel);
-	// if(cRotTime > Wheel::debounceMinRotTime) return;//debouncing
 
 	wheels[wheel]->rotationCount++;
 	wheels[wheel]->secToLastRotationPeriod = wheels[wheel]->lastRotationPeriod;
@@ -53,11 +52,11 @@ void WheelSensor::rotateWheel(byte wheel){
 }
 
 double WheelSensor::calculateAngle(){
-	return ((double)wheels[WR]->rotationCount - (double)wheels[WL]->rotationCount) * Wheel::stepDistance() * circle / (2 * (double)Wheel::wheelDistance * M_PI);
+	return ((double)wheels[WR]->rotationCount - (double)wheels[WL]->rotationCount) * Config::getWheelStepDistance() * circle / (2.0 * Config::getWheelDistance() * M_PI);
 }
 
 double WheelSensor::calculateDistance(){
-	return (wheels[WR]->rotationCount + wheels[WL]->rotationCount) * Wheel::stepDistance() / 2.0;
+	return (wheels[WR]->rotationCount + wheels[WL]->rotationCount) * Config::getWheelStepDistance() / 2.0;
 }
 
 double WheelSensor::calculateCurrentSpeed(){
@@ -73,7 +72,7 @@ double WheelSensor::calculateCurrentSpeed(){
 	uint32_t minSLRPL = cRotTimeL > wheels[WL]->secToLastRotationPeriod * 2 ? cRotTimeL : wheels[WL]->secToLastRotationPeriod;
 	uint32_t minSLRPR = cRotTimeR > wheels[WR]->secToLastRotationPeriod * 2 ? cRotTimeR : wheels[WR]->secToLastRotationPeriod;
 
-	return (Wheel::stepDistance() * 2 ) / (double)(minLRPL + minLRPR + minSLRPL + minSLRPR);
+	return (Config::getWheelStepDistance() * 2.0 ) / (double)(minLRPL + minLRPR + minSLRPL + minSLRPR);
 }
 void WheelSensor::resetData(){
 	wheels[WL]->rotationCount = 0;

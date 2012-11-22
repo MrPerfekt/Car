@@ -13,28 +13,20 @@ class WheelSensor;
 class Wheel;
 
 static WheelSensor* wheelSensorInstance;
-void rotateWheelR();
-void rotateWheelL();
+void rotateWheelL0();
+void rotateWheelL1();
+void rotateWheelR0();
+void rotateWheelR1();
 
 class Wheel{
 public:
-	static const uint32_t wheelSteps = 12;
-	static const uint32_t wheelDistance = 155;//mm
-	static const uint32_t circumference = 94;// 6762 / 72 mm = 94
-	static double stepDistance(){return (double)circumference / (double)wheelSteps;}
-	//static const int debounceMinRotTime = -1;//10;//10ms
-	
-	//Pin definition
-	int wheelPin;
-	int wheelInt;
-
 	//Variables
 	volatile uint32_t rotationCount;
 	volatile uint32_t lastRotationTime;
 	volatile uint32_t lastRotationPeriod;
 	volatile uint32_t secToLastRotationPeriod;
-
-	Wheel(int wPin);
+	
+	Wheel();
 };
 
 class WheelSensor : public MovementSensor{

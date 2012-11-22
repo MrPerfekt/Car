@@ -35,7 +35,7 @@ MotionLogger& Car::getMotionLogger(){
 Car::Car(){	
 	//displayProxy = new DisplayProxy();
 
-	mouseSensor = new MouseSensorPan101();
+	//mouseSensor = new MouseSensorPan101();
 	wheelSensor = new WheelSensor();
 #if true
 	movementSensor = wheelSensor;
