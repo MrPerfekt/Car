@@ -11,7 +11,7 @@ private:
 	//! Car measures
 	static const uint32_t steeringWheelsPosition = 230;
 	//! Steering Servo
-	static const uint8_t pinSteeringServo = 7;
+	static const uint8_t pinSteeringServo = 6;
 	//! Motor
 	static const uint8_t pinMotorPMW = 7; //! Speed control
 	static const uint8_t pinMotorIn1 = 22; //! Direction
@@ -64,7 +64,7 @@ public:
 	static const uint32_t getWheelSteps();
 	static const uint32_t getWheelDistance();
 	static const uint32_t getWheelCircumference();
-	static const uint32_t getWheelStepDistance();
+	static const double getWheelStepDistance();
 	//! Power Supplay Voltage Divider
 	static const uint8_t getAPinVolDivPowerSupplay();
 	static const uint16_t getVolDivPowerSupplayRes1();

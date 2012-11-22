@@ -56,8 +56,8 @@ const uint32_t Config::getWheelDistance(){
 const uint32_t Config::getWheelCircumference(){
 	return wheelCircumference;
 }
-const uint32_t Config::getWheelStepDistance(){
-	return (double)getWheelStepDistance() / (double)getWheelSteps();
+const double Config::getWheelStepDistance(){
+	return (double)getWheelCircumference() / (double)getWheelSteps();
 }
 //! Power Supplay Voltage Divider
 const uint8_t Config::getAPinVolDivPowerSupplay(){

@@ -64,7 +64,7 @@ double WheelSensor::calculateCurrentSpeed(){
 	uint32_t cTime = millis();
 	uint32_t cRotTimeL = cTime - wheels[WL]->lastRotationTime;
 	uint32_t cRotTimeR = cTime - wheels[WR]->lastRotationTime;
-
+	
 	if(cRotTimeL > 1000 && cRotTimeR > 1000) return 0;
 
 	uint32_t minLRPL = cRotTimeL > wheels[WL]->lastRotationPeriod * 2 ? cRotTimeL : wheels[WL]->lastRotationPeriod;

@@ -35,10 +35,10 @@ void setupDisplay(){
 	graphic.Box(10,10,109,109,0B0100);
 }
 
-void updateDisplay(){  
-	int32_t distance = positionCalculator.fullMovement.distance;
+void updateDisplay(){
+	double distance = positionCalculator.fullMovement.distance;
 	String strD = "d: ";
-	strD += distance;
+	strD += (int)distance;
 
 	double angle = positionCalculator.fullMovement.angle;
 	if(angle < 0) angle *= -1;
@@ -47,13 +47,13 @@ void updateDisplay(){
 	strR += ".";
 	strR += (int)(angle * 100)%100;
   
-	uint16_t suplV = voltageDivider.calculateSuplyPotential();
+	double suplV = voltageDivider.calculateSuplyPotential();
 	String strU = "u: ";
-	strU += suplV;
+	strU += (int)(suplV*1000);
   
-	uint16_t cSpeed = wheelSensor.calculateCurrentSpeed();
+	double cSpeed = wheelSensor.calculateCurrentSpeed();
 	String strV = "v: ";
-	strV += cSpeed;
+	strV += (int)cSpeed;
   
 	graphic.Box(20,20,20+8*7,20+7,0B0000);
 	graphic.Print(strD,20,20,0B0000);
@@ -101,7 +101,6 @@ void setup(){
 	Serial.begin(9600);
 
 	setupDisplay();
-
   
 	Servo* servo = new Servo();
 	servo->attach(Config::getPinSteeringServo());
