@@ -128,19 +128,17 @@ void driveTest(){
 		updateDisplay();
 	}while(steeringManager.getState() != SteeringManager::ss_stop);
 	Serial.println("turn");
-	/*
 	steeringManager.driveTurn(500,circle);
 	do{
 		car->update();
 		updateDisplay();
 	}while(steeringManager.getState() != SteeringManager::ss_stop);
 	Serial.println("turn");
-	steeringManager.driveTurn(-500,circle);
+	steeringManager.driveTurn(-1000,circle/4);
 	do{
 		car->update();
 		updateDisplay();
 	}while(steeringManager.getState() != SteeringManager::ss_stop);
 	Serial.println("end");
-	*/
 	steeringManager.stop();
 }

@@ -2,9 +2,6 @@
 * Copyright 2012 Andreas Gruber
 */
 
-/*
-Coppyright Andreas Gruber
-*/
 const int pinLed = 13;
 
 //==========================

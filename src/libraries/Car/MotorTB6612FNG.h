@@ -19,6 +19,9 @@ class Motor {
 private:
 	static const uint8_t delayTimeMicroseconds = 10; //230 ns (Datasheet)
 	uint8_t motorCalculateState(boolean inPin1, boolean inPin2);
+	/*! 
+	Wait the dead-time to prevent damaging of the motordriver
+	*/
 	void waitDeadTime();
 public:
 	//Motor States
@@ -34,9 +37,9 @@ public:
 	Motor();
 	void motorWriteStatus(uint8_t speed, bool inPin1, bool inPin2);
 	/*!
-	* Move specific motor at speed and direction
-	* param speed: 0 is off, and 255 is full speed
-	* param direction: true clockwise, false counter-clockwise
+	Move specific motor at speed and direction
+	param speed: 0 is off, and 255 is full speed
+	param direction: true clockwise, false counter-clockwise
 	*/
 	void motorMove(uint8_t speed, bool direction);
 	void motorStop();
