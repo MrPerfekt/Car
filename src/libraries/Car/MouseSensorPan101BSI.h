@@ -11,12 +11,14 @@ Copyright 2012 Andreas Gruber
 #include "math.h"
 
 class MouseCoordinates {
+private:
+	TurnMovement mov;
 public:
 	int32_t x;
 	int32_t y;
 	MouseCoordinates();
 	MouseCoordinates(int32_t x,int32_t y);
-	Movement getMovement(uint16_t resolution);
+	Movement& getMovement(uint16_t resolution);
 	MouseCoordinates operator+= (const MouseCoordinates &coordinates);
 };
 
@@ -159,7 +161,7 @@ public:
 	Note: Before getMovement() can be executed update() have to be invoked.
 	@return relativ Position
 	*/
-	Movement getMovement();
+	Movement& getMovement();
 	/*!
 	Set new power settings
 	@param powerSettings powerSettings

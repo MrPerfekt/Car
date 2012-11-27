@@ -6,17 +6,17 @@ Copyright 2012 Andreas Gruber
 #include "DefineLib.h"
 
 MouseCoordinates::MouseCoordinates()
-:x(0),y(0){
+:mov(TurnMovement()),x(0),y(0){
 }
 MouseCoordinates::MouseCoordinates(int32_t x,int32_t y)
-:x(x),y(y){
+:mov(TurnMovement()),x(x),y(y){
 }
-Movement MouseCoordinates::getMovement(uint16_t resolution){
-	TurnMovement mov = TurnMovement();
+Movement& MouseCoordinates::getMovement(uint16_t resolution){
 	mov.setAngleDistance(
 		x * 25.4 * /*zoll -> mm*/ circle /*360°*/ / resolution /*res*/ / (2.0 * Config::getMouseSensorCenterDistance() * M_PI) /* u */,
 		y * 25.4 / resolution//zoll -> mm
 		);
+	return mov;
 }
 MouseCoordinates MouseCoordinates::operator+= (const MouseCoordinates &coordinates){
 	this->x += coordinates.x;
@@ -119,8 +119,8 @@ MouseCoordinates MouseSensorPan101::getMovementMouseCoordinates(){
 void MouseSensorPan101::update(){
 	currentMouseCoordinates += getMovementMouseCoordinates();
 }
-Movement MouseSensorPan101::getMovement(){
-	Movement m = currentMouseCoordinates.getMovement(getResolution());
+Movement& MouseSensorPan101::getMovement(){
+	Movement& m = currentMouseCoordinates.getMovement(getResolution());
 	currentMouseCoordinates = MouseCoordinates();
 	return m;
 }

@@ -15,10 +15,10 @@ class MovementSensor : public Sensor {
 public:
 	/*!
 	This method will return the movement since the last execution of this method.
-	It is possible that getMovement() executes update().
+	But it will return the same instance as the last execution but it will update the data.
 	@return The movement
 	*/
-	virtual Movement getMovement() = 0;
+	virtual Movement& getMovement() = 0;
 	/*!
 	This method will update the sensor and cache the result in a variable until getMovement() is executed
 	*/

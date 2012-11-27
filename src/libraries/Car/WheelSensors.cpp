@@ -13,7 +13,8 @@ Wheel::Wheel() {
 	secToLastRotationPeriod = 0;
 }
 
-WheelSensor::WheelSensor(){
+WheelSensor::WheelSensor()
+:mov(TurnMovement()){
 	wheels[WR] = new Wheel();
 	wheels[WL] = new Wheel();
 	wheelSensorInstance = this;
@@ -78,8 +79,7 @@ void WheelSensor::resetData(){
 	wheels[WL]->rotationCount = 0;
 	wheels[WR]->rotationCount = 0;
 }
-Movement WheelSensor::getMovement(){
-	TurnMovement mov = TurnMovement();
+Movement& WheelSensor::getMovement(){
 	mov.setAngleDistance(calculateAngle(),calculateDistance());
 	resetData();
 	return mov;

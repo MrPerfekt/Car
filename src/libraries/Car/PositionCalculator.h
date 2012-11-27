@@ -16,19 +16,15 @@ private:
 	/*!
 	The absolute position of the car
 	*/
-	Coordinates position;
-	/*!
-	The last movement which was recordet.
-	*/
-	Movement currentMovement;
+	OrientationCoordinates* position;
 	/*!
 	The full movement of the car since the class was loaded.
 	*/
-	GeneralMovement fullMovement;
+	GeneralMovement* fullMovement;
 public:
-	const Coordinates getCurrentPosition();
-	const Movement getCurrentMovement();
-	const GeneralMovement getFullMovement();
+	MovementSensor& getMovementSensor() const;
+	const OrientationCoordinates& getCurrentPosition() const;
+	const GeneralMovement& getFullMovement() const;
 	PositionCalculator(MovementSensor& movementSensor);
 	/*!
 	This method updates the position and the currentMovement of the positionCalculator

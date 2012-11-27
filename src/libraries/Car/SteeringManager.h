@@ -45,16 +45,16 @@ private:
 	double calculateSteeringWheelAngle(const Movement& movement);
 public:
 	/*!
-	@return The state of the current steering action.
-	*/
-	SteeringState getState();
-	SteeringManager(ServoProxy& servoSteeringDriver,Motor& motorPowerEngine,PositionCalculator& positionCalculator);
-	/*!
 	Get the maximal radius of the car
 	\param leftTurn If the car should drive a left [= true] or a right [= false] turn
 	\return The maximal radius 
 	*/
 	double getMaxRadius(bool leftTurn);
+	/*!
+	@return The state of the current steering action.
+	*/
+	SteeringState getState();
+	SteeringManager(ServoProxy& servoSteeringDriver,Motor& motorPowerEngine,PositionCalculator& positionCalculator);
 	void driveStraight(double distance);
 	void driveStraight(double distance,bool forward);
 	void driveTurn(double radius, double angle);

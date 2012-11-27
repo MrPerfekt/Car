@@ -18,8 +18,7 @@ void rotateWheelL1();
 void rotateWheelR0();
 void rotateWheelR1();
 
-class Wheel{
-public:
+struct Wheel{
 	//Variables
 	volatile uint32_t rotationCount;
 	volatile uint32_t lastRotationTime;
@@ -31,6 +30,7 @@ public:
 
 class WheelSensor : public MovementSensor{
 private:
+	TurnMovement mov;
 	Wheel* wheels[2];
 public:
 	static const byte WR = 0;
@@ -42,7 +42,7 @@ public:
 	double calculateDistance();
 	double calculateCurrentSpeed();
 	void resetData();
-	Movement getMovement();
+	Movement& getMovement();
 	void update();
 };
 
