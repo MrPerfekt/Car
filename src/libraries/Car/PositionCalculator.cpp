@@ -4,25 +4,21 @@ Copyright 2012 Andreas Gruber
 
 #include "PositionCalculator.h"
 
-Coordinates PositionCalculator::getCurrentPosition(){
+const Coordinates PositionCalculator::getCurrentPosition(){
 	return position;
 }
-Movement PositionCalculator::getCurrentMovement(){
+const Movement PositionCalculator::getCurrentMovement(){
 	return currentMovement;
+}
+const GeneralMovement PositionCalculator::getFullMovement(){
+	return fullMovement;
 }
 
 PositionCalculator::PositionCalculator(MovementSensor& movementSensor)
-	:movementSensor(movementSensor),fullMovement(Movement(0,0)){
+	:movementSensor(movementSensor),fullMovement(GeneralMovement()){
 }
 void PositionCalculator::update(){
 	currentMovement = movementSensor.getMovement();
 	fullMovement += currentMovement;
-	//=====================
-	//Serial.print("d: ");
-	//Serial.print(distance);
-	//Serial.print(", a: ");
-	//Serial.println(angle);
-	//=====================
-	position.x += currentMovement.distance * sin(currentMovement.angle);//ToDo
-	position.y += currentMovement.distance * cos(currentMovement.angle);//ToDo
+	position *= currentMovement;
 }

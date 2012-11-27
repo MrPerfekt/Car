@@ -12,10 +12,11 @@ MouseCoordinates::MouseCoordinates(int32_t x,int32_t y)
 :x(x),y(y){
 }
 Movement MouseCoordinates::getMovement(uint16_t resolution){
-	Movement m = Movement();
-	m.distance = y * 25.4 / resolution;//zoll -> mm
-	m.angle = x * 25.4 * /*zoll -> mm*/ circle /*360°*/ / resolution /*res*/ / (2.0 * Config::getMouseSensorCenterDistance() * M_PI) /* u */;
-	return m;
+	TurnMovement mov = TurnMovement();
+	mov.setAngleDistance(
+		x * 25.4 * /*zoll -> mm*/ circle /*360°*/ / resolution /*res*/ / (2.0 * Config::getMouseSensorCenterDistance() * M_PI) /* u */,
+		y * 25.4 / resolution//zoll -> mm
+		);
 }
 MouseCoordinates MouseCoordinates::operator+= (const MouseCoordinates &coordinates){
 	this->x += coordinates.x;

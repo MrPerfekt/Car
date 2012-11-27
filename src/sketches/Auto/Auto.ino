@@ -36,11 +36,11 @@ void setupDisplay(){
 }
 
 void updateDisplay(){
-	double distance = positionCalculator.fullMovement.distance;
+	double distance = positionCalculator.getFullMovement().getDistance();
 	String strD = "d: ";
 	strD += (int)distance;
 
-	double angle = positionCalculator.fullMovement.angle;
+	double angle = positionCalculator.getFullMovement().getAngle();
 	if(angle < 0) angle *= -1;
 	String strR = "r: ";
 	strR += (int)angle;

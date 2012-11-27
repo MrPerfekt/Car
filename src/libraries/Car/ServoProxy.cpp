@@ -9,9 +9,11 @@ Servo* steeringServo;
 
 //================Convert================
 double ServoProxy::convertServoToSteeringAngle(double servoAngle){
+	//! ToDo: Improve this algorithm
 	return servoAngle;
 }
 double ServoProxy::convertSteeringToServoAngle(double steeringAngle){
+	//! ToDo: Improve this algorithm
 	return steeringAngle;
 }
 
@@ -78,19 +80,7 @@ uint8_t ServoProxy::setRadius(double radius){
 }
 //================Correct Methods================
 uint8_t ServoProxy::correctSteeringAngle(double currentRealAngle){
-	/*
-	if(currentSollAngle > currentRealAngle)
-		currentSteeringAngle++;
-	if(currentSollAngle < currentRealAngle)
-		currentSteeringAngle--;
-	setUpdatedSteeringAngle(currentSteeringAngle);
-	*/
-
-	//currentSteeringAngle += (currentRealAngle - currentSollAngle);
-	//setUpdatedSteeringAngle(currentSteeringAngle);
-	Serial.print(currentSteeringAngle);
-	Serial.print(currentRealAngle);
-	Serial.println(currentSollAngle);
+	//! ToDo: Improve this algorithm
 	return setUpdatedSteeringAngle(currentSteeringAngle -= (currentRealAngle - currentSollAngle));
 }
 uint8_t ServoProxy::correcRadius(double currentRadius){
