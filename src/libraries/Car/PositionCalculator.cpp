@@ -4,8 +4,8 @@ Copyright 2012 Andreas Gruber
 
 #include "PositionCalculator.h"
 
-MovementSensor& PositionCalculator::getMovementSensor() const{
-	return movementSensor;
+Movement& PositionCalculator::getLastMovement() const{
+	return lastMovement;
 }
 const OrientationCoordinates& PositionCalculator::getCurrentPosition() const{
 	return *position;
@@ -15,10 +15,10 @@ const GeneralMovement& PositionCalculator::getFullMovement() const{
 }
 
 PositionCalculator::PositionCalculator(MovementSensor& movementSensor)
-	:movementSensor(movementSensor){//,fullMovement(new GeneralMovement()){
+	:movementSensor(movementSensor),fullMovement(new GeneralMovement()),position(new OrientationCoordinates()),lastMovement(movementSensor.getMovement()){
 }
 void PositionCalculator::update(){
-	Movement& mov = movementSensor.getMovement();
-	//*fullMovement += mov;
-	*position *= mov;
+	lastMovement = movementSensor.getMovement();
+	*fullMovement += lastMovement;
+	*position *= lastMovement;
 }

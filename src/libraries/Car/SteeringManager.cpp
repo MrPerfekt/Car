@@ -35,7 +35,10 @@ void SteeringManager::driveTurn(double radius, double angle){
 	motorPowerEngine.motorMove(255,forward);
 }
 void SteeringManager::update(){
-	Movement& m = positionCalculator.getMovementSensor().getMovement();
+	Movement& m = positionCalculator.getLastMovement();
+	Serial.print(m.getAngle());
+	Serial.print("  ");
+	Serial.println(m.getDistance());
 	if(m.getDistance() == 0) return;
 	servoProxy.correcRadius(calculateRadiusByMovement(m));
 	if((state == ss_driveStraightForward && stopConditionValue <= positionCalculator.getFullMovement().getDistance()) ||

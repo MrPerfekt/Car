@@ -36,7 +36,6 @@ void setupDisplay(){
 }
 
 void updateDisplay(){
-	/*
 	double distance = positionCalculator.getFullMovement().getDistance();
 	String strD = "d: ";
 	strD += (int)distance;
@@ -64,7 +63,6 @@ void updateDisplay(){
 	graphic.Print(strU,20,60,0B0000);
 	graphic.Box(20,80,20+8*7,80+7,0B0000);
 	graphic.Print(strV,20,80,0B0000);
-	*/
 }
 
 
@@ -120,6 +118,7 @@ void loop(){
 }
 
 void driveTest(){
+	Serial.println("start");
 	updateDisplay();
   
 	int i = 0;

@@ -21,8 +21,12 @@ private:
 	The full movement of the car since the class was loaded.
 	*/
 	GeneralMovement* fullMovement;
+	/*!
+	The last movement which was readen out
+	*/
+	Movement& lastMovement;
 public:
-	MovementSensor& getMovementSensor() const;
+	Movement& getLastMovement() const;
 	const OrientationCoordinates& getCurrentPosition() const;
 	const GeneralMovement& getFullMovement() const;
 	PositionCalculator(MovementSensor& movementSensor);
