@@ -38,16 +38,38 @@ First the main sensor categories which can be used are listed and then the diffe
 
 \subsection{Output Value Format}
 The different types of sensors requires different ways a sensor can return its value.
-Mainly the returntype can be categoriced in analog and digital values.
-But this is a very vaguae grouping because some sensors return values which contain properties of analog and digital values as well.
+Mainly the return type can be categorized in analog and digital values.
+But this is a very vague grouping because some sensors return values which contain properties of analog and digital values as well.
 On the other hand there are sensors which offer their results in two or more interfaces and so they are analog and digital sensors at the same time.
 
 
+\subsection{Analog}
+The most cheap sensors are analog sensors.
+This sensors don't need any logic to interpret the result.
+The group of analog sensors can be split up in sensors which return a voltage, sensors where the resistor can be measured and sensors which return a current.
 
-\subsection{I2C}
+
+\subsection{Analog Current}
+Sensors which return a analog current have the problem that they return a very small current.
+Examples for analog sensors which return a current are:
+\begin{itemize}
+\item Photo Diode
+\item pH Sensor
+\end{itemize}
+The photo diode produces a very small amount of energy through the light which get 
 
 
-\subsection
+\subsection{Analog Voltage}
+ 
+
+
+\subsection{Binary}
+
+
+\subsection{Digital (I2C, UART)}
+
+
+\subsection{Quadrature Output}
 
 
 \subsection{Measures Fails, Tolerance, Errors}
