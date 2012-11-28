@@ -1,129 +1,164 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <ClassDiagram MajorVersion="1" MinorVersion="1">
   <Class Name="BumperSensor" Collapsed="true">
-    <Position X="0.5" Y="1.75" Width="1.5" />
+    <Position X="0.75" Y="1.75" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>C:\Users\Andreas\Desktop\Car\src\libraries\Car\BumperSensor.h</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="Car" Collapsed="true">
-    <Position X="7.5" Y="0.5" Width="1.5" />
+    <Position X="7.75" Y="0.5" Width="1.5" />
     <TypeIdentifier>
       <HashCode>gAgEAAoABgQBAEAAAAAAEABAAQAAAAAIAAAAAIAcAAQ=</HashCode>
       <FileName>C:\Users\Andreas\Desktop\Car\src\libraries\Car\Car.h</FileName>
     </TypeIdentifier>
   </Class>
-  <Class Name="Coordinates" Collapsed="true">
-    <Position X="9.25" Y="0.5" Width="1.5" />
+  <Class Name="Config" Collapsed="true">
+    <Position X="9.5" Y="0.5" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAAAAAAAAAAAAAAAAAAAAQAAIAAAAAAAAABgAAAAAAA=</HashCode>
+      <HashCode>BAiAAUERAHkCNAMCCwBAAsAwDAAAFAMBEgSAARAAEAI=</HashCode>
+      <FileName>C:\Users\Andreas\Desktop\Car\src\libraries\Car\Config.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Coordinates" Collapsed="true">
+    <Position X="0.5" Y="7.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAGAQAAIAAAAAAAAABgAGAAAAA=</HashCode>
+      <FileName>C:\Users\Andreas\Desktop\Car\src\libraries\Car\Coordinates.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="OrientationCoordinates" Collapsed="true">
+    <Position X="0.5" Y="8.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAEAABAAAAAAAAAAIAQAAAAAAAAAAAAAAAABAAAA=</HashCode>
       <FileName>C:\Users\Andreas\Desktop\Car\src\libraries\Car\Coordinates.h</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="DisplayProxy" Collapsed="true">
-    <Position X="11" Y="0.5" Width="1.5" />
+    <Position X="11.25" Y="0.5" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAAAAAAAAAAAAAIAAAAAQAAQQAAAAAAAAEAAEAAAAAA=</HashCode>
+      <HashCode>AAAAAAAAAAAAAAIAAAAAQAAQQAAAAAAEAEAAEAAAAAA=</HashCode>
       <FileName>C:\Users\Andreas\Desktop\Car\src\libraries\Car\DisplayProxy.h</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="MotionLogger" Collapsed="true">
-    <Position X="12.75" Y="0.5" Width="1.5" />
+    <Position X="13" Y="0.5" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAEAAAAAAAAAAAAAAgAAAAAAAAAAAAAAAAAAAAEAAA=</HashCode>
       <FileName>C:\Users\Andreas\Desktop\Car\src\libraries\Car\MotionLogger.h</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="Motor" Collapsed="true">
-    <Position X="7.5" Y="1.5" Width="1.5" />
+    <Position X="7.75" Y="1.5" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>gAAAAAYAAAAAAAAIAJABAAAABQAlAAAAAAABAAAAAgQ=</HashCode>
+      <HashCode>gAAAAAYAAAAAAAAIAJABBAAABQAlAAAAAAABAAAAAgQ=</HashCode>
       <FileName>C:\Users\Andreas\Desktop\Car\src\libraries\Car\MotorTB6612FNG.h</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="MouseCoordinates" Collapsed="true">
-    <Position X="9.25" Y="1.5" Width="1.5" />
+    <Position X="9.5" Y="1.5" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAAAAAAAAAAAIAAAAAAAAQAAAAAAAAAAAABkAAAAAAA=</HashCode>
+      <HashCode>AAAAAAAAAAAAIAAAAAAABQAAAAAAAAAAAABkAAAAAAA=</HashCode>
       <FileName>C:\Users\Andreas\Desktop\Car\src\libraries\Car\MouseSensorPan101BSI.h</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="MouseSensorPan101" Collapsed="true">
-    <Position X="5" Y="3.25" Width="1.5" />
+    <Position X="5.25" Y="3.25" Width="1.5" />
     <TypeIdentifier>
       <HashCode>BAICIDAEAgACAAAAAAAwAQABxCBAAAwIAABEEgAEAAA=</HashCode>
       <FileName>C:\Users\Andreas\Desktop\Car\src\libraries\Car\MouseSensorPan101BSI.h</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="Movement" Collapsed="true">
-    <Position X="11" Y="1.5" Width="1.5" />
+    <Position X="3" Y="4.5" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAAAAAAAAAAAAAAABAAAAQAAAEAAAAAAAAAAAABAAAA=</HashCode>
+      <HashCode>AAAAAEAAAAAAQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>C:\Users\Andreas\Desktop\Car\src\libraries\Car\Movement.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="GeneralMovement" Collapsed="true">
+    <Position X="0.75" Y="5.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAEAABAAAQAAAAAAAAQAAAEAAAAAAEAAABABAAAA=</HashCode>
+      <FileName>C:\Users\Andreas\Desktop\Car\src\libraries\Car\Movement.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="StraightMovement" Collapsed="true">
+    <Position X="3" Y="5.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>EAAAAEAAAAAAQAAAAAAAAAAAAEAAAAAAAAAABAAAAAA=</HashCode>
+      <FileName>C:\Users\Andreas\Desktop\Car\src\libraries\Car\Movement.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="TurnMovement" Collapsed="true">
+    <Position X="5.25" Y="5.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>ACAgAEAACAAAQAAgAAAACEAAAEAAAAAAGBAAAABAAAA=</HashCode>
       <FileName>C:\Users\Andreas\Desktop\Car\src\libraries\Car\Movement.h</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="MovementSensor" Collapsed="true">
-    <Position X="3.75" Y="1.75" Width="1.5" />
+    <Position X="4" Y="1.75" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAEAAAEAAA=</HashCode>
       <FileName>C:\Users\Andreas\Desktop\Car\src\libraries\Car\MovementSensor.h</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="PositionCalculator" Collapsed="true">
-    <Position X="12.75" Y="1.5" Width="1.5" />
+    <Position X="11.25" Y="1.5" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAAACAAAAAAAAAAAAAAAIAQAQAAAAAQAAEAAAAAUAAA=</HashCode>
+      <HashCode>AAAACAAAAAAAEAAAAAAAIAAAQABAAAABAEAAAAAUAAA=</HashCode>
       <FileName>C:\Users\Andreas\Desktop\Car\src\libraries\Car\PositionCalculator.h</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="Sensor" Collapsed="true">
-    <Position X="2.75" Y="0.5" Width="1.5" />
+    <Position X="3" Y="0.5" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>C:\Users\Andreas\Desktop\Car\src\libraries\Car\Sensor.h</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="ServoProxy" Collapsed="true">
-    <Position X="7.5" Y="2.5" Width="1.5" />
+    <Position X="13" Y="1.5" Width="1.5" />
     <TypeIdentifier>
       <HashCode>gAAAACAgCAEAAACgAAAAAAgAAIQBQFAlQIQAAggIKEA=</HashCode>
       <FileName>C:\Users\Andreas\Desktop\Car\src\libraries\Car\ServoProxy.h</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="SteeringManager" Collapsed="true">
-    <Position X="9.25" Y="2.5" Width="1.5" />
+    <Position X="7.75" Y="2.5" Width="1.5" />
     <TypeIdentifier>
       <HashCode>QggEQAAQAAAAAAAAAAAAAAgAAAAgAAAEAAAEBIAERAg=</HashCode>
       <FileName>C:\Users\Andreas\Desktop\Car\src\libraries\Car\SteeringManager.h</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="VoltageDivider" Collapsed="true">
-    <Position X="11" Y="2.5" Width="1.5" />
+    <Position X="9.5" Y="2.5" Width="1.5" />
     <TypeIdentifier>
       <HashCode>ABAAAAACIAAAAAAAAAAAAAAAAAAAAAAAAAQAAAAgAAA=</HashCode>
       <FileName>C:\Users\Andreas\Desktop\Car\src\libraries\Car\VoltageDivider.h</FileName>
     </TypeIdentifier>
   </Class>
-  <Class Name="Wheel" Collapsed="true">
-    <Position X="12.75" Y="2.5" Width="1.5" />
-    <TypeIdentifier>
-      <HashCode>AAAAAAAAAAAAAAAAACIAAGAAAAAIAAAQFAABCEAAAAA=</HashCode>
-      <FileName>C:\Users\Andreas\Desktop\Car\src\libraries\Car\WheelSensors.h</FileName>
-    </TypeIdentifier>
-  </Class>
   <Class Name="WheelSensor" Collapsed="true">
-    <Position X="2.75" Y="3.25" Width="1.5" />
+    <Position X="3" Y="3.25" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAAAAAIAAAAAIASAACAAAAAAAAhAAAAAAAAEEAAEAgA=</HashCode>
+      <HashCode>AAAAAAIAAAAAIASAACAABAAAAAhAAAAAAAAEEAAEAgA=</HashCode>
       <FileName>C:\Users\Andreas\Desktop\Car\src\libraries\Car\WheelSensors.h</FileName>
     </TypeIdentifier>
   </Class>
+  <Struct Name="Wheel" Collapsed="true">
+    <Position X="7.75" Y="3.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAACAAAAAAAAAAAAAQAAABCEAAAAA=</HashCode>
+      <FileName>C:\Users\Andreas\Desktop\Car\src\libraries\Car\WheelSensors.h</FileName>
+    </TypeIdentifier>
+  </Struct>
   <Typedef Name="byte" Collapsed="true">
-    <Position X="7.5" Y="3.75" Width="1.5" />
+    <Position X="7.75" Y="5" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
-      <FileName>c:\program files (x86)\arduino-1.0.1\hardware\arduino\cores\arduino\arduino.h</FileName>
+      <FileName>Visual Micro\.Auto.vsarduino.h</FileName>
     </TypeIdentifier>
   </Typedef>
   <Font Name="Segoe UI" Size="9" />

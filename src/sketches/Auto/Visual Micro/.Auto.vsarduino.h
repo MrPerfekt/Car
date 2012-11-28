@@ -34,6 +34,6 @@ void testToogleDelay();
 //already defined in arduno.h
 void driveTest();
 
-#include "C:\Programme\arduino-1.0.1\hardware\arduino\variants\mega\pins_arduino.h" 
-#include "C:\Programme\arduino-1.0.1\hardware\arduino\cores\arduino\arduino.h"
-#include "C:\Dokumente und Einstellungen\Andreas Gruber\Desktop\Car\src\Sketches\Auto\Auto.ino"
+#include "C:\Program Files (x86)\arduino-1.0.1\hardware\arduino\variants\mega\pins_arduino.h" 
+#include "C:\Program Files (x86)\arduino-1.0.1\hardware\arduino\cores\arduino\arduino.h"
+#include "C:\Users\Andreas\Desktop\Car\src\sketches\Auto\Auto.ino"
