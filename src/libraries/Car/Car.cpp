@@ -53,6 +53,7 @@ Car::Car(){
 	powerSupplyVoltageDivider = new VoltageDivider(Config::getAPinVolDivPowerSupplay(),Config::getVolDivPowerSupplayRes1(),Config::getVolDivPowerSupplayRes2());
 
 	motionLogger = new MotionLogger(*positionCalculator);
+	pathExecutor = new PathExecutor(*steeringManager);
 }
 
 void Car::update(){

@@ -112,13 +112,41 @@ void setup(){
 	Serial.println(freeSRam());
 	//driveTest();
 	pathTest();
-	pathMemoryTest();
+	//pathMemoryTest();
+	//itorTest();
 	TurnMovement *m = new TurnMovement();
 }
 
 void loop(){
 	delay(100);
 	updateDisplay();
+}
+
+void itorTest(){
+	Path*p = new Path();
+	StraightMovement* m0 = new StraightMovement(1000);
+	p->addMovement(m0);
+	Serial.print("S  addr: ");
+	Serial.println((int)m0);
+	TurnMovement* t;
+	t = new TurnMovement();
+	Serial.print("T0  addr: ");
+	Serial.println((int)t);
+	t->setAngleRadius(circle,500);
+	p->addMovement(t);
+	t = new TurnMovement();
+	Serial.print("T1  addr: ");
+	Serial.println((int)t);
+	t->setAngleRadius(circle,-500);
+	p->addMovement(t);
+	Iterator<Movement*>* i = p->initializeIterator();
+	Serial.println("itor");
+	while(i->hasNext()){
+		StraightMovement*m = (StraightMovement*)i->getCurrent();
+		int e = ((StraightMovement*)i->getCurrent())->getDistance();
+		Serial.println(e);
+	}
+	while(1);
 }
 
 void pathMemoryTest(){
@@ -132,12 +160,15 @@ void pathMemoryTest(){
 		t = new TurnMovement();
 		t->setAngleRadius(circle,-500);
 		p->addMovement(t);
+		Serial.println("delete");
 		delete(p);
+		Serial.println("enddelete");
 		Serial.println(freeSRam());
 	}
 }
 
 void pathTest(){
+	Serial.println("start");
 	Path*p = new Path();
 	p->addMovement(new StraightMovement(1000));
 	TurnMovement* t;
@@ -147,11 +178,14 @@ void pathTest(){
 	t = new TurnMovement();
 	t->setAngleRadius(circle,-500);
 	p->addMovement(t);
+	Serial.println("setPath");
 	pathExecutor.setPath(p);
+	Serial.println("drive");
 	do{
 		car->update();
 		updateDisplay();
 	}while(1);
+	Serial.println("end");
 	delete(p);
 }
 

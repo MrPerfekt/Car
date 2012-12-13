@@ -26,12 +26,12 @@ private:
 	ServoProxy& servoProxy;
 	Motor& motorPowerEngine;
 	PositionCalculator& positionCalculator;
-	double stopConditionValue;
 	SteeringState state;
-	double steeringWheelsPosition;
+	double stopConditionValue;
 	/*!
+	Calculates the radius by a movement
 	*/
-	double calculateRadiusByMovement(const Movement& movement);
+	const double calculateRadiusByMovement(const Movement& movement) const;
 	/*!
 	Set the steering angle by the radius the car should drive
 	\param radius Radius of the turn
@@ -54,6 +54,10 @@ public:
 	@return The state of the current steering action.
 	*/
 	SteeringState getState();
+	/*!
+	@return The state of the current steering action.
+	*/
+	void setState(SteeringState steeringState);
 	SteeringManager(ServoProxy& servoSteeringDriver,Motor& motorPowerEngine,PositionCalculator& positionCalculator);
 	void driveStraight(double distance);
 	void driveTurn(double radius, double angle);
@@ -68,7 +72,7 @@ public:
 	*/
 	void driveMovement(TurnMovement& movement);
 	/*!
-	Implements the drive aktion for all other movements.
+	Cast the different movements.
 	\param movement Movement
 	*/
 	void driveMovement(Movement& movement);

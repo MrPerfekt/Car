@@ -139,10 +139,10 @@
     <ClInclude Include="..\..\libraries\Car\PathExecutor.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Visual Micro\.Auto.vsarduino.h">
+    <ClInclude Include="..\..\libraries\Car\List.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\libraries\Car\List.h">
+    <ClInclude Include="Visual Micro\.Auto.vsarduino.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

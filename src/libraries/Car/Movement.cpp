@@ -18,10 +18,12 @@ void GeneralMovement::setAngle(double angle){
 	this->angle = angle;
 }
 GeneralMovement::GeneralMovement()
-:distance(0),angle(0){
+	:distance(0)
+	,angle(0){
 }
 GeneralMovement::GeneralMovement(double distance,double angle)
-:distance(distance),angle(angle){
+	:distance(distance)
+	,angle(angle){
 }
 void GeneralMovement::operator+=(const Movement &movement){
 	distance += movement.getDistance();
@@ -32,7 +34,7 @@ void GeneralMovement::operator+=(const Movement &movement){
 StraightMovement::StraightMovement(){
 }
 StraightMovement::StraightMovement(double distance)
-:distance(distance){
+	:distance(distance){
 }
 void StraightMovement::setDistance(double distance){
 	this->distance = distance;
