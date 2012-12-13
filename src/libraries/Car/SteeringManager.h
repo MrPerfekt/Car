@@ -56,13 +56,28 @@ public:
 	SteeringState getState();
 	SteeringManager(ServoProxy& servoSteeringDriver,Motor& motorPowerEngine,PositionCalculator& positionCalculator);
 	void driveStraight(double distance);
-	void driveStraight(double distance,bool forward);
 	void driveTurn(double radius, double angle);
-	void driveTurn(double radius, double angle, bool forward, bool leftTurn);
+	/*!
+	Implements the drive aktion for StraightMovements.
+	\param movement Movement
+	*/
+	void driveMovement(StraightMovement& movement);
+	/*!
+	Implements the drive aktion for TurnMovements.
+	\param movement Movement
+	*/
+	void driveMovement(TurnMovement& movement);
+	/*!
+	Implements the drive aktion for all other movements.
+	\param movement Movement
+	*/
+	void driveMovement(Movement& movement);
 	/*!
 	Update the current steering action.
+	This means that the current movement which is calculated by the PositionCalculator become analysed.
+	The result of this analyse is used to redefine the task of the steering servo.
 	The progress or the state of the steering action can be called with getState().
-	Note: Before this method can be executed positionCalculator.update() have to be invoked.
+	Note: Before this method can be executed PositionCalculator.update() have to be invoked.
 	*/
 	void update();
 	/*!

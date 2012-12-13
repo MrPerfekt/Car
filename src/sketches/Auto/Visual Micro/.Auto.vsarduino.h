@@ -32,6 +32,8 @@ void testToogle();
 void testToogleDelay();
 //already defined in arduno.h
 //already defined in arduno.h
+void pathMemoryTest();
+void pathTest();
 void driveTest();
 
 #include "C:\Program Files (x86)\arduino-1.0.1\hardware\arduino\variants\mega\pins_arduino.h" 

@@ -34,11 +34,23 @@ void SteeringManager::driveTurn(double radius, double angle){
 		state = forward ? ss_driveTurnRightForward : ss_driveTurnRightBackward;
 	motorPowerEngine.motorMove(255,forward);
 }
+void SteeringManager::driveMovement(StraightMovement&movement){
+	driveStraight(movement.getDistance());
+}
+void SteeringManager::driveMovement(TurnMovement&movement){
+	driveTurn(movement.getRadius(),movement.getAngle());
+}
+void SteeringManager::driveMovement(Movement&movement){
+
+}
+/*! Optimized for servo steering control */
 void SteeringManager::update(){
 	Movement& m = positionCalculator.getLastMovement();
-	Serial.print(m.getAngle());
-	Serial.print("  ");
-	Serial.println(m.getDistance());
+	//======
+	//Serial.print(m.getAngle());
+	//Serial.print("  ");
+	//Serial.println(m.getDistance());
+	//======
 	if(m.getDistance() == 0) return;
 	servoProxy.correcRadius(calculateRadiusByMovement(m));
 	if((state == ss_driveStraightForward && stopConditionValue <= positionCalculator.getFullMovement().getDistance()) ||

@@ -31,6 +31,9 @@ VoltageDivider& Car::getPowerSupplyVoltageDivider(){
 MotionLogger& Car::getMotionLogger(){
 	return *motionLogger;
 }
+PathExecutor& Car::getPathExecutor(){
+	return *pathExecutor;
+}
 	
 Car::Car(){	
 	//displayProxy = new DisplayProxy();
@@ -57,6 +60,8 @@ void Car::update(){
 	positionCalculator->update();
 	movementSensor->update();
 	steeringManager->update();
+	movementSensor->update();
+	pathExecutor->update();
 	movementSensor->update();
 	
 	//motionLogger->update();

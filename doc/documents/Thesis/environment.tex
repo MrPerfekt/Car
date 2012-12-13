@@ -5,6 +5,7 @@ Also the main usage of most of them is shown.
 Another topic of this chapter is an introduction to the environment of Arduino.
 Last but not least the different types which were used in this project of sensors are shown.
 
+
 \section{AVR} \label{sec:AVR}
 Throughout this section all informations and pictures are taken from \cite{web:Atmel}, otherwise it is described separately.
 
@@ -29,6 +30,7 @@ For details we refer to \url{ http://www.atmel.com/products/microcontrollers/avr
 For this thesis mostly megaAVR also known ATmega are used because these are the most popular ones and so they are used on the Arduino boards.
 These boards are shown in \ref{sec:arduino}.
 
+
 \subsection{ATmega~2560} \label{sec:atmega2560}
 In this section all informations and pictures are taken from \cite{manual:atmega2560}.
 
@@ -40,6 +42,8 @@ This chip contains a lot of input and output interfaces so it can communicate wi
 Another advantage of this these hardware implemented I/O interfaces is that no code has to be written .
 
 In the following the main technical features will be summarized:
+
+
 \subsubsection{Summary} \label{sec:atmega2560Summary}
 \begin{tabular}{ll}
 Speed Grade	& 0-16 MHz	\\
@@ -105,6 +109,7 @@ Basically this is a board holding an ATmega~2560 so the technical features from 
 See figure~\ref{fig:mega2560} for an image of this microcontroller.
 
 
+
 \subsection{Datatypes} \label {sec:datatypes}
 Here the data types of AVRs are described because they differ significantly from the sizes normally used on ``regular'' PCs.
 One example is the type int which only has a size of 2 bytes instead of 4 bytes like on an PC.
@@ -145,6 +150,7 @@ float, double					& $32$ 	& $-3.4028235*10^{38}$	& $3.4028235*10^{38}$	\\
 \end{table}
 
 
+
 \subsection{Microcontroller I/O} \label{sec:microcontrollerIO}
 In this section the interface to the Arduino I/O is described.
 First the basic analog and digital I/O is shown.
@@ -178,6 +184,7 @@ So it will return a value between 0 and 1024.
 \lstinline|value = analogRead(Apin)|\\
 \end{itemize}
 
+
 \subsubsection{Digital Output Pins}\label{sec:digitalOutputPins}
 The digital output of the Arduino ports can be used to send data or switch some components off and on.
 Very interesting is that the the high output voltage is lower than the supply voltage and the low output voltage is higher than the supply voltage.
@@ -188,6 +195,7 @@ To write a low voltage on the port this code line have to be executed:\\
 \lstinline|digitalWrite(pin, LOW);|\\
 This code line write a high voltage on the port:\\
 \lstinline|digitalWrite(pin, HIGH);|\\
+
 
 
 \subsubsection{Analog Output Pins - PWM}\label{sec:analogOutputPinsPWM}
@@ -230,6 +238,7 @@ Then the following code line can be executed.\\
 \lstinline|analogWrite(PWMpin, value);|
 
 
+
 \subsubsection{UART}\label{sec:uart}
 The term UART means Universal Asynchronous Receiver Transmitter also known as RS-232.
 UART is a serial interface and was one of the most important interfaces on PCs until it got replaced by USB. On microcontrollers it still plays an important role nowadays.
@@ -251,13 +260,14 @@ This can be used instead of Serial.write:\\
 
 A small code snippet for a serial connection could look like this:\\
 \begin{lstlisting}
-Serial.beginn(9600);
+Serial.begin(9600);
 Serial.println("Hello World");
 byte in;
 while(Serial.available() > 0)
 	in = Serial.read();
 char c = Serial.read();
 \end{lstlisting}
+
 
 
 \subsubsection{I2C}\label{sec:i2c}
@@ -289,3 +299,24 @@ Wire.beginTransmission(0x23);
 Wire.write(b);
 Wire.endTransmission();
 \end{lstlisting}
+
+
+\section{Electronic Components and Circuits}\label{sec:electronicCircuits}
+This section contains explanations to different electronic components and circuits which were used during this thesis.
+
+
+\subsection{Operational Amplifier}\label{sec:operationalAmplifier}
+
+
+\subsection{Schmitt Trigger}\label{sec:schmittTrigger}
+A schmitt-trigger can be build with an resistor network to an operating amplifier.
+Schmitt-triggers with a constant hysteresis can also be bought as an IC.
+The hysteresis describes the point in voltage where the schmitt trigger switches from logical high to logical low.
+
+
+\subsection{H-Bridge}\label{sec:hBridge}
+
+
+\section{Mathematic Algorithms}\label{sec:mathematicAlgorithms}
+
+

@@ -1,29 +1,68 @@
 \usepackage[german,english]{babel}
 
-%\documentclass[english, 10pt]{report}
+%\usepackage{algorithmic} %program
+%\usepackage{amsmath}
 \usepackage{amssymb}
 \usepackage{babel}
+%%\usepackage{blindtext}
+\usepackage{booktabs}
+\usepackage{calc} 
+\usepackage{cancel}
 \usepackage{caption}
+\usepackage{circuitikz}
 \usepackage{courier}
+\usepackage{dcolumn}
 \usepackage{epstopdf}
+%\usepackage{etoolbox}
+\usepackage[left]{eurosym}
 \usepackage{fancyhdr}
 \usepackage[T1]{fontenc}
+\usepackage{forloop}
+\usepackage{fp} %\usepackage{l3fp}
 \usepackage{geometry}                % See geometry.pdf to learn the layout options. There are lots.
 \usepackage{graphicx}
 \usepackage{hyperref}
+\usepackage{ifthen}
 %\usepackage[latin9]{inputenc}
 \usepackage[utf8]{inputenc}
+%\usepackage{intcalc}
+\usepackage{lcg}
+%%\usepackage{lipsum}
 \usepackage{listings}
+%\usepackage{lmodern}
+\usepackage{longtable}
+%\usepackage{makeidx}
+\usepackage{mathpazo}
+%\usepackage{mathtools}
 \usepackage{moreverb}
 \usepackage{multirow}
 %\usepackage[parfill]{parskip}    % Activate to begin paragraphs with an empty line rather than an indent
+\usepackage{pgf}% Portable Graphics Formant
+%\usepackage{pgfmath}
+\usepackage{pgfplots}
+%\usepackage{program} % algorithmic
+\usepackage{rotating}
+\usepackage{sagetex}
+\usepackage{savesym}
+\usepackage{tikz}%Tiks ist kein Zeichenprogram
+%\usepackage{ulem}%underlinde ....
 \usepackage{verbatim}
 \usepackage{xcolor}
-\usepackage[left]{eurosym}
-
 
 \geometry{a4paper}                   % ... or a4paper or a5paper or ... 
 %\geometry{landscape}                % Activate for for rotated page geometry
+
+%
+% Leaning Labels
+%
+
+\newcommand*{\zerobox}[2][l]{\raisebox{0pt}[0pt][0pt]{\makebox[0pt][#1]{#2}}}
+
+\newcommand*{\slantedLabel}[1]{\rotatebox{60}{\zerobox{\bfseries #1}}}
+
+\newcommand*{\leaningLabel}[1]{\slantedLabel{\zerobox{#1}}}
+
+\newcommand*{\leaningLabelB}[1]{\multicolumn{1}{c}{\leaningLabel{#1}}}
 
 %
 % Listings to view code

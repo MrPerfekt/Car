@@ -16,6 +16,7 @@ WheelSensor& wheelSensor = car->getWheelSensor();
 VoltageDivider& voltageDivider = car->getPowerSupplyVoltageDivider();
 PositionCalculator& positionCalculator = car->getPositionCalculator();
 SteeringManager& steeringManager = car->getSteeringManager();
+PathExecutor& pathExecutor = car->getPathExecutor();
 
 //========== DISPLAY ==========
 
@@ -109,12 +110,49 @@ void setup(){
 
 	Serial.print("Free SRam: ");
 	Serial.println(freeSRam());
-	driveTest();
+	//driveTest();
+	pathTest();
+	pathMemoryTest();
+	TurnMovement *m = new TurnMovement();
 }
 
 void loop(){
 	delay(100);
 	updateDisplay();
+}
+
+void pathMemoryTest(){
+	while(1){
+		Path*p = new Path();
+		p->addMovement(new StraightMovement(1000));
+		TurnMovement* t;
+		t = new TurnMovement();
+		t->setAngleRadius(circle,500);
+		p->addMovement(t);
+		t = new TurnMovement();
+		t->setAngleRadius(circle,-500);
+		p->addMovement(t);
+		delete(p);
+		Serial.println(freeSRam());
+	}
+}
+
+void pathTest(){
+	Path*p = new Path();
+	p->addMovement(new StraightMovement(1000));
+	TurnMovement* t;
+	t = new TurnMovement();
+	t->setAngleRadius(circle,500);
+	p->addMovement(t);
+	t = new TurnMovement();
+	t->setAngleRadius(circle,-500);
+	p->addMovement(t);
+	pathExecutor.setPath(p);
+	do{
+		car->update();
+		updateDisplay();
+	}while(1);
+	delete(p);
 }
 
 void driveTest(){

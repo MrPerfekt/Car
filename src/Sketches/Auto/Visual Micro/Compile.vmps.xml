@@ -12,6 +12,8 @@
         <VCCodeMacro Name="__AVR__" Value="" />
         <VCCodeMacro Name="__cplusplus" Value="" />
         <VCCodeMacro Name="_CONFIGURATION_h" Value="" />
+        <VCCodeMacro Name="PATH" Value="" />
+        <VCCodeMacro Name="PATHEXECUTOR" Value="" />
         <VCCodeMacro Name="BUMPER_SENSOR" Value="" />
         <VCCodeMacro Name="CAR" Value="" />
         <VCCodeMacro Name="COORDINATES" Value="" />
@@ -28,6 +30,7 @@
         <VCCodeMacro Name="STEERING_MANAGER" Value="" />
         <VCCodeMacro Name="VOLTAGE_DIVIDER" Value="" />
         <VCCodeMacro Name="WHEEL_ROTATION_SENSORS" Value="" />
+        <VCCodeMacro Name="LIST" Value="" />
         <VCCodeMacro Name="__attribute__" Value="" />
         <VCCodeMacro Name="__inline__" Value="" />
         <VCCodeMacro Name="__asm__" Value="" />

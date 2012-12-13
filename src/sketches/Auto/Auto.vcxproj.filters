@@ -71,6 +71,15 @@
     <ClCompile Include="..\..\libraries\Car\VoltageDivider.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="..\..\libraries\Car\Path.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\libraries\Car\PathExecutor.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\libraries\Car\List.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\libraries\Car\BumperSensor.h">
@@ -124,7 +133,16 @@
     <ClInclude Include="..\..\libraries\Car\Config.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="..\..\libraries\Car\Path.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\libraries\Car\PathExecutor.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
     <ClInclude Include="Visual Micro\.Auto.vsarduino.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\libraries\Car\List.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

@@ -16,6 +16,8 @@ Copyright 2012 Andreas Gruber
 #include "SteeringManager.h"
 #include "DisplayProxy.h"
 #include "MotionLogger.h"
+#include "Path.h"
+#include "PathExecutor.h"
 
 class Car {
 private:	
@@ -29,6 +31,7 @@ private:
 	MouseSensorPan101* mouseSensor;
 	MovementSensor* movementSensor;
 	MotionLogger* motionLogger;
+	PathExecutor* pathExecutor;
 public: 
 	Motor& getMotorPowerEngine();
 	ServoProxy& getServoProxy();
@@ -39,12 +42,13 @@ public:
 	MouseSensorPan101& getMouseSensor();
 	MovementSensor& getMovementSensor();
 	MotionLogger& getMotionLogger();
+	PathExecutor& getPathExecutor();
+
+	Car();
 
 	/*!
 	It is recomendet to invoke this method in a loop because it handle the full activity of the car.
 	*/
-	Car();
-
 	void update();
 };
 #endif
