@@ -104,6 +104,9 @@
     <ClCompile Include="..\..\libraries\Car\RegularSteeringManager.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="..\..\libraries\Car\EnvironmentKnowledgeBase.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\libraries\Car\BumperSensor.h">
@@ -191,6 +194,9 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="..\..\libraries\Car\RegularSteeringManager.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\libraries\Car\EnvironmentKnowledgeBase.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

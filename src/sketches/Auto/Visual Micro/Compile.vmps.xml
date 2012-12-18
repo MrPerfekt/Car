@@ -22,6 +22,7 @@
         <VCCodeMacro Name="ENVIRONMENT_PATH_PLANER" Value="" />
         <VCCodeMacro Name="SHORTEST_PATH_PLANER" Value="" />
         <VCCodeMacro Name="REGULAR_STEERING_MANAGER" Value="" />
+        <VCCodeMacro Name="EVIRONMENT_KNOWLEDGE_BASE" Value="" />
         <VCCodeMacro Name="BUMPER_SENSOR" Value="" />
         <VCCodeMacro Name="CAR" Value="" />
         <VCCodeMacro Name="COORDINATES" Value="" />

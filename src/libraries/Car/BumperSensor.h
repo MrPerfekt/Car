@@ -5,9 +5,9 @@ Copyright 2012 Andreas Gruber
 #ifndef BUMPER_SENSOR
 #define BUMPER_SENSOR
 
-#include "Sensor.h"
+#include "EnvironmentSensor.h"
 
-class BumperSensor : public Sensor{
+class BumperSensor : public EnvironmentSensor{
 public:
 };
 
