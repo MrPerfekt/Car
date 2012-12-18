@@ -70,14 +70,15 @@ private:
 	double convertServoAngleToRadius(double servoAngle);
 public:
 	//================Get max angle================
-	double getMaxSteeringAngle(bool rightSteeringSign);
+	double getMaxSteeringAngle(bool leftSteeringSign);
 	double getMaxSteeringAngle(int steeringSign);
 	/*!
 	Get maximal radius the car can steer.
-	\param steeringSign >0 left, <0 right
+	\param steeringSign x > 0 left, x < 0 right
 	\return Maximal Radius
 	*/
 	double getMaxRadius(int steeringSign);
+	double getMaxRadius(bool leftSteeringSign);
 	//================Constructor================
 	/*!
 	Initialices the ServoProxy.

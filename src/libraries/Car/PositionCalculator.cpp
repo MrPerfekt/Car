@@ -4,6 +4,7 @@ Copyright 2012 Andreas Gruber
 
 #include "PositionCalculator.h"
 
+/*
 Movement& PositionCalculator::getLastMovement() const{
 	return lastMovement;
 }
@@ -22,3 +23,4 @@ void PositionCalculator::update(){
 	*fullMovement += lastMovement;
 	*position *= lastMovement;
 }
+*/

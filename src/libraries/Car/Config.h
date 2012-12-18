@@ -2,12 +2,30 @@
 Copyright 2012 Andreas Gruber
 */
 
-#ifndef _CONFIGURATION_h
-#define _CONFIGURATION_h
+#ifndef CONFIG
+#define CONFIG
+
+/*! Pinnumber
+0-100 Arduino Hardware Pin
+100-255 Extend Pin (Multyplex, Portexpander, Shift Register, ...)
+*/
+
 #include "DefineLib.h"
+#include "Coordinates.h"
+
+class SensorConfig{
+private:
+	Coordinates position;
+	double angle;
+	uint8_t pinVoltageInput;
+	uint8_t pinStandby;
+public:
+	SensorConfig(const Coordinates position, const double angle, const uint8_t pinVoltageInput,const uint8_t pinStandby);
+};
 
 class Config{
 private:
+	static const SensorConfig sensorConfigs[];
 	//! Car measures
 	static const uint32_t steeringWheelsPosition = 230;
 	//! Steering Servo
@@ -30,7 +48,7 @@ private:
 	static const uint32_t wheelCircumference = 94;//! 6762 / 72 mm = 94
 	// static double wheelStepDistance(){return (double)circumference / (double)wheelSteps;}
 	//! Power Supplay Voltage Divider
-	static const uint8_t apinVolDivPowerSupplay = 0;
+	static const uint8_t pinAVolDivPowerSupplay = 0;
 	static const uint16_t volDivPowerSupplayRes1 = 966;
 	static const uint16_t volDivPowerSupplayRes2 = 1989;
 	//! MouseSensor
@@ -66,7 +84,7 @@ public:
 	static const uint32_t getWheelCircumference();
 	static const double getWheelStepDistance();
 	//! Power Supplay Voltage Divider
-	static const uint8_t getAPinVolDivPowerSupplay();
+	static const uint8_t getPinAVolDivPowerSupplay();
 	static const uint16_t getVolDivPowerSupplayRes1();
 	static const uint16_t getVolDivPowerSupplayRes2();
 	//! MouseSensor

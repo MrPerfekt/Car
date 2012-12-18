@@ -48,9 +48,9 @@ Car::Car(){
 
 	motorPowerEngine = new Motor();
 	servoProxy = new ServoProxy();
-	positionCalculator = new PositionCalculator(*movementSensor);
-	steeringManager = new SteeringManager(*servoProxy,*motorPowerEngine,*positionCalculator);
-	powerSupplyVoltageDivider = new VoltageDivider(Config::getAPinVolDivPowerSupplay(),Config::getVolDivPowerSupplayRes1(),Config::getVolDivPowerSupplayRes2());
+	positionCalculator = new MovementPositionCalculator(*movementSensor);
+	steeringManager = new RegularSteeringManager(*servoProxy,*motorPowerEngine,*positionCalculator);
+	powerSupplyVoltageDivider = new VoltageDivider(Config::getPinAVolDivPowerSupplay(),Config::getVolDivPowerSupplayRes1(),Config::getVolDivPowerSupplayRes2());
 
 	motionLogger = new MotionLogger(*positionCalculator);
 	pathExecutor = new PathExecutor(*steeringManager);

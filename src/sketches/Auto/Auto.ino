@@ -199,19 +199,19 @@ void driveTest(){
 	do{
 		car->update();
 		updateDisplay();
-	}while(steeringManager.getState() != SteeringManager::ss_stop);
+	}while(!steeringManager.hasFinished());
 	Serial.println("turn");
 	steeringManager.driveTurn(500,circle);
 	do{
 		car->update();
 		updateDisplay();
-	}while(steeringManager.getState() != SteeringManager::ss_stop);
+	}while(!steeringManager.hasFinished());
 	Serial.println("turn");
 	steeringManager.driveTurn(-1000,circle/4);
 	do{
 		car->update();
 		updateDisplay();
-	}while(steeringManager.getState() != SteeringManager::ss_stop);
+	}while(!steeringManager.hasFinished());
 	Serial.println("end");
 	steeringManager.stop();
 }

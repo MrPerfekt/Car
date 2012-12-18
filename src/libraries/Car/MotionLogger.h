@@ -6,9 +6,7 @@ Copyright 2012 Andreas Gruber
 #define MOTION_LOGGER
 
 #include "DefineLib.h"
-#include "PositionCalculator.h"
-#include "Coordinates.h"
-#include "math.h"
+class PositionCalculator;
 
 class MotionLogger{
 private:

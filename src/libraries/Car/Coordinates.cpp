@@ -3,6 +3,7 @@ Copyright 2012 Andreas Gruber
 */
 
 #include "Coordinates.h"
+#include "Movement.h"
 	
 double Coordinates::getX() const{
 	return x;

@@ -43,6 +43,9 @@ double ServoProxy::getMaxSteeringAngle(int steeringSign){
 double ServoProxy::getMaxRadius(int steeringSign){
 	return convertServoAngleToRadius(getMaxServoAngle(steeringSign));
 }
+double ServoProxy::getMaxRadius(bool leftSteeringSign){
+	return convertServoAngleToRadius(getMaxServoAngle(leftSteeringSign));
+}
 //================Constructor================
 ServoProxy::ServoProxy(){
 }

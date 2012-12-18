@@ -3,7 +3,20 @@ Copyright 2012 Andreas Gruber
 */
 
 #include "Config.h"
-	
+
+SensorConfig::SensorConfig(const Coordinates position, const double angle, const uint8_t pinVoltageInput, const uint8_t pinStandby)
+	:position(position)
+	,angle(angle)
+	,pinVoltageInput(pinVoltageInput)
+	,pinStandby(pinStandby){
+}
+
+const SensorConfig Config::sensorConfigs[] = {
+	SensorConfig(Coordinates(300,0), 30,A6,33),
+	SensorConfig(Coordinates(250,0), 90,A6,34),
+	SensorConfig(Coordinates(250,0),270,A7,35),
+};
+
 //! Car measures
 uint32_t Config::getSteeringWheelsPosition(){
 	return steeringWheelsPosition;
@@ -60,8 +73,8 @@ const double Config::getWheelStepDistance(){
 	return (double)getWheelCircumference() / (double)getWheelSteps();
 }
 //! Power Supplay Voltage Divider
-const uint8_t Config::getAPinVolDivPowerSupplay(){
-	return apinVolDivPowerSupplay;
+const uint8_t Config::getPinAVolDivPowerSupplay(){
+	return pinAVolDivPowerSupplay;
 }
 const uint16_t Config::getVolDivPowerSupplayRes1(){
 	return volDivPowerSupplayRes1;

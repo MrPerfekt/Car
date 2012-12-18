@@ -3,6 +3,9 @@ Copyright 2012 Andreas Gruber
 */
 
 #include "MotionLogger.h"
+#include "PositionCalculator.h"
+//#include "Coordinates.h"
+//#include "math.h"
 
 MotionLogger::MotionLogger(PositionCalculator& positionCalculator)
 	:positionCalculator(positionCalculator){

@@ -224,31 +224,48 @@ The photo diode produces a very small amount of energy when a photon with suffic
 This is called the photoelectric effect.
 So a photo diode work like a very small solar pane.
 Another sensors which return a current is a pH sensor or a peltier element where the seeback effect is used.
-The result of such sensors return most a very small voltage with a very small maximal current.
+And so a big amount of analog sensors return a very small voltage with a very small maximal current.
 To measure the result the returned voltage or the returned current have to be amplified.
-Some possibilities to amplify the result can be:
-\begin{itemize}
-\item Transistors
-\item FETs
-\item Operation Amplifier
-\item Amplifier circuit based on an operation amplifier
-\item ...
-\end{itemize}
-The result of the used amplifier can be different.\\
-At the most sensor it can be measured both the current and voltage but most sensors have one property which is easier to measure.
-If the current should be measured a cheap way is to amplify the current with a transistor and measure the resistor of the transistor's Collector-Emittor section.
-For a image see figure~\ref{fig:phototransistorWithPullUp}.
+For example it is possible to amplify the current of a photodiode with a transistor and add a pull-up resitor to the collector of the resitor.
+Then the voltage between the resitor and the transistor which is in relation to the amplified current can be measured.
+For an illustatrion see figure~\ref{fig:phototransistorWithPullUp}.
+
 
 \begin{figure}
-\makebox[\linewidth]{
-\includegraphics[scale=0.5]{picturesPositioning/phototransistorWithPullUp.jpg}
-}
+\center
+\begin{circuitikz}
+\draw(0,0)
+	to[american voltage source] (0,2)
+	to[R] (2,2)
+	to[leD*] (2,0)
+	-- (0,0);
+\draw (5,1) node[npn] (trans) {}
+	(trans.base) node[anchor=east] {}
+	(trans.collector) node[anchor=south] {}
+	(trans.emitter) node[anchor=north] {};
+\draw(3,0)
+	to[pDo,mirror](3,2)
+	--(5,2)
+	--(trans.collector);
+\draw(5,2)
+	--(5,2)
+	to[R,*-o](5,4) node[above]{V};
+\draw(5,2)
+	to[short,*-o](6,2) node[right]{ADC};
+\draw(trans.emitter)
+	to[short,-o](5,0) node[below]{GND};
+\draw (3,0)
+	--(3.5,0)
+	--(3.5,1)
+	--(trans.base);
+\end{circuitikz}
 \caption{Phototransistor with pull up resistor}
 \medskip
 \small
 This circuit layout shows a photo-transistor which is connected to to the microcontroller and a pull-up resistor.
 \label{fig:phototransistorWithPullUp}
 \end{figure}
+
 
 
 \paragraph{Resistor}

@@ -14,11 +14,11 @@ void PathExecutor::update(){
 	if(movementItor == NULL) return;
 	
 Serial.println("-ab-");
-	if(steeringManager.getState() == SteeringManager::ss_stop){
+if(steeringManager.hasFinished()){
 Serial.println("ab");
 		if(movementItor->hasNext()){
 Serial.println("a");
-			steeringManager.driveMovement(*movementItor->getCurrent());
+			//steeringManager.driveMovement(*movementItor->getCurrent());
 		}else{
 Serial.println("b");
 			movementItor = NULL;

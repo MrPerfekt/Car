@@ -5,7 +5,7 @@ Copyright 2012 Andreas Gruber
 #ifndef COORDINATES
 #define COORDINATES
 
-#include "Movement.h"
+class Movement;
 
 class Coordinates{
 private:

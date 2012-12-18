@@ -13,10 +13,12 @@ Copyright 2012 Andreas Gruber
 #include "VoltageDivider.h"
 #include "MotorTB6612FNG.h"
 #include "PositionCalculator.h"
+#include "MovementPositionCalculator.h"
+#include "RegularSteeringManager.h"
 #include "SteeringManager.h"
 #include "DisplayProxy.h"
 #include "MotionLogger.h"
-#include "Path.h"
+//#include "Path.h"
 #include "PathExecutor.h"
 
 class Car {

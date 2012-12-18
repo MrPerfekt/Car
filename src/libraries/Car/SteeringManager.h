@@ -11,71 +11,40 @@ Copyright 2012 Andreas Gruber
 #include "PositionCalculator.h"
 #include "Movement.h"
 
-class SteeringManager {	
-public:
-	enum SteeringState{
-		ss_stop,
-		ss_driveStraightForward,
-		ss_driveStraightBackward,
-		ss_driveTurnLeftForward,
-		ss_driveTurnLeftBackward,
-		ss_driveTurnRightForward,
-		ss_driveTurnRightBackward,
-	};
-private:
-	ServoProxy& servoProxy;
-	Motor& motorPowerEngine;
-	PositionCalculator& positionCalculator;
-	SteeringState state;
-	double stopConditionValue;
-	/*!
-	Calculates the radius by a movement
-	*/
-	const double calculateRadiusByMovement(const Movement& movement) const;
-	/*!
-	Set the steering angle by the radius the car should drive
-	\param radius Radius of the turn
-	*/
-	void setSteeringAngleByRadius(double radius);
-	/*!
-	Calculates the radius of the circle the car drive with this movement
-	\param movement From this movement the radius is calculated
-	\return Radius
-	*/
-	double calculateSteeringWheelAngle(const Movement& movement);
+class SteeringManager {
 public:
 	/*!
 	Get the maximal radius of the car
 	\param leftTurn If the car should drive a left [= true] or a right [= false] turn
 	\return The maximal radius 
 	*/
-	double getMaxRadius(bool leftTurn);
+	virtual double getMaxRadius(bool leftTurn) = 0;
 	/*!
-	@return The state of the current steering action.
+	@return If the current steering action has finnished.
 	*/
-	SteeringState getState();
+	virtual bool hasFinished() = 0;
+	//SteeringManager(ServoProxy& servoSteeringDriver,Motor& motorPowerEngine,PositionCalculator& positionCalculator);
 	/*!
-	@return The state of the current steering action.
+	Drive a straight movement.
+	\param distance Distance.
 	*/
-	void setState(SteeringState steeringState);
-	SteeringManager(ServoProxy& servoSteeringDriver,Motor& motorPowerEngine,PositionCalculator& positionCalculator);
-	void driveStraight(double distance);
-	void driveTurn(double radius, double angle);
+	virtual void driveStraight(double distance) = 0;
 	/*!
 	Implements the drive aktion for StraightMovements.
 	\param movement Movement
 	*/
 	void driveMovement(StraightMovement& movement);
 	/*!
-	Implements the drive aktion for TurnMovements.
+	Drive a turnmovement
+	\param radius Radius
+	\param angle angle
+	*/
+	virtual void driveTurn(double radius, double angle) = 0;
+	/*!
+	Drive a turnmovement
 	\param movement Movement
 	*/
 	void driveMovement(TurnMovement& movement);
-	/*!
-	Cast the different movements.
-	\param movement Movement
-	*/
-	void driveMovement(Movement& movement);
 	/*!
 	Update the current steering action.
 	This means that the current movement which is calculated by the PositionCalculator become analysed.
@@ -83,12 +52,12 @@ public:
 	The progress or the state of the steering action can be called with getState().
 	Note: Before this method can be executed PositionCalculator.update() have to be invoked.
 	*/
-	void update();
+	virtual void update() = 0;
 	/*!
 	Stop all motors and finish all steering actions.
 	This mehtod have to be called after the last task for the steeringManager.
 	*/
-	void stop();
+	virtual void stop() = 0;
 };
 
 #endif
