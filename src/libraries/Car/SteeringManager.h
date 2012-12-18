@@ -6,10 +6,12 @@ Copyright 2012 Andreas Gruber
 #define STEERING_MANAGER
 
 #include "DefineLib.h"
-#include "ServoProxy.h"
-#include "MotorTB6612FNG.h"
-#include "PositionCalculator.h"
-#include "Movement.h"
+//#include "ServoProxy.h"
+//#include "MotorTB6612FNG.h"
+//#include "PositionCalculator.h"
+//#include "Movement.h"
+class StraightMovement;
+class TurnMovement;
 
 class SteeringManager {
 public:

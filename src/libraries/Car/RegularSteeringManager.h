@@ -7,10 +7,10 @@ Copyright 2012 Andreas Gruber
 
 #include "DefineLib.h"
 #include "SteeringManager.h"
-#include "ServoProxy.h"
 class Motor;
 class PositionCalculator;
 class Movement;
+class ServoProxy;
 
 class RegularSteeringManager : public SteeringManager{
 public:

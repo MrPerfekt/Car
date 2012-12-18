@@ -3,6 +3,7 @@ Copyright 2012 Andreas Gruber
 */
 
 #include "SteeringManager.h"
+#include "Movement.h"
 
 
 void SteeringManager::driveMovement(StraightMovement &movement){

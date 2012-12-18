@@ -114,7 +114,6 @@ void setup(){
 	pathTest();
 	//pathMemoryTest();
 	//itorTest();
-	TurnMovement *m = new TurnMovement();
 }
 
 void loop(){

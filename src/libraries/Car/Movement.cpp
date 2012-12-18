@@ -3,6 +3,7 @@ Copyright 2012 Andreas Gruber
 */
 
 #include "Movement.h"
+#include "SteeringManager.h"
 
 
 double GeneralMovement::getDistance() const{
@@ -29,6 +30,9 @@ void GeneralMovement::operator+=(const Movement &movement){
 	distance += movement.getDistance();
 	angle += movement.getAngle();
 }
+void GeneralMovement::invokeOnSteeringManager(SteeringManager &steeringManager){
+	//! Not Supported
+}
 
 
 StraightMovement::StraightMovement(){
@@ -45,7 +49,9 @@ double StraightMovement::getDistance() const{
 double StraightMovement::getAngle() const{
 	return 0;
 }
-
+void StraightMovement::invokeOnSteeringManager(SteeringManager &steeringManager){
+	steeringManager.driveMovement(*this);
+}
 
 
 double TurnMovement::convertAngleDistanceToRadius(double angle,double distance){
@@ -57,7 +63,6 @@ double TurnMovement::convertAngleRadiusToDistance(double angle,double radius){
 double TurnMovement::convertDistanceRadiusToAngle(double distance,double radius){
 	return distance*circle/(2.0*radius*M_PI);
 }
-
 double TurnMovement::getDistance() const{
 	return distance;
 }
@@ -67,7 +72,6 @@ double TurnMovement::getAngle() const{
 double TurnMovement::getRadius() const{
 	return radius;
 }
-
 void TurnMovement::setAngleDistance(double angle, double distance){
 	this->angle = angle;
 	this->distance = distance;
@@ -84,4 +88,7 @@ void TurnMovement::setDistanceRadius(double distance, double radius){
 	this->radius = radius;
 }
 TurnMovement::TurnMovement(){
+}
+void TurnMovement::invokeOnSteeringManager(SteeringManager &steeringManager){
+	steeringManager.driveMovement(*this);
 }

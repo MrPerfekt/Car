@@ -12,15 +12,18 @@ PathExecutor::~PathExecutor(){
 }
 void PathExecutor::update(){
 	if(movementItor == NULL) return;
-	
-Serial.println("-ab-");
-if(steeringManager.hasFinished()){
-Serial.println("ab");
+	if(steeringManager.hasFinished()){
 		if(movementItor->hasNext()){
-Serial.println("a");
 			//steeringManager.driveMovement(*movementItor->getCurrent());
+			
+			//! TODO
+			if(movementItor->getCurrent()->getAngle() == 0)
+				((StraightMovement*)movementItor->getCurrent())->invokeOnSteeringManager(steeringManager);
+			else
+				((TurnMovement*)movementItor->getCurrent())->invokeOnSteeringManager(steeringManager);
+			//! TODO
+
 		}else{
-Serial.println("b");
 			movementItor = NULL;
 			steeringManager.stop();//Notify Pathplaner instead
 		}	

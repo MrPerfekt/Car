@@ -7,6 +7,7 @@ Copyright 2012 Andreas Gruber
 #include "MotorTB6612FNG.h"
 #include "PositionCalculator.h"
 #include "Movement.h"
+#include "ServoProxy.h"
 
 RegularSteeringManager::SteeringState RegularSteeringManager::getState(){
 	return state;
