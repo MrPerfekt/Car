@@ -8,24 +8,10 @@ Copyright 2012 Andreas Gruber
 #include "DefineLib.h"
 class MovementSensor;
 class GeneralMovement;
+class OrientationCoordinates;
 
 class PositionCalculator{
 private:
-	/*
-	MovementSensor& movementSensor;
-	/*!
-	The absolute position of the car
-	* /
-	OrientationCoordinates* position;
-	/*!
-	The full movement of the car since the class was loaded.
-	* /
-	GeneralMovement* fullMovement;
-	/*!
-	The last movement which was readen out
-	* /
-	Movement& lastMovement;
-	*/
 public:
 	virtual Movement& getLastMovement() const = 0;
 	virtual const OrientationCoordinates& getCurrentPosition() const = 0;

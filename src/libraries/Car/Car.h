@@ -17,9 +17,10 @@ Copyright 2012 Andreas Gruber
 #include "RegularSteeringManager.h"
 #include "SteeringManager.h"
 #include "DisplayProxy.h"
-#include "MotionLogger.h"
-//#include "Path.h"
-#include "PathExecutor.h"
+
+class MotionLogger;
+class PathExecutor;
+class PathPlaner;
 
 class Car {
 private:	
@@ -34,6 +35,7 @@ private:
 	MovementSensor* movementSensor;
 	MotionLogger* motionLogger;
 	PathExecutor* pathExecutor;
+	PathPlaner* pathPlaner;
 public: 
 	Motor& getMotorPowerEngine();
 	ServoProxy& getServoProxy();
@@ -45,6 +47,7 @@ public:
 	MovementSensor& getMovementSensor();
 	MotionLogger& getMotionLogger();
 	PathExecutor& getPathExecutor();
+	PathPlaner& getPathPlaner();
 
 	Car();
 

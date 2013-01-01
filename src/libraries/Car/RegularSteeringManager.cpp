@@ -9,7 +9,7 @@ Copyright 2012 Andreas Gruber
 #include "Movement.h"
 #include "ServoProxy.h"
 
-RegularSteeringManager::SteeringState RegularSteeringManager::getState(){
+RegularSteeringManager::SteeringState RegularSteeringManager::getState() const{
 	return state;
 }
 void RegularSteeringManager::setState(SteeringState steeringState){
@@ -19,17 +19,17 @@ void RegularSteeringManager::setState(SteeringState steeringState){
 /*!
 @return If the current steering action has finnished.
 */
-bool RegularSteeringManager::hasFinished(){
+bool RegularSteeringManager::hasFinished() const{
 	return getState() == ss_stop;
 }
 
 /*!
-Get the maximal radius of the car
+Get the minimal radius of the car
 \param leftTurn If the car should drive a left [= true] or a right [= false] turn
-\return The maximal radius 
+\return The minimal radius 
 */
-double RegularSteeringManager::getMaxRadius(bool leftTurn){
-	servoProxy.getMaxRadius(leftTurn);
+double RegularSteeringManager::getMinRadius(bool leftTurn) const{
+	servoProxy.getMinRadius(leftTurn);
 }
 
 RegularSteeringManager::RegularSteeringManager(ServoProxy& servoProxy,Motor& motorPowerEngine,PositionCalculator& positionCalculator)

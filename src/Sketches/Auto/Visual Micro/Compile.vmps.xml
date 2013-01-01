@@ -45,6 +45,7 @@
         <VCCodeMacro Name="DISTANCESENSOR" Value="" />
         <VCCodeMacro Name="DISTANCESENSOR" Value="" />
         <VCCodeMacro Name="VECTOR" Value="" />
+        <VCCodeMacro Name="ORIENTATION_COORDINATES" Value="" />
         <VCCodeMacro Name="LIST" Value="" />
         <VCCodeMacro Name="__attribute__" Value="" />
         <VCCodeMacro Name="__inline__" Value="" />
@@ -62,6 +63,9 @@
         <VCCodeMacro Name="prog_void" Value="" />
         <VCCodeMacro Name="PGM_VOID_P" Value="int" />
         <VCCodeMacro Name="NOINLINE" Value="__attribute__((noinline))" />
+        <VCCodeMacro Name="__LDBL_MAX__" Value="3.40282347e+38L" />
+        <VCCodeMacro Name="__DBL_MAX__" Value="3.40282347e+38" />
+        <VCCodeMacro Name="__FLT_MAX__" Value="3.40282347e+38F" />
       </VCCodeMacros>
       <VCCodeVariables>
         <VCCodeVariable Name="dummy" />

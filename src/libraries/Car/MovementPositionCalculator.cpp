@@ -5,7 +5,7 @@ Copyright 2012 Andreas Gruber
 #include "MovementPositionCalculator.h"
 #include "Movement.h"
 #include "MovementSensor.h"
-#include "Coordinates.h"
+#include "OrientationCoordinates.h"
 
 Movement& MovementPositionCalculator::getLastMovement() const{
 	return lastMovement;
@@ -18,7 +18,10 @@ const GeneralMovement& MovementPositionCalculator::getFullMovement() const{
 }
 
 MovementPositionCalculator::MovementPositionCalculator(MovementSensor& movementSensor)
-	:movementSensor(movementSensor),fullMovement(new GeneralMovement()),position(new OrientationCoordinates()),lastMovement(movementSensor.getMovement()){
+	:movementSensor(movementSensor)
+	,fullMovement(new GeneralMovement())
+	,position(new OrientationCoordinates(0,0,PI/2))
+	,lastMovement(movementSensor.getMovement()){
 }
 void MovementPositionCalculator::update(){
 	lastMovement = movementSensor.getMovement();

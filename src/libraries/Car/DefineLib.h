@@ -52,7 +52,11 @@ Contains the angle of a full circle.
 E.c. deg=360, rad=2*pi, grd=400, ...
 This is no configuration. So this is not saved in Config.h
 */
-static const double circle = 360;
+static const double circle = 2*PI; //!Get removed in future releases and replaced by 2pi
+
+#define __LDBL_MAX__ 3.40282347e+38L
+#define __DBL_MAX__ 3.40282347e+38
+#define __FLT_MAX__ 3.40282347e+38F 
 
 uint16_t freeSRam ();
 

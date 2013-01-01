@@ -22,11 +22,6 @@ public:
 	@param endPosition The destination point
 	*/
 	Path* calculatePath(const OrientationCoordinates &startPosition, const OrientationCoordinates &endPosition);
-	/*!
-	This method updates the path to the specified target.
-	Before this method can be called moveTo(position) and positionCalculator.update() have to be executed.
-	*/
-	void update();
 };
 
 #endif

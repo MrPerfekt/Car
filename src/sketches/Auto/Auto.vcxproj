@@ -89,6 +89,7 @@
     <ClCompile Include="..\..\libraries\Car\Movement.cpp" />
     <ClCompile Include="..\..\libraries\Car\MovementPositionCalculator.cpp" />
     <ClCompile Include="..\..\libraries\Car\MovementSensor.cpp" />
+    <ClCompile Include="..\..\libraries\Car\OrientationCoordinates.cpp" />
     <ClCompile Include="..\..\libraries\Car\Path.cpp" />
     <ClCompile Include="..\..\libraries\Car\PathExecutor.cpp" />
     <ClCompile Include="..\..\libraries\Car\PathPlaner.cpp" />
@@ -103,6 +104,7 @@
     <ClCompile Include="..\..\libraries\Car\SteeringRegulator.cpp" />
     <ClCompile Include="..\..\libraries\Car\StraightMovement.cpp" />
     <ClCompile Include="..\..\libraries\Car\TurnMovement.cpp" />
+    <ClCompile Include="..\..\libraries\Car\Vector.cpp" />
     <ClCompile Include="..\..\libraries\Car\VoltageDivider.cpp" />
     <ClCompile Include="..\..\libraries\Car\WheelSensors.cpp" />
   </ItemGroup>
@@ -125,6 +127,7 @@
     <ClInclude Include="..\..\libraries\Car\Movement.h" />
     <ClInclude Include="..\..\libraries\Car\MovementPositionCalculator.h" />
     <ClInclude Include="..\..\libraries\Car\MovementSensor.h" />
+    <ClInclude Include="..\..\libraries\Car\OrientationCoordinates.h" />
     <ClInclude Include="..\..\libraries\Car\Path.h" />
     <ClInclude Include="..\..\libraries\Car\PathExecutor.h" />
     <ClInclude Include="..\..\libraries\Car\PathPlaner.h" />
@@ -139,6 +142,7 @@
     <ClInclude Include="..\..\libraries\Car\SteeringRegulator.h" />
     <ClInclude Include="..\..\libraries\Car\StraightMovement.h" />
     <ClInclude Include="..\..\libraries\Car\TurnMovement.h" />
+    <ClInclude Include="..\..\libraries\Car\Vector.h" />
     <ClInclude Include="..\..\libraries\Car\VoltageDivider.h" />
     <ClInclude Include="..\..\libraries\Car\WheelSensors.h" />
     <ClInclude Include="Visual Micro\.Auto.vsarduino.h" />

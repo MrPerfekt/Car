@@ -9,7 +9,10 @@ const byte dummy = 0;
 #include "Servo.h"
 #include "Car.h"
 #include "StraightMovement.h"
+#include "PathExecutor.h"
 #include "Path.h"
+#include "PathPlaner.h"
+#include "OrientationCoordinates.h"
 
 Car*car = new Car();
 ServoProxy servop = car->getServoProxy();
@@ -19,6 +22,7 @@ VoltageDivider& voltageDivider = car->getPowerSupplyVoltageDivider();
 PositionCalculator& positionCalculator = car->getPositionCalculator();
 SteeringManager& steeringManager = car->getSteeringManager();
 PathExecutor& pathExecutor = car->getPathExecutor();
+PathPlaner& pathPlaner = car->getPathPlaner();
 
 //========== DISPLAY ==========
 
@@ -112,15 +116,40 @@ void setup(){
 
 	Serial.print("Free SRam: ");
 	Serial.println(freeSRam());
+	
 	//driveTest();
-	pathTest();
+	
 	//pathMemoryTest();
 	//itorTest();
+	pathTest();
+
+	//pathPlanerTest();
 }
 
 void loop(){
 	delay(100);
 	updateDisplay();
+}
+
+void pathPlanerTest(){
+	OrientationCoordinates*pos0 = new OrientationCoordinates(1000,1000,0);
+	OrientationCoordinates*pos1 = new OrientationCoordinates(-1000,1000,0);
+	OrientationCoordinates*pos2 = new OrientationCoordinates(0,0,PI*3/4);
+	pathPlaner.moveTo(*pos0);
+	do{
+		car->update();
+		updateDisplay();
+	}while(!steeringManager.hasFinished());
+	pathPlaner.moveTo(*pos1);
+	do{
+		car->update();
+		updateDisplay();
+	}while(!steeringManager.hasFinished());
+	pathPlaner.moveTo(*pos2);
+	do{
+		car->update();
+		updateDisplay();
+	}while(!steeringManager.hasFinished());
 }
 
 void itorTest(){

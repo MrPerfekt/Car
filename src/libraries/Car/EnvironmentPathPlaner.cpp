@@ -13,6 +13,3 @@ EnvironmentPathPlaner::EnvironmentPathPlaner(PositionCalculator &positionCalcula
 Path* EnvironmentPathPlaner::calculatePath(const OrientationCoordinates& startPosition, const OrientationCoordinates& endPosition){
 	return 0;
 }
-
-void EnvironmentPathPlaner::update(){
-}

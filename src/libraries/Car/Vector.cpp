@@ -68,6 +68,9 @@ void Vector::set(const Vector &v){
 	this->x = v.x;
 	this->y = v.y;
 }
+void Vector::setToUnitVectorByAngle(double angle){
+    set(cos(angle),sin(angle));
+}
 Vector Vector::clone() const{
 	return Vector(x,y);
 }

@@ -3,6 +3,9 @@ Copyright 2012 Andreas Gruber
 */
 
 #include "Car.h"
+#include "MotionLogger.h"
+#include "PathExecutor.h"
+#include "ShortestPathPlaner.h"
 
 Motor& Car::getMotorPowerEngine(){
 	return *motorPowerEngine;
@@ -34,6 +37,9 @@ MotionLogger& Car::getMotionLogger(){
 PathExecutor& Car::getPathExecutor(){
 	return *pathExecutor;
 }
+PathPlaner& Car::getPathPlaner(){
+	return *pathPlaner;
+}
 	
 Car::Car(){	
 	//displayProxy = new DisplayProxy();
@@ -54,6 +60,7 @@ Car::Car(){
 
 	motionLogger = new MotionLogger(*positionCalculator);
 	pathExecutor = new PathExecutor(*steeringManager);
+	pathPlaner = new ShortestPathPlaner(*positionCalculator,*pathExecutor);
 }
 
 void Car::update(){

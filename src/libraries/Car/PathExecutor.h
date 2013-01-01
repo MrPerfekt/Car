@@ -15,6 +15,8 @@ class PathExecutor{
 	SteeringManager& steeringManager;
 	Iterator<Movement*>* movementItor;
 public:
+	const SteeringManager& getSteeringManager() const;
+
 	PathExecutor(SteeringManager& steeringManager);
 	~PathExecutor();
 	/*!

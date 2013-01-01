@@ -49,7 +49,7 @@ public class MainFrame extends JFrame{
         slider0.addChangeListener(new ChangeListener() {
             @Override
             public void stateChanged(ChangeEvent e) {
-                atob.p[0].alpha = Math.toRadians(slider0.getValue());
+                atob.p[0].angle = Math.toRadians(slider0.getValue());
                 atob.repaint();
             }
         });
@@ -58,7 +58,7 @@ public class MainFrame extends JFrame{
         slider1.addChangeListener(new ChangeListener() {
             @Override
             public void stateChanged(ChangeEvent e) {
-                atob.p[1].alpha = Math.toRadians(slider1.getValue());
+                atob.p[1].angle = Math.toRadians(slider1.getValue());
                 atob.repaint();
             }
         });

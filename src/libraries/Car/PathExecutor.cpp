@@ -7,6 +7,9 @@ Copyright 2012 Andreas Gruber
 #include "StraightMovement.h"
 #include "Path.h"
 
+const SteeringManager& PathExecutor::getSteeringManager() const{
+	return steeringManager;
+}
 
 PathExecutor::PathExecutor(SteeringManager&steeringManager)
 	:steeringManager(steeringManager)
@@ -18,7 +21,6 @@ void PathExecutor::update(){
 	if(movementItor == NULL) return;
 	if(steeringManager.hasFinished()){
 		if(movementItor->hasNext()){
-			//steeringManager.driveMovement(*movementItor->getCurrent());
 			
 			//! TODO
 			if(movementItor->getCurrent()->getAngle() == 0)
@@ -28,8 +30,8 @@ void PathExecutor::update(){
 			//! TODO
 
 		}else{
-			movementItor = NULL;
-			steeringManager.stop();//Notify Pathplaner instead
+			setPath(NULL);
+			steeringManager.stop();//!TODO: Notify car main logic instead
 		}	
 	}
 }
@@ -40,5 +42,9 @@ This method can also be used to delete the path. This is possible by infoking
 void PathExecutor::setPath(Path*path){
 	if(movementItor != NULL)
 		delete movementItor;
-	movementItor = path->initializeIterator();
+
+	if(path == NULL)
+		movementItor = NULL;
+	else
+		movementItor = path->initializeIterator();
 }

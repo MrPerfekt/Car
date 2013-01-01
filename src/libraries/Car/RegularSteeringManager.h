@@ -52,17 +52,17 @@ public:
 	/*!
 	@return If the current steering action has finnished.
 	*/
-	bool hasFinished();
+	virtual bool hasFinished() const;
 	/*!
-	Get the maximal radius of the car
+	Get the minimal radius of the car
 	\param leftTurn If the car should drive a left [= true] or a right [= false] turn
-	\return The maximal radius 
+	\return The minimal radius 
 	*/
-	double getMaxRadius(bool leftTurn);
+	virtual double getMinRadius(bool leftTurn) const;
 	/*!
 	@return The state of the current steering action.
 	*/
-	SteeringState getState();
+	virtual SteeringState getState() const;
 	RegularSteeringManager(ServoProxy& servoSteeringDriver,Motor& motorPowerEngine,PositionCalculator& positionCalculator);
 	void driveStraight(double distance);
 	void driveTurn(double radius, double angle);
@@ -73,12 +73,12 @@ public:
 	The progress or the state of the steering action can be called with getState().
 	Note: Before this method can be executed PositionCalculator.update() have to be invoked.
 	*/
-	void update();
+	virtual void update();
 	/*!
 	Stop all motors and finish all steering actions.
 	This mehtod have to be called after the last task for the steeringManager.
 	*/
-	void stop();
+	virtual void stop();
 };
 
 #endif

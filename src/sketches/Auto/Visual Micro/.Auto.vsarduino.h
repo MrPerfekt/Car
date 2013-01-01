@@ -32,6 +32,7 @@ void testToogle();
 void testToogleDelay();
 //already defined in arduno.h
 //already defined in arduno.h
+void pathPlanerTest();
 void itorTest();
 void pathMemoryTest();
 void pathTest();

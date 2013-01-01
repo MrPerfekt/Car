@@ -73,12 +73,12 @@ public:
 	double getMaxSteeringAngle(bool leftSteeringSign);
 	double getMaxSteeringAngle(int steeringSign);
 	/*!
-	Get maximal radius the car can steer.
+	Get minimal radius the car can steer.
 	\param steeringSign x > 0 left, x < 0 right
-	\return Maximal Radius
+	\return Minimal Radius
 	*/
-	double getMaxRadius(int steeringSign);
-	double getMaxRadius(bool leftSteeringSign);
+	double getMinRadius(int steeringSign);
+	double getMinRadius(bool leftSteeringSign);
 	//================Constructor================
 	/*!
 	Initialices the ServoProxy.

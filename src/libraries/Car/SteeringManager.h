@@ -16,15 +16,20 @@ class TurnMovement;
 class SteeringManager {
 public:
 	/*!
-	Get the maximal radius of the car
+	Get the minimal radius of the car
 	\param leftTurn If the car should drive a left [= true] or a right [= false] turn
-	\return The maximal radius 
+	\return The minimal radius 
 	*/
-	virtual double getMaxRadius(bool leftTurn) = 0;
+	virtual double getMinRadius(bool leftTurn) const = 0;
+	/*!
+	Get the minimal radius of the car
+	\return The minimal radius 
+	*/
+	double getMinRadius() const;
 	/*!
 	@return If the current steering action has finnished.
 	*/
-	virtual bool hasFinished() = 0;
+	virtual bool hasFinished() const = 0;
 	//SteeringManager(ServoProxy& servoSteeringDriver,Motor& motorPowerEngine,PositionCalculator& positionCalculator);
 	/*!
 	Drive a straight movement.

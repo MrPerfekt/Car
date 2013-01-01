@@ -29,6 +29,7 @@ public:
     double angleBetween(const Vector &v) const;
     void set(const double x, const double y);
     void set(const Vector &v);
+    void setToUnitVectorByAngle(double angle);
     Vector clone() const;
 };
 #endif

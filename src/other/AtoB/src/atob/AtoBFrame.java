@@ -5,23 +5,24 @@
 package atob;
 
 import java.awt.*;
-import java.awt.geom.AffineTransform;
 import javax.swing.JFrame;
-import javax.swing.JPanel;
 
 /**
  *
  * @author Andreas
  */
 class OrientedCoordinates extends Vector{
-    public double alpha;
-    public OrientedCoordinates(double x,double y, double alpha){
+    public double angle;
+    public OrientedCoordinates(double x,double y, double angle){
         super(x,y);
-        this.alpha = alpha;
+        this.angle = angle;
     }
 }
 class Vector{
     public double x, y;
+    Vector() {
+        this(0,0);
+    }
     public Vector(double x,double y){
         this.x = x;
         this.y = y;
@@ -67,12 +68,16 @@ class Vector{
     public double angleBetween(Vector v){
         return Math.acos(dotProduct(v) / getLength() / v.getLength());
     }
-    Vector set(double x, double y) {
+    public Vector setToUnitVectorByAngle(double angle){
+        set(Math.cos(angle),Math.sin(angle));
+        return this;
+    }
+    public Vector set(double x, double y) {
         this.x = x;
         this.y = y;
         return this;
     }
-    Vector set(Vector v) {
+    public Vector set(Vector v) {
         this.x = v.x;
         this.y = v.y;
         return this;
@@ -135,8 +140,8 @@ public class AtoBFrame extends JFrame{
         for(int i = 0; i < 4; i++){
             int iC = i / 2; //!Circle/Line Nr
             int iS = i % 2; //!Side Nr
-            double iAngle = p[iC].alpha + 2*Math.PI / 4 * (1 - iS * 2);
-            cc[i] = new Vector(Math.cos(iAngle), Math.sin(iAngle)).multiply(r).add(p[iC]);
+            double iAngle = p[iC].angle + 2*Math.PI / 4 * (1 - iS * 2);
+            cc[i] = new Vector().setToUnitVectorByAngle(iAngle).multiply(r).add(p[iC]);
         }
         //!Circle Tangent
         Vector vhelp = new Vector(0, 0);
@@ -154,15 +159,16 @@ public class AtoBFrame extends JFrame{
                 //!Vector v contains the vektor circle0 to circle1
                 //!MainAngle contains the angle between circle 0 and its horizontal line and circle1.
                 double mainAngle = v.angleBetween(vhelp.set(1,0)); 
-                if(/*cc[id1].x == 0 || */cc[id1].y < cc[id0].y)
+                if(cc[id1].y < cc[id0].y)
                     mainAngle = 2*Math.PI - mainAngle;
+                System.out.println(mainAngle);
                 //!
                 //!Angle
                 //!
                 //!Calculate the start end end angle
-                double angleStart = Math.PI * 3 + (mainAngle - p[i0C].alpha) * (i0S == 0 ? -1 : 1);
+                double angleStart = Math.PI * 3 + (mainAngle - p[i0C].angle) * (i0S == 0 ? -1 : 1);
                 //!The path of the second circle will be driven in the other direction.
-                double angleEnd = Math.PI * 5 + (mainAngle - p[i1C].alpha) * (i1S == 0 ? 1 : -1);
+                double angleEnd = Math.PI * 5 + (mainAngle - p[i1C].angle) * (i1S == 0 ? 1 : -1);
                 //!The initialication distance is the distance between both circles, which is preaty fine for i0S == i1S.
                 double distance = v.getLength();
                 //!
@@ -190,7 +196,7 @@ public class AtoBFrame extends JFrame{
                     int direction = i0S == 0 ? 1 : -1;
                     //!Describes the angle of point where the tangent start
                     double finalPitchAgnle = mainAngle+pitchAngle*direction;
-                    v.set(Math.cos(finalPitchAgnle),Math.sin(mainAngle+pitchAngle*direction)).multiply(r).add(cc[id0]);
+                    v.setToUnitVectorByAngle(finalPitchAgnle).multiply(r).add(cc[id0]);
                     
                     //!Only for painting
                     drawPoint(g, v);
@@ -238,7 +244,7 @@ public class AtoBFrame extends JFrame{
         
         g.setColor(Color.yellow);
         for(int i = 0; i < 2;i++){
-            double ak = Math.tan(p[i].alpha);
+            double ak = Math.tan(p[i].angle);
             double ad = p[i].y - p[i].x * ak;
             drawLine(g, ak, ad);
         }
