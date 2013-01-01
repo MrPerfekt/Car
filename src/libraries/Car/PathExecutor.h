@@ -7,7 +7,9 @@ Copyright 2012 Andreas Gruber
 
 #include "DefineLib.h"
 #include "SteeringManager.h"
-#include "Path.h"
+#include "List.h"
+//#include "Path.h"
+class Path;
 
 class PathExecutor{
 	SteeringManager& steeringManager;

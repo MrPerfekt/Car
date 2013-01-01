@@ -5,9 +5,11 @@ Copyright 2012 Andreas Gruber
 //constants
 const byte dummy = 0;
 
-#include <gLCD.h>
-#include <Servo.h>
-#include <Car.h>
+#include "gLCD.h"
+#include "Servo.h"
+#include "Car.h"
+#include "StraightMovement.h"
+#include "Path.h"
 
 Car*car = new Car();
 ServoProxy servop = car->getServoProxy();

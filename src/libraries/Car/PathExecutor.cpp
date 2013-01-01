@@ -3,6 +3,10 @@ Copyright 2012 Andreas Gruber
 */
 
 #include "PathExecutor.h"
+#include "TurnMovement.h"
+#include "StraightMovement.h"
+#include "Path.h"
+
 
 PathExecutor::PathExecutor(SteeringManager&steeringManager)
 	:steeringManager(steeringManager)

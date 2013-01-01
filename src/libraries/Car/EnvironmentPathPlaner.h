@@ -8,15 +8,19 @@ Copyright 2012 Andreas Gruber
 #include "DefineLib.h"
 #include "PathPlaner.h"
 class OrientationCoordinates;
+class PathExecutor;
+class PositionCalculator;
 
 class EnvironmentPathPlaner : public PathPlaner{
 private:
 public:
+	EnvironmentPathPlaner(PositionCalculator &positionCalculator, PathExecutor &pathExecutor);
 	/*!
-	Set the destination of the car.
-	\param position The destination.
+	Calculate Path
+	@param startPosition The start point
+	@param endPosition The destination point
 	*/
-	void moveTo(const OrientationCoordinates position);
+	Path* calculatePath(const OrientationCoordinates& startPosition, const OrientationCoordinates& endPosition);
 	/*!
 	This method updates the path to the specified target.
 	Before this method can be called moveTo(position) and positionCalculator.update() have to be executed.

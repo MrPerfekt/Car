@@ -5,10 +5,11 @@ Copyright 2012 Andreas Gruber
 #ifndef MOUSE_SENSOR_PAN101BSI
 #define MOUSE_SENSOR_PAN101BSI
 
-#include "arduino.h"
+#include "DefineLib.h"
+//#include "arduino.h"
 #include "Coordinates.h"
 #include "MovementSensor.h"
-#include "math.h"
+#include "TurnMovement.h"
 
 class MouseCoordinates {
 private:

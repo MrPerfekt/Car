@@ -3,7 +3,7 @@ Copyright 2012 Andreas Gruber
 */
 
 #include "MouseSensorPan101BSI.h"
-#include "DefineLib.h"
+#include "math.h"
 
 MouseCoordinates::MouseCoordinates()
 :mov(TurnMovement()),x(0),y(0){

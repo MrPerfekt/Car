@@ -107,6 +107,21 @@
     <ClCompile Include="..\..\libraries\Car\EnvironmentKnowledgeBase.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="..\..\libraries\Car\Regression.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\libraries\Car\StraightMovement.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\libraries\Car\TurnMovement.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\libraries\Car\SpeedRegulator.cpp">
+      <Filter>Header Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\libraries\Car\SteeringRegulator.cpp">
+      <Filter>Header Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\libraries\Car\BumperSensor.h">
@@ -197,6 +212,21 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="Visual Micro\.Auto.vsarduino.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\libraries\Car\Regression.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\libraries\Car\StraightMovement.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\libraries\Car\TurnMovement.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\libraries\Car\SpeedRegulator.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\libraries\Car\SteeringRegulator.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

@@ -6,8 +6,10 @@ Copyright 2012 Andreas Gruber
 #define WHEEL_ROTATION_SENSORS
 
 #include "DefineLib.h"
-#include "Sensor.h"
+//#include "Sensor.h"
 #include "MovementSensor.h"
+#include "TurnMovement.h"
+//class TurnMovement;
 
 class WheelSensor;
 class Wheel;

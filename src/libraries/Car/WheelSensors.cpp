@@ -3,6 +3,7 @@ Copyright 2012 Andreas Gruber
 */
 
 #include "WheelSensors.h"
+#include "TurnMovement.h"
 
 //========== wheels [int] ==========
 
