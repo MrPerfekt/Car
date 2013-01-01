@@ -2,64 +2,72 @@
 Copyright 2012 Andreas Gruber
 */
 
-#include "Coordinates.h"
-#include "Movement.h"
+#include "Vector.h"
+#include "math.h"
 	
-double Coordinates::getX() const{
+double Vector::getX() const{
 	return x;
-}	
-void Coordinates::setX(double x){
+}
+void Vector::setX(double x){
 	this->x = x;
 }
-double Coordinates::getY() const{
+double Vector::getY() const{
 	return y;
 }
-void Coordinates::setY(double y){
+void Vector::setY(double y){
 	this->y = y;
 }
 
-Coordinates::Coordinates()
-:x(0),y(0){
+Vector::Vector()
+:x(0)
+,y(0){
 }
-Coordinates::Coordinates(double x,double y)
-:x(x),y(y){
+Vector::Vector(double x,double y)
+:x(x)
+,y(y){
 }
-void Coordinates::operator-= (const Coordinates &coordinates){
-	this->x -= coordinates.x;
-	this->y -= coordinates.y;
+void Vector::operator+= (const Vector &v){
+	x += v.x;
+	y += v.y;
 }
-void Coordinates::operator+= (const Coordinates &coordinates){
-	this->x += coordinates.x;
-	this->y += coordinates.y;
+void Vector::operator-= (const Vector &v){
+	x -= v.x;
+	y -= v.y;
 }
-void Coordinates::operator*= (const Movement &movement){
-	setX(getX() + movement.getDistance() * sin(movement.getAngle()));//ToDo
-	setY(getY() + movement.getDistance() * cos(movement.getAngle()));//ToDo
+void Vector::operator*= (const double d){
+	x *= d;
+	y *= d;
 }
-
-
-
-double OrientationCoordinates::getAngle() const{
-	return angle;
+void Vector::operator/= (const double d){
+	x /= d;
+	y /= d;
 }
-void OrientationCoordinates::setAngle(double angle){
-	this->angle = angle;
+double Vector::operator* (const Vector &v) const{
+    return x*v.x+y*v.y;
 }
-OrientationCoordinates::OrientationCoordinates()
-:Coordinates(),angle(0){
+	
+double Vector::getLength() const{
+    return sqrt(x*x+y*y);
 }
-OrientationCoordinates::OrientationCoordinates(double x,double y,double angle)
-:Coordinates(x,y),angle(angle){
+void Vector::makeNormal(const bool left){
+    double sX = x;
+    x = y*(left ? -1 : 1);
+    y = sX*(left ? 1 : -1);
 }
-void OrientationCoordinates::operator+= (const OrientationCoordinates &coordinates){
-	Coordinates::operator+=(coordinates);
-	setAngle(getAngle() + coordinates.getAngle());
+void Vector::makeUnit(){
+    *this /= getLength();
 }
-void OrientationCoordinates::operator-= (const OrientationCoordinates &coordinates){
-	Coordinates::operator-=(coordinates);
-	setAngle(getAngle() - coordinates.getAngle());
+double Vector::angleBetween(const Vector &v) const{
+    return acos((*this * v) / getLength() / v.getLength());
 }
-void OrientationCoordinates::operator*= (const Movement &movement){
-	Coordinates::operator*=(movement);
-	setAngle(getAngle() + movement.getAngle());
+void Vector::set(const double x, const double y){
+	this->x = x;
+	this->y = y;
+}
+void Vector::set(const Vector &v){
+	this->x = v.x;
+	this->y = v.y;
+}
+Vector Vector::clone() const{
+	return Vector(x,y);
 }

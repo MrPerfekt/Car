@@ -44,6 +44,7 @@
         <VCCodeMacro Name="TURN_MOVEMENT" Value="" />
         <VCCodeMacro Name="DISTANCESENSOR" Value="" />
         <VCCodeMacro Name="DISTANCESENSOR" Value="" />
+        <VCCodeMacro Name="VECTOR" Value="" />
         <VCCodeMacro Name="LIST" Value="" />
         <VCCodeMacro Name="__attribute__" Value="" />
         <VCCodeMacro Name="__inline__" Value="" />

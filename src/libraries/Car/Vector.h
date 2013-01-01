@@ -2,12 +2,10 @@
 Copyright 2012 Andreas Gruber
 */
 
-#ifndef COORDINATES
-#define COORDINATES
+#ifndef VECTOR
+#define VECTOR
 
-class Movement;
-
-class Coordinates{
+class Vector{
 private:
 	double x;
 	double y;
@@ -17,24 +15,20 @@ public:
 	double getY() const;
 	void setY(double y);
 
-	Coordinates();
-	Coordinates(double x,double y);
-	virtual void operator+= (const Coordinates &coordinates);
-	virtual void operator-= (const Coordinates &coordinates);
-	virtual void operator*= (const Movement &movement);
-};
-
-class OrientationCoordinates : public Coordinates{
-private:
-	double angle;
-public:
-	double getAngle() const;
-	void setAngle(double angle);
-
-	OrientationCoordinates();
-	OrientationCoordinates(double x,double y,double angle);
-	virtual void operator+= (const OrientationCoordinates &coordinates);
-	virtual void operator-= (const OrientationCoordinates &coordinates);
-	virtual void operator*= (const Movement &movement);
+	Vector();
+	Vector(double x,double y);
+	virtual void operator+= (const Vector &v);
+	virtual void operator-= (const Vector &v);
+	virtual void operator*= (const double d);
+	virtual void operator/= (const double d);
+	virtual double operator* (const Vector &v) const; //!dotProduct
+	
+    double getLength() const;
+    void makeNormal(const bool left);
+    void makeUnit();
+    double angleBetween(const Vector &v) const;
+    void set(const double x, const double y);
+    void set(const Vector &v);
+    Vector clone() const;
 };
 #endif
