@@ -43,33 +43,48 @@ void setupDisplay(){
 }
 
 void updateDisplay(){
-	double distance = positionCalculator.getFullMovement().getDistance();
-	String strD = "d: ";
-	strD += (int)distance;
+	delay(200);
+	return;
+	Serial.println("0");
+	String str[8];
+	int cs = -1;
+	
+	Serial.println("1");
+	OrientationCoordinates position = positionCalculator.getCurrentPosition();
+	str[++cs] = "x: ";
+	str[cs] += (int)position.getX();
 
-	double angle = positionCalculator.getFullMovement().getAngle();
-	if(angle < 0) angle *= -1;
-	String strR = "r: ";
-	strR += (int)angle;
-	strR += ".";
-	strR += (int)(angle * 100)%100;
+	str[++cs] = "y: ";
+	str[cs] += (int)position.getY();
+	Serial.println("2");
+
+	str[++cs] = "a: ";
+	str[cs] += (int)position.getAngle();
+	str[cs] += ".";
+	str[cs] += (int)(position.getAngle() * 100)%100;
+	Serial.println("3");
   
 	double suplV = voltageDivider.calculateSuplyPotential();
-	String strU = "u: ";
-	strU += (int)(suplV*1000);
+	str[++cs] = "u: ";
+	str[cs] += (int)(suplV*1000);
+	Serial.println("4");
+
+	str[++cs] = "m: ";
+	str[cs] += freeSRam();
   
-	double cSpeed = wheelSensor.calculateCurrentSpeed();
-	String strV = "v: ";
-	strV += (int)cSpeed;
-  
-	graphic.Box(20,20,20+8*7,20+7,0B0000);
-	graphic.Print(strD,20,20,0B0000);
-	graphic.Box(20,40,20+8*7,40+9,0B0000);
-	graphic.Print(strR,20,40,0B0000);
-	graphic.Box(20,60,20+8*7,60+7,0B0000);
-	graphic.Print(strU,20,60,0B0000);
-	graphic.Box(20,80,20+8*7,80+7,0B0000);
-	graphic.Print(strV,20,80,0B0000);
+	Serial.println("6");
+	for(int i = 0; i <= cs; i++){
+		Serial.println("7");
+		int y = 15*(i+1);
+		int x = 20;
+		graphic.Box(x,y,x+8*7,y+7,0B0000);
+		Serial.println(i);
+		Serial.println("*");
+		Serial.println(str[i]);
+		graphic.Print(str[i],x,y,0B0000);
+		Serial.println("*");
+	}
+	Serial.println("9");
 }
 
 
@@ -117,11 +132,11 @@ void setup(){
 	Serial.print("Free SRam: ");
 	Serial.println(freeSRam());
 	
-	//driveTest();
+	driveTest();
 	
 	//pathMemoryTest();
 	//itorTest();
-	pathTest();
+	//pathTest();
 
 	//pathPlanerTest();
 }
@@ -132,24 +147,21 @@ void loop(){
 }
 
 void pathPlanerTest(){
-	OrientationCoordinates*pos0 = new OrientationCoordinates(1000,1000,0);
-	OrientationCoordinates*pos1 = new OrientationCoordinates(-1000,1000,0);
-	OrientationCoordinates*pos2 = new OrientationCoordinates(0,0,PI*3/4);
-	pathPlaner.moveTo(*pos0);
-	do{
-		car->update();
-		updateDisplay();
-	}while(!steeringManager.hasFinished());
-	pathPlaner.moveTo(*pos1);
-	do{
-		car->update();
-		updateDisplay();
-	}while(!steeringManager.hasFinished());
-	pathPlaner.moveTo(*pos2);
-	do{
-		car->update();
-		updateDisplay();
-	}while(!steeringManager.hasFinished());
+	Serial.println("*");
+	const int n = 2;
+	OrientationCoordinates pos[n];
+	pos[0] = OrientationCoordinates(1000,0,PI);
+	pos[1] = OrientationCoordinates(0,0,0);
+	
+	Serial.println("*");
+	for(int i = 0; i < n; i++){
+	Serial.println("*");
+		pathPlaner.moveTo(pos[i]);
+		do{
+			car->update();
+			updateDisplay();
+		}while(!steeringManager.hasFinished());
+	}
 }
 
 void itorTest(){
@@ -185,10 +197,10 @@ void pathMemoryTest(){
 		p->addMovement(new StraightMovement(1000));
 		TurnMovement* t;
 		t = new TurnMovement();
-		t->setAngleRadius(circle,500);
+		t->setAngleRadius(2*PI,500);
 		p->addMovement(t);
 		t = new TurnMovement();
-		t->setAngleRadius(circle,-500);
+		t->setAngleRadius(2*PI,-500);
 		p->addMovement(t);
 		Serial.println("delete");
 		delete(p);
@@ -222,22 +234,23 @@ void pathTest(){
 void driveTest(){
 	Serial.println("start");
 	updateDisplay();
-  
-	int i = 0;
+	
 	Serial.println("drive");
-	steeringManager.driveStraight(1000);
+	steeringManager.driveStraight(500);
 	do{
 		car->update();
 		updateDisplay();
 	}while(!steeringManager.hasFinished());
 	Serial.println("turn");
-	steeringManager.driveTurn(500,circle);
+	
+	steeringManager.driveTurn(500,PI*2);
 	do{
 		car->update();
 		updateDisplay();
 	}while(!steeringManager.hasFinished());
 	Serial.println("turn");
-	steeringManager.driveTurn(-1000,circle/4);
+	
+	steeringManager.driveTurn(-500,PI*2);
 	do{
 		car->update();
 		updateDisplay();

@@ -25,6 +25,15 @@ uint32_t Config::getSteeringWheelsPosition(){
 const uint8_t Config::getPinSteeringServo(){
 	return pinSteeringServo;
 }
+const double Config::getServoAbsAngleMiddleDeg(){
+	return servoAbsAngleMiddleDeg;
+}
+const double Config::getServoMaxAngleDeg(){
+	return servoMaxAngleDeg;
+}
+const uint16_t Config::getMinSteeringRadius(){
+	return minSteeringRadius;
+}
 //! Motor
 const uint8_t Config::getPinMotorPMW(){
 	return pinMotorPMW;

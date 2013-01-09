@@ -12,10 +12,6 @@ PathPlaner::PathPlaner(PositionCalculator &positionCalculator, PathExecutor &pat
 	,lastEndPosition(NULL){
 }
 
-double PathPlaner::getMinRadius() const{
-	return pathExecutor.getSteeringManager().getMinRadius();
-}
-
 Path* PathPlaner::calculatePath(const OrientationCoordinates& endPosition){
 	return calculatePath(positionCalculator.getCurrentPosition(),endPosition);
 }

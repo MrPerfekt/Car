@@ -21,7 +21,6 @@ void PathExecutor::update(){
 	if(movementItor == NULL) return;
 	if(steeringManager.hasFinished()){
 		if(movementItor->hasNext()){
-			
 			//! TODO
 			if(movementItor->getCurrent()->getAngle() == 0)
 				((StraightMovement*)movementItor->getCurrent())->invokeOnSteeringManager(steeringManager);

@@ -30,6 +30,9 @@ private:
 	static const uint32_t steeringWheelsPosition = 230;
 	//! Steering Servo
 	static const uint8_t pinSteeringServo = 6;
+	static const uint16_t servoAbsAngleMiddleDeg = 85;
+	static const uint16_t servoMaxAngleDeg = 40;
+	static const uint16_t minSteeringRadius = 500;
 	//! Motor
 	static const uint8_t pinMotorPMW = 7; //! Speed control
 	static const uint8_t pinMotorIn1 = 22; //! Direction
@@ -66,6 +69,9 @@ public:
 	static uint32_t getSteeringWheelsPosition();
 	//! Steering Servo
 	static const uint8_t getPinSteeringServo();
+	static const double getServoAbsAngleMiddleDeg();//! The steering servo angle where the car drives straight
+	static const double getServoMaxAngleDeg();//! The maximal angle which can be set to the steering servo
+	static const uint16_t getMinSteeringRadius();//! The minimal radius which can be driven by the car
 	//! Motor
 	static const uint8_t getPinMotorPMW();
 	static const uint8_t getPinMotorIn1();

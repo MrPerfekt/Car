@@ -14,6 +14,3 @@ void SteeringManager::driveMovement(StraightMovement &movement){
 void SteeringManager::driveMovement(TurnMovement &movement){
 	driveTurn(movement.getRadius(),movement.getAngle());
 }
-double SteeringManager::getMinRadius() const{
-	return max(getMinRadius(false),getMinRadius(true));
-}

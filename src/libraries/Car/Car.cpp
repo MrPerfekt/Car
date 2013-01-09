@@ -64,13 +64,21 @@ Car::Car(){
 }
 
 void Car::update(){
+	Serial.println("0");
 	movementSensor->update();
+	Serial.println("1");
 	positionCalculator->update();
+	Serial.println("2");
 	movementSensor->update();
+	Serial.println("3");
 	steeringManager->update();
+	Serial.println("4");
 	movementSensor->update();
+	Serial.println("5");
 	pathExecutor->update();
+	Serial.println("6");
 	movementSensor->update();
+	Serial.println("7");
 	
 	//motionLogger->update();
 	//displayProxy->update();

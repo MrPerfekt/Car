@@ -16,17 +16,6 @@ class TurnMovement;
 class SteeringManager {
 public:
 	/*!
-	Get the minimal radius of the car
-	\param leftTurn If the car should drive a left [= true] or a right [= false] turn
-	\return The minimal radius 
-	*/
-	virtual double getMinRadius(bool leftTurn) const = 0;
-	/*!
-	Get the minimal radius of the car
-	\return The minimal radius 
-	*/
-	double getMinRadius() const;
-	/*!
 	@return If the current steering action has finnished.
 	*/
 	virtual bool hasFinished() const = 0;

@@ -54,12 +54,6 @@ public:
 	*/
 	virtual bool hasFinished() const;
 	/*!
-	Get the minimal radius of the car
-	\param leftTurn If the car should drive a left [= true] or a right [= false] turn
-	\return The minimal radius 
-	*/
-	virtual double getMinRadius(bool leftTurn) const;
-	/*!
 	@return The state of the current steering action.
 	*/
 	virtual SteeringState getState() const;

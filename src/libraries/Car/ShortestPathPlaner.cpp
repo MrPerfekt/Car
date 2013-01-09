@@ -9,7 +9,6 @@ Copyright 2012 Andreas Gruber
 #include "TurnMovement.h"
 #include "StraightMovement.h"
 
-//! TODO Invoke super constructor
 ShortestPathPlaner::ShortestPathPlaner(PositionCalculator &positionCalculator, PathExecutor &pathExecutor)
 	:PathPlaner(positionCalculator,pathExecutor)
 {
@@ -20,8 +19,9 @@ Path* ShortestPathPlaner::calculatePath(const OrientationCoordinates& startPosit
 		minAngleEnd = 0, 
 		minDistance = 0, 
 		minFullDistance = DBL_MAX;
+	bool minFirstLeft = true, minSecondLeft = true;
 
-	double r = getMinRadius();
+	double r = Config::getMinSteeringRadius();
     //!Circle Centers
     Vector cc[4];
     for(int i = 0; i < 4; i++){
@@ -93,6 +93,8 @@ Path* ShortestPathPlaner::calculatePath(const OrientationCoordinates& startPosit
             double fullDistance = distance + r * (angleEnd+angleStart);
 
 			if(fullDistance < minFullDistance){
+                minFirstLeft = i0S == 0;
+				minSecondLeft = i1S == 0;
 				minAngleStart = angleStart;
 				minAngleEnd = angleEnd;
 				minDistance = distance;
@@ -100,17 +102,28 @@ Path* ShortestPathPlaner::calculatePath(const OrientationCoordinates& startPosit
 			}
         }
     }
-
+	Serial.print(r);
+	Serial.print("  ");
+	Serial.print(minFirstLeft ? 1 : -1);
+	Serial.print("  ");
+	Serial.print(minAngleStart);
+	Serial.print("  ");
+	Serial.print(minAngleEnd);
+	Serial.print("  ");
+	Serial.print(minDistance);
+	Serial.print("  ");
+	Serial.print(minFullDistance);
+	Serial.println();
 	Path*p = new Path();
 	
 	TurnMovement*tmStart = new TurnMovement();
-	tmStart->setAngleRadius(minAngleStart,r);
+	tmStart->setAngleRadius(minAngleStart,r*(minFirstLeft ? 1 : -1));
 	p->addMovement(tmStart);
 
 	p->addMovement(new StraightMovement(minDistance));
 
 	TurnMovement*tmEnd = new TurnMovement();
-	tmEnd->setAngleRadius(minAngleStart,r);
+	tmEnd->setAngleRadius(minAngleStart,r*(minSecondLeft ? 1 : -1));
 	p->addMovement(tmEnd);
 	return p;
 }

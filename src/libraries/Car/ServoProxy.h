@@ -13,14 +13,7 @@ class Servo;
 //The next thing is, that the servo rotates against the mathematical angle.
 //So the software kan believ that the servo rotates in the mathematical angle and the angle is proportional to the steering wheels.
 class ServoProxy {
-private:
-	static const int absServoAngleMiddle = 85;
-	static const int steerLeftSign = 1;
-	static const int steerRightSign = -1;
-	static const int maxAngleLeft = steerLeftSign*30 + absServoAngleMiddle;//138°
-	static const int recommendedAngleLeft = maxAngleLeft-steerLeftSign*20;//(posMiddle + posMaxLeft) / 2;
-	static const int maxAngleRight = steerRightSign*35 + absServoAngleMiddle;//50°
-	static const int recommendedAngleRight = maxAngleRight-steerRightSign*20;			//(posMiddle + posMaxRight) / 2;
+private:			//(posMiddle + posMaxRight) / 2;
 	double currentSollAngle;
 	double currentSteeringAngle;
 
@@ -70,15 +63,16 @@ private:
 	double convertServoAngleToRadius(double servoAngle);
 public:
 	//================Get max angle================
-	double getMaxSteeringAngle(bool leftSteeringSign);
-	double getMaxSteeringAngle(int steeringSign);
+	/*!
+	Get maximal angle which can be performet by the wheels.
+	\return Maximal Angle
+	*/
+	double const getMaxSteeringAngle();
 	/*!
 	Get minimal radius the car can steer.
-	\param steeringSign x > 0 left, x < 0 right
 	\return Minimal Radius
 	*/
-	double getMinRadius(int steeringSign);
-	double getMinRadius(bool leftSteeringSign);
+	double const getMinRadius();
 	//================Constructor================
 	/*!
 	Initialices the ServoProxy.

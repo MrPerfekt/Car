@@ -16,20 +16,8 @@ void RegularSteeringManager::setState(SteeringState steeringState){
 	state = steeringState;
 }
 
-/*!
-@return If the current steering action has finnished.
-*/
 bool RegularSteeringManager::hasFinished() const{
 	return getState() == ss_stop;
-}
-
-/*!
-Get the minimal radius of the car
-\param leftTurn If the car should drive a left [= true] or a right [= false] turn
-\return The minimal radius 
-*/
-double RegularSteeringManager::getMinRadius(bool leftTurn) const{
-	servoProxy.getMinRadius(leftTurn);
 }
 
 RegularSteeringManager::RegularSteeringManager(ServoProxy& servoProxy,Motor& motorPowerEngine,PositionCalculator& positionCalculator)
@@ -51,9 +39,9 @@ void RegularSteeringManager::driveStraight(double distance){
 	motorPowerEngine.motorMove(255,forward);
 }
 void RegularSteeringManager::driveTurn(double radius, double angle){
+	servoProxy.setRadius(radius);
 	bool leftTurn = radius >= 0;
 	bool forward = angle >= 0;
-	servoProxy.setRadius(radius);
 	stopConditionValue = positionCalculator.getFullMovement().getAngle() + angle * /*(forward ? 1 : -1) * */ (leftTurn ? 1 : -1);
 	if(leftTurn)
 		setState(forward ? ss_driveTurnLeftForward : ss_driveTurnLeftBackward);

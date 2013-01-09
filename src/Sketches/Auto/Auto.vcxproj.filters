@@ -119,9 +119,6 @@
     <ClCompile Include="..\..\libraries\Car\SpeedRegulator.cpp">
       <Filter>Header Files</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\libraries\Car\SteeringRegulator.cpp">
-      <Filter>Header Files</Filter>
-    </ClCompile>
     <ClCompile Include="..\..\libraries\Car\Vector.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>

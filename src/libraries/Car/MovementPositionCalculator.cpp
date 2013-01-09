@@ -20,7 +20,7 @@ const GeneralMovement& MovementPositionCalculator::getFullMovement() const{
 MovementPositionCalculator::MovementPositionCalculator(MovementSensor& movementSensor)
 	:movementSensor(movementSensor)
 	,fullMovement(new GeneralMovement())
-	,position(new OrientationCoordinates(0,0,PI/2))
+	,position(new OrientationCoordinates(0,0,PI))
 	,lastMovement(movementSensor.getMovement()){
 }
 void MovementPositionCalculator::update(){
