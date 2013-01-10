@@ -47,11 +47,14 @@ Path* ShortestPathPlaner::calculatePath(const OrientationCoordinates& startPosit
             //!Main Gradient
             //!
             //!Vector v contains the vektor circle0 to circle1
-            //!MainAngle contains the angle between circle 0 and its horizontal line and circle1.
+			//!MainAngle contains the angle between circle 0 and its horizontal line and circle1.
 			vhelp.set(1,0);
             double mainAngle = v.angleBetween(vhelp); 
+	Serial.print(mainAngle);
+	Serial.print("  ");
 			if(cc[id1].getY() < cc[id0].getY())
                 mainAngle = 2*PI - mainAngle;
+
             //!
             //!Angle
             //!
@@ -91,6 +94,18 @@ Path* ShortestPathPlaner::calculatePath(const OrientationCoordinates& startPosit
             //!r * angle
             //!
             double fullDistance = distance + r * (angleEnd+angleStart);
+			
+	Serial.print(mainAngle);
+	Serial.print("  ");
+	Serial.print(angleStart);
+	Serial.print("  ");
+	Serial.print(angleEnd);
+	Serial.print("  ");
+	Serial.print(distance);
+	Serial.print("  ");
+	Serial.print(fullDistance);
+	Serial.print("  ");
+	Serial.println();
 
 			if(fullDistance < minFullDistance){
                 minFirstLeft = i0S == 0;
@@ -102,10 +117,7 @@ Path* ShortestPathPlaner::calculatePath(const OrientationCoordinates& startPosit
 			}
         }
     }
-	Serial.print(r);
-	Serial.print("  ");
-	Serial.print(minFirstLeft ? 1 : -1);
-	Serial.print("  ");
+	Serial.println();
 	Serial.print(minAngleStart);
 	Serial.print("  ");
 	Serial.print(minAngleEnd);
@@ -113,6 +125,8 @@ Path* ShortestPathPlaner::calculatePath(const OrientationCoordinates& startPosit
 	Serial.print(minDistance);
 	Serial.print("  ");
 	Serial.print(minFullDistance);
+	Serial.print("  ");
+	Serial.println();
 	Serial.println();
 	Path*p = new Path();
 	

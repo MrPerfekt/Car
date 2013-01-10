@@ -14,6 +14,5 @@ private:
 public:
 	Coordinates();
 	Coordinates(double x,double y);
-	virtual void operator*= (const Movement &movement);
 };
 #endif

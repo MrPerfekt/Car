@@ -26,6 +26,10 @@ void OrientationCoordinates::operator-= (const OrientationCoordinates &coordinat
 	setAngle(getAngle() - coordinates.getAngle());
 }
 void OrientationCoordinates::operator*= (const Movement &movement){
-	Coordinates::operator*=(movement);
-	setAngle(getAngle() + movement.getAngle());
+	setAngle(fmod(getAngle() + movement.getAngle() + 100*2*PI,2*PI));//!TODO: Improve this algorithm
+	Vector v;
+	v.setToUnitVectorByAngle(getAngle());
+	v *= movement.getDistance();
+
+	Vector::operator+=(v);
 }

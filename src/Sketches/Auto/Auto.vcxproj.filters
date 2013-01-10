@@ -226,9 +226,6 @@
     <ClInclude Include="..\..\libraries\Car\SpeedRegulator.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\libraries\Car\SteeringRegulator.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="..\..\libraries\Car\Vector.h">
       <Filter>Header Files</Filter>
     </ClInclude>

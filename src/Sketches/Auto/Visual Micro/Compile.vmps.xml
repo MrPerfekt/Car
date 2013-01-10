@@ -38,6 +38,7 @@
         <VCCodeMacro Name="CONFIG" Value="" />
         <VCCodeMacro Name="DISTANCESENSOR" Value="" />
         <VCCodeMacro Name="LIST" Value="" />
+        <VCCodeMacro Name="__cplusplus" Value="" />
         <VCCodeMacro Name="MOVEMENT_POSITION_CALCULATOR" Value="" />
         <VCCodeMacro Name="BUMPER_SENSOR" Value="" />
         <VCCodeMacro Name="REGULAR_STEERING_MANAGER" Value="" />
@@ -45,7 +46,6 @@
         <VCCodeMacro Name="DISTANCESENSOR" Value="" />
         <VCCodeMacro Name="EVIRONMENT_KNOWLEDGE_BASE" Value="" />
         <VCCodeMacro Name="ORIENTATION_COORDINATES" Value="" />
-        <VCCodeMacro Name="__cplusplus" Value="" />
         <VCCodeMacro Name="__attribute__" Value="" />
         <VCCodeMacro Name="__inline__" Value="" />
         <VCCodeMacro Name="__asm__" Value="" />

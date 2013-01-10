@@ -43,8 +43,50 @@ void setupDisplay(){
 }
 
 void updateDisplay(){
-	delay(200);
-	return;
+	int cs = -1;
+	
+	OrientationCoordinates position = positionCalculator.getCurrentPosition();
+	String str0 = "x: ";
+	str0 += (int)position.getX();
+
+	String str1 = "y: ";
+	str1 += (int)position.getY();
+
+	String str2 = "a: ";
+	str2 += (int)position.getAngle();
+	str2 += ".";
+	str2 += (int)(position.getAngle() * 100)%100;
+  
+	double suplV = voltageDivider.calculateSuplyPotential();
+	String str3 = "u: ";
+	str3 += (int)(suplV*1000);
+
+	String str4 = "m: ";
+	str4 += freeSRam();
+	
+	int i = 0;
+	int y;
+	int x = 20;
+	y = 15*++i;
+	graphic.Box(x,y,x+8*7,y+7,0B0000);
+	graphic.Print(str0,x,y,0B0000);
+	y = 15*++i;
+	graphic.Box(x,y,x+8*7,y+7,0B0000);
+	graphic.Print(str1,x,y,0B0000);
+	y = 15*++i;
+	graphic.Box(x,y,x+8*7,y+7,0B0000);
+	graphic.Print(str2,x,y,0B0000);
+	y = 15*++i;
+	graphic.Box(x,y,x+8*7,y+7,0B0000);
+	graphic.Print(str3,x,y,0B0000);
+	y = 15*++i;
+	graphic.Box(x,y,x+8*7,y+7,0B0000);
+	graphic.Print(str4,x,y,0B0000);
+}
+void updateDisplay0(){
+	//Serial.println(positionCalculator.getCurrentPosition().getX());
+	//delay(200);
+	//return;
 	Serial.println("0");
 	String str[8];
 	int cs = -1;
@@ -53,6 +95,7 @@ void updateDisplay(){
 	OrientationCoordinates position = positionCalculator.getCurrentPosition();
 	str[++cs] = "x: ";
 	str[cs] += (int)position.getX();
+	Serial.println("1.5");
 
 	str[++cs] = "y: ";
 	str[cs] += (int)position.getY();
@@ -132,13 +175,14 @@ void setup(){
 	Serial.print("Free SRam: ");
 	Serial.println(freeSRam());
 	
-	driveTest();
+	//driveTest();
 	
 	//pathMemoryTest();
 	//itorTest();
 	//pathTest();
 
-	//pathPlanerTest();
+	//while(1);
+	pathPlanerTest();
 }
 
 void loop(){
@@ -147,15 +191,12 @@ void loop(){
 }
 
 void pathPlanerTest(){
-	Serial.println("*");
 	const int n = 2;
 	OrientationCoordinates pos[n];
-	pos[0] = OrientationCoordinates(1000,0,PI);
-	pos[1] = OrientationCoordinates(0,0,0);
+	pos[0] = OrientationCoordinates(1000,0,2*PI);
+	pos[1] = OrientationCoordinates(0,0,PI);
 	
-	Serial.println("*");
 	for(int i = 0; i < n; i++){
-	Serial.println("*");
 		pathPlaner.moveTo(pos[i]);
 		do{
 			car->update();
