@@ -112,6 +112,15 @@ public class AtoBFrame extends JFrame{
     public static void drawCircle(Graphics g,Vector v,double r){
         g.drawOval((int)(v.x-r), (int)(v.y-r), (int)(r*2), (int)(r*2));
     }
+    public static void drawAngle(Graphics g,Vector pt0,double radius,double startAngle, double relAngle,boolean dir){
+        startAngle += Math.PI;
+        double direction = (dir ? 1 : -1);
+        double dist = radius*direction;
+        Vector pt1 = new Vector().setToUnitVectorByAngle(startAngle).multiply(dist).add(pt0);
+        g.drawLine((int)pt0.x, (int)pt0.y, (int)pt1.x, (int)pt1.y);
+        pt1 = new Vector().setToUnitVectorByAngle(startAngle + relAngle * direction * -1).multiply(dist).add(pt0);
+        g.drawLine((int)pt0.x, (int)pt0.y, (int)pt1.x, (int)pt1.y);
+    }
     
     static final double circle = 2*Math.PI;
     public static double circleToDegree(double angle){
@@ -119,15 +128,17 @@ public class AtoBFrame extends JFrame{
     }
     
     public OrientedCoordinates p[] = new OrientedCoordinates[]{
-            //new OrientedCoordinates(100,200,0),
-            //new OrientedCoordinates(100,100,Math.PI),
-            new OrientedCoordinates(100,250,0),
-            new OrientedCoordinates(400,250,0),
+            new OrientedCoordinates(0,0,0),
+            new OrientedCoordinates(100,100,0),
+            //new OrientedCoordinates(100,250,0),
+            //new OrientedCoordinates(400,250,0),
         };
     final double r = 50;
     
     @Override
     public void paint( Graphics gInp ){
+        OrientedCoordinates startPoint = p[0];
+        OrientedCoordinates endPoint = new OrientedCoordinates(p[1].x,p[1].y,p[1].angle);
         Graphics2D g = ((Graphics2D)gInp);
         //AffineTransform at = new AffineTransform();
         //at.scale(1, -1);
@@ -141,15 +152,16 @@ public class AtoBFrame extends JFrame{
         //!Circle Centers
         Vector[] cc = new Vector[4]; //!Circle Centers
         for(int i = 0; i < 4; i++){
-            int iC = i / 2; //!Circle/Line Nr
+            int iC = i / 2; //!Line Nr
             int iS = i % 2; //!Side Nr
-            double iAngle = p[iC].angle + Math.PI * (2 - iS);
+            OrientedCoordinates pos = iC == 0 ? startPoint : endPoint;
+            double iAngle = pos.angle + Math.PI * (2 - iS);
             cc[i] = new Vector().setToUnitVectorByAngle(iAngle).multiply(r).add(p[iC]);
         }
         //!Circle Tangent
         Vector vhelp = new Vector(0, 0);
         for(int id0 = 0; id0 < 2; id0++){
-            int i0C = 0; //!Circle/Line Nr
+            int i0C = 0; //!Line Nr
             int i1C = 1; 
             int i0S = id0 % 2; //!Side Nr
             for(int i1S = 0; i1S < 2; i1S++){ 
@@ -167,11 +179,12 @@ public class AtoBFrame extends JFrame{
                 //!Angle
                 //!
                 //!Calculate the start end end angle
-                double angleStart = Math.PI * 4 + (mainAngle - p[i0C].angle) * (i0S == 0 ? -1 : 1);
+                double angleStart = Math.PI * 4 + (mainAngle - startPoint.angle) * (i0S == 0 ? -1 : 1);
                 //!The path of the second circle will be driven in the other direction.
-                double angleEnd = Math.PI * 6 + (mainAngle - p[i1C].angle) * (i1S == 0 ? 1 : -1);
+                double angleEnd = Math.PI * 4 + (mainAngle - endPoint.angle) * (i1S == 0 ? 1 : -1);
                 //!The initialication distance is the distance between both circles, which is preaty fine for i0S == i1S.
                 double distance = v.getLength();
+                g.setColor(Color.blue);
                 //!
                 //!If the two circles have to be connected with tangents which are paralell i0S == i1S.
                 //!
@@ -191,7 +204,7 @@ public class AtoBFrame extends JFrame{
                     //!Distance which have to be driven
                     //!With the Pythagorean theorem the distance can be calculated with the distance from the circle center to the midpoint and the radius.
                     //!
-                    distance = Math.sqrt(distance * distance/* /4 */ + r*r) * 2;
+                    distance = Math.sqrt(distance * distance/* /4 */ - r*r) * 2;
                     //!
                     //!Tangent boundary point
                     //!
@@ -207,8 +220,9 @@ public class AtoBFrame extends JFrame{
                     drawPoint(g, v);
                     drawLine(g, v, p2);
                     
-                    
-                    distance = p2.substract(v).getLength();
+                    if(Math.round(p2.substract(v).getLength()) !=  Math.round(distance))
+                        System.out.println("====================== Error ======================");
+                    //distance = p2.substract(v).getLength();
                 }else{
                     //!Create normal vector and set the length to the radius
                     v.makeNormal(i0S == 0).makeUnit().multiply(r).add(cc[id0]);
@@ -229,6 +243,12 @@ public class AtoBFrame extends JFrame{
                 //!
                 double fullDistance = distance + r * (angleEnd+angleStart);
                 
+                
+                if(!Double.isNaN(distance)){
+                    g.setColor(Color.GREEN);
+                    drawAngle(gInp, cc[id0], r, startPoint.angle, angleStart, i0S == 0);
+                    drawAngle(gInp, cc[id1], r, endPoint.angle, -angleEnd, i1S == 0);
+                }
                 
                 //!Only for Output
                 if(i0S == 0)
