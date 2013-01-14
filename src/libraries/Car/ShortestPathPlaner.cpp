@@ -69,8 +69,6 @@ Path* ShortestPathPlaner::calculatePath(const OrientationCoordinates& startPosit
             //!
             if(i0S != i1S){
                 distance /= 2;//!Distance from circle to the midpoint of both circles
-				Serial.println(r);
-				Serial.println(distance);
 				//
 				//! If the distance between the two circle center is at least only 2mm to small the car is allowed to cheat. 
 				//
@@ -128,6 +126,7 @@ Path* ShortestPathPlaner::calculatePath(const OrientationCoordinates& startPosit
 			}
         }
     }
+	/*
 	Serial.println();
 	Serial.print(minAngleStart*(minFirstLeft ? 1 : -1));
 	Serial.print("  ");
@@ -139,7 +138,8 @@ Path* ShortestPathPlaner::calculatePath(const OrientationCoordinates& startPosit
 	Serial.print("  ");
 	Serial.println();
 	Serial.println();
-	
+	*/
+
 	Path*p = new Path();
 	
 	TurnMovement*tmStart = new TurnMovement();
@@ -149,7 +149,7 @@ Path* ShortestPathPlaner::calculatePath(const OrientationCoordinates& startPosit
 	p->addMovement(new StraightMovement(minDistance));
 
 	TurnMovement*tmEnd = new TurnMovement();
-	tmEnd->setAngleRadius(minAngleStart,r*(minSecondLeft ? 1 : -1));
+	tmEnd->setAngleRadius(minAngleEnd,r*(minSecondLeft ? 1 : -1));
 	p->addMovement(tmEnd);
 	return p;
 }

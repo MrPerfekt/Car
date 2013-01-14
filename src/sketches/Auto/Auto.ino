@@ -182,32 +182,30 @@ void setup(){
 	//itorTest();
 	//pathTest();
 	
-	//OrientationCoordinates pos0 = OrientationCoordinates(0,0,0);
-	//OrientationCoordinates pos1 = OrientationCoordinates(1000,1000,0);
-	//pathPlaner.calculatePath(pos0,pos1);
-	//while(1);
+	//OrientationCoordinates pos0 = OrientationCoordinates(15,1331,6.28);
+	//OrientationCoordinates pos1 = OrientationCoordinates(0,0,PI);
+	//Path* p = pathPlaner.calculatePath(pos0,pos1);
 	pathPlanerTest();
 }
 
 void loop(){
-	delay(100);
+	car->update();
 	updateDisplay();
 }
 
 void pathPlanerTest(){
-	const int n = 2;
+	const int n = 4;
 	OrientationCoordinates pos[n];
 	pos[0] = OrientationCoordinates(0,1200,0);
 	pos[1] = OrientationCoordinates(0,0,PI);
-	//pos[1] = OrientationCoordinates(0,1200,PI);
-	//pos[1] = OrientationCoordinates(0,0,0);
+	pos[2] = OrientationCoordinates(0,1200,PI);
+	pos[3] = OrientationCoordinates(0,0,0);
 	
 	for(int i = 0; i < n; i++){
 		pathPlaner.moveTo(pos[i]);
 		do{
 			car->update();
-			if(i == 0)
-				updateDisplay();
+			updateDisplay();
 		}while(!steeringManager.hasFinished());
 	}
 	steeringManager.stop();
