@@ -174,13 +174,17 @@ void setup(){
 
 	Serial.print("Free SRam: ");
 	Serial.println(freeSRam());
-	
+
+
 	//driveTest();
 	
 	//pathMemoryTest();
 	//itorTest();
 	//pathTest();
-
+	
+	//OrientationCoordinates pos0 = OrientationCoordinates(0,0,0);
+	//OrientationCoordinates pos1 = OrientationCoordinates(1000,1000,0);
+	//pathPlaner.calculatePath(pos0,pos1);
 	//while(1);
 	pathPlanerTest();
 }
@@ -193,16 +197,20 @@ void loop(){
 void pathPlanerTest(){
 	const int n = 2;
 	OrientationCoordinates pos[n];
-	pos[0] = OrientationCoordinates(1000,0,2*PI);
+	pos[0] = OrientationCoordinates(0,1200,0);
 	pos[1] = OrientationCoordinates(0,0,PI);
+	//pos[1] = OrientationCoordinates(0,1200,PI);
+	//pos[1] = OrientationCoordinates(0,0,0);
 	
 	for(int i = 0; i < n; i++){
 		pathPlaner.moveTo(pos[i]);
 		do{
 			car->update();
-			updateDisplay();
+			if(i == 0)
+				updateDisplay();
 		}while(!steeringManager.hasFinished());
 	}
+	steeringManager.stop();
 }
 
 void itorTest(){

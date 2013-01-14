@@ -30,7 +30,7 @@ void PathExecutor::update(){
 
 		}else{
 			setPath(NULL);
-			steeringManager.stop();//!TODO: Notify car main logic instead
+			//!TODO: Notify car main logic
 		}	
 	}
 }

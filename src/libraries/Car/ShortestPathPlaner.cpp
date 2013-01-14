@@ -15,6 +15,8 @@ ShortestPathPlaner::ShortestPathPlaner(PositionCalculator &positionCalculator, P
 }
 
 Path* ShortestPathPlaner::calculatePath(const OrientationCoordinates& startPosition, const OrientationCoordinates& endPosition){
+	//OrientationCoordinates endPosition = endPositionInp;
+	//endPosition.setAngle(endPosition.getAngle() + PI);
 	double minAngleStart = 0, 
 		minAngleEnd = 0, 
 		minDistance = 0, 
@@ -25,11 +27,11 @@ Path* ShortestPathPlaner::calculatePath(const OrientationCoordinates& startPosit
     //!Circle Centers
     Vector cc[4];
     for(int i = 0; i < 4; i++){
-        int iC = i / 2; //!Circle/Line Nr
+        int iC = i / 2; //!Line Nr
         int iS = i % 2; //!Side Nr
 		const OrientationCoordinates &pos = (iC == 0) ? startPosition : endPosition;
 
-		double iAngle = pos.getAngle() + 2*PI / 4 * (1 - iS * 2);
+		double iAngle = pos.getAngle() + PI*(2 - iS);
         cc[i].setToUnitVectorByAngle(iAngle);
 		cc[i] *= r;
 		cc[i] += pos;
@@ -40,28 +42,26 @@ Path* ShortestPathPlaner::calculatePath(const OrientationCoordinates& startPosit
         int i0S = id0 % 2; //!Side Nr
         for(int i1S = 0; i1S < 2; i1S++){ 
             int id1 = 2 + i1S; //! = id0+2
-
+			
             Vector v = cc[id1].clone();//!Distance of both circles
-			v -= cc[id0];              //!
+			v -= cc[id0];
             //!
             //!Main Gradient
             //!
             //!Vector v contains the vektor circle0 to circle1
 			//!MainAngle contains the angle between circle 0 and its horizontal line and circle1.
-			vhelp.set(1,0);
+			vhelp.set(0,1);
             double mainAngle = v.angleBetween(vhelp); 
-	Serial.print(mainAngle);
-	Serial.print("  ");
-			if(cc[id1].getY() < cc[id0].getY())
+			if(cc[id0].getX() < cc[id1].getX())
                 mainAngle = 2*PI - mainAngle;
-
+			
             //!
             //!Angle
             //!
             //!Calculate the start end end angle
-			double angleStart = PI * 3 + (mainAngle - startPosition.getAngle()) * (i0S == 0 ? -1 : 1);
+			double angleStart = PI * 4 + (mainAngle - startPosition.getAngle()) * (i0S == 0 ? -1 : 1);
             //!The path of the second circle will be driven in the other direction.
-			double angleEnd = PI * 5 + (mainAngle - endPosition.getAngle()) * (i1S == 0 ? 1 : -1);
+			double angleEnd = PI * 4 + (mainAngle - endPosition.getAngle()) * (i1S == 0 ? 1 : -1);
             //!The initialication distance is the distance between both circles, which is preaty fine for i0S == i1S.
             double distance = v.getLength();
             //!
@@ -69,22 +69,31 @@ Path* ShortestPathPlaner::calculatePath(const OrientationCoordinates& startPosit
             //!
             if(i0S != i1S){
                 distance /= 2;//!Distance from circle to the midpoint of both circles
+				Serial.println(r);
+				Serial.println(distance);
+				//
+				//! If the distance between the two circle center is at least only 2mm to small the car is allowed to cheat. 
+				//
+				if(distance < r && distance >= r - 1) r = distance;
                 //!
                 //!Pitch Angle
                 //!
                 //!PitchAngle contains the Angle which is required to create a tangent to a poit at the horizontal line with the halfe distance of both circles.
-                double pitchAngle = acos(r/(distance/* /2 */));
-                //!Add the difference of the angle to the final angle
-				angleStart += PI/2-pitchAngle;
+            	double akDhyp = r/(distance/* /2 */);
+				double pitchAngle = acos(akDhyp);
+			    //!Add the difference of the angle to the final angle
+            	angleStart += PI/2-pitchAngle;
                 angleEnd += PI/2-pitchAngle;
-                //!
+			    //!
                 //!Distance which have to be driven
                 //!With the Pythagorean theorem the distance can be calculated with the distance from the circle center to the midpoint and the radius.
                 //!
-                distance = sqrt(distance * distance/* /4 */ + r*r) * 2;
+                distance = sqrt(distance * distance/* /4 */ - r*r) * 2;
             }
 			angleStart = fmod(angleStart,PI * 2);
 			angleEnd = fmod(angleEnd,PI * 2);
+			if(angleStart > 6.28) angleStart = 0;
+			if(angleEnd > 6.28) angleEnd = 0;
                 
             //!
             //!FullDistance is the distance which have to be driven by the car.
@@ -95,19 +104,21 @@ Path* ShortestPathPlaner::calculatePath(const OrientationCoordinates& startPosit
             //!
             double fullDistance = distance + r * (angleEnd+angleStart);
 			
-	Serial.print(mainAngle);
-	Serial.print("  ");
-	Serial.print(angleStart);
-	Serial.print("  ");
-	Serial.print(angleEnd);
-	Serial.print("  ");
-	Serial.print(distance);
-	Serial.print("  ");
-	Serial.print(fullDistance);
-	Serial.print("  ");
-	Serial.println();
+		
+			//if(isnan(fullDistance));//! This path is not valid!!
+			/*
+			Serial.print(angleStart);
+			Serial.print("  ");
+			Serial.print(angleEnd);
+			Serial.print("  ");
+			Serial.print(distance);
+			Serial.print("  ");
+			Serial.print(fullDistance);
+			Serial.print("  ");
+			Serial.println("");
+			*/
 
-			if(fullDistance < minFullDistance){
+			if(minFullDistance > fullDistance){
                 minFirstLeft = i0S == 0;
 				minSecondLeft = i1S == 0;
 				minAngleStart = angleStart;
@@ -118,9 +129,9 @@ Path* ShortestPathPlaner::calculatePath(const OrientationCoordinates& startPosit
         }
     }
 	Serial.println();
-	Serial.print(minAngleStart);
+	Serial.print(minAngleStart*(minFirstLeft ? 1 : -1));
 	Serial.print("  ");
-	Serial.print(minAngleEnd);
+	Serial.print(minAngleEnd*(minSecondLeft ? 1 : -1));
 	Serial.print("  ");
 	Serial.print(minDistance);
 	Serial.print("  ");
@@ -128,6 +139,7 @@ Path* ShortestPathPlaner::calculatePath(const OrientationCoordinates& startPosit
 	Serial.print("  ");
 	Serial.println();
 	Serial.println();
+	
 	Path*p = new Path();
 	
 	TurnMovement*tmStart = new TurnMovement();
