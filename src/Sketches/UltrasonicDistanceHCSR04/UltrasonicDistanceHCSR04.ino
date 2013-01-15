@@ -29,7 +29,6 @@ void loop()
   digitalWrite(TRIGPIN, LOW);
   // Compute distance
   float distance = pulseIn(ECHOPIN, HIGH);
-  Serial.print(distance);
   Serial.print("  ");
   distance= distance/58;
   Serial.println(distance);
