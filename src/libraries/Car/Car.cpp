@@ -6,6 +6,16 @@ Copyright 2012 Andreas Gruber
 #include "MotionLogger.h"
 #include "PathExecutor.h"
 #include "ShortestPathPlaner.h"
+#include "PathPlaner.h"
+#include "DisplayProxy.h"
+#include "MotorTB6612FNG.h"
+#include "ServoProxy.h"
+#include "WheelSensors.h"
+#include "VoltageDivider.h"
+#include "MouseSensorPan101BSI.h"
+#include "SteeringManager.h"
+#include "MovementSensor.h"
+#include "PositionCalculator.h"
 
 Motor& Car::getMotorPowerEngine(){
 	return *motorPowerEngine;
@@ -40,6 +50,9 @@ PathExecutor& Car::getPathExecutor(){
 PathPlaner& Car::getPathPlaner(){
 	return *pathPlaner;
 }
+RemoteServer& Car::getRemoteServer(){
+	return *remoteServer;
+}
 	
 Car::Car(){	
 	//displayProxy = new DisplayProxy();
@@ -51,7 +64,6 @@ Car::Car(){
 #else
 	movementSensor = mouseSensor;
 #endif
-
 	motorPowerEngine = new Motor();
 	servoProxy = new ServoProxy();
 	positionCalculator = new MovementPositionCalculator(*movementSensor);
@@ -61,6 +73,8 @@ Car::Car(){
 	motionLogger = new MotionLogger(*positionCalculator);
 	pathExecutor = new PathExecutor(*steeringManager);
 	pathPlaner = new ShortestPathPlaner(*positionCalculator,*pathExecutor);
+
+	remoteServer = new RemoteServer(*this);
 }
 
 void Car::update(){

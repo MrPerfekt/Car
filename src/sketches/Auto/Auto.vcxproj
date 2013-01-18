@@ -41,8 +41,8 @@
     <ClCompile>
       <WarningLevel>Level3</WarningLevel>
       <Optimization>Disabled</Optimization>
-      <AdditionalIncludeDirectories>C:\Programme\arduino-1.0.1\hardware\arduino\cores\arduino;C:\Programme\arduino-1.0.1\hardware\arduino\variants\mega;C:\Dokumente und Einstellungen\Andreas Gruber\Desktop\Car\src\libraries\gLCD;C:\Dokumente und Einstellungen\Andreas Gruber\Desktop\Car\src\libraries\gLCD\utility;C:\Programme\arduino-1.0.1\libraries\Servo;C:\Programme\arduino-1.0.1\libraries\Servo\utility;C:\Dokumente und Einstellungen\Andreas Gruber\Desktop\Car\src\libraries\Car;C:\Dokumente und Einstellungen\Andreas Gruber\Desktop\Car\src\libraries\Car\utility;c:\programme\arduino-1.0.1\hardware\tools\avr\avr\include\;c:\programme\arduino-1.0.1\hardware\tools\avr\avr\include\avr\;c:\programme\arduino-1.0.1\hardware\tools\avr\avr\;c:\programme\arduino-1.0.1\hardware\tools\avr\lib\gcc\avr\4.3.2\include\;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
-      <ForcedIncludeFiles>C:\Dokumente und Einstellungen\Andreas Gruber\Desktop\Car\src\Sketches\Auto\Visual Micro\.Auto.vsarduino.h;%(ForcedIncludeFiles)</ForcedIncludeFiles>
+      <AdditionalIncludeDirectories>C:\Program Files (x86)\arduino-1.0.1\hardware\arduino\cores\arduino;C:\Program Files (x86)\arduino-1.0.1\hardware\arduino\variants\mega;C:\Users\Andreas\Desktop\Car\src\libraries\Car;C:\Users\Andreas\Desktop\Car\src\libraries\Car\utility;C:\Users\Andreas\Desktop\Car\src\libraries\gLCD;C:\Users\Andreas\Desktop\Car\src\libraries\gLCD\utility;C:\Program Files (x86)\arduino-1.0.1\libraries\Servo;C:\Program Files (x86)\arduino-1.0.1\libraries\Servo\utility;c:\program files (x86)\arduino-1.0.1\hardware\tools\avr\avr\include\;c:\program files (x86)\arduino-1.0.1\hardware\tools\avr\avr\include\avr\;c:\program files (x86)\arduino-1.0.1\hardware\tools\avr\avr\;c:\program files (x86)\arduino-1.0.1\hardware\tools\avr\lib\gcc\avr\4.3.2\include\;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <ForcedIncludeFiles>C:\Users\Andreas\Desktop\Car\src\sketches\Auto\Visual Micro\.Auto.vsarduino.h;%(ForcedIncludeFiles)</ForcedIncludeFiles>
       <IgnoreStandardIncludePath>true</IgnoreStandardIncludePath>
       <PreprocessorDefinitions>ARDUINO=101;__AVR_ATmega2560__;F_CPU=16000000L;__AVR__;__cplusplus;%(PreprocessorDefinitions)</PreprocessorDefinitions>
     </ClCompile>
@@ -71,6 +71,7 @@
     <None Include="ClassDiagram.cd" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="..\..\libraries\Car\BluetoothModul.cpp" />
     <ClCompile Include="..\..\libraries\Car\BumperSensor.cpp" />
     <ClCompile Include="..\..\libraries\Car\Car.cpp" />
     <ClCompile Include="..\..\libraries\Car\Config.cpp" />
@@ -96,6 +97,7 @@
     <ClCompile Include="..\..\libraries\Car\PositionCalculator.cpp" />
     <ClCompile Include="..\..\libraries\Car\Regression.cpp" />
     <ClCompile Include="..\..\libraries\Car\RegularSteeringManager.cpp" />
+    <ClCompile Include="..\..\libraries\Car\RemoteServer.cpp" />
     <ClCompile Include="..\..\libraries\Car\Sensor.cpp" />
     <ClCompile Include="..\..\libraries\Car\ServoProxy.cpp" />
     <ClCompile Include="..\..\libraries\Car\ShortestPathPlaner.cpp" />
@@ -108,6 +110,7 @@
     <ClCompile Include="..\..\libraries\Car\WheelSensors.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="..\..\libraries\Car\BluetoothModul.h" />
     <ClInclude Include="..\..\libraries\Car\BumperSensor.h" />
     <ClInclude Include="..\..\libraries\Car\Car.h" />
     <ClInclude Include="..\..\libraries\Car\Config.h" />
@@ -133,6 +136,7 @@
     <ClInclude Include="..\..\libraries\Car\PositionCalculator.h" />
     <ClInclude Include="..\..\libraries\Car\Regression.h" />
     <ClInclude Include="..\..\libraries\Car\RegularSteeringManager.h" />
+    <ClInclude Include="..\..\libraries\Car\RemoteServer.h" />
     <ClInclude Include="..\..\libraries\Car\Sensor.h" />
     <ClInclude Include="..\..\libraries\Car\ServoProxy.h" />
     <ClInclude Include="..\..\libraries\Car\ShortestPathPlaner.h" />

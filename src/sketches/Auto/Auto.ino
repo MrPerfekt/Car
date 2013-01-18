@@ -5,14 +5,18 @@ Copyright 2012 Andreas Gruber
 //constants
 const byte dummy = 0;
 
+#include "Car.h"
 #include "gLCD.h"
 #include "Servo.h"
-#include "Car.h"
-#include "StraightMovement.h"
-#include "PathExecutor.h"
-#include "Path.h"
-#include "PathPlaner.h"
+#include "ServoProxy.h"
 #include "OrientationCoordinates.h"
+#include "Path.h"
+#include "PathExecutor.h"
+#include "PathPlaner.h"
+#include "RemoteServer.h"
+#include "StraightMovement.h"
+#include "TurnMovement.h"
+#include "VoltageDivider.h"
 
 Car*car = new Car();
 ServoProxy servop = car->getServoProxy();
@@ -23,6 +27,7 @@ PositionCalculator& positionCalculator = car->getPositionCalculator();
 SteeringManager& steeringManager = car->getSteeringManager();
 PathExecutor& pathExecutor = car->getPathExecutor();
 PathPlaner& pathPlaner = car->getPathPlaner();
+RemoteServer& remoteServer = car->getRemoteServer();
 
 //========== DISPLAY ==========
 
@@ -186,12 +191,12 @@ void setup(){
 	//OrientationCoordinates pos1 = OrientationCoordinates(1000,1000,0);
 	//pathPlaner.calculatePath(pos0,pos1);
 	//while(1);
-	pathPlanerTest();
+	//pathPlanerTest();
+	remoteServer.start();
 }
 
 void loop(){
-	delay(100);
-	updateDisplay();
+	remoteServer.update();
 }
 
 void pathPlanerTest(){

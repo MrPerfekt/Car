@@ -6,48 +6,50 @@ Copyright 2012 Andreas Gruber
 #define CAR
 
 #include "DefineLib.h"
-#include "Coordinates.h"
-#include "MouseSensorPan101BSI.h"
-#include "ServoProxy.h"
-#include "WheelSensors.h"
-#include "VoltageDivider.h"
-#include "MotorTB6612FNG.h"
-#include "PositionCalculator.h"
-#include "MovementPositionCalculator.h"
-#include "RegularSteeringManager.h"
-#include "SteeringManager.h"
-#include "DisplayProxy.h"
 
 class MotionLogger;
 class PathExecutor;
 class PathPlaner;
+class DisplayProxy;
+class Motor;
+class ServoProxy;
+class WheelSensor;
+class VoltageDivider;
+class MouseSensorPan101;
+class SteeringManager;
+class PositionCalculator;
+class MovementSensor;
+class RemoteServer;
 
 class Car {
 private:	
 	DisplayProxy* displayProxy;
+	MotionLogger* motionLogger;
 	Motor* motorPowerEngine;
-	ServoProxy* servoProxy;
-	SteeringManager* steeringManager;
-	PositionCalculator* positionCalculator;
-	WheelSensor* wheelSensor;
-	VoltageDivider* powerSupplyVoltageDivider;
 	MouseSensorPan101* mouseSensor;
 	MovementSensor* movementSensor;
-	MotionLogger* motionLogger;
 	PathExecutor* pathExecutor;
 	PathPlaner* pathPlaner;
+	PositionCalculator* positionCalculator;
+	RemoteServer* remoteServer;
+	ServoProxy* servoProxy;
+	SteeringManager* steeringManager;
+	VoltageDivider* powerSupplyVoltageDivider;
+	WheelSensor* wheelSensor;
 public: 
+	DisplayProxy& getDisplayProxy();
+	MotionLogger& getMotionLogger();
 	Motor& getMotorPowerEngine();
-	ServoProxy& getServoProxy();
-	SteeringManager& getSteeringManager();
-	PositionCalculator& getPositionCalculator();
-	WheelSensor& getWheelSensor();
-	VoltageDivider& getPowerSupplyVoltageDivider();
 	MouseSensorPan101& getMouseSensor();
 	MovementSensor& getMovementSensor();
-	MotionLogger& getMotionLogger();
 	PathExecutor& getPathExecutor();
 	PathPlaner& getPathPlaner();
+	PositionCalculator& getPositionCalculator();
+	RemoteServer& getRemoteServer();
+	ServoProxy& getServoProxy();
+	SteeringManager& getSteeringManager();
+	VoltageDivider& getPowerSupplyVoltageDivider();
+	WheelSensor& getWheelSensor();
 
 	Car();
 
