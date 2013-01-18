@@ -309,7 +309,7 @@ This section contains explanations to different electronic components and circui
 \subsection{Operational Amplifier}\label{sec:operationalAmplifier}
 
 
-\subsectionAmplifier}\label{sec:Amplifier}
+\subsection{Amplifier}\label{sec:Amplifier}
 Some possibilities to amplify are:
 \begin{itemize}
 \item Transistors
@@ -339,10 +339,9 @@ For an illustration see figure~\ref{fig:schmittTrigger}.
 		%Draw axles
 		\draw[->,thick] (0,0) -- (5,0) node[right] {$x$};
 		\draw[->,thick] (0,0) -- (0,1.5) node[above] {$y$};
-		%Draw Sin (Bearbeitungswert)
-		%\fill[fill=red] (pi/4,0) -- plot [domain=pi/4:3*pi/4] (\x,{sin(\x r)}) -- (3*pi/4,0) -- cycle;
+		\draw (0,0)[color=green,line width=1.5pt] plot [const plot] coordinates{(0,0) (0+\pos,0) (0+\pos,1) (1+\pos,1) (1+\pos,0) (2+\pos,0) (2+\pos,1) (3+\pos,1) (3+\pos,0) (4+\pos,0) (4+\pos,1) (4.5,1)};
+		%Draw Sin
 		\draw (0,0)[color=blue] plot[domain=0:4.5,samples=200] (\x ,{ sin(\x*pi*115 / 2) / 2+0.5 });
-		\draw (0,0)[color=green] plot [const plot] coordinates{(0,0) (0+\pos,0) (0+\pos,1) (1+\pos,1) (1+\pos,0) (2+\pos,0) (2+\pos,1) (3+\pos,1) (3+\pos,0) (4+\pos,0) (4+\pos,1)};
 		\draw(0,0)[-,thick,color=red] (0,{sin(\pos*pi*115 / 2) / 2+0.5}) --+(4.5,0);
 		\draw(0,0)[-,thick,color=red] (0,{-sin(\pos*pi*115 / 2) / 2+0.5}) --+(4.5,0);
 		%\draw[gray,->] (-0.3,0) -- (pi+0.3,0);

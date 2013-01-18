@@ -128,10 +128,8 @@ public class AtoBFrame extends JFrame{
     }
     
     public OrientedCoordinates p[] = new OrientedCoordinates[]{
-            new OrientedCoordinates(0,0,0),
-            new OrientedCoordinates(100,100,0),
-            //new OrientedCoordinates(100,250,0),
-            //new OrientedCoordinates(400,250,0),
+            new OrientedCoordinates(100,250,0),
+            new OrientedCoordinates(400,250,0),
         };
     final double r = 50;
     
