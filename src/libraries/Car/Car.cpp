@@ -3,34 +3,36 @@ Copyright 2012 Andreas Gruber
 */
 
 #include "Car.h"
-#include "MotionLogger.h"
-#include "PathExecutor.h"
-#include "ShortestPathPlaner.h"
-#include "PathPlaner.h"
+//#include "Config.h"
 #include "DisplayProxy.h"
+#include "DisplayServer.h"
+#include "MotionLogger.h"
 #include "MotorTB6612FNG.h"
-#include "ServoProxy.h"
-#include "WheelSensors.h"
-#include "VoltageDivider.h"
 #include "MouseSensorPan101BSI.h"
-#include "SteeringManager.h"
 #include "MovementSensor.h"
+#include "MovementPositionCalculator.h"
+#include "PathExecutor.h"
+#include "PathPlaner.h"
 #include "PositionCalculator.h"
+#include "RegularSteeringManager.h"
+#include "RemoteServer.h"
+#include "ServoProxy.h"
+#include "ShortestPathPlaner.h"
+#include "SteeringManager.h"
+#include "VoltageDivider.h"
+#include "WheelSensors.h"
 
+DisplayProxy& Car::getDisplayProxy(){
+	return *displayProxy;
+}
+DisplayServer& Car::getDisplayServer(){
+	return *displayServer;
+}
 Motor& Car::getMotorPowerEngine(){
 	return *motorPowerEngine;
 }
-ServoProxy& Car::getServoProxy(){
-	return *servoProxy;
-}
-SteeringManager& Car::getSteeringManager(){
-	return *steeringManager;
-}
-PositionCalculator& Car::getPositionCalculator(){
-	return *positionCalculator;
-}
-WheelSensor& Car::getWheelSensor(){	
-	return *wheelSensor;
+MotionLogger& Car::getMotionLogger(){
+	return *motionLogger;
 }
 MouseSensorPan101& Car::getMouseSensor(){
 	return *mouseSensor;
@@ -38,20 +40,29 @@ MouseSensorPan101& Car::getMouseSensor(){
 MovementSensor& Car::getMovementSensor(){
 	return *movementSensor;
 }
-VoltageDivider& Car::getPowerSupplyVoltageDivider(){
-	return *powerSupplyVoltageDivider;
-}
-MotionLogger& Car::getMotionLogger(){
-	return *motionLogger;
-}
 PathExecutor& Car::getPathExecutor(){
 	return *pathExecutor;
 }
 PathPlaner& Car::getPathPlaner(){
 	return *pathPlaner;
 }
+PositionCalculator& Car::getPositionCalculator(){
+	return *positionCalculator;
+}
 RemoteServer& Car::getRemoteServer(){
 	return *remoteServer;
+}
+ServoProxy& Car::getServoProxy(){
+	return *servoProxy;
+}
+SteeringManager& Car::getSteeringManager(){
+	return *steeringManager;
+}
+VoltageDivider& Car::getPowerSupplyVoltageDivider(){
+	return *powerSupplyVoltageDivider;
+}
+WheelSensor& Car::getWheelSensor(){	
+	return *wheelSensor;
 }
 	
 Car::Car(){	

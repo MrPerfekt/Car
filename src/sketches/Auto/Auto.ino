@@ -6,6 +6,7 @@ Copyright 2012 Andreas Gruber
 const byte dummy = 0;
 
 #include "Car.h"
+#include "DisplayServer.h"
 #include "gLCD.h"
 #include "Servo.h"
 #include "ServoProxy.h"
@@ -29,6 +30,7 @@ PathExecutor& pathExecutor = car->getPathExecutor();
 PathPlaner& pathPlaner = car->getPathPlaner();
 RemoteServer& remoteServer = car->getRemoteServer();
 
+
 //========== DISPLAY ==========
 
 const char RST = 8;
@@ -47,93 +49,7 @@ void setupDisplay(){
 	graphic.Box(10,10,109,109,0B0100);
 }
 
-void updateDisplay(){
-	int cs = -1;
-	
-	OrientationCoordinates position = positionCalculator.getCurrentPosition();
-	String str0 = "x: ";
-	str0 += (int)position.getX();
 
-	String str1 = "y: ";
-	str1 += (int)position.getY();
-
-	String str2 = "a: ";
-	str2 += (int)position.getAngle();
-	str2 += ".";
-	str2 += (int)(position.getAngle() * 100)%100;
-  
-	double suplV = voltageDivider.calculateSuplyPotential();
-	String str3 = "u: ";
-	str3 += (int)(suplV*1000);
-
-	String str4 = "m: ";
-	str4 += freeSRam();
-	
-	int i = 0;
-	int y;
-	int x = 20;
-	y = 15*++i;
-	graphic.Box(x,y,x+8*7,y+7,0B0000);
-	graphic.Print(str0,x,y,0B0000);
-	y = 15*++i;
-	graphic.Box(x,y,x+8*7,y+7,0B0000);
-	graphic.Print(str1,x,y,0B0000);
-	y = 15*++i;
-	graphic.Box(x,y,x+8*7,y+7,0B0000);
-	graphic.Print(str2,x,y,0B0000);
-	y = 15*++i;
-	graphic.Box(x,y,x+8*7,y+7,0B0000);
-	graphic.Print(str3,x,y,0B0000);
-	y = 15*++i;
-	graphic.Box(x,y,x+8*7,y+7,0B0000);
-	graphic.Print(str4,x,y,0B0000);
-}
-void updateDisplay0(){
-	//Serial.println(positionCalculator.getCurrentPosition().getX());
-	//delay(200);
-	//return;
-	Serial.println("0");
-	String str[8];
-	int cs = -1;
-	
-	Serial.println("1");
-	OrientationCoordinates position = positionCalculator.getCurrentPosition();
-	str[++cs] = "x: ";
-	str[cs] += (int)position.getX();
-	Serial.println("1.5");
-
-	str[++cs] = "y: ";
-	str[cs] += (int)position.getY();
-	Serial.println("2");
-
-	str[++cs] = "a: ";
-	str[cs] += (int)position.getAngle();
-	str[cs] += ".";
-	str[cs] += (int)(position.getAngle() * 100)%100;
-	Serial.println("3");
-  
-	double suplV = voltageDivider.calculateSuplyPotential();
-	str[++cs] = "u: ";
-	str[cs] += (int)(suplV*1000);
-	Serial.println("4");
-
-	str[++cs] = "m: ";
-	str[cs] += freeSRam();
-  
-	Serial.println("6");
-	for(int i = 0; i <= cs; i++){
-		Serial.println("7");
-		int y = 15*(i+1);
-		int x = 20;
-		graphic.Box(x,y,x+8*7,y+7,0B0000);
-		Serial.println(i);
-		Serial.println("*");
-		Serial.println(str[i]);
-		graphic.Print(str[i],x,y,0B0000);
-		Serial.println("*");
-	}
-	Serial.println("9");
-}
 
 
 
@@ -162,37 +78,28 @@ void testToogleDelay(){
 #endif
 
 void setup(){
-	//========== Serial Connection ==========
-	//pinMode(pinTestLed, OUTPUT);
-	//testSet(LOW);
-  
 	noInterrupts();
-  
-	Serial.begin(9600);
 
-	setupDisplay();
-  
 	Servo* servo = new Servo();
 	servo->attach(Config::getPinSteeringServo());
 	servop.setSteeringServo(servo);
+	
+	remoteServer.start();
+
 	interrupts();
+	return;
+  
+	setupDisplay();
+	Serial.begin(9600);
 
-	Serial.print("Free SRam: ");
-	Serial.println(freeSRam());
-
+	//Serial.print("Free SRam: ");
+	//Serial.println(freeSRam());
 
 	//driveTest();
-	
 	//pathMemoryTest();
 	//itorTest();
 	//pathTest();
-	
-	//OrientationCoordinates pos0 = OrientationCoordinates(0,0,0);
-	//OrientationCoordinates pos1 = OrientationCoordinates(1000,1000,0);
-	//pathPlaner.calculatePath(pos0,pos1);
-	//while(1);
 	//pathPlanerTest();
-	remoteServer.start();
 }
 
 void loop(){
@@ -204,15 +111,11 @@ void pathPlanerTest(){
 	OrientationCoordinates pos[n];
 	pos[0] = OrientationCoordinates(0,1200,0);
 	pos[1] = OrientationCoordinates(0,0,PI);
-	//pos[1] = OrientationCoordinates(0,1200,PI);
-	//pos[1] = OrientationCoordinates(0,0,0);
 	
 	for(int i = 0; i < n; i++){
 		pathPlaner.moveTo(pos[i]);
 		do{
 			car->update();
-			if(i == 0)
-				updateDisplay();
 		}while(!steeringManager.hasFinished());
 	}
 	steeringManager.stop();
@@ -279,35 +182,28 @@ void pathTest(){
 	Serial.println("drive");
 	do{
 		car->update();
-		updateDisplay();
 	}while(1);
 	Serial.println("end");
 	delete(p);
 }
 
-void driveTest(){
-	Serial.println("start");
-	updateDisplay();
-	
+void driveTest(){	
 	Serial.println("drive");
 	steeringManager.driveStraight(500);
 	do{
 		car->update();
-		updateDisplay();
 	}while(!steeringManager.hasFinished());
 	Serial.println("turn");
 	
 	steeringManager.driveTurn(500,PI*2);
 	do{
 		car->update();
-		updateDisplay();
 	}while(!steeringManager.hasFinished());
 	Serial.println("turn");
 	
 	steeringManager.driveTurn(-500,PI*2);
 	do{
 		car->update();
-		updateDisplay();
 	}while(!steeringManager.hasFinished());
 	Serial.println("end");
 	steeringManager.stop();

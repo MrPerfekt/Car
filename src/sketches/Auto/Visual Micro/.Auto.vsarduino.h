@@ -25,8 +25,6 @@ typedef unsigned char byte;
 extern "C" void __cxa_pure_virtual() {}
 
 void setupDisplay();
-void updateDisplay();
-void updateDisplay0();
 void testSet(int state);
 void testSetDelay(int state);
 void testToogle();

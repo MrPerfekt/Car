@@ -47,6 +47,7 @@
         <VCCodeMacro Name="VECTOR" Value="" />
         <VCCodeMacro Name="ORIENTATION_COORDINATES" Value="" />
         <VCCodeMacro Name="REGRESSION" Value="" />
+        <VCCodeMacro Name="DISPLAY_SERVER" Value="" />
         <VCCodeMacro Name="LIST" Value="" />
         <VCCodeMacro Name="__attribute__" Value="" />
         <VCCodeMacro Name="__inline__" Value="" />

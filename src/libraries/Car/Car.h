@@ -7,23 +7,25 @@ Copyright 2012 Andreas Gruber
 
 #include "DefineLib.h"
 
+class DisplayProxy;
+class DisplayServer;
 class MotionLogger;
+class Motor;
+class MouseSensorPan101;
+class MovementSensor;
 class PathExecutor;
 class PathPlaner;
-class DisplayProxy;
-class Motor;
-class ServoProxy;
-class WheelSensor;
-class VoltageDivider;
-class MouseSensorPan101;
-class SteeringManager;
 class PositionCalculator;
-class MovementSensor;
 class RemoteServer;
+class ServoProxy;
+class SteeringManager;
+class VoltageDivider;
+class WheelSensor;
 
 class Car {
 private:	
 	DisplayProxy* displayProxy;
+	DisplayServer* displayServer;
 	MotionLogger* motionLogger;
 	Motor* motorPowerEngine;
 	MouseSensorPan101* mouseSensor;
@@ -38,6 +40,7 @@ private:
 	WheelSensor* wheelSensor;
 public: 
 	DisplayProxy& getDisplayProxy();
+	DisplayServer& getDisplayServer();
 	MotionLogger& getMotionLogger();
 	Motor& getMotorPowerEngine();
 	MouseSensorPan101& getMouseSensor();

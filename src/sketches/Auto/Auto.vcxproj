@@ -78,6 +78,7 @@
     <ClCompile Include="..\..\libraries\Car\Coordinates.cpp" />
     <ClCompile Include="..\..\libraries\Car\DefineLib.cpp" />
     <ClCompile Include="..\..\libraries\Car\DisplayProxy.cpp" />
+    <ClCompile Include="..\..\libraries\Car\DisplayServer.cpp" />
     <ClCompile Include="..\..\libraries\Car\DistanceSensor.cpp" />
     <ClCompile Include="..\..\libraries\Car\EnvironmentKnowledgeBase.cpp" />
     <ClCompile Include="..\..\libraries\Car\EnvironmentPathPlaner.cpp" />
@@ -117,6 +118,7 @@
     <ClInclude Include="..\..\libraries\Car\Coordinates.h" />
     <ClInclude Include="..\..\libraries\Car\DefineLib.h" />
     <ClInclude Include="..\..\libraries\Car\DisplayProxy.h" />
+    <ClInclude Include="..\..\libraries\Car\DisplayServer.h" />
     <ClInclude Include="..\..\libraries\Car\DistanceSensor.h" />
     <ClInclude Include="..\..\libraries\Car\EnvironmentKnowledgeBase.h" />
     <ClInclude Include="..\..\libraries\Car\EnvironmentPathPlaner.h" />
