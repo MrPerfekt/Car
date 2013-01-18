@@ -99,23 +99,45 @@ void setup(){
 	//pathMemoryTest();
 	//itorTest();
 	//pathTest();
+<<<<<<< HEAD
 	//pathPlanerTest();
 }
 
 void loop(){
 	remoteServer.update();
+=======
+	
+	//OrientationCoordinates pos0 = OrientationCoordinates(15,1331,6.28);
+	//OrientationCoordinates pos1 = OrientationCoordinates(0,0,PI);
+	//Path* p = pathPlaner.calculatePath(pos0,pos1);
+	pathPlanerTest();
+}
+
+void loop(){
+	car->update();
+	updateDisplay();
+>>>>>>> e1eba168c1c2b034aa64c07491321921251046d3
 }
 
 void pathPlanerTest(){
-	const int n = 2;
+	const int n = 4;
 	OrientationCoordinates pos[n];
 	pos[0] = OrientationCoordinates(0,1200,0);
 	pos[1] = OrientationCoordinates(0,0,PI);
+<<<<<<< HEAD
+=======
+	pos[2] = OrientationCoordinates(0,1200,PI);
+	pos[3] = OrientationCoordinates(0,0,0);
+>>>>>>> e1eba168c1c2b034aa64c07491321921251046d3
 	
 	for(int i = 0; i < n; i++){
 		pathPlaner.moveTo(pos[i]);
 		do{
 			car->update();
+<<<<<<< HEAD
+=======
+			updateDisplay();
+>>>>>>> e1eba168c1c2b034aa64c07491321921251046d3
 		}while(!steeringManager.hasFinished());
 	}
 	steeringManager.stop();
