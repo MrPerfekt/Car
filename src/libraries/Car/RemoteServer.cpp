@@ -38,5 +38,4 @@ void RemoteServer::update(){
 			}
 		}
 	}
-	car.update();
 }

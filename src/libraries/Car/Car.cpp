@@ -74,8 +74,9 @@ WheelSensor& Car::getWheelSensor(){
 	
 Car::Car(){	
 	//displayProxy = new DisplayProxy();
-	bluetoothModul = new BluetoothModul(Serial1);
-
+	
+	Serial2.begin(9600);
+	bluetoothModul = new BluetoothModul(Serial2);
 #if true
 	wheelSensor = new WheelSensor();
 	movementSensor = wheelSensor;

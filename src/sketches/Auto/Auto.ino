@@ -72,6 +72,15 @@ void setup(){
 	servop.setSteeringServo(servo);
 
 	interrupts();
+	
+	/*
+	Serial.println("TEST");
+	Serial2.begin(9600);
+	Serial2.print("AT");
+	delay(1000);
+	Serial.println(Serial2.readString());
+	*/
+
 	return;
 
 	//Serial.print("Free SRam: ");

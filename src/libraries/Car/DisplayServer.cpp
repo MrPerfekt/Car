@@ -25,6 +25,7 @@ DisplayServer::~DisplayServer(){
 }
 
 void DisplayServer::update(){
+	return;
 	static int runnr = -1;
 	runnr++;
 	runnr %= 5;
