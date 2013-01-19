@@ -3,56 +3,67 @@ Copyright 2012 Andreas Gruber
 */
 
 #include "DisplayServer.h"
+#include "OrientationCoordinates.h"
+#include "PositionCalculator.h"
+#include "VoltageDivider.h"
+#include "gLCD.h"
+#include "Car.h"
 
 
 DisplayServer::DisplayServer(Car& car)
 :car(car){
-
+	graphic = new gLCD(Config::getPinDisplayRST(),Config::getPinDisplayCS(),Config::getPinDisplayClk(),Config::getPinDisplayData(),1);//! Display driver
+	graphic->Init(0,2,0,1,1);
+	graphic->Contrast(0x2B);//! Range: -0x3F to 0x3F
+	graphic->SetBackColour(15,15,15);
+	graphic->SetForeColour(0,0,15); 
+  
+	graphic->Box(10,10,109,109,0B0100);
 }
 
 DisplayServer::~DisplayServer(){
 }
 
 void DisplayServer::update(){
-	int cs = -1;
+	static int runnr = -1;
+	runnr++;
+	runnr %= 5;
+
+	static const OrientationCoordinates &position = car.getPositionCalculator().getCurrentPosition(); //! is a reference
+	String str;
+	switch(runnr){
+	case 0:
+		str = "x: ";
+		str += (int)position.getX();
+		break;
+	case 1:
+		str = "y: ";
+		str += (int)position.getY();
+		break;
+	case 2:
+		str = "a: ";
+		str += (int)position.getAngle();
+		str += ".";
+		str += (int)(position.getAngle() * 100)%100;
+		break;
+	case 3:{
+		double suplV = car.getPowerSupplyVoltageDivider().calculateSuplyPotential();
+		str = "u: ";
+		str += (int)(suplV*1000);
+		break;}
+	case 4:
+		str = "m: ";
+		str += freeSRam();
+		break;
+	default:
+		str = "";
+		break;
+	}
 	
-	OrientationCoordinates position = positionCalculator.getCurrentPosition();
-	String str0 = "x: ";
-	str0 += (int)position.getX();
-
-	String str1 = "y: ";
-	str1 += (int)position.getY();
-
-	String str2 = "a: ";
-	str2 += (int)position.getAngle();
-	str2 += ".";
-	str2 += (int)(position.getAngle() * 100)%100;
-  
-	double suplV = voltageDivider.calculateSuplyPotential();
-	String str3 = "u: ";
-	str3 += (int)(suplV*1000);
-
-	String str4 = "m: ";
-	str4 += freeSRam();
-	
-	int i = 0;
-	int y;
+	int y = 15*runnr;
 	int x = 20;
-	y = 15*++i;
-	graphic.Box(x,y,x+8*7,y+7,0B0000);
-	graphic.Print(str0,x,y,0B0000);
-	y = 15*++i;
-	graphic.Box(x,y,x+8*7,y+7,0B0000);
-	graphic.Print(str1,x,y,0B0000);
-	y = 15*++i;
-	graphic.Box(x,y,x+8*7,y+7,0B0000);
-	graphic.Print(str2,x,y,0B0000);
-	y = 15*++i;
-	graphic.Box(x,y,x+8*7,y+7,0B0000);
-	graphic.Print(str3,x,y,0B0000);
-	y = 15*++i;
-	graphic.Box(x,y,x+8*7,y+7,0B0000);
-	graphic.Print(str4,x,y,0B0000);
+	graphic->Box(x,y,x+8*7,y+7,0B0000);
+	graphic->Print(str,x,y,0B0000);
 }
 /*
 void DisplayServer::update(){

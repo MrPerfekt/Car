@@ -7,6 +7,7 @@ Copyright 2012 Andreas Gruber
 
 #include "DefineLib.h"
 
+class BluetoothModul;
 class DisplayProxy;
 class DisplayServer;
 class MotionLogger;
@@ -24,6 +25,7 @@ class WheelSensor;
 
 class Car {
 private:	
+	BluetoothModul* bluetoothModul;
 	DisplayProxy* displayProxy;
 	DisplayServer* displayServer;
 	MotionLogger* motionLogger;
@@ -36,9 +38,11 @@ private:
 	RemoteServer* remoteServer;
 	ServoProxy* servoProxy;
 	SteeringManager* steeringManager;
+	Stream* mainDataStreem;
 	VoltageDivider* powerSupplyVoltageDivider;
 	WheelSensor* wheelSensor;
 public: 
+	BluetoothModul& getBluetoothModul();
 	DisplayProxy& getDisplayProxy();
 	DisplayServer& getDisplayServer();
 	MotionLogger& getMotionLogger();
@@ -51,6 +55,7 @@ public:
 	RemoteServer& getRemoteServer();
 	ServoProxy& getServoProxy();
 	SteeringManager& getSteeringManager();
+	Stream& getMainDataStreem();
 	VoltageDivider& getPowerSupplyVoltageDivider();
 	WheelSensor& getWheelSensor();
 

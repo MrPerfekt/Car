@@ -1,0 +1,9 @@
+C:\Users\Andreas\documents\visual studio 2010\Projects\WheelChairRemoveControl\WheelChairRemoveControl\obj\x86\Debug\WheelChairRemoveControl.exe
+C:\Users\Andreas\documents\visual studio 2010\Projects\WheelChairRemoveControl\WheelChairRemoveControl\obj\x86\Debug\WheelChairRemoveControl.pdb
+C:\Users\Andreas\Documents\Visual Studio 2010\Projects\WheelChairRemoveControl\WheelChairRemoveControl\obj\x86\Debug\ResolveAssemblyReference.cache
+C:\Users\Andreas\Documents\Visual Studio 2010\Projects\WheelChairRemoveControl\WheelChairRemoveControl\obj\x86\Debug\WheelChairRemoveControl.MainForm.resources
+C:\Users\Andreas\Documents\Visual Studio 2010\Projects\WheelChairRemoveControl\WheelChairRemoveControl\obj\x86\Debug\WheelChairRemoveControl.Properties.Resources.resources
+C:\Users\Andreas\Documents\Visual Studio 2010\Projects\WheelChairRemoveControl\WheelChairRemoveControl\obj\x86\Debug\GenerateResource.read.1.tlog
+C:\Users\Andreas\Documents\Visual Studio 2010\Projects\WheelChairRemoveControl\WheelChairRemoveControl\obj\x86\Debug\GenerateResource.write.1.tlog
+C:\Users\Andreas\Documents\Visual Studio 2010\Projects\WheelChairRemoveControl\WheelChairRemoveControl\bin\Debug\WheelChairRemoveControl.exe
+C:\Users\Andreas\Documents\Visual Studio 2010\Projects\WheelChairRemoveControl\WheelChairRemoveControl\bin\Debug\WheelChairRemoveControl.pdb

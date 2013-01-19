@@ -33,21 +33,7 @@ RemoteServer& remoteServer = car->getRemoteServer();
 
 //========== DISPLAY ==========
 
-const char RST = 8;
-const char CS = 9;
-const char Clk = 13;
-const char Data = 11;
 
-gLCD graphic(RST,CS,Clk,Data,1);
-
-void setupDisplay(){
-	graphic.Init(0,2,0,1,1);
-	graphic.Contrast(0x2B);//! Range: -0x3F to 0x3F
-	graphic.SetBackColour(15,15,15);
-	graphic.SetForeColour(0,0,15); 
-  
-	graphic.Box(10,10,109,109,0B0100);
-}
 
 
 
@@ -79,18 +65,14 @@ void testToogleDelay(){
 
 void setup(){
 	noInterrupts();
+	Serial.begin(9600);
 
 	Servo* servo = new Servo();
 	servo->attach(Config::getPinSteeringServo());
 	servop.setSteeringServo(servo);
-	
-	remoteServer.start();
 
 	interrupts();
 	return;
-  
-	setupDisplay();
-	Serial.begin(9600);
 
 	//Serial.print("Free SRam: ");
 	//Serial.println(freeSRam());
@@ -99,24 +81,11 @@ void setup(){
 	//pathMemoryTest();
 	//itorTest();
 	//pathTest();
-<<<<<<< HEAD
 	//pathPlanerTest();
 }
 
 void loop(){
 	remoteServer.update();
-=======
-	
-	//OrientationCoordinates pos0 = OrientationCoordinates(15,1331,6.28);
-	//OrientationCoordinates pos1 = OrientationCoordinates(0,0,PI);
-	//Path* p = pathPlaner.calculatePath(pos0,pos1);
-	pathPlanerTest();
-}
-
-void loop(){
-	car->update();
-	updateDisplay();
->>>>>>> e1eba168c1c2b034aa64c07491321921251046d3
 }
 
 void pathPlanerTest(){
@@ -124,20 +93,13 @@ void pathPlanerTest(){
 	OrientationCoordinates pos[n];
 	pos[0] = OrientationCoordinates(0,1200,0);
 	pos[1] = OrientationCoordinates(0,0,PI);
-<<<<<<< HEAD
-=======
 	pos[2] = OrientationCoordinates(0,1200,PI);
 	pos[3] = OrientationCoordinates(0,0,0);
->>>>>>> e1eba168c1c2b034aa64c07491321921251046d3
 	
 	for(int i = 0; i < n; i++){
 		pathPlaner.moveTo(pos[i]);
 		do{
 			car->update();
-<<<<<<< HEAD
-=======
-			updateDisplay();
->>>>>>> e1eba168c1c2b034aa64c07491321921251046d3
 		}while(!steeringManager.hasFinished());
 	}
 	steeringManager.stop();

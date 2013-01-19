@@ -6,12 +6,13 @@ Copyright 2012 Andreas Gruber
 #define DISPLAY_SERVER
 
 #include "DefineLib.h"
-#include "gLCD.h"
+class gLCD;
+class Car;
 
 class DisplayServer{
 private:
 	Car &car;
-	gLCD* d;//! Display driver
+	gLCD* graphic;
 public:
 	DisplayServer(Car &car);
 	~DisplayServer();

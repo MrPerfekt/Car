@@ -2,6 +2,7 @@
 Copyright 2012 Andreas Gruber
 */
 
+#include "BluetoothModul.h"
 #include "Car.h"
 //#include "Config.h"
 #include "DisplayProxy.h"
@@ -22,6 +23,9 @@ Copyright 2012 Andreas Gruber
 #include "VoltageDivider.h"
 #include "WheelSensors.h"
 
+BluetoothModul& Car::getBluetoothModul(){
+	return *bluetoothModul;
+}
 DisplayProxy& Car::getDisplayProxy(){
 	return *displayProxy;
 }
@@ -58,6 +62,9 @@ ServoProxy& Car::getServoProxy(){
 SteeringManager& Car::getSteeringManager(){
 	return *steeringManager;
 }
+Stream& Car::getMainDataStreem(){
+	return *mainDataStreem;
+}
 VoltageDivider& Car::getPowerSupplyVoltageDivider(){
 	return *powerSupplyVoltageDivider;
 }
@@ -67,12 +74,13 @@ WheelSensor& Car::getWheelSensor(){
 	
 Car::Car(){	
 	//displayProxy = new DisplayProxy();
+	bluetoothModul = new BluetoothModul(Serial1);
 
-	//mouseSensor = new MouseSensorPan101();
-	wheelSensor = new WheelSensor();
 #if true
+	wheelSensor = new WheelSensor();
 	movementSensor = wheelSensor;
 #else
+	mouseSensor = new MouseSensorPan101();
 	movementSensor = mouseSensor;
 #endif
 	motorPowerEngine = new Motor();
@@ -89,12 +97,16 @@ Car::Car(){
 }
 
 void Car::update(){
+	displayServer->update();
 	movementSensor->update();
 	positionCalculator->update();
+	displayServer->update();
 	movementSensor->update();
 	steeringManager->update();
+	displayServer->update();
 	movementSensor->update();
 	pathExecutor->update();
+	displayServer->update();
 	movementSensor->update();
 	
 	//motionLogger->update();
