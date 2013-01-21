@@ -76,6 +76,7 @@ Car::Car(){
 	//displayProxy = new DisplayProxy();
 	
 	Serial2.begin(9600);
+	mainDataStreem = &Serial2;
 	bluetoothModul = new BluetoothModul(Serial2);
 #if true
 	wheelSensor = new WheelSensor();
@@ -93,11 +94,13 @@ Car::Car(){
 	motionLogger = new MotionLogger(*positionCalculator);
 	pathExecutor = new PathExecutor(*steeringManager);
 	pathPlaner = new ShortestPathPlaner(*positionCalculator,*pathExecutor);
-
+	
 	remoteServer = new RemoteServer(*this);
+	displayServer = new DisplayServer(*this);
 }
 
 void Car::update(){
+	//remoteServer->update();
 	displayServer->update();
 	movementSensor->update();
 	positionCalculator->update();

@@ -6,13 +6,11 @@ Copyright 2012 Andreas Gruber
 #define REMOTE_SERVER
 
 #include "DefineLib.h"
-class BluetoothModul;
 class Car;
 
 class RemoteServer{
 private:
 	Car &car;
-	Stream &stream;
 	static const uint8_t bufferSize = 20;
 	char/*uint8_t*/ buffer[bufferSize];
 public:

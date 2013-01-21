@@ -73,6 +73,8 @@ void setup(){
 
 	interrupts();
 	
+	return;
+
 	/*
 	Serial.println("TEST");
 	Serial2.begin(9600);
@@ -80,8 +82,6 @@ void setup(){
 	delay(1000);
 	Serial.println(Serial2.readString());
 	*/
-
-	return;
 
 	//Serial.print("Free SRam: ");
 	//Serial.println(freeSRam());
@@ -94,7 +94,9 @@ void setup(){
 }
 
 void loop(){
-	remoteServer.update();
+	Serial.println("Start");
+	return;
+	car->update();
 }
 
 void pathPlanerTest(){
