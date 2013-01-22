@@ -7,6 +7,7 @@ Copyright 2012 Andreas Gruber
 
 DistanceSensor::DistanceSensor(uint8_t sensorNr)
 :sensorNr(sensorNr){
+	//Config
 }
 DistanceSensor::~DistanceSensor(){
 }
