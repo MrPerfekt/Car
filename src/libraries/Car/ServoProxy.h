@@ -1,28 +1,29 @@
 /*!
-Copyright 2012 Andreas Gruber
+Copyright 2013 Andreas Gruber
 */
 
 #ifndef SERVO_STEERING_DRIVER
 #define SERVO_STEERING_DRIVER
 
 #include "DefineLib.h"
-
+class AdjustmentCalculation;
 class Servo;
 
-//The servo steering direction is against proportional to the steering wheels.
-//The next thing is, that the servo rotates against the mathematical angle.
-//So the software kan believ that the servo rotates in the mathematical angle and the angle is proportional to the steering wheels.
+//! The servo steering direction is against proportional to the steering wheels.
+//! The next thing is, that the servo rotates against the mathematical angle.
+//! So the software kan believ that the servo rotates in the mathematical angle and the angle is proportional to the steering wheels.
 class ServoProxy {
 private:			//(posMiddle + posMaxRight) / 2;
-	double currentSollAngle;
-	double currentSteeringAngle;
+	AdjustmentCalculation* acalc;
+	//double currentSollAngle;
+	//double currentSteeringAngle;
 
 	double getMaxServoAngle(bool rightSteeringSign);
 	double getMaxServoAngle(int steeringSign);
 	uint8_t setServoAngle(double angle);
 	uint8_t setUpdatedSteeringAngle(double angle);
 	
-	//================Convert================
+	//!================Convert================
 	/*!
 	Convert the servo angle to the steering angle.
 	\param servoAngle Servo angle
@@ -62,7 +63,7 @@ private:			//(posMiddle + posMaxRight) / 2;
 	*/
 	double convertServoAngleToRadius(double servoAngle);
 public:
-	//================Get max angle================
+	//!================Get max angle================
 	/*!
 	Get maximal angle which can be performet by the wheels.
 	\return Maximal Angle
@@ -73,7 +74,7 @@ public:
 	\return Minimal Radius
 	*/
 	double const getMinRadius();
-	//================Constructor================
+	//!================Constructor================
 	/*!
 	Initialices the ServoProxy.
 	After creating a new ServoProxy setSteeringServo have to be called.
@@ -85,14 +86,14 @@ public:
 	\param newSteeringServo The steering servo
 	*/
 	void setSteeringServo(Servo* newSteeringServo);
-	//================Set Methods================
+	//!================Set Methods================
 	/*!
 	Set the radius the car have to stear
 	\param radius Radius
 	*/
 	uint8_t setRadius(double radius);
 	uint8_t setSteeringAngle(double angle);
-	//================Correct Methods================
+	//!================Correct Methods================
 	/*!
 	Because the steering mechanism can has mechanical tollerances the radius can be updated based on measured values.
 	\param currentRadius The real radius of the car

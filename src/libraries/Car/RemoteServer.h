@@ -11,7 +11,7 @@ class Car;
 class RemoteServer{
 private:
 	Car &car;
-	static const uint8_t bufferSize = 20;
+	static const uint8_t bufferSize = 50;
 	char/*uint8_t*/ buffer[bufferSize];
 public:
 	RemoteServer(Car& car);

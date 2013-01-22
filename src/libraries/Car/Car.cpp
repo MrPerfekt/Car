@@ -100,16 +100,19 @@ Car::Car(){
 }
 
 void Car::update(){
-	//remoteServer->update();
+	remoteServer->update();
 	displayServer->update();
 	movementSensor->update();
 	positionCalculator->update();
+	remoteServer->update();
 	displayServer->update();
 	movementSensor->update();
 	steeringManager->update();
+	remoteServer->update();
 	displayServer->update();
 	movementSensor->update();
 	pathExecutor->update();
+	remoteServer->update();
 	displayServer->update();
 	movementSensor->update();
 	

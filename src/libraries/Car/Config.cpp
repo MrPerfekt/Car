@@ -4,22 +4,39 @@ Copyright 2012 Andreas Gruber
 
 #include "Config.h"
 
-SensorConfig::SensorConfig(const Coordinates position, const double angle, const uint8_t pinVoltageInput, const uint8_t pinStandby)
-	:position(position)
-	,angle(angle)
-	,pinVoltageInput(pinVoltageInput)
-	,pinStandby(pinStandby){
+const OrientationCoordinates& SensorConfig::getPosition(){
+	return *position;
+}
+SensorConfig::SensorConfig(const OrientationCoordinates* position)
+	:position(position){
+}	
+
+const uint8_t SonicSensorConfig::getPinTrig(){
+	return pinTrig;
+}
+const uint8_t SonicSensorConfig::getPinEcho(){
+	return pinEcho;
+}
+SonicSensorConfig::SonicSensorConfig(const OrientationCoordinates* position, const uint8_t pinTrig,const uint8_t pinEcho)
+	:SensorConfig(position)
+	,pinTrig(pinTrig)
+	,pinEcho(pinEcho){
 }
 
-const SensorConfig Config::sensorConfigs[] = {
-	SensorConfig(Coordinates(300,0), 30,A6,33),
-	SensorConfig(Coordinates(250,0), 90,A6,34),
-	SensorConfig(Coordinates(250,0),270,A7,35),
+const SonicSensorConfig Config::sonicSensorConfigs[] = {
+	SonicSensorConfig(new OrientationCoordinates(260,0,0),24,25),
 };
+const SonicSensorConfig* Config::getSonicSensorConfigs(){
+	return sonicSensorConfigs;
+}
 
 //! Car measures
 uint32_t Config::getSteeringWheelsPosition(){
 	return steeringWheelsPosition;
+}
+//! Reset Trigger Pin
+uint8_t Config::getResetTriggerPin(){
+	return resetTriggerPin;
 }
 //! Steering Servo
 const uint8_t Config::getPinSteeringServo(){

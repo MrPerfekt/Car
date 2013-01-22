@@ -30,13 +30,13 @@ void PathExecutor::update(){
 
 		}else{
 			setPath(NULL);
-			//!TODO: Notify car main logic
+			steeringManager.stop(); //!TODO: Notify car main logic instead
 		}	
 	}
 }
 /*!
 Set the path of the PathExecutor.
-This method can also be used to delete the path. This is possible by infoking
+This method can also be used to delete the path. This is possible by invoking
 */
 void PathExecutor::setPath(Path*path){
 	if(movementItor != NULL)

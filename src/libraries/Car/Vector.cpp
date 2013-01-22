@@ -61,8 +61,8 @@ double Vector::angleBetween(const Vector &v) const{
     return acos((*this * v) / getLength() / v.getLength());
 }
 void Vector::set(const double x, const double y){
-	this->x = x;
-	this->y = y;
+	setX(x);
+	setY(y);
 }
 void Vector::set(const Vector &v){
 	this->x = v.x;

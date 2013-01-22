@@ -49,6 +49,7 @@
         <VCCodeMacro Name="REGRESSION" Value="" />
         <VCCodeMacro Name="DISPLAY_SERVER" Value="" />
         <VCCodeMacro Name="REMOTE_SERVER" Value="" />
+        <VCCodeMacro Name="ADJUSTMENT_CALCULATION" Value="" />
         <VCCodeMacro Name="__attribute__" Value="" />
         <VCCodeMacro Name="__inline__" Value="" />
         <VCCodeMacro Name="__asm__" Value="" />

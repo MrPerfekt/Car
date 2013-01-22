@@ -72,6 +72,10 @@ void setup(){
 	servop.setSteeringServo(servo);
 
 	interrupts();
+
+	car->getDisplayServer().getGLCD().Init(0,2,0,1,1);
+  
+	//graphic->Box(10,10,109,109,0B0100);
 	
 	return;
 
@@ -94,8 +98,6 @@ void setup(){
 }
 
 void loop(){
-	Serial.println("Start");
-	return;
 	car->update();
 }
 

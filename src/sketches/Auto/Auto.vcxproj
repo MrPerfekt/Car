@@ -71,6 +71,7 @@
     <None Include="ClassDiagram.cd" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="..\..\libraries\Car\AdjustmentCalculation.cpp" />
     <ClCompile Include="..\..\libraries\Car\BluetoothModul.cpp" />
     <ClCompile Include="..\..\libraries\Car\BumperSensor.cpp" />
     <ClCompile Include="..\..\libraries\Car\Car.cpp" />
@@ -111,6 +112,7 @@
     <ClCompile Include="..\..\libraries\Car\WheelSensors.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="..\..\libraries\Car\AdjustmentCalculation.h" />
     <ClInclude Include="..\..\libraries\Car\BluetoothModul.h" />
     <ClInclude Include="..\..\libraries\Car\BumperSensor.h" />
     <ClInclude Include="..\..\libraries\Car\Car.h" />

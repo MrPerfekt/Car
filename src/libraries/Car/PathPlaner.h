@@ -25,6 +25,7 @@ public:
 	@param endPosition The destination.
 	*/
 	void moveTo(const OrientationCoordinates& endPosition);
+	void moveTo(const OrientationCoordinates* endPosition);
 	/*!
 	Calculate Path
 	@param startPosition The start point
