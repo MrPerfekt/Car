@@ -10,8 +10,11 @@ Copyright 2012 Andreas Gruber
 
 class DistanceSensor : public EnvironmentSensor{
 private:
+	uint8_t sensorNr;
 public:
-	DistanceSensor();
+	DistanceSensor(uint8_t sensorNr);
 	~DistanceSensor();
+
+	void update();
 };
 #endif

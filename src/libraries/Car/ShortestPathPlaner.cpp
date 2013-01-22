@@ -5,9 +5,9 @@ Copyright 2012 Andreas Gruber
 #include "ShortestPathPlaner.h"
 #include "OrientationCoordinates.h"
 #include "Path.h"
-#include "float.h"
 #include "TurnMovement.h"
 #include "StraightMovement.h"
+#include "float.h"
 
 ShortestPathPlaner::ShortestPathPlaner(PositionCalculator &positionCalculator, PathExecutor &pathExecutor)
 	:PathPlaner(positionCalculator,pathExecutor)
@@ -15,8 +15,6 @@ ShortestPathPlaner::ShortestPathPlaner(PositionCalculator &positionCalculator, P
 }
 
 Path* ShortestPathPlaner::calculatePath(const OrientationCoordinates& startPosition, const OrientationCoordinates& endPosition){
-	//OrientationCoordinates endPosition = endPositionInp;
-	//endPosition.setAngle(endPosition.getAngle() + PI);
 	double minAngleStart = 0, 
 		minAngleEnd = 0, 
 		minDistance = 0, 

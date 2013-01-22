@@ -17,7 +17,10 @@ Path* PathPlaner::calculatePath(const OrientationCoordinates& endPosition){
 }
 
 void PathPlaner::moveTo(const OrientationCoordinates& endPosition){
-	lastEndPosition = &endPosition;
+	moveTo(&endPosition);
+}
+void PathPlaner::moveTo(const OrientationCoordinates* endPosition){
+	lastEndPosition = endPosition;
 	update();
 }
 

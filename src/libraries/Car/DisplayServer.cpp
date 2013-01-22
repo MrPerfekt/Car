@@ -9,23 +9,25 @@ Copyright 2012 Andreas Gruber
 #include "gLCD.h"
 #include "Car.h"
 
+gLCD& DisplayServer::getGLCD(){
+	return *graphic;
+}
 
 DisplayServer::DisplayServer(Car& car)
 :car(car){
 	graphic = new gLCD(Config::getPinDisplayRST(),Config::getPinDisplayCS(),Config::getPinDisplayClk(),Config::getPinDisplayData(),1);//! Display driver
-	graphic->Init(0,2,0,1,1);
-	graphic->Contrast(0x2B);//! Range: -0x3F to 0x3F
-	graphic->SetBackColour(15,15,15);
-	graphic->SetForeColour(0,0,15); 
-  
-	graphic->Box(10,10,109,109,0B0100);
+	
+	//graphic->Contrast(0x2B);//! Range: -0x3F to 0x3F
+	//graphic->SetBackColour(15,15,15);
+	//graphic->SetForeColour(0,0,15); 
 }
 
 DisplayServer::~DisplayServer(){
 }
 
 void DisplayServer::update(){
-	static int runnr = -1;
+
+	static int8_t runnr = -1;
 	runnr++;
 	runnr %= 5;
 

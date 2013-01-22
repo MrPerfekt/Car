@@ -14,6 +14,7 @@ private:
 	Car &car;
 	gLCD* graphic;
 public:
+	gLCD& getGLCD();
 	DisplayServer(Car &car);
 	~DisplayServer();
 

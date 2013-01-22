@@ -32,9 +32,9 @@ const double RegularSteeringManager::calculateRadiusByMovement(const Movement& m
 }
 
 void RegularSteeringManager::driveStraight(double distance){
-	Serial.print("==> ");
+	/*Serial.print("==> ");
 	Serial.println(distance);
-	//=============================
+	//=============================*/
 	bool forward = distance >= 0;
 	servoProxy.setSteeringAngle(0);
 	stopConditionValue = positionCalculator.getFullMovement().getDistance() + (forward ? distance : -distance);
@@ -45,13 +45,13 @@ void RegularSteeringManager::driveTurn(double radius, double angle){
 	servoProxy.setRadius(radius);
 	bool leftTurn = radius >= 0;
 	bool forward = angle >= 0;
-	//=============================
+	/*//=============================
 	if(leftTurn)
 		Serial.print("=^^ ");
 	else
 		Serial.print("=vv ");
 	Serial.println(angle);
-	//=============================
+	//=============================*/
 	stopConditionValue = positionCalculator.getFullMovement().getAngle() + angle * /*(forward ? 1 : -1) * */ (leftTurn ? 1 : -1);
 	if(leftTurn)
 		setState(forward ? ss_driveTurnLeftForward : ss_driveTurnLeftBackward);

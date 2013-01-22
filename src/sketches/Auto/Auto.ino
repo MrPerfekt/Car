@@ -72,7 +72,20 @@ void setup(){
 	servop.setSteeringServo(servo);
 
 	interrupts();
+
+	car->getDisplayServer().getGLCD().Init(0,2,0,1,1);
+  
+	//graphic->Box(10,10,109,109,0B0100);
+	
 	return;
+
+	/*
+	Serial.println("TEST");
+	Serial2.begin(9600);
+	Serial2.print("AT");
+	delay(1000);
+	Serial.println(Serial2.readString());
+	*/
 
 	//Serial.print("Free SRam: ");
 	//Serial.println(freeSRam());
@@ -85,7 +98,7 @@ void setup(){
 }
 
 void loop(){
-	remoteServer.update();
+	car->update();
 }
 
 void pathPlanerTest(){

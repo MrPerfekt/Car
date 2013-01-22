@@ -33,3 +33,7 @@ void OrientationCoordinates::operator*= (const Movement &movement){
 
 	Vector::operator+=(v);
 }
+void OrientationCoordinates::set(double x,double y,double angle){
+	Coordinates::set(x,y);
+	setAngle(angle);
+}

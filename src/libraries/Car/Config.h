@@ -11,23 +11,33 @@ Copyright 2012 Andreas Gruber
 */
 
 #include "DefineLib.h"
-#include "Coordinates.h"
+#include "OrientationCoordinates.h"
 
 class SensorConfig{
 private:
-	Coordinates position;
-	double angle;
-	uint8_t pinVoltageInput;
-	uint8_t pinStandby;
+	const OrientationCoordinates* position;
 public:
-	SensorConfig(const Coordinates position, const double angle, const uint8_t pinVoltageInput,const uint8_t pinStandby);
+	const OrientationCoordinates& getPosition();
+	SensorConfig(const OrientationCoordinates* position);
 };
+class SonicSensorConfig : public SensorConfig{
+private:
+	uint8_t pinTrig;
+	uint8_t pinEcho;
+public:
+	const uint8_t getPinTrig();
+	const uint8_t getPinEcho();
+	SonicSensorConfig(const OrientationCoordinates* position, const uint8_t pinTrig,const uint8_t pinEcho);
+};
+
 
 class Config{
 private:
-	static const SensorConfig sensorConfigs[];
+	static const SonicSensorConfig sonicSensorConfigs[];
 	//! Car measures
 	static const uint32_t steeringWheelsPosition = 230;
+	//! Reset trigger pin
+	static const uint8_t resetTriggerPin = 53;
 	//! Steering Servo
 	static const uint8_t pinSteeringServo = 6;
 	static const uint16_t servoAbsAngleMiddleDeg = 85;
@@ -65,8 +75,11 @@ private:
 	static const uint8_t pinDisplayClk = 13;
 	static const uint8_t pinDisplayData = 11;
 public:
+	static const SonicSensorConfig* getSonicSensorConfigs();
 	//! Car measures
 	static uint32_t getSteeringWheelsPosition();
+	//! Reset trigger pin
+	static uint8_t getResetTriggerPin();
 	//! Steering Servo
 	static const uint8_t getPinSteeringServo();
 	static const double getServoAbsAngleMiddleDeg();//! The steering servo angle where the car drives straight
