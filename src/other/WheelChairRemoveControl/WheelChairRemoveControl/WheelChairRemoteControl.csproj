@@ -46,7 +46,13 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Direction.cs" />
+    <Compile Include="CarSerialConnection.cs" />
+    <Compile Include="Coordinates.cs" />
+    <Compile Include="OrientedCoordinates.cs" />
+    <Compile Include="DummySerialPort.cs" />
+    <Compile Include="MessageEventArgs.cs" />
+    <Compile Include="PowerDirection.cs" />
+    <Compile Include="SteeringDirection.cs" />
     <Compile Include="MainForm.cs">
       <SubType>Form</SubType>
     </Compile>

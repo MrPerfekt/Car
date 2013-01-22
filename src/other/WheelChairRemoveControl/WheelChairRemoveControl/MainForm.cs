@@ -12,151 +12,96 @@ namespace WheelChairRemoveControl
 {
     public partial class MainForm : Form
     {
-        static const string cmdStop = "S";
-        static const string cmdDrive = "D";//! DR<Forward/Backward><Stright/Left/Right> a.e. DRFL
-
-
-        private bool curConnect;
-
-        public bool Connected
-        {
-            get { return curConnect; }
-            set
-            {
-                checkBoxConnected.Checked = value;
-                ConnectButton.Text = value ? "Disconnect" : "Connect";
-                curConnect = value;
-            }
-        }
-        
-        private Direction curDir = Direction.stright;
+        CarSerialConnection SerialConnection { get;set;}
         Color selectedCol = Color.Green,
             unselectedCol = Button.DefaultBackColor;
-        public Direction CurDir
-        {
-            get { return curDir; }
-            set
-            {
-                if (curDir == value)
-                    curDir = Direction.stright;
-                else
-                    curDir = value;
-                buttonRight.BackColor = buttonLeft.BackColor = unselectedCol;
-                if (curDir == Direction.left)
-                    buttonLeft.BackColor = selectedCol;
-                else if (curDir == Direction.right)
-                    buttonRight.BackColor = selectedCol;
-            }
-        }
-        public string CurDirString()
-        {
-            switch (CurDir)
-            {
-                case Direction.stright:
-                    return "S";
-                case Direction.left:
-                    return "L";
-                case Direction.right:
-                    return "R";
-                default:
-                    return "";
-            }
-        }
-
-        SerialPort serialPort;
-        
 
         public MainForm()
         {
+            SerialConnection = new CarSerialConnection();
             InitializeComponent();
             refreshPorts();
+            SerialConnection.ConnectionStateChanged += new EventHandler(serialConnection_ConnectionStateChanged);
+            SerialConnection.CurPowDirChanged += new EventHandler(serialConnection_CurPowDirChanged);
+            SerialConnection.CurSteerDirChanged += new EventHandler(serialConnection_CurSteerDirChanged);
+            SerialConnection.messageOccured += new MessageEventHandler(SerialConnection_messageOccured);
         }
 
-        private void SendText(string text)
+        void SerialConnection_messageOccured(object sender, MessageEventArgs eventArgs)
         {
-            if (serialPort != null && serialPort.IsOpen)
-            {
-                serialPort.WriteLine(text);
-            }
-            else
-            {
-                Connected = false;
-            }
+            this.Invoke(new MethodInvoker(delegate { SetMessage(eventArgs.Message); }));
+            //SetMessage(eventArgs.Message);
         }
 
-        private void driveForwardStart(object sender, EventArgs e)
+        void serialConnection_ConnectionStateChanged(object sender, EventArgs e)
         {
-            buttonUp.BackColor = selectedCol;
-            SendText(cmdDrive + CurDirString() + "F");
+            checkBoxConnected.Checked = SerialConnection.Connected;
+            ConnectButton.Text = SerialConnection.Connected ? "Disconnect" : "Connect";
         }
-
-        private void driveForwardEnd(object sender, EventArgs e)
+        void serialConnection_CurPowDirChanged(object sender, EventArgs e)
         {
-            buttonUp.BackColor = unselectedCol;
-            SendText(cmdStop);
+            buttonUp.BackColor = buttonDown.BackColor = unselectedCol;
+            if (SerialConnection.CurPowDir == PowerDirection.forward)
+                buttonUp.BackColor = selectedCol;
+            else if (SerialConnection.CurPowDir == PowerDirection.backward)
+                buttonDown.BackColor = selectedCol;
         }
-
-        private void driveBackwardStart(object sender, EventArgs e)
+        void serialConnection_CurSteerDirChanged(object sender, EventArgs e)
         {
-            buttonDown.BackColor = selectedCol;
-            SendText(cmdDrive + CurDirString() + "B");
-        }
-
-        private void driveBackwardEnd(object sender, EventArgs e)
-        {
-            buttonDown.BackColor = unselectedCol;
-            SendText(cmdStop);
-        }
-
-        private void driveRightButtonClick(object sender, EventArgs e)
-        {
-            CurDir = Direction.right;
-        }
-
-        private void driveLeftButtonClick(object sender, EventArgs e)
-        {
-            CurDir = Direction.left;
+            buttonRight.BackColor = buttonLeft.BackColor = unselectedCol;
+            if (SerialConnection.CurSteerDir == SteeringDirection.left)
+                buttonLeft.BackColor = selectedCol;
+            else if (SerialConnection.CurSteerDir == SteeringDirection.right)
+                buttonRight.BackColor = selectedCol;
         }
 
         private void SetMessage(string message)
         {
-            messageTextBox.Text = message + "\n" + messageTextBox.Text; 
+            messageTextBox.Text = message + "\n" + messageTextBox.Text;
         }
 
+        //!
+        //! Settings and control
+        //!
         private void ConnectButton_Click(object sender, EventArgs e)
         {
-            bool connectedBefore = Connected;
-            Connected = false;
-            if (serialPort != null)
+            try
             {
-                if (serialPort.IsOpen)
-                    serialPort.Close();
-                serialPort.Dispose();
+                bool connectedBefore = SerialConnection.Connected;
+                if (!connectedBefore)
+                    SerialConnection.Connect((string)portComboBox.SelectedItem);
+                else
+                    SerialConnection.Disconnect();
             }
-            if (!connectedBefore)
+            catch (Exception exc)
             {
-                serialPort = new SerialPort(portComboBox.SelectedText, 9600);
-                try
-                {
-                    serialPort.Open();
-                }
-                catch (Exception exc)
-                {
-                    SetMessage(exc.Message);
-                    return;
-                }
-                Connected = true;
-                serialPort.DataReceived += new SerialDataReceivedEventHandler(serialPort_DataReceived);
+                SetMessage(exc.Message);
             }
         }
-
-        void serialPort_DataReceived(object sender, SerialDataReceivedEventArgs e)
+        private void refreshPorts()
         {
-            this.Invoke(new MethodInvoker(delegate { SetMessage("Received: " + serialPort.ReadExisting()); }));
+            portComboBox.DataSource = SerialPort.GetPortNames();
         }
-
+        private void refreshPortsButton_Click(object sender, EventArgs e)
+        {
+            refreshPorts();
+        }
+        //!
+        //! Target
+        //!
+        private void buttonSteeringStart_Click(object sender, EventArgs e)
+        {
+            SerialConnection.SendTarget(new OrientedCoordinates(){
+                X = (float)numericUpDownX.Value * 1000, 
+                Y = (float)numericUpDownY.Value * 1000,
+                Alpha = (float)(((float)numericUpDownAlpha.Value)*Math.PI/180)
+            });
+        }
+        //!
+        //! Key Steering
+        //!
         Keys lastKeyDown = Keys.Escape;
-        private void button_KeyDown(object sender, KeyEventArgs e)
+        private void KeyDown(object sender, KeyEventArgs e)
         {
             if (lastKeyDown == e.KeyCode) return;
             lastKeyDown = e.KeyCode;
@@ -164,55 +109,94 @@ namespace WheelChairRemoveControl
             {
                 case Keys.W:
                 case Keys.Up:
-                    driveForwardStart(sender, e);
+                    SerialConnection.CurPowDir = PowerDirection.forward;
                     break;
                 case Keys.S:
                 case Keys.Down:
-                    driveBackwardStart(sender, e);
+                    SerialConnection.CurPowDir = PowerDirection.backward;
                     break;
                 case Keys.A:
                 case Keys.Left:
-                    CurDir = Direction.left;
+                    SerialConnection.CurSteerDir = SteeringDirection.left;
                     break;
                 case Keys.D:
                 case Keys.Right:
-                    CurDir = Direction.right;
+                    SerialConnection.CurSteerDir = SteeringDirection.right;
                     break;
             }
+            SerialConnection.sendMotion();
         }
-
-        private void button_KeyUp(object sender, KeyEventArgs e)
+        private void KeyUp(object sender, KeyEventArgs e)
         {
             lastKeyDown = Keys.Escape;
             switch (e.KeyCode)
             {
                 case Keys.W:
                 case Keys.Up:
-                    driveForwardEnd(sender, e);
-                    break;
                 case Keys.S:
                 case Keys.Down:
-                    driveBackwardEnd(sender, e);
+                    SerialConnection.CurPowDir = PowerDirection.stop;
                     break;
                 case Keys.A:
                 case Keys.Left:
                 case Keys.D:
                 case Keys.Right:
-                    CurDir = Direction.stright;
+                    SerialConnection.CurSteerDir = SteeringDirection.straight;
                     break;
                 default:
                     break;
             }
+            SerialConnection.sendMotion();
+        }
+        //!
+        //! Button Steering
+        //!
+        private void buttonLeft_Click(object sender, EventArgs e)
+        {
+            if (SerialConnection.CurSteerDir == SteeringDirection.left)
+                SerialConnection.CurSteerDir = SteeringDirection.straight;
+            else
+                SerialConnection.CurSteerDir = SteeringDirection.left;
+        }
+        private void buttonRight_Click(object sender, EventArgs e)
+        {
+            if (SerialConnection.CurSteerDir == SteeringDirection.right)
+                SerialConnection.CurSteerDir = SteeringDirection.straight;
+            else
+                SerialConnection.CurSteerDir = SteeringDirection.right;
+        }
+        private void buttonUp_MouseDown(object sender, MouseEventArgs e)
+        {
+            SerialConnection.CurPowDir = PowerDirection.forward;
+        }
+        private void buttonUp_MouseUp(object sender, MouseEventArgs e)
+        {
+            SerialConnection.CurPowDir = PowerDirection.stop;
+        }
+        private void buttonDown_MouseDown(object sender, MouseEventArgs e)
+        {
+            SerialConnection.CurPowDir = PowerDirection.backward;
+        }
+        private void buttonDown_MouseUp(object sender, MouseEventArgs e)
+        {
+            SerialConnection.CurPowDir = PowerDirection.stop;
+        }
+        //!
+        //! Painging
+        //!
+        private void mainPictureBox_Paint(object sender, PaintEventArgs e)
+        {
+            const float size = 10;
+            Graphics g = e.Graphics;
+            foreach (var p in SerialConnection.FoundObjects)
+            {
+                g.FillEllipse(new SolidBrush(Color.Black),p.X - size / 2,p.Y - size/2,size,size);
+            }
         }
 
-        private void refreshPortsButton_Click(object sender, EventArgs e)
+        private void buttonRestart_Click(object sender, EventArgs e)
         {
-            refreshPorts();
-        }
-
-        private void refreshPorts()
-        {
-            portComboBox.DataSource = SerialPort.GetPortNames();
+            SerialConnection.sendRestart();
         }
     }
 }
