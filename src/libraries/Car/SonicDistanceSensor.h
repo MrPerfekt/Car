@@ -2,19 +2,19 @@
 Copyright 2012 Andreas Gruber
 */
 
-#ifndef DISTANCESENSOR
-#define DISTANCESENSOR
+#ifndef SONIC_DISTANCE_SENSOR
+#define SONIC_DISTANCE_SENSOR
 
 #include "DefineLib.h"
-#include "EnvironmentSensor.h"
+#include "DistanceSensor.h"
 
-class DistanceSensor : public EnvironmentSensor{
+class SonicDistanceSensor : public DistanceSensor{
 private:
-	uint8_t sensorNr;
+	const uint8_t pinTrig,pinEcho;
 public:
-	DistanceSensor(uint8_t sensorNr);
-	~DistanceSensor();
+	SonicDistanceSensor(uint8_t sensorNr);
+	~SonicDistanceSensor();
 
-	void update();
+	double calculateDistance() const;
 };
 #endif

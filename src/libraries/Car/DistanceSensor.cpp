@@ -6,9 +6,11 @@ Copyright 2012 Andreas Gruber
 
 
 DistanceSensor::DistanceSensor(uint8_t sensorNr)
-:sensorNr(sensorNr){
+:EnvironmentSensor(sensorNr){
 }
 DistanceSensor::~DistanceSensor(){
 }
 
-void update();
+void update(){
+
+}

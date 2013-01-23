@@ -25,14 +25,15 @@ private:
 	uint8_t pinTrig;
 	uint8_t pinEcho;
 public:
-	const uint8_t getPinTrig();
-	const uint8_t getPinEcho();
+	const uint8_t getPinTrig() const;
+	const uint8_t getPinEcho() const;
 	SonicSensorConfig(const OrientationCoordinates* position, const uint8_t pinTrig,const uint8_t pinEcho);
 };
 
 
 class Config{
 private:
+	//! Sensor configuration
 	static const SonicSensorConfig sonicSensorConfigs[];
 	//! Car measures
 	static const uint32_t steeringWheelsPosition = 230;

@@ -11,10 +11,10 @@ SensorConfig::SensorConfig(const OrientationCoordinates* position)
 	:position(position){
 }	
 
-const uint8_t SonicSensorConfig::getPinTrig(){
+const uint8_t SonicSensorConfig::getPinTrig() const{
 	return pinTrig;
 }
-const uint8_t SonicSensorConfig::getPinEcho(){
+const uint8_t SonicSensorConfig::getPinEcho() const{
 	return pinEcho;
 }
 SonicSensorConfig::SonicSensorConfig(const OrientationCoordinates* position, const uint8_t pinTrig,const uint8_t pinEcho)
@@ -23,13 +23,13 @@ SonicSensorConfig::SonicSensorConfig(const OrientationCoordinates* position, con
 	,pinEcho(pinEcho){
 }
 
+//! Sensor configuration
 const SonicSensorConfig Config::sonicSensorConfigs[] = {
 	SonicSensorConfig(new OrientationCoordinates(260,0,0),24,25),
 };
 const SonicSensorConfig* Config::getSonicSensorConfigs(){
 	return sonicSensorConfigs;
 }
-
 //! Car measures
 uint32_t Config::getSteeringWheelsPosition(){
 	return steeringWheelsPosition;

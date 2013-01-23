@@ -9,8 +9,10 @@ Copyright 2012 Andreas Gruber
 #include "Sensor.h"
 
 class EnvironmentSensor:public Sensor{
+	uint8_t sensorNr;
 public:
-	EnvironmentSensor();
+	uint8_t getSensorNr();
+	EnvironmentSensor(uint8_t sensorNr);
 	~EnvironmentSensor();
 };
 #endif

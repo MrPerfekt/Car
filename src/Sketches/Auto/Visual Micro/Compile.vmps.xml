@@ -1,8 +1,8 @@
 <VisualMicro>
-  <Program Name="Auto" Ext=".ino" Location="C:\Dokumente und Einstellungen\Andreas Gruber\Desktop\Car\src\Sketches\Auto">
-    <Compile CompilerErrors="0" ConfigurationName="Debug" StopOnError="False" OptimiseLibs="True" OptimiseCore="True" BuildPath="C:\Dokumente und Einstellungen\Andreas Gruber\Lokale Einstellungen\Anwendungsdaten\VMicro\Arduino\Builds\Auto\mega2560" IncludeDebug="0" IncludesDebug="0" SketchName="Auto" IsCompiled="1" />
+  <Program Name="Auto" Ext=".ino" Location="C:\Users\Andreas\Desktop\Car\src\sketches\Auto">
+    <Compile CompilerErrors="0" ConfigurationName="Debug" StopOnError="False" OptimiseLibs="True" OptimiseCore="True" BuildPath="C:\Users\Andreas\AppData\Local\VMicro\Arduino\Builds\Auto\mega2560" IncludeDebug="0" IncludesDebug="0" SketchName="Auto" IsCompiled="1" />
     <Platform Name="Arduino">
-      <Board Name="mega2560" Description="Arduino Mega 2560 or Mega ADK" CoreFolder="C:\Programme\arduino-1.0.1\hardware\arduino\cores\arduino" VariantFullPath="C:\Programme\arduino-1.0.1\hardware\arduino\variants\mega" />
+      <Board Name="mega2560" Description="Arduino Mega 2560 or Mega ADK" CoreFolder="C:\Program Files (x86)\arduino-1.0.1\hardware\arduino\cores\arduino" VariantFullPath="C:\Program Files (x86)\arduino-1.0.1\hardware\arduino\variants\mega" />
     </Platform>
     <VCCodeModel>
       <VCCodeMacros>
@@ -10,46 +10,47 @@
         <VCCodeMacro Name="__AVR_ATmega2560__" Value="" />
         <VCCodeMacro Name="F_CPU" Value="16000000L" />
         <VCCodeMacro Name="__AVR__" Value="" />
-        <VCCodeMacro Name="ENVIRONMENT_PATH_PLANER" Value="" />
-        <VCCodeMacro Name="CAR" Value="" />
-        <VCCodeMacro Name="ENVIRONMENTSENSOR" Value="" />
-        <VCCodeMacro Name="STRAIGHT_MOVEMENT" Value="" />
-        <VCCodeMacro Name="DISTANCESENSOR" Value="" />
-        <VCCodeMacro Name="PATHEXECUTOR" Value="" />
+        <VCCodeMacro Name="__cplusplus" Value="" />
+        <VCCodeMacro Name="CONFIG" Value="" />
         <VCCodeMacro Name="PATH" Value="" />
+        <VCCodeMacro Name="PATHEXECUTOR" Value="" />
+        <VCCodeMacro Name="ENVIRONMENTSENSOR" Value="" />
+        <VCCodeMacro Name="DISTANCE_SENSOR" Value="" />
         <VCCodeMacro Name="PATH_PLANER" Value="" />
-        <VCCodeMacro Name="MOTION_LOGGER" Value="" />
+        <VCCodeMacro Name="DISTANCESENSOR" Value="" />
+        <VCCodeMacro Name="MOVEMENT_POSITION_CALCULATOR" Value="" />
+        <VCCodeMacro Name="ENVIRONMENT_PATH_PLANER" Value="" />
+        <VCCodeMacro Name="SHORTEST_PATH_PLANER" Value="" />
+        <VCCodeMacro Name="REGULAR_STEERING_MANAGER" Value="" />
+        <VCCodeMacro Name="EVIRONMENT_KNOWLEDGE_BASE" Value="" />
+        <VCCodeMacro Name="BUMPER_SENSOR" Value="" />
+        <VCCodeMacro Name="CAR" Value="" />
         <VCCodeMacro Name="COORDINATES" Value="" />
-        <VCCodeMacro Name="MOVEMENT" Value="" />
-        <VCCodeMacro Name="DEFINE_LIB" Value="" />
         <VCCodeMacro Name="DISPLAY_PROXY" Value="" />
-        <VCCodeMacro Name="POSITION_CALCULATOR" Value="" />
+        <VCCodeMacro Name="MOTION_LOGGER" Value="" />
         <VCCodeMacro Name="MOTOR_TB6612FNG" Value="" />
         <VCCodeMacro Name="MOUSE_SENSOR_PAN101BSI" Value="" />
-        <VCCodeMacro Name="REGRESSION" Value="" />
-        <VCCodeMacro Name="STEERING_MANAGER" Value="" />
+        <VCCodeMacro Name="DEFINE_LIB" Value="" />
+        <VCCodeMacro Name="MOVEMENT" Value="" />
         <VCCodeMacro Name="MOVEMENT_SENSOR" Value="" />
+        <VCCodeMacro Name="POSITION_CALCULATOR" Value="" />
         <VCCodeMacro Name="SENSOR" Value="" />
         <VCCodeMacro Name="SERVO_STEERING_DRIVER" Value="" />
-        <VCCodeMacro Name="TURN_MOVEMENT" Value="" />
+        <VCCodeMacro Name="STEERING_MANAGER" Value="" />
         <VCCodeMacro Name="VOLTAGE_DIVIDER" Value="" />
-        <VCCodeMacro Name="SHORTEST_PATH_PLANER" Value="" />
         <VCCodeMacro Name="WHEEL_ROTATION_SENSORS" Value="" />
-        <VCCodeMacro Name="CONFIG" Value="" />
+        <VCCodeMacro Name="REGRESSION" Value="" />
+        <VCCodeMacro Name="STRAIGHT_MOVEMENT" Value="" />
+        <VCCodeMacro Name="TURN_MOVEMENT" Value="" />
         <VCCodeMacro Name="DISTANCESENSOR" Value="" />
-        <VCCodeMacro Name="LIST" Value="" />
-        <VCCodeMacro Name="__cplusplus" Value="" />
-        <VCCodeMacro Name="MOVEMENT_POSITION_CALCULATOR" Value="" />
-        <VCCodeMacro Name="BUMPER_SENSOR" Value="" />
-        <VCCodeMacro Name="REGULAR_STEERING_MANAGER" Value="" />
+        <VCCodeMacro Name="REMOTE_SERVER" Value="" />
         <VCCodeMacro Name="VECTOR" Value="" />
-        <VCCodeMacro Name="DISTANCESENSOR" Value="" />
-        <VCCodeMacro Name="EVIRONMENT_KNOWLEDGE_BASE" Value="" />
         <VCCodeMacro Name="ORIENTATION_COORDINATES" Value="" />
         <VCCodeMacro Name="REGRESSION" Value="" />
         <VCCodeMacro Name="DISPLAY_SERVER" Value="" />
-        <VCCodeMacro Name="REMOTE_SERVER" Value="" />
         <VCCodeMacro Name="ADJUSTMENT_CALCULATION" Value="" />
+        <VCCodeMacro Name="SONIC_DISTANCE_SENSOR" Value="" />
+        <VCCodeMacro Name="LIST" Value="" />
         <VCCodeMacro Name="__attribute__" Value="" />
         <VCCodeMacro Name="__inline__" Value="" />
         <VCCodeMacro Name="__asm__" Value="" />
