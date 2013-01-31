@@ -15,13 +15,14 @@ First the main categories and sensors which are aviable are listed:
 	\subitem Lateration
 		\subsubitem GPS	
 		\subsubitem Mobile telephony
-	\subsubitem Gyro
+	\subitem Gyro
 \item Environment Detection
 	\subitem Image Recognition
 	\subitem Bumper Sensor
 	\subitem Distance Sensor
 		\subsubitem Ultrasonic
-		\subsubitem Infrared
+		\subsubitem Infrared Triangulation
+		\subsubitem Infrared Brightness
 	\subitem Floor Sensor
 \item Relative Sensors
 	\subitem Touch less
@@ -37,118 +38,10 @@ First the main categories and sensors which are aviable are listed:
 To rate the sensors a lot of criteria have to be considered.
 
 
-\subsection{Measures Fails, Tolerance, Errors}
+\subsection{Errors of Measurements and Tolerances}
 \begin{figure}
-\makebox[\linewidth]{
-%\includegraphics[scale=0.5]{picturesPositioning/precisionDarts.png}
-%Draw dart
-\pgfmathsetmacro{\drawSize}{0.65}
-
-\newcommand*{\drawDart}[2]{
-	\providelength{\dartCurrentSize}
-	\setlength{\dartCurrentSize}{#1}
-	\provideboolean{dartColor}
-	\setboolean{dartColor}{true}
-	\whiledo {\dartCurrentSize > 0}
-	{
-		\ifdartColor
-			\path[fill=blue,draw=black] (0,0) circle (\dartCurrentSize);
-		\else
-			\path[fill=gray,draw=black] (0,0) circle (\dartCurrentSize);
-		\fi
-		\addtolength{\dartCurrentSize}{-#2}
-		\setboolean{dartColor}{\ifdartColor false\else true\fi}
-	}
- }
-
-\newcommand*{\calcRealPos}[1]{
-	\FPmul\pos{#1}{\drawSize}
-}
-
-\newcommand*{\drawFixDart}{
-	\calcRealPos{3}
-	\FPmul\partSize{\pos}{0.10}
-	\drawDart{\pos cm}{\partSize cm}
-}
-
-\newcommand{\calcRandCirclePos}{
-	\loop
-		\pgfmathsetmacro{\posx}{rand}
-		\pgfmathsetmacro{\posy}{rand}
-		\FPmul\squarex{\posx}{\posx}
-		\FPmul\squarey{\posy}{\posy}
-		\FPadd\squaresum{\squarex}{\squarey}
-		\ifdim \squaresum pt > 1pt
-	\repeat
-}
-
-\newcommand{\drawPoint}[2]{
-	\calcRealPos{#1}
-	\pgfmathsetmacro{\posx}{\pos}
-	\calcRealPos{#2}
-	\path[draw=yellow] (\posx cm,\pos cm) circle (0.1cm);
-}
-
-\begin{tikzpicture}
-\drawFixDart
-\providecounter{ct}
-\pgfmathsetseed{1}
-\forloop{ct}{0}{\value{ct} < 30}{
-	\calcRandCirclePos
-	\FPmul\posx{\posx}{0.5}
-	\FPmul\posy{\posy}{0.5}
-	\drawPoint{\posx}{\posy}
-}
-\end{tikzpicture}
-
-\begin{tikzpicture}
-\drawFixDart
-\providecounter{ct}
-\forloop{ct}{0}{\value{ct} < 70}{
-	\calcRandCirclePos
-	\FPmul\posx{\posx}{2}
-	\FPmul\posy{\posy}{2}
-	\drawPoint{\posx}{\posy}
-}
-\end{tikzpicture}
-
-\begin{tikzpicture}
-\drawFixDart
-\providecounter{ct}
-\forloop{ct}{0}{\value{ct} < 70}{
-	\calcRandCirclePos
-	\FPmul\posx{\posx}{0.5}
-	\FPadd\posx{\posx}{1}
-	\FPmul\posy{\posy}{0.5}
-	\FPadd\posy{\posy}{0.7}
-	\drawPoint{\posx}{\posy}
-}
-\end{tikzpicture}
-
-\begin{tikzpicture}
-\drawFixDart
-\providecounter{ct}
-\forloop{ct}{0}{\value{ct} < 70}{
-	\calcRandCirclePos
-	\FPmul\posx{\posx}{0.5}
-	\FPmul\posy{\posy}{0.5}
-	\drawPoint{\posx}{\posy}
-}
-\drawPoint{2}{2}
-\calcRealPos{3.1} \pgfmathsetmacro{\posfromx}{\pos}
-\calcRealPos{3.1} \pgfmathsetmacro{\posfromy}{\pos}
-\calcRealPos{2.1} \pgfmathsetmacro{\postox}{\pos}
-\calcRealPos{2.1} \pgfmathsetmacro{\postoy}{\pos}
-\draw[->, line width=2pt,color=red] (\posfromx,\posfromy) -- (\postox,\postoy);
-\drawPoint{-1}{2.5}
-\calcRealPos{-2.1} \pgfmathsetmacro{\posfromx}{\pos}
-\calcRealPos{3.6} \pgfmathsetmacro{\posfromy}{\pos}
-\calcRealPos{-1.1} \pgfmathsetmacro{\postox}{\pos}
-\calcRealPos{2.6} \pgfmathsetmacro{\postoy}{\pos}
-\draw[->, line width=2pt,color=red] (\posfromx,\posfromy) -- (\postox,\postoy);
-\end{tikzpicture}
-}
-\caption{Error Types}%\cite{img:precisionDarts}}
+\input{./tikz/errorsOfMeasurements}
+\caption{Error Types}
 \label{fig:errorTypes}
 \end{figure}
 The used sensors have different properties.
@@ -209,11 +102,9 @@ On the other hand there are sensors which offer their results in two or more int
 The most cheap sensors are analog sensors.
 This sensors are most the cheaper one because they don't need any logic to interpret the result.
 In most cases the sensors have a internal logic to filter and optimize the result.
-The group of analog sensors can be split up in sensors which return a current and sensors where its resistor can be measured.
+The group of analog sensors can be split up in sensors which return a voltage and sensors where its resistance can be measured.
 
-
-\paragraph{Voltage Source}
-Sensors which return a analog voltage have the problem that the returned voltage and also the returned current is very small.
+\paragraph{Analog Voltage}
 Examples for analog sensors which return a voltage are:
 \begin{itemize}
 \item Photo Diode
@@ -224,41 +115,16 @@ The photo diode produces a very small amount of energy when a photon with suffic
 This is called the photoelectric effect.
 So a photo diode work like a very small solar pane.
 Another sensors which return a current is a pH sensor or a peltier element where the seeback effect is used.
-And so a big amount of analog sensors return a very small voltage with a very small maximal current.
-To measure the result the returned voltage or the returned current have to be amplified.
-For example it is possible to amplify the current of a photodiode with a transistor and add a pull-up resitor to the collector of the resitor.
-Then the voltage between the resitor and the transistor which is in relation to the amplified current can be measured.
-For an illustatrion see figure~\ref{fig:phototransistorWithPullUp}.
+
+Some sensors which return a analog current and voltage they either have a very small maximal current or they return only a very small voltage. In such cases the result have to be amplified.
+
+For example it is possible to amplify the current of a photo diode with a transistor and add a pull-up resistor to the collector of the resistor.
+Then the voltage between the resistor and the transistor can be measured. With this voltage the transistor's and the resistor's voltage drop can be calculated. This voltage is also in relation to the amount of light which hits the photo diode.
+For an illustration see figure~\ref{fig:phototransistorWithPullUp}.
 
 
 \begin{figure}
-\center
-\begin{circuitikz}
-\draw(0,0)
-	to[american voltage source] (0,2)
-	to[R] (2,2)
-	to[leD*] (2,0)
-	-- (0,0);
-\draw (5,1) node[npn] (trans) {}
-	(trans.base) node[anchor=east] {}
-	(trans.collector) node[anchor=south] {}
-	(trans.emitter) node[anchor=north] {};
-\draw(3,0)
-	to[pDo,mirror](3,2)
-	--(5,2)
-	--(trans.collector);
-\draw(5,2)
-	--(5,2)
-	to[R,*-o](5,4) node[above]{V};
-\draw(5,2)
-	to[short,*-o](6,2) node[right]{ADC};
-\draw(trans.emitter)
-	to[short,-o](5,0) node[below]{GND};
-\draw (3,0)
-	--(3.5,0)
-	--(3.5,1)
-	--(trans.base);
-\end{circuitikz}
+\input{./tikz/phototransistorWithPullup}
 \caption{Phototransistor with pull up resistor}
 \medskip
 \small
@@ -269,7 +135,7 @@ This circuit layout shows a photo-transistor which is connected to to the microc
 
 
 \paragraph{Resistor}
-A lot of sensors return the result as a resistor value.
+A lot of sensors return their result as it's own resistance.
 Examples for such sensors are:
 \begin{itemize}
 \item Air Humidity
@@ -277,7 +143,6 @@ Examples for such sensors are:
 \item Bight
 \item Expansion
 \item Lightness
-\item Photo-transistor
 \item ...
 \end{itemize}
 To measure the value of a resistor different circuits can be used.
@@ -302,9 +167,11 @@ Example for such sensors are:
 \begin{itemize}
 \item Distance
 \subitem Floor Existence
-\item Enough Power Supply Voltage
-\item Light Barrier
-\item Rotary Encoder Detector 
+\item Voltage
+\subitem Enough Power Supply Voltage
+\item Brightness
+\subitem Light Barrier
+\subsubitem Rotary Encoder Detector 
 \end{itemize}
 
 
@@ -323,13 +190,13 @@ Examples for digital interfaces which were used by sensors are:
 
 
 \subsubsection{Quadrature Output}
+
+
 \begin{figure}
 \makebox[\linewidth]{
-\includegraphics[height=0.2 \textheight]{picturesPositioning/rotaryEncoderPatternQuadrature.jpg}
+\input{./tikz/quadraturePattern}
 \includegraphics[height=0.2 \textheight]{picturesPositioning/quadratureOutput.jpg}
-\includegraphics[height=0.2 \textheight]{picturesPositioning/quadratureStates.jpg}
-
-
+\input{./tikz/quadratureStates}
 }
 \caption{Pattern of a quadrature rotary encoder, the output and the states}
 \label{fig:quadratureRotaryEncoder}
@@ -374,293 +241,11 @@ Computing Load & 1\% of the available capacities & 50 of the available capacitie
 The chosen sensor category rating should be a average representative value for the sum of all different sensors in this group.
 If there exist sensor which can be connected with I2C and sensors which can be connected with DAC's then the halve of the points which would be subtracted from I2C are subtract. The same rating algorithm is applied to DAC's.
 
+The important part of this selection is both the kind and the type of sensor which
+is used. There are different criteria which are typical for the kind of sensor. First the
+criteria are shown and then the different kind of sensors are rated.
 
-
-\newcommand*{\ratingSignificance}[1]{
-\providecounter{ratingLine} %ratingline = the rating of the category
-\providecounter{ratingPartSum}
-\providecounter{ratingFinalSum}
-\setcounter{ratingLine}{#1}#1
-\addtocounter{ratingPartSum}{#1}
-\addtocounter{ratingFinalSum}{#1}
-}
-
-\newcommand*{\ratingPartialSum}{
-\arabic{ratingPartSum}
-\setcounter{ratingPartSum}{0}
-}
-
-\newcommand*{\ratingFinalSum}{
-\arabic{ratingFinalSum}
-\setcounter{ratingFinalSum}{0}
-}
-
-\newcommand*{\rating}[2]{
-\providecounter{ratingSave#1} %ratingSave<name> = the category-rating of the sensor
-\setcounter{ratingSave#1}{#2}#2
-}
-
-%ratingMultiplied = the absolut category rating of the sensor
-%ratingSaveResult = the summarized absolut category ratings of the sensor
-%ratingFinalSaveResult<name> = the final result
-\newcommand*{\ratingResult}[1]{\providecounter{ratingMultiplied}\providecounter{ratingPartialResult#1}\providecounter{ratingFinalResult#1} \setcounter{ratingMultiplied}{\value{ratingSave#1} * \value{ratingLine}}\addtocounter{ratingPartialResult#1}{\value{ratingMultiplied}}\addtocounter{ratingFinalResult#1}{\value{ratingMultiplied}}\arabic{ratingMultiplied}}
-
-\newcommand*{\ratingPartialResult}[1]{\arabic{ratingPartialResult#1}\setcounter{ratingPartialResult#1}{0}}
-
-\newcommand*{\ratingFinalResult}[1]{\arabic{ratingFinalResult#1}\setcounter{ratingFinalResult#1}{0}}
-
-\newcommand*{\sensorRatingSum}{
-\cline{2-25}
-& Sum & \ratingPartialSum  & &
-\ratingPartialResult{acc} & &
-\ratingPartialResult{bum} & &
-\ratingPartialResult{gps} & &
-\ratingPartialResult{gyr} & &
-\ratingPartialResult{idi} & &
-\ratingPartialResult{ifl} & &
-\ratingPartialResult{ire} & &
-\ratingPartialResult{mag} & &
-\ratingPartialResult{mou} & &
-\ratingPartialResult{rot} & &
-\ratingPartialResult{udi} \\
-}
-\newcommand*{\sensorFinalSum}{
-\hline
-\multicolumn{2}{|l|}{Sum} & \ratingFinalSum &  &
-\ratingFinalResult{acc} &  &
-\ratingFinalResult{bum} &  &
-\ratingFinalResult{gps} &  &
-\ratingFinalResult{gyr} &  &
-\ratingFinalResult{idi} &  &
-\ratingFinalResult{ifl} &  &
-\ratingFinalResult{ire} &  &
-\ratingFinalResult{mag} &  &
-\ratingFinalResult{mou} &  &
-\ratingFinalResult{rot} &  &
-\ratingFinalResult{udi}\\
-\hline
-}
-
-\begin{sidewaystable}
-
-\makebox[\linewidth]{
-\begin{tabular}{|l|l|l||c|c|c|c|c|c|c|c|c|c|c|c|c|c|c|c|c|c|c|c|c|c|}
-\cline{1-2}
-\multicolumn{2}{|l|}{Category} &  
-\leaningLabelB{Significance} &
-\multicolumn{2}{c}{\leaningLabel{Accelometer} }&
-\multicolumn{2}{c}{\leaningLabel{Bumper Sensor} } & 
-\multicolumn{2}{c}{\leaningLabel{GPS} } &
-\multicolumn{2}{c}{\leaningLabel{Gyro} } &
-\multicolumn{2}{c}{\leaningLabel{Infrared Distance Sensor} } &
-\multicolumn{2}{c}{\leaningLabel{Infrared Floor Sensor} } &
-\multicolumn{2}{c}{\leaningLabel{Image Recognition} } &
-\multicolumn{2}{c}{\leaningLabel{Magnetometer} } &
-\multicolumn{2}{c}{\leaningLabel{Mouse Sensor} } &
-\multicolumn{2}{c}{\leaningLabel{Rotary Encoder} } &
-\multicolumn{2}{c}{\leaningLabel{Ultrasonic Distance Sensor} } \\
-\hline
-\multirow{3}{*}{  \rotatebox{90}{ Bugs~ } }
-& Methodical Error & \ratingSignificance{2} & 
-\rating{acc}{6} & \ratingResult{acc} & 
-\rating{bum}{10} & \ratingResult{bum} &
-\rating{gps}{5} & \ratingResult{gps} &
-\rating{gyr}{6} & \ratingResult{gyr} &
-\rating{idi}{7} & \ratingResult{idi} &
-\rating{ifl}{10} & \ratingResult{ifl} &
-\rating{ire}{4} & \ratingResult{ire} &
-\rating{mag}{6} & \ratingResult{mag} &
-\rating{mou}{8} & \ratingResult{mou} &
-\rating{rot}{8} & \ratingResult{rot} & %e.a.: Different wheel start position
-\rating{udi}{7} & \ratingResult{udi} \\
-
-& Run Away Value & \ratingSignificance{2} &
-\rating{acc}{6} & \ratingResult{acc} & 
-\rating{bum}{10} & \ratingResult{bum} &
-\rating{gps}{5} & \ratingResult{gps} &
-\rating{gyr}{6} & \ratingResult{gyr} &
-\rating{idi}{6} & \ratingResult{idi} &
-\rating{ifl}{10} & \ratingResult{ifl} & 
-\rating{ire}{4} & \ratingResult{ire} &
-\rating{mag}{6} & \ratingResult{mag} &
-\rating{mou}{9} & \ratingResult{mou} &
-\rating{rot}{10} & \ratingResult{rot} &
-\rating{udi}{6} & \ratingResult{udi} \\
-
-& Brake Down Possibility & \ratingSignificance{1} &
-\rating{acc}{9} & \ratingResult{acc} & 
-\rating{bum}{2} & \ratingResult{bum} & %Parts with high mechanical stress
-\rating{gps}{5} & \ratingResult{gps} & %Inside a house
-\rating{gyr}{9} & \ratingResult{gyr} &
-\rating{idi}{8} & \ratingResult{idi} & %Light pollution
-\rating{ifl}{8} & \ratingResult{ifl} & %Black line on floor
-\rating{ire}{9} & \ratingResult{ire} &
-\rating{mag}{9} & \ratingResult{mag} &
-\rating{mou}{9} & \ratingResult{mou} &
-\rating{rot}{9} & \ratingResult{rot} &
-\rating{udi}{9} & \ratingResult{udi} \\
-
-& Precision & \ratingSignificance{4} &
-\rating{acc}{5} & \ratingResult{acc} & 
-\rating{bum}{10} & \ratingResult{bum} &
-\rating{gps}{0} & \ratingResult{gps} & 
-\rating{gyr}{5} & \ratingResult{gyr} &
-\rating{idi}{8} & \ratingResult{idi} &
-\rating{ifl}{10} & \ratingResult{ifl} &
-\rating{ire}{4} & \ratingResult{ire} &
-\rating{mag}{6} & \ratingResult{mag} &
-\rating{mou}{9} & \ratingResult{mou} &
-\rating{rot}{9} & \ratingResult{rot} &
-\rating{udi}{8} & \ratingResult{udi} \\
-
-\sensorRatingSum
-\hline
-\multirow{3}{*}{ \rotatebox{90}{ Usability } }
-& Amount of Software &  \ratingSignificance{1} &
-\rating{acc}{8} & \ratingResult{acc} & 
-\rating{bum}{9} & \ratingResult{bum} &
-\rating{gps}{2} & \ratingResult{gps} & 
-\rating{gyr}{8} & \ratingResult{gyr} &
-\rating{idi}{5} & \ratingResult{idi} &
-\rating{ifl}{9} & \ratingResult{ifl} &
-\rating{ire}{0} & \ratingResult{ire} &
-\rating{mag}{8} & \ratingResult{mag} &
-\rating{mou}{2} & \ratingResult{mou} &
-\rating{rot}{8} & \ratingResult{rot} &
-\rating{udi}{5} & \ratingResult{udi} \\
-
-& Amount of Algorithms &  \ratingSignificance{1} &
-\rating{acc}{10} & \ratingResult{acc} & 
-\rating{bum}{10} & \ratingResult{bum} &
-\rating{gps}{2} & \ratingResult{gps} & 
-\rating{gyr}{10} & \ratingResult{gyr} &
-\rating{idi}{3} & \ratingResult{idi} &
-\rating{ifl}{10} & \ratingResult{ifl} &
-\rating{ire}{0} & \ratingResult{ire} &
-\rating{mag}{10} & \ratingResult{mag} &
-\rating{mou}{8} & \ratingResult{mou} &
-\rating{rot}{9} & \ratingResult{rot} &
-\rating{udi}{3} & \ratingResult{udi} \\
-
-& Amount of Hardware &  \ratingSignificance{1} &
-\rating{acc}{9} & \ratingResult{acc} & 
-\rating{bum}{8} & \ratingResult{bum} & %Schmitt-Trigger
-\rating{gps}{7} & \ratingResult{gps} & 
-\rating{gyr}{9} & \ratingResult{gyr} &
-\rating{idi}{7} & \ratingResult{idi} &
-\rating{ifl}{7} & \ratingResult{ifl} &
-\rating{ire}{7} & \ratingResult{ire} &
-\rating{mag}{9} & \ratingResult{mag} &
-\rating{mou}{5} & \ratingResult{mou} &
-\rating{rot}{5} & \ratingResult{rot} &
-\rating{udi}{8} & \ratingResult{udi} \\
-\sensorRatingSum
-
-\hline
-\multirow{3}{*}{ \rotatebox{90}{ Resources~ } }
-& Computing Load & \ratingSignificance{7} &
-\rating{acc}{8} & \ratingResult{acc} & 
-\rating{bum}{10} & \ratingResult{bum} &
-\rating{gps}{2} & \ratingResult{gps} & 
-\rating{gyr}{8} & \ratingResult{gyr} &
-\rating{idi}{6} & \ratingResult{idi} &
-\rating{ifl}{10} & \ratingResult{ifl} &
-\rating{ire}{0} & \ratingResult{ire} &
-\rating{mag}{8} & \ratingResult{mag} &
-\rating{mou}{6} & \ratingResult{mou} &
-\rating{rot}{8} & \ratingResult{rot} &
-\rating{udi}{6} & \ratingResult{udi} \\
-
-& Interrupt Pins & \ratingSignificance{2} &
-\rating{acc}{10} & \ratingResult{acc} & 
-\rating{bum}{5} & \ratingResult{bum} & % 1 * 50%
-\rating{gps}{10} & \ratingResult{gps} & 
-\rating{gyr}{10} & \ratingResult{gyr} &
-\rating{idi}{10} & \ratingResult{idi} &
-\rating{ifl}{5} & \ratingResult{ifl} & % 1 * 50%
-\rating{ire}{10} & \ratingResult{ire} &
-\rating{mag}{10} & \ratingResult{mag} &
-\rating{mou}{2} & \ratingResult{mou} & % 2 * 40%
-\rating{rot}{0} & \ratingResult{rot} & % 4 * 100% -- 1*100%
-\rating{udi}{10} & \ratingResult{udi} \\
-
-& DAC Pins & \ratingSignificance{1} &
-\rating{acc}{4} & \ratingResult{acc} & % 3
-\rating{bum}{10} & \ratingResult{bum} & % 0
-\rating{gps}{10} & \ratingResult{gps} & % 0
-\rating{gyr}{4} & \ratingResult{gyr} & % 3
-\rating{idi}{6} & \ratingResult{idi} &% 1
-\rating{ifl}{8} & \ratingResult{ifl} & % 0
-\rating{ire}{9} & \ratingResult{ire} & % 0 - x
-\rating{mag}{4} & \ratingResult{mag} & % 3
-\rating{mou}{10} & \ratingResult{mou} & % 0
-\rating{rot}{10} & \ratingResult{rot} & % 0
-\rating{udi}{8} & \ratingResult{udi} \\ % 1
-
-& Digital Pins & \ratingSignificance{1} &
-\rating{acc}{10} & \ratingResult{acc} & % 0
-\rating{bum}{8} & \ratingResult{bum} & % 1
-\rating{gps}{0} & \ratingResult{gps} & % 4 -- 10
-\rating{gyr}{4} & \ratingResult{gyr} & % 0
-\rating{idi}{10} & \ratingResult{idi} & % 0
-\rating{ifl}{8} & \ratingResult{ifl} & % 1
-\rating{ire}{0} & \ratingResult{ire} & % ~7
-\rating{mag}{10} & \ratingResult{mag} & % 0
-\rating{mou}{3} & \ratingResult{mou} & % 2 -- 4
-\rating{rot}{4} & \ratingResult{rot} & % 2 --4
-\rating{udi}{6} & \ratingResult{udi} \\ % 1
-
-& PWM Pins & \ratingSignificance{1} &
-\rating{acc}{10} & \ratingResult{acc} & % 0
-\rating{bum}{10} & \ratingResult{bum} & % 0
-\rating{gps}{10} & \ratingResult{gps} & % 0
-\rating{gyr}{10} & \ratingResult{gyr} & % 0
-\rating{idi}{10} & \ratingResult{idi} & % 0
-\rating{ifl}{10} & \ratingResult{ifl} & % 0
-\rating{ire}{10} & \ratingResult{ire} & % 0
-\rating{mag}{10} & \ratingResult{mag} & % 0
-\rating{mou}{10} & \ratingResult{mou} & % 0
-\rating{rot}{10} & \ratingResult{rot} & % 0
-\rating{udi}{10} & \ratingResult{udi} \\ % 0
-
-& I2C Address & \ratingSignificance{1} &
-\rating{acc}{5} & \ratingResult{acc} & % 1
-\rating{bum}{10} & \ratingResult{bum} & % 0
-\rating{gps}{5} & \ratingResult{gps} & % 1
-\rating{gyr}{5} & \ratingResult{gyr} & % 1
-\rating{idi}{10} & \ratingResult{idi} & % 0
-\rating{ifl}{10} & \ratingResult{ifl} & % 0
-\rating{ire}{5} & \ratingResult{ire} & % 1
-\rating{mag}{5} & \ratingResult{mag} & % 1
-\rating{mou}{5} & \ratingResult{mou} & % 1
-\rating{rot}{10} & \ratingResult{rot} & % 0
-\rating{udi}{5} & \ratingResult{udi} \\ % 1
-
-& UART Port & \ratingSignificance{1} &
-\rating{acc}{10} & \ratingResult{acc} & % 0
-\rating{bum}{10} & \ratingResult{bum} & % 0
-\rating{gps}{10} & \ratingResult{gps} & % 0
-\rating{gyr}{10} & \ratingResult{gyr} & % 0
-\rating{idi}{10} & \ratingResult{idi} & % 0
-\rating{ifl}{10} & \ratingResult{ifl} & % 0
-\rating{ire}{10} & \ratingResult{ire} & % 0
-\rating{mag}{10} & \ratingResult{mag} & % 0
-\rating{mou}{10} & \ratingResult{mou} & % 0
-\rating{rot}{10} & \ratingResult{rot} & % 0
-\rating{udi}{10} & \ratingResult{udi} \\ % 0
-\sensorRatingSum
-\sensorFinalSum
-\end{tabular}
-}
-\caption{The categories with the specific rating}
-\label{tab:categoryRating}
-\end{sidewaystable}
-
-
-
-The important part of this selection is both the kind and the type of sensor which is used.
-There are different criteria which are typical for the kind of sensor.
-First the criteria are shown and then the different kind of sensors are rated.
+%\input{./ratingTable}
 
 
 \section{$\cancel{Combine Different Sensors}$}

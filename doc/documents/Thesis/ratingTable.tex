@@ -1,0 +1,296 @@
+\newcommand*{\ratingSignificance}[1]{
+\providecounter{ratingLine} %ratingline = the rating of the category
+\providecounter{ratingPartSum}
+\providecounter{ratingFinalSum}
+\setcounter{ratingLine}{#1}#1
+\addtocounter{ratingPartSum}{#1}
+\addtocounter{ratingFinalSum}{#1}
+}
+
+\newcommand*{\ratingPartialSum}{
+\arabic{ratingPartSum}
+\setcounter{ratingPartSum}{0}
+}
+
+\newcommand*{\ratingFinalSum}{
+\arabic{ratingFinalSum}
+\setcounter{ratingFinalSum}{0}
+}
+
+\newcommand*{\rating}[2]{
+\providecounter{ratingSave#1} %ratingSave<name> = the category-rating of the sensor
+\setcounter{ratingSave#1}{#2}#2
+}
+
+%ratingMultiplied = the absolut category rating of the sensor
+%ratingSaveResult = the summarized absolut category ratings of the sensor
+%ratingFinalSaveResult<name> = the final result
+\newcommand*{\ratingResult}[1]{\providecounter{ratingMultiplied}\providecounter{ratingPartialResult#1}\providecounter{ratingFinalResult#1} \setcounter{ratingMultiplied}{\value{ratingSave#1} * \value{ratingLine}}\addtocounter{ratingPartialResult#1}{\value{ratingMultiplied}}\addtocounter{ratingFinalResult#1}{\value{ratingMultiplied}}\arabic{ratingMultiplied}}
+
+\newcommand*{\ratingPartialResult}[1]{\arabic{ratingPartialResult#1}\setcounter{ratingPartialResult#1}{0}}
+
+\newcommand*{\ratingFinalResult}[1]{\arabic{ratingFinalResult#1}\setcounter{ratingFinalResult#1}{0}}
+
+\newcommand*{\sensorRatingSum}{
+\cline{2-27}
+& Sum & \ratingPartialSum  & &
+\ratingPartialResult{acc} & &
+\ratingPartialResult{bum} & &
+\ratingPartialResult{gps} & &
+\ratingPartialResult{gyr} & &
+\ratingPartialResult{ibd} & &
+\ratingPartialResult{ifl} & &
+\ratingPartialResult{itd} & &
+\ratingPartialResult{ire} & &
+\ratingPartialResult{mag} & &
+\ratingPartialResult{mou} & &
+\ratingPartialResult{rot} & &
+\ratingPartialResult{udi} \\
+}
+\newcommand*{\sensorFinalSum}{
+\hline
+\multicolumn{2}{|l|}{Sum} & \ratingFinalSum &  &
+\ratingFinalResult{acc} &  &
+\ratingFinalResult{bum} &  &
+\ratingFinalResult{gps} &  &
+\ratingFinalResult{gyr} &  &
+\ratingFinalResult{ibd} &  &
+\ratingFinalResult{ifl} &  &
+\ratingFinalResult{itd} &  &
+\ratingFinalResult{ire} &  &
+\ratingFinalResult{mag} &  &
+\ratingFinalResult{mou} &  &
+\ratingFinalResult{rot} &  &
+\ratingFinalResult{udi}\\
+\hline
+}
+
+\begin{sidewaystable}
+\small
+\makebox[\linewidth]{
+\begin{tabular}{|l|l|l||c|c|c|c|c|c|c|c|c|c|c|c|c|c|c|c|c|c|c|c|c|c|c|c|}
+\cline{1-2}
+\multicolumn{2}{|l|}{Category} &  
+\leaningLabelB{Significance} &
+\multicolumn{2}{c}{\leaningLabel{Accelometer} }&
+\multicolumn{2}{c}{\leaningLabel{Bumper Sensor} } & 
+\multicolumn{2}{c}{\leaningLabel{GPS} } &
+\multicolumn{2}{c}{\leaningLabel{Gyro} } &
+\multicolumn{2}{c}{\leaningLabel{Infrared Brightness Distance Sensor} } &
+\multicolumn{2}{c}{\leaningLabel{Infrared Floor Sensor} } &
+\multicolumn{2}{c}{\leaningLabel{Infrared Triangulation Distance Sensor} } &
+\multicolumn{2}{c}{\leaningLabel{Image Recognition} } &
+\multicolumn{2}{c}{\leaningLabel{Magnetometer} } &
+\multicolumn{2}{c}{\leaningLabel{Mouse Sensor} } &
+\multicolumn{2}{c}{\leaningLabel{Rotary Encoder} } &
+\multicolumn{2}{c}{\leaningLabel{Ultrasonic Distance Sensor} } \\
+\hline
+\multirow{3}{*}{  \rotatebox{90}{ Bugs~ } }
+& Methodical Error & \ratingSignificance{2} & 
+\rating{acc}{6} & \ratingResult{acc} & 
+\rating{bum}{10} & \ratingResult{bum} &
+\rating{gps}{5} & \ratingResult{gps} &
+\rating{gyr}{6} & \ratingResult{gyr} &
+\rating{ibd}{5} & \ratingResult{ibd} & %e.a.: Different strong reflecting objects
+\rating{ifl}{10} & \ratingResult{ifl} &
+\rating{itd}{8} & \ratingResult{itd} &
+\rating{ire}{4} & \ratingResult{ire} &
+\rating{mag}{6} & \ratingResult{mag} &
+\rating{mou}{8} & \ratingResult{mou} &
+\rating{rot}{8} & \ratingResult{rot} & %e.a.: Different wheel start position
+\rating{udi}{7} & \ratingResult{udi} \\ % e.a.: Temperature differences
+
+& Run Away Value & \ratingSignificance{2} &
+\rating{acc}{6} & \ratingResult{acc} & 
+\rating{bum}{10} & \ratingResult{bum} &
+\rating{gps}{5} & \ratingResult{gps} &
+\rating{gyr}{6} & \ratingResult{gyr} &
+\rating{ibd}{6} & \ratingResult{ibd} &
+\rating{ifl}{10} & \ratingResult{ifl} & 
+\rating{itd}{6} & \ratingResult{itd} &
+\rating{ire}{4} & \ratingResult{ire} &
+\rating{mag}{6} & \ratingResult{mag} &
+\rating{mou}{9} & \ratingResult{mou} &
+\rating{rot}{10} & \ratingResult{rot} &
+\rating{udi}{6} & \ratingResult{udi} \\
+
+& Brake Down Possibility & \ratingSignificance{1} &
+\rating{acc}{9} & \ratingResult{acc} & 
+\rating{bum}{2} & \ratingResult{bum} & %Parts with high mechanical stress
+\rating{gps}{5} & \ratingResult{gps} & %Inside a house
+\rating{gyr}{9} & \ratingResult{gyr} &
+\rating{ibd}{8} & \ratingResult{ibd} & %Light pollution
+\rating{ifl}{8} & \ratingResult{ifl} & %Black line on floor
+\rating{itd}{9} & \ratingResult{itd} &
+\rating{ire}{9} & \ratingResult{ire} &
+\rating{mag}{9} & \ratingResult{mag} &
+\rating{mou}{9} & \ratingResult{mou} &
+\rating{rot}{9} & \ratingResult{rot} &
+\rating{udi}{9} & \ratingResult{udi} \\
+
+& Precision & \ratingSignificance{4} &
+\rating{acc}{5} & \ratingResult{acc} & 
+\rating{bum}{10} & \ratingResult{bum} &
+\rating{gps}{0} & \ratingResult{gps} & 
+\rating{gyr}{5} & \ratingResult{gyr} &
+\rating{ibd}{4} & \ratingResult{ibd} &
+\rating{ifl}{10} & \ratingResult{ifl} &
+\rating{itd}{8} & \ratingResult{itd} &
+\rating{ire}{4} & \ratingResult{ire} &
+\rating{mag}{6} & \ratingResult{mag} &
+\rating{mou}{9} & \ratingResult{mou} &
+\rating{rot}{9} & \ratingResult{rot} &
+\rating{udi}{8} & \ratingResult{udi} \\
+
+\sensorRatingSum
+\hline
+\multirow{3}{*}{ \rotatebox{90}{ Usability } }
+& Amount of Software &  \ratingSignificance{1} &
+\rating{acc}{8} & \ratingResult{acc} & 
+\rating{bum}{9} & \ratingResult{bum} &
+\rating{gps}{2} & \ratingResult{gps} & 
+\rating{gyr}{8} & \ratingResult{gyr} &
+\rating{ibd}{5} & \ratingResult{ibd} &
+\rating{ifl}{9} & \ratingResult{ifl} &
+\rating{itd}{8} & \ratingResult{itd} &
+\rating{ire}{0} & \ratingResult{ire} &
+\rating{mag}{8} & \ratingResult{mag} &
+\rating{mou}{2} & \ratingResult{mou} &
+\rating{rot}{8} & \ratingResult{rot} &
+\rating{udi}{8} & \ratingResult{udi} \\
+
+& Amount of Algorithms &  \ratingSignificance{1} &
+\rating{acc}{10} & \ratingResult{acc} & 
+\rating{bum}{10} & \ratingResult{bum} &
+\rating{gps}{2} & \ratingResult{gps} & 
+\rating{gyr}{10} & \ratingResult{gyr} &
+\rating{ibd}{4} & \ratingResult{ibd} &
+\rating{ifl}{10} & \ratingResult{ifl} &
+\rating{itd}{8} & \ratingResult{itd} &
+\rating{ire}{0} & \ratingResult{ire} &
+\rating{mag}{10} & \ratingResult{mag} &
+\rating{mou}{8} & \ratingResult{mou} &
+\rating{rot}{9} & \ratingResult{rot} &
+\rating{udi}{8} & \ratingResult{udi} \\
+
+& Amount of Hardware &  \ratingSignificance{1} &
+\rating{acc}{9} & \ratingResult{acc} & 
+\rating{bum}{8} & \ratingResult{bum} & %Schmitt-Trigger
+\rating{gps}{7} & \ratingResult{gps} & 
+\rating{gyr}{7} & \ratingResult{gyr} &
+\rating{ibd}{7} & \ratingResult{ibd} &
+\rating{ifl}{9} & \ratingResult{ifl} &
+\rating{itd}{8} & \ratingResult{itd} &
+\rating{ire}{7} & \ratingResult{ire} &
+\rating{mag}{9} & \ratingResult{mag} &
+\rating{mou}{5} & \ratingResult{mou} &
+\rating{rot}{5} & \ratingResult{rot} &
+\rating{udi}{8} & \ratingResult{udi} \\
+\sensorRatingSum
+
+\hline
+\multirow{3}{*}{ \rotatebox{90}{ Resources~ } }
+& Computing Load & \ratingSignificance{7} &
+\rating{acc}{8} & \ratingResult{acc} & 
+\rating{bum}{10} & \ratingResult{bum} &
+\rating{gps}{2} & \ratingResult{gps} & 
+\rating{gyr}{8} & \ratingResult{gyr} &
+\rating{ibd}{7} & \ratingResult{ibd} &
+\rating{ifl}{10} & \ratingResult{ifl} &
+\rating{itd}{9} & \ratingResult{itd} &
+\rating{ire}{0} & \ratingResult{ire} &
+\rating{mag}{8} & \ratingResult{mag} &
+\rating{mou}{6} & \ratingResult{mou} &
+\rating{rot}{8} & \ratingResult{rot} &
+\rating{udi}{7} & \ratingResult{udi} \\
+
+& Interrupt Pins & \ratingSignificance{2} &
+\rating{acc}{10} & \ratingResult{acc} & 
+\rating{bum}{5} & \ratingResult{bum} & 
+\rating{gps}{5} & \ratingResult{gps} & 
+\rating{gyr}{10} & \ratingResult{gyr} &
+\rating{ibd}{10} & \ratingResult{ibd} &
+\rating{ifl}{5} & \ratingResult{ifl} & 
+\rating{itd}{10} & \ratingResult{itd} &
+\rating{ire}{5} & \ratingResult{ire} &
+\rating{mag}{10} & \ratingResult{mag} &
+\rating{mou}{5} & \ratingResult{mou} &
+\rating{rot}{0} & \ratingResult{rot} & 
+\rating{udi}{10} & \ratingResult{udi} \\
+
+& DAC Pins & \ratingSignificance{1} &
+\rating{acc}{4} & \ratingResult{acc} & % 3
+\rating{bum}{10} & \ratingResult{bum} & % 0
+\rating{gps}{10} & \ratingResult{gps} & % 0
+\rating{gyr}{4} & \ratingResult{gyr} & % 3
+\rating{ibd}{6} & \ratingResult{ibd} &% 1
+\rating{ifl}{8} & \ratingResult{ifl} & % 0
+\rating{itd}{10} & \ratingResult{itd} &
+\rating{ire}{9} & \ratingResult{ire} & % 0 - x
+\rating{mag}{4} & \ratingResult{mag} & % 3
+\rating{mou}{10} & \ratingResult{mou} & % 0
+\rating{rot}{10} & \ratingResult{rot} & % 0
+\rating{udi}{8} & \ratingResult{udi} \\ % 1
+
+& Digital Pins & \ratingSignificance{1} &
+\rating{acc}{10} & \ratingResult{acc} & % 0
+\rating{bum}{8} & \ratingResult{bum} & % 1
+\rating{gps}{0} & \ratingResult{gps} & % 4 -- 10
+\rating{gyr}{4} & \ratingResult{gyr} & % 0
+\rating{ibd}{10} & \ratingResult{ibd} & % 0
+\rating{ifl}{8} & \ratingResult{ifl} & % 1
+\rating{itd}{10} & \ratingResult{itd} &
+\rating{ire}{0} & \ratingResult{ire} & % ~7
+\rating{mag}{10} & \ratingResult{mag} & % 0
+\rating{mou}{3} & \ratingResult{mou} & % 2 -- 4
+\rating{rot}{4} & \ratingResult{rot} & % 2 --4
+\rating{udi}{6} & \ratingResult{udi} \\ % 1
+
+& PWM Pins & \ratingSignificance{1} &
+\rating{acc}{10} & \ratingResult{acc} & % 0
+\rating{bum}{10} & \ratingResult{bum} & % 0
+\rating{gps}{10} & \ratingResult{gps} & % 0
+\rating{gyr}{10} & \ratingResult{gyr} & % 0
+\rating{ibd}{10} & \ratingResult{ibd} & % 0
+\rating{ifl}{10} & \ratingResult{ifl} & % 0
+\rating{itd}{0} & \ratingResult{itd} &
+\rating{ire}{10} & \ratingResult{ire} & % 0
+\rating{mag}{10} & \ratingResult{mag} & % 0
+\rating{mou}{10} & \ratingResult{mou} & % 0
+\rating{rot}{10} & \ratingResult{rot} & % 0
+\rating{udi}{10} & \ratingResult{udi} \\ % 0
+
+& I2C Address & \ratingSignificance{1} &
+\rating{acc}{5} & \ratingResult{acc} & % 1
+\rating{bum}{10} & \ratingResult{bum} & % 0
+\rating{gps}{5} & \ratingResult{gps} & % 1
+\rating{gyr}{5} & \ratingResult{gyr} & % 1
+\rating{ibd}{10} & \ratingResult{ibd} & % 0
+\rating{ifl}{10} & \ratingResult{ifl} & % 0
+\rating{itd}{5} & \ratingResult{itd} &
+\rating{ire}{5} & \ratingResult{ire} & % 1
+\rating{mag}{5} & \ratingResult{mag} & % 1
+\rating{mou}{5} & \ratingResult{mou} & % 1
+\rating{rot}{10} & \ratingResult{rot} & % 0
+\rating{udi}{5} & \ratingResult{udi} \\ % 1
+
+& UART Port & \ratingSignificance{1} &
+\rating{acc}{10} & \ratingResult{acc} & % 0
+\rating{bum}{10} & \ratingResult{bum} & % 0
+\rating{gps}{10} & \ratingResult{gps} & % 0
+\rating{gyr}{10} & \ratingResult{gyr} & % 0
+\rating{ibd}{10} & \ratingResult{ibd} & % 0
+\rating{ifl}{10} & \ratingResult{ifl} & % 0
+\rating{itd}{10} & \ratingResult{itd} &
+\rating{ire}{10} & \ratingResult{ire} & % 0
+\rating{mag}{10} & \ratingResult{mag} & % 0
+\rating{mou}{10} & \ratingResult{mou} & % 0
+\rating{rot}{10} & \ratingResult{rot} & % 0
+\rating{udi}{10} & \ratingResult{udi} \\ % 0
+\sensorRatingSum
+\sensorFinalSum
+\end{tabular}
+}
+\caption{The categories with the specific rating}
+\label{tab:categoryRating}
+\end{sidewaystable}

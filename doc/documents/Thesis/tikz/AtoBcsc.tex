@@ -1,0 +1,51 @@
+%A to B Circle Straight Circle
+
+\makebox[\linewidth]{
+\definecolor{ffqqqq}{rgb}{1,0,0}
+\definecolor{ffdxqq}{rgb}{1,0.84,0}
+\definecolor{zzffqq}{rgb}{0.6,1,0}
+\definecolor{qqwuqq}{rgb}{0,0.39,0}
+\definecolor{qqqqff}{rgb}{0,0,1}
+\begin{tikzpicture}[line cap=round,line join=round,>=triangle 45,x=1.0cm,y=1.0cm]
+\draw[->,color=black] (-0.32,0) -- (12.44,0);
+\foreach \x in {,2,4,6,8,10,12}
+\draw[shift={(\x,0)},color=black] (0pt,2pt) -- (0pt,-2pt) node[below] {\footnotesize $\x$};
+\draw[->,color=black] (0,-0.36) -- (0,6.14);
+\foreach \y in {,2,4,6}
+\draw[shift={(0,\y)},color=black] (2pt,0pt) -- (-2pt,0pt) node[left] {\footnotesize $\y$};
+\draw[color=black] (0pt,-10pt) node[right] {\footnotesize $0$};
+\clip(-0.32,-0.36) rectangle (12.44,6.14);
+\draw [shift={(3,3)},color=qqwuqq,fill=qqwuqq,fill opacity=0.1] (0,0) -- (0:0.6) arc (0:250:0.6) -- cycle;
+\draw [shift={(10,3)},color=qqwuqq,fill=qqwuqq,fill opacity=0.1] (0,0) -- (-35:0.6) arc (-35:180:0.6) -- cycle;
+\draw[color=qqwuqq] (8.34,9.54) -- (9.78,9.54);
+\draw[color=qqwuqq] (5.6,9.32) -- (7.04,9.32);
+\draw [dash pattern=on 2pt off 2pt] (3,3)-- (10,3);
+\draw(11.46,9.6) -- (13.46,9.6);
+\draw [color=zzffqq] (1.47,5.01)-- (10.74,5.72);
+\draw [shift={(1.59,3.51)},color=zzffqq]  plot[domain=1.65:5.93,variable=\t]({1*1.5*cos(\t r)+0*1.5*sin(\t r)},{0*1.5*cos(\t r)+1*1.5*sin(\t r)});
+\draw [shift={(10.86,4.23)},color=zzffqq]  plot[domain=-2.18:1.65,variable=\t]({1*1.5*cos(\t r)+0*1.5*sin(\t r)},{0*1.5*cos(\t r)+1*1.5*sin(\t r)});
+\draw [color=qqqqff] (4.19,1)-- (8.92,0.29);
+\draw [color=ffdxqq] (8.26,0.55)-- (2.47,4.73);
+\draw [color=ffqqqq] (9.86,5.35)-- (5.41,1.37);
+\draw [shift={(4.41,2.49)},color=qqqqff]  plot[domain=2.79:4.56,variable=\t]({1*1.5*cos(\t r)+0*1.5*sin(\t r)},{0*1.5*cos(\t r)+1*1.5*sin(\t r)});
+\draw [shift={(9.14,1.77)},color=qqqqff]  plot[domain=-1.72:0.96,variable=\t]({1*1.5*cos(\t r)+0*1.5*sin(\t r)},{0*1.5*cos(\t r)+1*1.5*sin(\t r)});
+\draw [shift={(9.14,1.77)},color=ffdxqq]  plot[domain=-2.2:0.96,variable=\t]({1*1.5*cos(\t r)+0*1.5*sin(\t r)},{0*1.5*cos(\t r)+1*1.5*sin(\t r)});
+\draw [shift={(1.59,3.51)},color=ffdxqq]  plot[domain=0.95:5.93,variable=\t]({1*1.5*cos(\t r)+0*1.5*sin(\t r)},{0*1.5*cos(\t r)+1*1.5*sin(\t r)});
+\draw [shift={(4.41,2.49)},color=ffqqqq]  plot[domain=2.79:5.44,variable=\t]({1*1.5*cos(\t r)+0*1.5*sin(\t r)},{0*1.5*cos(\t r)+1*1.5*sin(\t r)});
+\draw [shift={(10.86,4.23)},color=ffqqqq]  plot[domain=-2.18:2.3,variable=\t]({1*1.5*cos(\t r)+0*1.5*sin(\t r)},{0*1.5*cos(\t r)+1*1.5*sin(\t r)});
+\begin{scriptsize}
+\fill [color=qqqqff] (3,3) circle (1.5pt);
+\draw[color=qqqqff] (3.14,3.28) node {$A$};
+\fill [color=qqqqff] (10,3) circle (1.5pt);
+\draw[color=qqqqff] (10.16,3.28) node {$B$};
+\fill [color=qqwuqq] (9.2,9.54) circle (1.5pt);
+\draw[color=qqwuqq] (10.18,9.92) node {$Ankunftswinkel = 215\textrm{\degre}$};
+\fill [color=qqwuqq] (6.6,9.32) circle (1.5pt);
+\draw[color=qqwuqq] (7.56,9.7) node {$Abfahrtswinkel = 250\textrm{\degre}$};
+\draw[color=qqwuqq] (2.98,3.36) node {$250\textrm{\degre}$};
+\draw[color=qqwuqq] (10.3,3.4) node {$215\textrm{\degre}$};
+\fill [color=black] (11.76,9.6) circle (1.5pt);
+\draw[color=black] (12.78,9.98) node {$MinimalerRadius = 1.5$};
+\end{scriptsize}
+\end{tikzpicture}
+}

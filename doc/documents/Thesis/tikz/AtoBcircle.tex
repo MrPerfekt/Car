@@ -1,0 +1,58 @@
+\definecolor{uququq}{rgb}{0.25,0.25,0.25}
+\definecolor{qqqqff}{rgb}{0,0,1}
+
+\makebox[\linewidth]{
+\begin{tikzpicture}[line cap=round,line join=round,>=triangle 45,x=1.0cm,y=1.0cm]
+\draw[->,color=black] (-0.36,0) -- (9.32,0);
+\foreach \x in {,2,4,6,8}
+\draw[shift={(\x,0)},color=black] (0pt,2pt) -- (0pt,-2pt) node[below] {\footnotesize $\x$};
+\draw[->,color=black] (0,-0.32) -- (0,4.18);
+\foreach \y in {,2,4}
+\draw[shift={(0,\y)},color=black] (2pt,0pt) -- (-2pt,0pt) node[left] {\footnotesize $\y$};
+\draw[color=black] (0pt,-10pt) node[right] {\footnotesize $0$};
+\clip(-0.36,-0.32) rectangle (9.32,4.18);
+\draw (1,1)-- (9,1);
+\draw[line width=1.6pt] (4.32,5.84) -- (6.32,5.84);
+\draw [shift={(5,-4.17)}] plot[domain=0.91:2.23,variable=\t]({1*6.54*cos(\t r)+0*6.54*sin(\t r)},{0*6.54*cos(\t r)+1*6.54*sin(\t r)});
+\draw [->] (1,1) -- (4.16,3.45);
+\begin{scriptsize}
+\fill [color=qqqqff] (1,1) circle (1.5pt);
+\draw[color=qqqqff] (1.14,1.28) node {$A$};
+\fill [color=qqqqff] (9,1) circle (1.5pt);
+\draw[color=qqqqff] (9.16,1.28) node {$B$};
+\fill [color=black] (5.53,5.84) circle (1.5pt);
+\draw[color=black] (6.46,6.22) node {$Abfahrtswinkel = 0.66$};
+\fill [color=uququq] (4.16,3.45) circle (1.5pt);
+\draw[color=uququq] (4.72,3.72) node {$direction$};
+\fill [color=uququq] (5,-4.17) circle (1.5pt);
+\draw[color=uququq] (5.3,-3.9) node {$C_1$};
+\end{scriptsize}
+\end{tikzpicture}
+
+\begin{tikzpicture}[line cap=round,line join=round,>=triangle 45,x=1.0cm,y=1.0cm]
+\draw[->,color=black] (-0.36,0) -- (9.5,0);
+\foreach \x in {,2,4,6,8}
+\draw[shift={(\x,0)},color=black] (0pt,2pt) -- (0pt,-2pt) node[below] {\footnotesize $\x$};
+\draw[->,color=black] (0,-0.38) -- (0,5.5);
+\foreach \y in {,2,4}
+\draw[shift={(0,\y)},color=black] (2pt,0pt) -- (-2pt,0pt) node[left] {\footnotesize $\y$};
+\draw[color=black] (0pt,-10pt) node[right] {\footnotesize $0$};
+\clip(-0.36,-0.38) rectangle (9.5,5.5);
+\draw (1,1)-- (9,1);
+\draw[line width=1.6pt] (4.32,5.84) -- (6.32,5.84);
+\draw [shift={(5,1.35)}] plot[domain=-0.09:3.23,variable=\t]({1*4.02*cos(\t r)+0*4.02*sin(\t r)},{0*4.02*cos(\t r)+1*4.02*sin(\t r)});
+\draw [->] (1,1) -- (0.65,4.98);
+\begin{scriptsize}
+\fill [color=qqqqff] (1,1) circle (1.5pt);
+\draw[color=qqqqff] (1.14,1.28) node {$A$};
+\fill [color=qqqqff] (9,1) circle (1.5pt);
+\draw[color=qqqqff] (9.16,1.28) node {$B$};
+\fill [color=black] (5.85,5.84) circle (1.5pt);
+\draw[color=black] (6.78,6.22) node {$Abfahrtswinkel = 1.66$};
+\fill [color=uququq] (0.65,4.98) circle (1.5pt);
+\draw[color=uququq] (1.2,5.26) node {$direction$};
+\fill [color=uququq] (5,1.35) circle (1.5pt);
+\draw[color=uququq] (5.3,1.64) node {$C_1$};
+\end{scriptsize}
+\end{tikzpicture}
+}

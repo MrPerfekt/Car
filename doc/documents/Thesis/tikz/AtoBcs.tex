@@ -1,0 +1,36 @@
+%A to B Circle Straight Circle
+
+\makebox[\linewidth]{
+\definecolor{qqqqcc}{rgb}{0,0,0.8}
+\definecolor{qqwuqq}{rgb}{0,0.39,0}
+\definecolor{qqqqff}{rgb}{0,0,1}
+\begin{tikzpicture}[line cap=round,line join=round,>=triangle 45,x=1.0cm,y=1.0cm]
+\draw[->,color=black] (-0.48,0) -- (10.48,0);
+\foreach \x in {,2,4,6,8,10}
+\draw[shift={(\x,0)},color=black] (0pt,2pt) -- (0pt,-2pt) node[below] {\footnotesize $\x$};
+\draw[->,color=black] (0,-0.48) -- (0,6.24);
+\foreach \y in {,2,4,6}
+\draw[shift={(0,\y)},color=black] (2pt,0pt) -- (-2pt,0pt) node[left] {\footnotesize $\y$};
+\draw[color=black] (0pt,-10pt) node[right] {\footnotesize $0$};
+\clip(-0.48,-0.48) rectangle (10.48,6.24);
+\draw [shift={(3,3)},color=qqwuqq,fill=qqwuqq,fill opacity=0.1] (0,0) -- (0:0.6) arc (0:225:0.6) -- cycle;
+\draw[color=qqwuqq] (5.6,9.32) -- (7.04,9.32);
+\draw [dash pattern=on 2pt off 2pt] (3,3)-- (10,3);
+\draw(11.46,9.6) -- (13.46,9.6);
+\draw [shift={(1.94,4.06)},color=qqwuqq]  plot[domain=1.25:5.5,variable=\t]({1*1.5*cos(\t r)+0*1.5*sin(\t r)},{0*1.5*cos(\t r)+1*1.5*sin(\t r)});
+\draw [shift={(4.06,1.94)},color=qqqqcc]  plot[domain=2.36:5.14,variable=\t]({1*1.5*cos(\t r)+0*1.5*sin(\t r)},{0*1.5*cos(\t r)+1*1.5*sin(\t r)});
+\draw [color=qqwuqq] (2.41,5.49)-- (10,3);
+\draw [color=qqqqcc] (4.68,0.57)-- (10,3);
+\begin{scriptsize}
+\fill [color=qqqqff] (3,3) circle (1.5pt);
+\draw[color=qqqqff] (3.14,3.28) node {$A$};
+\fill [color=qqqqff] (10,3) circle (1.5pt);
+\draw[color=qqqqff] (10.16,3.28) node {$B$};
+\fill [color=qqwuqq] (6.5,9.32) circle (1.5pt);
+\draw[color=qqwuqq] (7.46,9.7) node {$Abfahrtswinkel = 225\textrm{\degre}$};
+\draw[color=qqwuqq] (3.06,3.4) node {$225\textrm{\degre}$};
+\fill [color=black] (11.76,9.6) circle (1.5pt);
+\draw[color=black] (12.78,9.98) node {$MinimalerRadius = 1.5$};
+\end{scriptsize}
+\end{tikzpicture}
+}
