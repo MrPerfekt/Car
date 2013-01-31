@@ -12,9 +12,9 @@ class SonicDistanceSensor : public DistanceSensor{
 private:
 	const uint8_t pinTrig,pinEcho;
 public:
-	SonicDistanceSensor(uint8_t sensorNr);
+	SonicDistanceSensor(uint8_t sensorNr,PositionCalculator& positionCalculator,EnvironmentKnowledgeBase &environmentKnowledgeBase);
 	~SonicDistanceSensor();
 
-	double calculateDistance() const;
+	double measureDistance() const;
 };
 #endif

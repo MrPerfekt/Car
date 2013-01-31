@@ -14,5 +14,8 @@ private:
 public:
 	Coordinates();
 	Coordinates(double x,double y);
+	
+	void set(double x, double y);
+	void set(const Coordinates& coordinates);
 };
 #endif

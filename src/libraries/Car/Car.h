@@ -5,7 +5,6 @@ Copyright 2012 Andreas Gruber
 #ifndef CAR
 #define CAR
 
-#include "DefineLib.h"
 
 class BluetoothModul;
 class DisplayProxy;
@@ -22,12 +21,15 @@ class ServoProxy;
 class SteeringManager;
 class VoltageDivider;
 class WheelSensor;
+class SonicDistanceSensor;
+class EnvironmentKnowledgeBase;
 
 class Car {
-private:	
+private:
 	BluetoothModul* bluetoothModul;
 	DisplayProxy* displayProxy;
 	DisplayServer* displayServer;
+	EnvironmentKnowledgeBase* environmentKnowledgeBase;
 	MotionLogger* motionLogger;
 	Motor* motorPowerEngine;
 	MouseSensorPan101* mouseSensor;
@@ -37,6 +39,7 @@ private:
 	PositionCalculator* positionCalculator;
 	RemoteServer* remoteServer;
 	ServoProxy* servoProxy;
+	SonicDistanceSensor* sonicDistanceSensors[3];//Config::getSonicSensorCnt()];
 	SteeringManager* steeringManager;
 	Stream* mainDataStreem;
 	VoltageDivider* powerSupplyVoltageDivider;
@@ -45,6 +48,7 @@ public:
 	BluetoothModul& getBluetoothModul();
 	DisplayProxy& getDisplayProxy();
 	DisplayServer& getDisplayServer();
+	EnvironmentKnowledgeBase& getEnvironmentKnowledgeBase();
 	MotionLogger& getMotionLogger();
 	Motor& getMotorPowerEngine();
 	MouseSensorPan101& getMouseSensor();
@@ -54,6 +58,7 @@ public:
 	PositionCalculator& getPositionCalculator();
 	RemoteServer& getRemoteServer();
 	ServoProxy& getServoProxy();
+	SonicDistanceSensor** getSonicDistanceSensors();
 	SteeringManager& getSteeringManager();
 	Stream& getMainDataStreem();
 	VoltageDivider& getPowerSupplyVoltageDivider();

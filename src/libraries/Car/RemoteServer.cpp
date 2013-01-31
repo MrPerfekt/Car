@@ -2,6 +2,7 @@
 Copyright 2012 Andreas Gruber
 */
 
+#include "Arduino.h"
 #include "Car.h"
 #include "RemoteServer.h"
 #include "BluetoothModul.h"
@@ -9,14 +10,28 @@ Copyright 2012 Andreas Gruber
 #include "TurnMovement.h"
 #include "PathPlaner.h"
 #include "OrientationCoordinates.h"
+#include "EnvironmentKnowledgeBase.h"
 
 RemoteServer::RemoteServer(Car& car)
 :car(car){
+	car.getEnvironmentKnowledgeBase().addObserver(this);
 }
 RemoteServer::~RemoteServer(){
 }
 void RemoteServer::update(){
-	static Stream &s = car.getMainDataStreem();
+	Stream &s = car.getMainDataStreem();
+	const OrientationCoordinates &pos = car.getPositionCalculator().getCurrentPosition();
+	if(lastPosition != pos){
+		s.print("P");
+		s.print(pos.getX());
+		s.print("/");
+		s.print(pos.getY());
+		s.print("/");
+		s.print(pos.getAngle());
+		s.print(";");
+	}
+	
+	
 	while(s.available()){
 		uint8_t cnt = s.readBytesUntil('\n',(char*)buffer,bufferSize-1);
 		buffer[cnt] = '\0';
@@ -41,7 +56,7 @@ void RemoteServer::update(){
 				TurnMovement tm = TurnMovement();
 				tm.setAngleRadius(
 					2*PI * powerSign,
-					500 * steeringSign
+					100 * steeringSign
 					);
 				tm.invokeOnSteeringManager(car.getSteeringManager());
 			}
@@ -63,4 +78,14 @@ void RemoteServer::update(){
 			break;}
 		}
 	}
+}
+
+void RemoteServer::getNotified(){
+	Stream &s = car.getMainDataStreem();
+	s.print("O");
+	s.print(car.getEnvironmentKnowledgeBase().getLastObject().getX());
+	s.print("/");
+	s.print(car.getEnvironmentKnowledgeBase().getLastObject().getY());
+	s.print(";");
+	return;
 }

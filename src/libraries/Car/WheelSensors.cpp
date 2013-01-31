@@ -2,8 +2,9 @@
 Copyright 2012 Andreas Gruber
 */
 
-#include "WheelSensors.h"
+#include "DefineLib.h"
 #include "TurnMovement.h"
+#include "WheelSensors.h"
 
 //========== wheels [int] ==========
 
@@ -31,23 +32,30 @@ WheelSensor::WheelSensor()
 }
 
 void rotateWheelL0(){
-	wheelSensorInstance->rotateWheel(WheelSensor::WL);
+	wheelSensorInstance->rotateWheel(WheelSensor::WL,0);
 }
 void rotateWheelL1(){
-	wheelSensorInstance->rotateWheel(WheelSensor::WL);
+	wheelSensorInstance->rotateWheel(WheelSensor::WL,1);
 }
 void rotateWheelR0(){
-	wheelSensorInstance->rotateWheel(WheelSensor::WR);
+	wheelSensorInstance->rotateWheel(WheelSensor::WR,0);
 }
 void rotateWheelR1(){
-	wheelSensorInstance->rotateWheel(WheelSensor::WR);
+	wheelSensorInstance->rotateWheel(WheelSensor::WR,1);
 }
 
-void WheelSensor::rotateWheel(byte wheel){
+void WheelSensor::rotateWheel(uint8_t wheel,uint8_t sensorNr){
+	uint8_t sensor0 = digitalRead(wheel == WR ? Config::getPinWheelSensorR0() : Config::getPinWheelSensorL0());
+	uint8_t sensor1 = digitalRead(wheel == WR ? Config::getPinWheelSensorR1() : Config::getPinWheelSensorL1());
+	if((sensor0 != sensor1) ^ sensorNr ^ wheel)
+		wheels[wheel]->rotationCount++;
+	else
+		wheels[wheel]->rotationCount--;
+	return;
+	
 	unsigned long cTime = millis();
 	unsigned long cRotTime = cTime - wheels[wheel]->lastRotationTime;
 
-	wheels[wheel]->rotationCount++;
 	wheels[wheel]->secToLastRotationPeriod = wheels[wheel]->lastRotationPeriod;
 	wheels[wheel]->lastRotationPeriod = cRotTime;
 	wheels[wheel]->lastRotationTime = cTime;

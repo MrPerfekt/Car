@@ -7,6 +7,7 @@ Copyright 2012 Andreas Gruber
 //#include "Config.h"
 #include "DisplayProxy.h"
 #include "DisplayServer.h"
+#include "EnvironmentKnowledgeBase.h"
 #include "MotionLogger.h"
 #include "MotorTB6612FNG.h"
 #include "MouseSensorPan101BSI.h"
@@ -19,9 +20,11 @@ Copyright 2012 Andreas Gruber
 #include "RemoteServer.h"
 #include "ServoProxy.h"
 #include "ShortestPathPlaner.h"
+#include "SonicDistanceSensor.h"
 #include "SteeringManager.h"
 #include "VoltageDivider.h"
 #include "WheelSensors.h"
+
 
 BluetoothModul& Car::getBluetoothModul(){
 	return *bluetoothModul;
@@ -31,6 +34,9 @@ DisplayProxy& Car::getDisplayProxy(){
 }
 DisplayServer& Car::getDisplayServer(){
 	return *displayServer;
+}
+EnvironmentKnowledgeBase& Car::getEnvironmentKnowledgeBase(){
+	return *environmentKnowledgeBase;
 }
 Motor& Car::getMotorPowerEngine(){
 	return *motorPowerEngine;
@@ -59,6 +65,9 @@ RemoteServer& Car::getRemoteServer(){
 ServoProxy& Car::getServoProxy(){
 	return *servoProxy;
 }
+SonicDistanceSensor** Car::getSonicDistanceSensors(){
+	return sonicDistanceSensors;
+}
 SteeringManager& Car::getSteeringManager(){
 	return *steeringManager;
 }
@@ -72,7 +81,8 @@ WheelSensor& Car::getWheelSensor(){
 	return *wheelSensor;
 }
 	
-Car::Car(){	
+Car::Car(){
+	powerSupplyVoltageDivider = new VoltageDivider(Config::getPinAVolDivPowerSupplay(),Config::getVolDivPowerSupplayRes1(),Config::getVolDivPowerSupplayRes2());
 	//displayProxy = new DisplayProxy();
 	
 	Serial2.begin(9600);
@@ -87,19 +97,24 @@ Car::Car(){
 #endif
 	motorPowerEngine = new Motor();
 	servoProxy = new ServoProxy();
-	positionCalculator = new MovementPositionCalculator(*movementSensor);
-	steeringManager = new RegularSteeringManager(*servoProxy,*motorPowerEngine,*positionCalculator);
-	powerSupplyVoltageDivider = new VoltageDivider(Config::getPinAVolDivPowerSupplay(),Config::getVolDivPowerSupplayRes1(),Config::getVolDivPowerSupplayRes2());
+	positionCalculator = new MovementPositionCalculator(getMovementSensor());
+	steeringManager = new RegularSteeringManager(getServoProxy(),getMotorPowerEngine(),getPositionCalculator());
+	
+	environmentKnowledgeBase = new EnvironmentKnowledgeBase();
+	for(uint8_t i = 0; i < Config::getSonicSensorCnt();i++)
+		sonicDistanceSensors[i] = new SonicDistanceSensor(i,getPositionCalculator(),getEnvironmentKnowledgeBase());
 
-	motionLogger = new MotionLogger(*positionCalculator);
-	pathExecutor = new PathExecutor(*steeringManager);
-	pathPlaner = new ShortestPathPlaner(*positionCalculator,*pathExecutor);
+	motionLogger = new MotionLogger(getPositionCalculator());
+	pathExecutor = new PathExecutor(getSteeringManager());
+	pathPlaner = new ShortestPathPlaner(getPositionCalculator(),getPathExecutor());
 	
 	remoteServer = new RemoteServer(*this);
 	displayServer = new DisplayServer(*this);
 }
 
 void Car::update(){
+	for(uint8_t i = 0; i < Config::getSonicSensorCnt();i++)
+		sonicDistanceSensors[i]->update();
 	remoteServer->update();
 	displayServer->update();
 	movementSensor->update();

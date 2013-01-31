@@ -21,6 +21,9 @@ public:
 	virtual void operator+= (const OrientationCoordinates &coordinates);
 	virtual void operator-= (const OrientationCoordinates &coordinates);
 	virtual void operator*= (const Movement &movement);
+	virtual bool operator!= (const OrientationCoordinates &movement);
+	virtual bool operator== (const OrientationCoordinates &movement);
 	void set(double x,double y,double angle);
+	void set(const OrientationCoordinates &orientationCoordinates);
 };
 #endif

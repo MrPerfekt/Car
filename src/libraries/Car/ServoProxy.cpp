@@ -3,7 +3,8 @@ Copyright 2013 Andreas Gruber
 */
 
 #include "ServoProxy.h"
-#include "AdjustmentCalculation.h"
+#include "RegressionAdjustmentCalculation.h"
+#include "StraightAdjustmentCalculation.h"
 #include <Servo.h>
 	
 Servo* steeringServo;
@@ -40,7 +41,7 @@ double const ServoProxy::getMinRadius(){
 }
 //!================Constructor================
 ServoProxy::ServoProxy(){
-	acalc = new AdjustmentCalculation(-PI/2,PI/2);
+	acalc = new RegressionAdjustmentCalculation(-PI/2,PI/2);
 }
 void ServoProxy::setSteeringServo(Servo* newSteeringServo){
 	steeringServo = newSteeringServo;
@@ -48,6 +49,10 @@ void ServoProxy::setSteeringServo(Servo* newSteeringServo){
 }
 //!================Set Methods================
 uint8_t ServoProxy::setServoAngle(double angle){
+	Serial.print("====:: ");
+	Serial.print(isnan(angle));
+	Serial.print(" ");
+	Serial.println(angle);
 	static double midDeg = Config::getServoAbsAngleMiddleDeg();
 	static double maxDeg = Config::getServoMaxAngleDeg();
 
@@ -62,18 +67,20 @@ uint8_t ServoProxy::setServoAngle(double angle){
 		servoAngle = maxDeg;
 		returnState = 1;
 	}
-	servoAngle+= midDeg;
+	servoAngle += midDeg;
 
 	steeringServo->write((int)servoAngle);
 	return returnState;
 }
 uint8_t ServoProxy::setUpdatedSteeringAngle(double angle){
+	return setServoAngle(angle);
 	return setServoAngle(convertSteeringToServoAngle(angle));
 }
 
 uint8_t ServoProxy::setSteeringAngle(double angle){
 	//currentAngle = angle;
-	return setUpdatedSteeringAngle(acalc->getValue(angle));
+	acalc->setValue(angle);
+	return setUpdatedSteeringAngle(acalc->getResult());
 
 	/*
 	currentSollAngle = angle;
@@ -87,7 +94,7 @@ uint8_t ServoProxy::setRadius(double radius){
 //!================Correct Methods================
 uint8_t ServoProxy::correctSteeringAngle(double currentRealAngle){
 	acalc->correctLastValue(currentRealAngle);
-	return setUpdatedSteeringAngle(acalc->getUpdateValue());
+	return setUpdatedSteeringAngle(acalc->getResult());
 	
 	/*
 	//! ToDo: Improve this algorithm

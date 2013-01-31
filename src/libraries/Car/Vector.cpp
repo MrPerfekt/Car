@@ -71,6 +71,9 @@ void Vector::set(const Vector &v){
 void Vector::setToUnitVectorByAngle(double angle){
     set(cos(angle),sin(angle));
 }
-Vector Vector::clone() const{
-	return Vector(x,y);
+void Vector::rotate(double angle){
+	double xn = x*cos(angle) - y*sin(angle);
+	double yn = x*sin(angle) + y*cos(angle);
+	x = xn;
+	y = yn;
 }

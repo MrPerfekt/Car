@@ -25,6 +25,13 @@ namespace WheelChairRemoveControl
             SerialConnection.CurPowDirChanged += new EventHandler(serialConnection_CurPowDirChanged);
             SerialConnection.CurSteerDirChanged += new EventHandler(serialConnection_CurSteerDirChanged);
             SerialConnection.messageOccured += new MessageEventHandler(SerialConnection_messageOccured);
+            SerialConnection.ObjectsReceived += new EventHandler(SerialConnection_DataReceived);
+            SerialConnection.PositionsReceived +=new EventHandler(SerialConnection_DataReceived);
+        }
+
+        void SerialConnection_DataReceived(object sender, EventArgs e)
+        {
+            mainPictureBox.Invalidate();
         }
 
         void SerialConnection_messageOccured(object sender, MessageEventArgs eventArgs)
@@ -85,6 +92,12 @@ namespace WheelChairRemoveControl
         private void refreshPortsButton_Click(object sender, EventArgs e)
         {
             refreshPorts();
+        }
+        private void buttonRestart_Click(object sender, EventArgs e)
+        {
+            SerialConnection.MyPositions.Clear();
+            SerialConnection.FoundObjects.Clear();
+            SerialConnection.sendRestart();
         }
         //!
         //! Target
@@ -186,17 +199,28 @@ namespace WheelChairRemoveControl
         //!
         private void mainPictureBox_Paint(object sender, PaintEventArgs e)
         {
-            const float size = 10;
             Graphics g = e.Graphics;
-            foreach (var p in SerialConnection.FoundObjects)
-            {
-                g.FillEllipse(new SolidBrush(Color.Black),p.X - size / 2,p.Y - size/2,size,size);
-            }
-        }
+            g.Clear(Color.White);
+            float maxX = 2000, maxY = 2000;
+            float minX = -2000, minY = -2000;
 
-        private void buttonRestart_Click(object sender, EventArgs e)
-        {
-            SerialConnection.sendRestart();
+            float scaleX = mainPictureBox.Width / (maxX - minX), scaleY = mainPictureBox.Height / (maxY - minY);
+            const float size = 5;
+
+            //foreach (var p in SerialConnection.FoundObjects)
+            for (int i = 0; i < SerialConnection.FoundObjects.Count; i++)
+            {
+                Coordinates p = SerialConnection.FoundObjects[i];
+                g.FillEllipse(new SolidBrush(Color.Red), (p.X-minX)*scaleX - size / 2, (p.Y-minY) *scaleY - size / 2, size, size);
+            }
+
+            //foreach (var p in SerialConnection.MyPositions)
+            for (int i = 0; i < SerialConnection.MyPositions.Count-1; i++)
+            {
+                OrientedCoordinates p0 = SerialConnection.MyPositions[i];
+                OrientedCoordinates p1 = SerialConnection.MyPositions[i+1];
+                g.DrawLine(new Pen(Color.Blue,2), (p0.X-minX) * scaleX, (p0.Y-minY) * scaleY,(p1.X-minX) * scaleX,(p1.Y-minY) * scaleY);
+            }
         }
     }
 }

@@ -31,17 +31,9 @@ PathPlaner& pathPlaner = car->getPathPlaner();
 RemoteServer& remoteServer = car->getRemoteServer();
 
 
-//========== DISPLAY ==========
-
-
-
-
-
-
-
-//==========================
-//========== code ==========
-//==========================
+//!==========================
+//!========== code ==========
+//!==========================
 #if false
 const int pinTestLed = 10;
 int curState = 0;

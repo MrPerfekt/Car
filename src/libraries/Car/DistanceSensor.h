@@ -11,9 +11,9 @@ Copyright 2012 Andreas Gruber
 class DistanceSensor : public EnvironmentSensor{
 private:
 public:
-	DistanceSensor(uint8_t sensorNr);
+	DistanceSensor(uint8_t sensorNr,PositionCalculator& positionCalculator,EnvironmentKnowledgeBase &environmentKnowledgeBase);
 	~DistanceSensor();
-	virtual double callculateDistance() const = 0;
+	virtual double measureDistance() const = 0;
 	void update();
 };
 #endif

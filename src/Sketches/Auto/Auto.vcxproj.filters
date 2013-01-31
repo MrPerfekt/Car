@@ -140,6 +140,21 @@
     <ClCompile Include="..\..\libraries\Car\SonicDistanceSensor.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="..\..\libraries\Car\Observer.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\libraries\Car\Matrix.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\libraries\Car\PartialRegression.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\libraries\Car\RegressionAdjustmentCalculation.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\libraries\Car\StraightAdjustmentCalculation.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\libraries\Car\BumperSensor.h">
@@ -263,6 +278,21 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="..\..\libraries\Car\SonicDistanceSensor.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\libraries\Car\Observer.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\libraries\Car\Matrix.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\libraries\Car\PartialRegression.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\libraries\Car\RegressionAdjustmentCalculation.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\libraries\Car\StraightAdjustmentCalculation.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

@@ -41,7 +41,7 @@ Path* ShortestPathPlaner::calculatePath(const OrientationCoordinates& startPosit
         for(int i1S = 0; i1S < 2; i1S++){ 
             int id1 = 2 + i1S; //! = id0+2
 			
-            Vector v = cc[id1].clone();//!Distance of both circles
+            Vector v = cc[id1];//!Distance of both circles
 			v -= cc[id0];
             //!
             //!Main Gradient

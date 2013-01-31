@@ -17,7 +17,7 @@ class SensorConfig{
 private:
 	const OrientationCoordinates* position;
 public:
-	const OrientationCoordinates& getPosition();
+	const OrientationCoordinates& getPosition() const;
 	SensorConfig(const OrientationCoordinates* position);
 };
 class SonicSensorConfig : public SensorConfig{
@@ -33,10 +33,12 @@ public:
 
 class Config{
 private:
-	//! Sensor configuration
+	//! Sonic sensor configuration
+	static const uint16_t sonicSensorValidationRange = 700;
+	static const uint8_t sonicSensorCnt = 3;
 	static const SonicSensorConfig sonicSensorConfigs[];
 	//! Car measures
-	static const uint32_t steeringWheelsPosition = 230;
+	static const uint16_t steeringWheelsPosition = 230;
 	//! Reset trigger pin
 	static const uint8_t resetTriggerPin = 53;
 	//! Steering Servo
@@ -61,6 +63,7 @@ private:
 	static const uint32_t wheelDistance = 180;
 	static const uint32_t wheelCircumference = 94;//! 6762 / 72 mm = 94
 	// static double wheelStepDistance(){return (double)circumference / (double)wheelSteps;}
+	static const uint8_t maxSteeringEquationPow = 4;
 	//! Power Supplay Voltage Divider
 	static const uint8_t pinAVolDivPowerSupplay = 0;
 	static const uint16_t volDivPowerSupplayRes1 = 966;
@@ -76,6 +79,9 @@ private:
 	static const uint8_t pinDisplayClk = 13;
 	static const uint8_t pinDisplayData = 11;
 public:
+	//! Sonic sensor configuration
+	static const uint16_t getSonicSensorValidationRange();
+	static const uint8_t getSonicSensorCnt();
 	static const SonicSensorConfig* getSonicSensorConfigs();
 	//! Car measures
 	static uint32_t getSteeringWheelsPosition();
@@ -99,10 +105,11 @@ public:
 	static const uint8_t getIntWheelSensorL0();
 	static const uint8_t getPinWheelSensorL1();
 	static const uint8_t getIntWheelSensorL1();
-	static const uint32_t getWheelSteps();
-	static const uint32_t getWheelDistance();
-	static const uint32_t getWheelCircumference();
+	static const uint8_t getWheelSteps();
+	static const uint16_t getWheelDistance();
+	static const uint16_t getWheelCircumference();
 	static const double getWheelStepDistance();
+	static const uint8_t getMaxSteeringEquationPow();
 	//! Power Supplay Voltage Divider
 	static const uint8_t getPinAVolDivPowerSupplay();
 	static const uint16_t getVolDivPowerSupplayRes1();
@@ -111,7 +118,7 @@ public:
 	static const uint8_t getPinMouseSensorSCK();
 	static const uint8_t getPinMouseSensorSDA();
 	static const uint8_t getPinMouseSensorPD();
-	static const uint32_t getMouseSensorCenterDistance();
+	static const uint16_t getMouseSensorCenterDistance();
 	//! Display
 	static const uint8_t getPinDisplayRST();
 	static const uint8_t getPinDisplayCS();

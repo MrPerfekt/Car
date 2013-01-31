@@ -50,6 +50,11 @@
         <VCCodeMacro Name="DISPLAY_SERVER" Value="" />
         <VCCodeMacro Name="ADJUSTMENT_CALCULATION" Value="" />
         <VCCodeMacro Name="SONIC_DISTANCE_SENSOR" Value="" />
+        <VCCodeMacro Name="OBSERVER" Value="" />
+        <VCCodeMacro Name="MATRIX" Value="" />
+        <VCCodeMacro Name="PARTIAL_REGRESSION" Value="" />
+        <VCCodeMacro Name="REGRESSION_ADJUSTMENT_CALCULATION" Value="" />
+        <VCCodeMacro Name="STRAIGHT_ADJUSTMENT_CALCULATION" Value="" />
         <VCCodeMacro Name="LIST" Value="" />
         <VCCodeMacro Name="__attribute__" Value="" />
         <VCCodeMacro Name="__inline__" Value="" />

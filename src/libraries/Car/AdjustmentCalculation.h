@@ -9,33 +9,29 @@ Copyright 2013 Andreas Gruber
 
 class AdjustmentCalculation {
 private:
+public:
 	double upperLimit;
 	double lowerLimit;
-	double lastValue;
-	double lastResult;
-	double currentResult;
-public:
 	AdjustmentCalculation();
 	AdjustmentCalculation(double lowerLimit,double upperLimit);
 	/*!
 	param value The input value
 	return The wanted result
 	*/
-	double getValue(double value);
+	virtual void setValue(double value) = 0;
 	/*!
 	return The wanted result of the last getValue command
 	*/
-	double getUpdateValue();
+	virtual double getResult() = 0;
 	/*!
 	param value The input value
-	param measuredResult The result of the value.
-	param measuredResult The correct result of the value.
+	param measuredResult The measured result of the value.
 	*/
-	void correctValue(double value, double result, double measuredResult);
+	virtual void correctValue(double value, double measuredResult) = 0;
 	/*!
 	Corrects the last value at the pararmeter of getValue
 	*/
-	void correctLastValue(double mesuredResult);
+	virtual void correctLastValue(double mesuredResult) = 0;
 };
 
 #endif

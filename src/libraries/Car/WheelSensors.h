@@ -22,7 +22,7 @@ void rotateWheelR1();
 
 struct Wheel{
 	//Variables
-	volatile uint32_t rotationCount;
+	volatile int32_t rotationCount;
 	volatile uint32_t lastRotationTime;
 	volatile uint32_t lastRotationPeriod;
 	volatile uint32_t secToLastRotationPeriod;
@@ -39,7 +39,7 @@ public:
 	static const byte WL = 1;
 
 	WheelSensor();
-	void rotateWheel(byte wheel);
+	void rotateWheel(uint8_t wheel,uint8_t sensorNr);
 	double calculateAngle();
 	double calculateDistance();
 	double calculateCurrentSpeed();

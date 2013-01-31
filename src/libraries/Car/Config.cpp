@@ -4,7 +4,7 @@ Copyright 2012 Andreas Gruber
 
 #include "Config.h"
 
-const OrientationCoordinates& SensorConfig::getPosition(){
+const OrientationCoordinates& SensorConfig::getPosition() const{
 	return *position;
 }
 SensorConfig::SensorConfig(const OrientationCoordinates* position)
@@ -23,9 +23,17 @@ SonicSensorConfig::SonicSensorConfig(const OrientationCoordinates* position, con
 	,pinEcho(pinEcho){
 }
 
-//! Sensor configuration
+//! Sonic sensor configuration
+const uint16_t Config::getSonicSensorValidationRange(){
+	return sonicSensorValidationRange;
+}
+const uint8_t Config::getSonicSensorCnt(){
+	return sonicSensorCnt;
+}
 const SonicSensorConfig Config::sonicSensorConfigs[] = {
-	SonicSensorConfig(new OrientationCoordinates(260,0,0),24,25),
+	SonicSensorConfig(new OrientationCoordinates(0,310,0),		24,25),
+	SonicSensorConfig(new OrientationCoordinates(70,300,PI/2*3),	26,27),
+	SonicSensorConfig(new OrientationCoordinates(-70,300,PI/2),	28,29),
 };
 const SonicSensorConfig* Config::getSonicSensorConfigs(){
 	return sonicSensorConfigs;
@@ -86,17 +94,20 @@ const uint8_t Config::getPinWheelSensorL1(){
 const uint8_t Config::getIntWheelSensorL1(){
 	return intWheelSensorL1;
 }
-const uint32_t Config::getWheelSteps(){
+const uint8_t Config::getWheelSteps(){
 	return wheelSteps;
 }
-const uint32_t Config::getWheelDistance(){
+const uint16_t Config::getWheelDistance(){
 	return wheelDistance;
 }
-const uint32_t Config::getWheelCircumference(){
+const uint16_t Config::getWheelCircumference(){
 	return wheelCircumference;
 }
 const double Config::getWheelStepDistance(){
 	return (double)getWheelCircumference() / (double)getWheelSteps();
+}
+const uint8_t Config::getMaxSteeringEquationPow(){
+	return maxSteeringEquationPow;
 }
 //! Power Supplay Voltage Divider
 const uint8_t Config::getPinAVolDivPowerSupplay(){
@@ -118,7 +129,7 @@ const uint8_t Config::getPinMouseSensorSDA(){
 const uint8_t Config::getPinMouseSensorPD(){
 	return pinMouseSensorPD;
 }
-const uint32_t Config::getMouseSensorCenterDistance(){
+const uint16_t Config::getMouseSensorCenterDistance(){
 	return mouseSensorCenterDistance;
 }
 //! Display

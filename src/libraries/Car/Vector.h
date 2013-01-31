@@ -30,6 +30,10 @@ public:
     void set(const double x, const double y);
     void set(const Vector &v);
     void setToUnitVectorByAngle(double angle);
-    Vector clone() const;
+	/*!
+	Rotates the vector around the z-axis
+	param angle Angle to rotate
+	*/
+	void rotate(double angle);
 };
 #endif

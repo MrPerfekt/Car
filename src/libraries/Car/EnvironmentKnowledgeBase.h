@@ -6,8 +6,16 @@ Copyright 2012 Andreas Gruber
 #define EVIRONMENT_KNOWLEDGE_BASE
 
 #include "DefineLib.h"
+#include "Observer.h"
 
-class EnvironmentKnowledgeBase {
+class EnvironmentKnowledgeBase : public SingleObservable{
+private:
+	Coordinates *lastObject;
+public:
+	const Coordinates& getLastObject() const;
+	EnvironmentKnowledgeBase();
+	~EnvironmentKnowledgeBase();
+	void detectPoint(Coordinates& coordinates);
 };
 
 #endif

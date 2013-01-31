@@ -33,7 +33,19 @@ void OrientationCoordinates::operator*= (const Movement &movement){
 
 	Vector::operator+=(v);
 }
+bool OrientationCoordinates::operator== (const OrientationCoordinates &movement){
+	return getAngle() == movement.getAngle() && 
+		getX() == movement.getX() &&
+		getY() == movement.getY();
+}
+bool OrientationCoordinates::operator!= (const OrientationCoordinates &movement){
+	return !(*this == movement);
+}
 void OrientationCoordinates::set(double x,double y,double angle){
 	Coordinates::set(x,y);
 	setAngle(angle);
+}
+void OrientationCoordinates::set(const OrientationCoordinates &orientationCoordinates){
+	Coordinates::set(orientationCoordinates);
+	setAngle(orientationCoordinates.getAngle());
 }
