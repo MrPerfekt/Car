@@ -11,6 +11,7 @@ const byte dummy = 0;
 #include "Servo.h"
 #include "ServoProxy.h"
 #include "OrientationCoordinates.h"
+#include "PartialRegression.h"
 #include "Path.h"
 #include "PathExecutor.h"
 #include "PathPlaner.h"
@@ -70,18 +71,6 @@ void setup(){
 	//graphic->Box(10,10,109,109,0B0100);
 	
 	return;
-
-	/*
-	Serial.println("TEST");
-	Serial2.begin(9600);
-	Serial2.print("AT");
-	delay(1000);
-	Serial.println(Serial2.readString());
-	*/
-
-	//Serial.print("Free SRam: ");
-	//Serial.println(freeSRam());
-
 	//driveTest();
 	//pathMemoryTest();
 	//itorTest();
@@ -91,6 +80,15 @@ void setup(){
 
 void loop(){
 	car->update();
+}
+/*
+void regressionTest(){
+	PartialRegression* partReg = new PartialRegression(1);
+	partReg->addPoint(Vector(2,2));
+	partReg->calculate(1);
+	Serial.println(partReg->calculateY(0));
+
+	while(1);
 }
 
 void pathPlanerTest(){
@@ -197,3 +195,4 @@ void driveTest(){
 	Serial.println("end");
 	steeringManager.stop();
 }
+*/

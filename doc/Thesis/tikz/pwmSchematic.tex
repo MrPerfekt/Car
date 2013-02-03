@@ -1,14 +1,4 @@
-\newcommand*{\drawSquarewave}[3]{%count, width high, width low
-	\pgfmathsetmacro{\scalex}{2}
-	\pgfmathsetmacro{\scaley}{1}
-	\pgfmathsetmacro{\onLen}{#2 * \scalex}
-	\pgfmathsetmacro{\offLen}{#3 * \scalex}
-	\pgfmathsetmacro{\width}{\onLen + \offLen}
-	\foreach \cpos in {0,...,#1}{
-		\pgfmathsetmacro{\cwidth}{\cpos * \width}
-		\draw (0,0)[color=black,line width=1.5pt] plot [const plot] coordinates{ (\cwidth,0) (\cwidth,\scaley) (\cwidth + \onLen,\scaley) (\cwidth + \onLen,0)(\cwidth + \width,0)};
-	}
-}
+\tikzstyle{line}=[color=black,line width=1.5pt]
 \newcommand*{\drawPWMschematic}[1]{
 	\pgfmathsetmacro{\value}{#1 / 255}
 	\pgfmathtruncatemacro{\dutyCycle}{round(100 * \value)}
@@ -16,7 +6,7 @@
 	\draw(-0.5,1) node[left]{\makebox[0pt][l]{5V} };
 	\draw(-0.5,0) node[left]{\makebox[0pt][l]{0V} };
 	\pgfmathsetmacro{\offValue}{1 - \value}	
-	\drawSquarewave{5}{\value}{\offValue}
+	\drawSquarewave{line}{5}{\value}{\offValue}{2}{1}
 }
 \makebox[\linewidth]{
 \begin{tikzpicture}

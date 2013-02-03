@@ -84,7 +84,7 @@ void Motor::motorStop(){
 void Motor::motorBreak(){
 	motorWriteStatus(0,HIGH,HIGH);
 }
-
+/*
 void Motor::motorDeadTimeTest(){
 	Serial.println("=== Motor Dead Time Test ===");
 	Serial.println("3");
@@ -155,3 +155,4 @@ void Motor::motorDeadTimeTest(){
 	//=====================================
 	motorEnableStandby();
 }
+*/

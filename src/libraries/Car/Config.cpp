@@ -31,9 +31,9 @@ const uint8_t Config::getSonicSensorCnt(){
 	return sonicSensorCnt;
 }
 const SonicSensorConfig Config::sonicSensorConfigs[] = {
-	SonicSensorConfig(new OrientationCoordinates(0,310,0),		24,25),
+	SonicSensorConfig(new OrientationCoordinates(0,310,0),			24,25),
 	SonicSensorConfig(new OrientationCoordinates(70,300,PI/2*3),	26,27),
-	SonicSensorConfig(new OrientationCoordinates(-70,300,PI/2),	28,29),
+	SonicSensorConfig(new OrientationCoordinates(-70,300,PI/2),		28,29),
 };
 const SonicSensorConfig* Config::getSonicSensorConfigs(){
 	return sonicSensorConfigs;
