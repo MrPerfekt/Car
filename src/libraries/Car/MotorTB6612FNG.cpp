@@ -23,16 +23,19 @@ void motorEnableStandby(){
 
 
 //== class Motor ==
-Motor::Motor(){
+Motor::Motor(uint8_t pinPWM, uint8_t pinIn1, uint8_t pinIn2)
+	:pinPWM(pinPWM)
+	,pinIn1(pinIn1)
+	,pinIn2(pinIn2){
 	curMotorState = msUndefined;
 
-	pinMode(Config::getPinMotorPMW(), OUTPUT);
-	pinMode(Config::getPinMotorIn1(), OUTPUT);
-	pinMode(Config::getPinMotorIn2(), OUTPUT);
+	pinMode(pinPWM, OUTPUT);
+	pinMode(pinIn1, OUTPUT);
+	pinMode(pinIn2, OUTPUT);
 }
 
-byte Motor::motorCalculateState(boolean inPin1, boolean inPin2){
-	return (inPin1 ? 1 : 0) + (inPin2 ? 2 : 0);
+Motor::MotorState Motor::motorCalculateState(boolean inPin1, boolean inPin2){
+	return (MotorState)((inPin1 ? 1 : 0) + (inPin2 ? 2 : 0));
 }
 
 void Motor::waitDeadTime(){
@@ -53,15 +56,15 @@ void Motor::motorWriteStatus(uint8_t speed, bool inPin1, bool inPin2){
 	Serial.print(inPin2);
 	Serial.println("write");
 	*/
-	byte newMotorState = motorCalculateState(inPin1,inPin2);
+	MotorState newMotorState = motorCalculateState(inPin1,inPin2);
 	if(curMotorState != newMotorState){
 		waitDeadTime();
 		curMotorState = newMotorState;
-		digitalWrite(Config::getPinMotorIn1(), inPin1);
-		digitalWrite(Config::getPinMotorIn2(), inPin2);
+		digitalWrite(pinIn1, inPin1);
+		digitalWrite(pinIn2, inPin2);
 	}
 	motorDisableStandby();
-	analogWrite(Config::getPinMotorPMW(), speed);
+	analogWrite(pinPWM, speed);
 }
 
 void Motor::motorMove(uint8_t speed, bool clockwise){

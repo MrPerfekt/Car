@@ -6,14 +6,15 @@ Copyright 2012 Andreas Gruber
 #define PATHEXECUTOR
 
 #include "DefineLib.h"
-#include "SteeringManager.h"
 #include "List.h"
 //#include "Path.h"
+class ExecutableMovement;
 class Path;
+class SteeringManager;
 
 class PathExecutor{
 	SteeringManager& steeringManager;
-	Iterator<Movement*>* movementItor;
+	Iterator<ExecutableMovement*>* movementItor;
 public:
 	const SteeringManager& getSteeringManager() const;
 

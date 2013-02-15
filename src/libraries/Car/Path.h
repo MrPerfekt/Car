@@ -6,16 +6,26 @@ Copyright 2012 Andreas Gruber
 #define PATH
 
 #include "DefineLib.h"
-#include "Movement.h"
+#include "ExecutableMovement.h"
 #include "List.h"
 
-class Path{
-	List<Movement*>* movements;
+class Path : public Observer, public SingleObservable{
+private:
+	bool finished;
+	void setFinished(bool finished);
+	List<ExecutableMovement*>* movements;
+	Iterator<ExecutableMovement*>* movementItor;
 public:
 	Path();
 	~Path();
-	List<Movement*>& getMovements();
-	Iterator<Movement*>* initializeIterator();
-	void addMovement(Movement*mov);
+	List<ExecutableMovement*>& getMovements();
+	Iterator<ExecutableMovement*>* initializeIterator();
+	void addMovement(ExecutableMovement*mov);
+	void execute();
+	void executeAndDelete();
+	void update();
+	void setToStart();
+	bool hasFinished() const;
+	void getNotified();
 };
 #endif

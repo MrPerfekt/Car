@@ -2,6 +2,7 @@
 Copyright 2012 Andreas Gruber
 */
 
+#include "GeneralMovement.h"
 #include "Movement.h"
 #include "MovementPositionCalculator.h"
 #include "MovementSensor.h"

@@ -7,6 +7,7 @@ Copyright 2012 Andreas Gruber
 
 #include "DefineLib.h"
 #include "Movement.h"
+#include "ExecutableMovement.h"
 
 class StraightMovement : public Movement{
 private:
@@ -17,8 +18,9 @@ public:
 	void setDistance(double distance);
 	
 	StraightMovement();
-	StraightMovement(double distance);
-
-	void invokeOnSteeringManager(SteeringManager &steeringManager);
+	
+	void execute();
+	void update();
+	/**/void invokeOnSteeringManager(SteeringManager &steeringManager);
 };
 #endif

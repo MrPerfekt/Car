@@ -26,7 +26,6 @@ public:
 	void setDistanceRadius(double distance, double radius);
 	
 	TurnMovement();
-
-	void invokeOnSteeringManager(SteeringManager &steeringManager);
+	/**/void invokeOnSteeringManager(SteeringManager &steeringManager);
 };
 #endif

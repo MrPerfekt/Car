@@ -1,0 +1,110 @@
+\section{Projektentstehung}
+\subsection{Einleitung}
+Es ist Sonntag, die Sonne Strahlt und in dem kleinen, idyllischen Ort St. Peter am Wimberg findet wie auch die Jahre davor das Jährliche Maibaumfest statt.
+Jeder ist gut gelaunt und amüsiert sich.
+Die Musikkapelle spielt und die Meisten genießen zu den frischen Bratwürsten ein kühles Bier.
+
+Beim entspannten sitzen am Biertisch beobachte ich die Menge.
+Verschiedenste Personen sitzen beisammen und unterhalten sich prächtig.
+Vor allem die Unterschiede an den verschiedenen Persönlichkeiten und Personen haben meine Aufmerksamkeit erregt.
+Manche sind laut manche eher schüchtern, manche dick und andere eher sehr mager.
+Auch eine Familie mit einem körperlich und geistig beeinträchtigten Kind hat sich in die Menge gesellt.
+
+Beim beobachten aus der Ferne sieht man wie sehr die gesamte Familie die Flucht aus dem Alltag und die Geselligkeit geniest, auch wenn die Beeinträchtigungen des Kindes immer wieder Hindernisse und Einschränkungen mit sich bringen.
+So ist es zum Beispiel eine richtige Herausforderung den breiten Rollstuhl durch die Gänge zwischen den Biertischen zu manövrieren. 
+Auch das schaffen eines Platzes am Tisch für das Kind und seinen Rollstuhl ist eine Herausforderung.
+
+
+\subsection{Verbesserung der Lebensqualität durch die Technik}
+Eine große Verbesserung der Situation ist, dass das Kind zumindest einen Automatischen Rollstuhl hat, welcher von ihm selbst gelenkt werden kann.
+Dies ist meiner Meinung nach eine große Verbesserung der Mobilität des Kindes und auch eine große Erleichterung für die Eltern.
+Allerdings ist es nun um so wichtiger, dass die Eltern oder seine Betreuer, wie zum Beispiel die Lehrer an seiner Schule, um so besser Aufpassen, wohin er mit seinem Rollstuhl fährt.
+
+Eine kleine Unachtsamkeit seinerseits kann sehr gefährlich sein.
+Zudem kommt das er gefahren als Kind noch nicht so gut abschätzen kann.
+Hindernisse, wie zum Beispiel eine Stiege, ein Schwimmteich oder auch nur eine Gehsteig-Kante können für ihn sehr sehr gefährlich werden, wenn er diese übersieht.
+
+
+\subsection{Einsatz von autonomen Systemen}
+Beim Kübeln, was dem Kind und den Eltern helfen könnte, fällt mir ein kleiner Roboter ein, welcher in der Langen Nacht der Forschung in Hagenberg mit dem Namen Fuzzelbot präsentiert wurde.
+Mit einer Kamera und einer Open Source Bildverarbeitungssoftware fährt er am Boden und versucht zu erkannten Verkehrstafel eine gespeicherte Aktion auszuführen.
+Dieses Prinzip kann man natürlich auch auf einen Rollstuhl Anwenden.
+Dabei soll dieser nicht kleine Verkehrstafeln sondern Plätze in seiner Umgebung erkennen und diese mittelst Sprachsteuerung aufsuchen.
+
+Allerdings gibt es dabei große Probleme selbst beim fahren einer 90 Grad Kurve.
+Der Roboter schaltet die Lenkung ungefähr auf Recht beginnt zu fahren und fährt nach zwei Sekunden wieder gerade aus.
+Das große Problem dabei ist, dass die Leistung des Motors und somit auch die Geschwindigkeit und der Weg, welcher in diesen zwei Sekunden zurückgelegt wird von vielen Faktoren abhängt.
+Um nur einig aufzuzählen kann man das Material des Bodens, die Batterieladung, den exakten Lenkeinschlag nennen.
+
+Auch die Bildverarbeitung ist für viele Einsatzbereiche nicht ausreichend.
+So sind Entfernungen zu Hindernisse nur mit sehr viel Rechenaufwand und sehr ungenau zu ermitteln.
+Auch die genaue Position ist nur durch Bildverarbeitung nicht immer genau berechenbar.
+Also bin ich zu dem Entschluss gekommen, das Bildverarbeitung niemals reichen kann um einen Rollstuhl vor Gefahren zu schützen.
+Allerdings gibt es auch noch andere Möglichkeiten in der Technik die Umwelt wahrzunehmen.
+
+
+%\subsection{Verbesserung von autonomen Systemen durch Sensorik}
+\subsection{Erkundung der Umwelt}
+Möglichkeiten zur Erkundung der Umwelt bieten eine Vielzahl an Sensoren.
+Infrarot- oder Ultraschall-Distanzsensoren, Kompasssensoren, Lagesensoren, Beschleunigungssensoren, Hitzesensoren und Systeme wie GPS sind nur ein Bruchteil der Möglichen Verfahren mit welchen Informationen aus der Umgebung gewonnen werden können.
+
+Allerdings genügt es nicht nur zu wissen, das bei Sensor Nr. 1 eine Distanz von 1m und 3cm gemessen wurde.
+Eine wichtige Aufgabe eines Rollstuhl Schutz- und Steuerungssystem ist es auch diese große Menge an Messdaten zu analysieren und verarbeiten.
+Außerdem muss das System sich immer die aktuelle Position des Rollstuhls berechnen um früher erkannte Hindernisse bereits im Vorfeld mit einem ausreichenden Sicherheitsabstand zu umfahren.
+Aus diesem Grund muss das System die Tatsächliche Position des Gegenstandes berechnen und diese in einer Umgebungs-Wissensbasis speichern.
+Diese Position kann aus dem Wert des Sensors, der Position des Sensors auf dem Rollstuhl und der Aktuellen Position des Rollstuhl berechnet werden.
+
+
+\subsection{Berechnung der eigenen Position}
+Und daher muss nicht nur die Umgebung durch Sensoren abgetastet werden, auch, und das ist der wesentlich schwierigste Teil, die eigene Position muss so gut wie Möglich berechnet werden.
+So ist zum Beispiel GPS selbst wenn man alle Tricks, welche bereits existieren, verwendet, kann die Position nur mit einer Abweichung von +/- 10m bestimmt werden.
+Ein Trick ist zum Beispiel der Vergleich mit stationären Basisstationen oder ein anderer die Berücksichtigung der Signalstärke von Handymasten.
+Also müssen zusätzlich zu GPS auch noch andere Sensoren wie zum Beispiel Drehencoder an den Rädern oder Beschleunigungssensoren montiert werden.
+Auch die Installierung von Lagesensoren kann für den Betroffenen Lebensrettend agieren.
+So kann im Falle eines Sturzes Automatisch ein Alarm in Form einer Nachricht an einen Betreuer gesendet werden.
+
+Eine mögliche Erweiterung wäre natürlich auch Fitnessdaten wie Blutdruck, Puls, Blutzucker des Betroffenen zu Messen und im Notfall wieder ein Alarm los gesendet werden.
+Um in einem Ernstfall wie zum Beispiel ein Herzinfarkt wichtige Zeit zu sparen kann der Rollstuhl aufgrund seiner gesammelten Daten nun auch zu einer optimalen Position für die Rettungskräfte fahren.
+Diese Position kann zum Beispiel die Wohnungstür sein.
+
+
+\subsection{Zusammenfassung}
+Ein solches System würde die Lebensqualität von Menschen, welche vom Schicksal einer körperlichen Beeinträchtigung betroffen sind, enorm steigern.
+Aber nicht nur die Lebensqualität sondern auch die Mobilität könnte von einem solchen System ganz neu definiert werden.
+Besonders muss man aber betonen, dass das System keinesfalls die Funktion des Betreuers ersetzen soll, sondern den Betreuer des Betroffenen unterstützen soll.
+Dadurch soll der Betreuer entlastet werden von der Tätigkeit den Betroffenen zu Fahren und Lenken und kann sich stattdessen vollkommen um den Beeinträchtigten kümmern.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+\section{Ziel der Projektarbeit}

@@ -13,7 +13,8 @@ class Servo;
 //! The next thing is, that the servo rotates against the mathematical angle.
 //! So the software kan believ that the servo rotates in the mathematical angle and the angle is proportional to the steering wheels.
 class ServoProxy {
-private:			//(posMiddle + posMaxRight) / 2;
+private:
+public:			//(posMiddle + posMaxRight) / 2;
 	AdjustmentCalculation* acalc;
 	//double currentSollAngle;
 	//double currentSteeringAngle;
@@ -62,18 +63,12 @@ private:			//(posMiddle + posMaxRight) / 2;
 	\return Radius
 	*/
 	double convertServoAngleToRadius(double servoAngle);
-public:
 	//!================Get max angle================
 	/*!
 	Get maximal angle which can be performet by the wheels.
 	\return Maximal Angle
 	*/
 	double const getMaxSteeringAngle();
-	/*!
-	Get minimal radius the car can steer.
-	\return Minimal Radius
-	*/
-	double const getMinRadius();
 	//!================Constructor================
 	/*!
 	Initialices the ServoProxy.

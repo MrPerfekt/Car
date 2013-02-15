@@ -12,6 +12,8 @@ class StraightAdjustmentCalculation  : public AdjustmentCalculation{
 private:
 	double currentValue;
 	double currentResult;
+protected:
+	void prepareValue();
 public:
 	StraightAdjustmentCalculation();
 	StraightAdjustmentCalculation(double lowerLimit,double upperLimit);

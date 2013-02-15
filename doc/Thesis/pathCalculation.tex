@@ -1,22 +1,86 @@
 \section{Introduction}
+A autonomous vehicle has as a main function to control all actors on its own.
+This means that no human give a sign to the car that now its the time to turn the motor on.
+To decide how the single components have to act at which time first the car need information about its own position which are as good as possible.
+However, the next thing is to compute a path based on different informations.
+For this problem there exist a big amount of solutions because for each type of vehicle there exist again a big amount of different algorithms to compute a path to another point.
+
+
+\section{Position Calculation}
+
+
+\subsection{Introduction}
+One very important and critical part by the implementation of an autonomous vehicle is the calculation of the current position because there exist a big amount of problems which could not be solved.
+This chapter contains on the one hand the different problems by creating a position calculating system and on the other one it describes methods to compute the best possible position.
+
+
+\subsection{Position Specification}
+One important part by calculating the current position is to specify how the current position have to be stored.
+For this task there exist several types of structures.
+
+
+\subsubsection{Cartesian Coordinate System}
+The usual thing to storage a position is to storage the coordinates of the Cartesian coordinate system and also the angles how the object is aligned.
+Also the 
+This kind of storage has the advantage that is is very simple.
+Also the memory and computing load efficiency is very good with this structure
+The only disadvantage is that this structure doesn't contain the probability of the position and alternative positions.
+
+
+\subsubsection{Probability Cloud}
+This kind of the specification of a position have the disadvantage, that only the most possible position can be stored.
+Another solution is to store a cloud of points with the different possibilities that this is the real position the the vehicle.
+
+\begin{tikzpicture}
+	\draw[->] (0,0) -- (10,0);
+	\draw[->] (0,0) -- (0,6);
+	\begin{scope}[shift={(5,3)},rotate=30]
+		\foreach \x in {0,0.5,...,2}{
+			\fill  [fill=black, semitransparent] (0,0) ellipse ({2 * \x} and {\x});
+		}
+		\draw[->,color=white,line width=3pt] (-0.5,0) -- +(1,0);
+	\end{scope}
+\end{tikzpicture}
+
+
+\subsection{Sensors based Methods}
+
+
+\subsubsection{Absolute Sensors}
+
+
+\subsubsection{Relative Sensor}
+
+
+\subsubsection{Environment Sensors}
 
 
 \section{Path Calculation}
 
 
-% Why not include
+\subsection{Crawler Typed Vehicles}
+
+
+\subsection{Car Like Vehicles}
+
+
+\subsubsection{Path based on a circle}
 \begin{figure}
 \input{./tikz/AtoBcircle}
 \caption{A to B path calculation}
 \label{fig:AtoBcircle}
 \end{figure}
 
+
+\subsubsection{Path based on a circle and a line}
 \begin{figure}
 \input{./tikz/AtoBcs}
 \caption{A to B path calculation}
 \label{fig:AtoBcircle}
 \end{figure}
 
+
+\subsubsection{Path based on a circle, a line and another circle}
 \begin{figure}
 \input{./tikz/AtoBcsc}
 \caption{A to B path calculation}

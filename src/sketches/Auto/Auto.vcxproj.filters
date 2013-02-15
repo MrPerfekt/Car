@@ -116,9 +116,6 @@
     <ClCompile Include="..\..\libraries\Car\TurnMovement.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\libraries\Car\SpeedRegulator.cpp">
-      <Filter>Header Files</Filter>
-    </ClCompile>
     <ClCompile Include="..\..\libraries\Car\Vector.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -153,6 +150,45 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="..\..\libraries\Car\StraightAdjustmentCalculation.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\libraries\Car\PowerRegulator.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\libraries\Car\SteeringRegulator.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\libraries\Car\CarPowerRegulator.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\libraries\Car\CarSteeringRegulator.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\libraries\Car\UnitTests.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\libraries\Car\SegmentAdjustmentCalculation.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\libraries\Car\PartialAdjustmentCalculation.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\libraries\Car\GeneralMovement.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\libraries\Car\FixedAnglePathPlaner.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\libraries\Car\Vehicle.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\libraries\Car\ExecutableStraightMovement.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\libraries\Car\ExecutableMovement.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\libraries\Car\ExecutableTurnMovement.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
@@ -253,9 +289,6 @@
     <ClInclude Include="..\..\libraries\Car\TurnMovement.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\libraries\Car\SpeedRegulator.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="..\..\libraries\Car\Vector.h">
       <Filter>Header Files</Filter>
     </ClInclude>
@@ -292,7 +325,46 @@
     <ClInclude Include="..\..\libraries\Car\StraightAdjustmentCalculation.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="..\..\libraries\Car\PowerRegulator.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\libraries\Car\SteeringRegulator.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\libraries\Car\CarPowerRegulator.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\libraries\Car\CarSteeringRegulator.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\libraries\Car\UnitTests.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
     <ClInclude Include="Visual Micro\.Auto.vsarduino.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\libraries\Car\SegmentAdjustmentCalculation.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\libraries\Car\PartialAdjustmentCalculation.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\libraries\Car\GeneralMovement.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\libraries\Car\FixedAnglePathPlaner.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\libraries\Car\Vehicle.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\libraries\Car\ExecutableStraightMovement.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\libraries\Car\ExecutableMovement.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\libraries\Car\ExecutableTurnMovement.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

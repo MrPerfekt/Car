@@ -3,18 +3,18 @@ Copyright 2012 Andreas Gruber
 */
 
 #include "DisplayServer.h"
+#include "gLCD.h"
 #include "OrientationCoordinates.h"
 #include "PositionCalculator.h"
+#include "Vehicle.h"
 #include "VoltageDivider.h"
-#include "gLCD.h"
-#include "Car.h"
 
 gLCD& DisplayServer::getGLCD(){
 	return *graphic;
 }
 
-DisplayServer::DisplayServer(Car& car)
-:car(car){
+DisplayServer::DisplayServer(Vehicle& vehicle)
+:car(vehicle){
 	graphic = new gLCD(Config::getPinDisplayRST(),Config::getPinDisplayCS(),Config::getPinDisplayClk(),Config::getPinDisplayData(),1);//! Display driver
 	
 	//graphic->Contrast(0x2B);//! Range: -0x3F to 0x3F

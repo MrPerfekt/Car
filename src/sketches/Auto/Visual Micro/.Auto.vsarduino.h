@@ -24,10 +24,6 @@
 typedef unsigned char byte;
 extern "C" void __cxa_pure_virtual() {}
 
-void testSet(int state);
-void testSetDelay(int state);
-void testToogle();
-void testToogleDelay();
 //already defined in arduno.h
 //already defined in arduno.h
 

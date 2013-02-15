@@ -9,16 +9,24 @@ Copyright 2013 Andreas Gruber
 
 class AdjustmentCalculation {
 private:
-public:
+	double currentValue;
 	double upperLimit;
 	double lowerLimit;
+protected:
+	/*!
+	This method get invoked when the currentValue has changed;
+	*/
+	virtual void prepareValue() = 0;
+	const double getCurrentValue() const;
+	const double getUpperLimit() const;
+	const double getLowerLimit() const;
+public:
 	AdjustmentCalculation();
 	AdjustmentCalculation(double lowerLimit,double upperLimit);
 	/*!
 	param value The input value
-	return The wanted result
 	*/
-	virtual void setValue(double value) = 0;
+	void setValue(const double value);
 	/*!
 	return The wanted result of the last getValue command
 	*/
@@ -31,7 +39,7 @@ public:
 	/*!
 	Corrects the last value at the pararmeter of getValue
 	*/
-	virtual void correctLastValue(double mesuredResult) = 0;
+	void correctLastValue(double measuredResult);
 };
 
 #endif

@@ -1,7 +1,8 @@
 /*!
-Copyright 2012 Andreas Gruber
+Copyright 2013 Andreas Gruber
 */
 
+#include "GeneralMovement.h"
 #include "RegularSteeringManager.h"
 #include "SteeringManager.h"
 #include "MotorTB6612FNG.h"

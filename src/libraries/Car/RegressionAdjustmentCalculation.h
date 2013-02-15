@@ -11,10 +11,11 @@ class PartialRegression;
 
 class RegressionAdjustmentCalculation : public AdjustmentCalculation{
 private:
-
 	double currentValue;
 	double *regResults;
 	PartialRegression *regression;
+protected:
+	void prepareValue();
 public:
 	RegressionAdjustmentCalculation();
 	RegressionAdjustmentCalculation(double lowerLimit,double upperLimit);

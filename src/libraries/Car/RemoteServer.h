@@ -7,16 +7,16 @@ Copyright 2012 Andreas Gruber
 
 #include "DefineLib.h"
 #include "Observer.h"
-class Car;
+class Vehicle;
 
 class RemoteServer : public Observer{
 private:
 	OrientationCoordinates lastPosition;
-	Car &car;
+	Vehicle &vehicle;
 	static const uint8_t bufferSize = 50;
 	char/*uint8_t*/ buffer[bufferSize];
 public:
-	RemoteServer(Car& car);
+	RemoteServer(Vehicle& vehicle);
 	~RemoteServer();
 	void update();
 	void getNotified();

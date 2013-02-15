@@ -1,12 +1,12 @@
 /*!
-Copyright 2012 Andreas Gruber
+Copyright 2013 Andreas Gruber
 */
 
 #include "ShortestPathPlaner.h"
 #include "OrientationCoordinates.h"
 #include "Path.h"
-#include "TurnMovement.h"
-#include "StraightMovement.h"
+#include "ExecutableTurnMovement.h"
+#include "ExecutableStraightMovement.h"
 #include "float.h"
 
 ShortestPathPlaner::ShortestPathPlaner(PositionCalculator &positionCalculator, PathExecutor &pathExecutor)
@@ -140,13 +140,15 @@ Path* ShortestPathPlaner::calculatePath(const OrientationCoordinates& startPosit
 
 	Path*p = new Path();
 	
-	TurnMovement*tmStart = new TurnMovement();
+	ExecutableTurnMovement *tmStart = new ExecutableTurnMovement();
 	tmStart->setAngleRadius(minAngleStart,r*(minFirstLeft ? 1 : -1));
 	p->addMovement(tmStart);
 
-	p->addMovement(new StraightMovement(minDistance));
+	ExecutableStraightMovement *sm = new ExecutableStraightMovement();
+	sm->setDistance(minDistance);
+	p->addMovement(sm);
 
-	TurnMovement*tmEnd = new TurnMovement();
+	ExecutableTurnMovement*tmEnd = new ExecutableTurnMovement();
 	tmEnd->setAngleRadius(minAngleEnd,r*(minSecondLeft ? 1 : -1));
 	p->addMovement(tmEnd);
 	return p;

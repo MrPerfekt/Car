@@ -7,15 +7,15 @@ Copyright 2012 Andreas Gruber
 
 #include "DefineLib.h"
 class gLCD;
-class Car;
+class Vehicle;
 
 class DisplayServer{
 private:
-	Car &car;
+	Vehicle &car;
 	gLCD* graphic;
 public:
 	gLCD& getGLCD();
-	DisplayServer(Car &car);
+	DisplayServer(Vehicle &car);
 	~DisplayServer();
 
 	void update();

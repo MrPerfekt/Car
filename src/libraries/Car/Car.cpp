@@ -16,121 +16,31 @@ Copyright 2012 Andreas Gruber
 #include "PathExecutor.h"
 #include "PathPlaner.h"
 #include "PositionCalculator.h"
+#include "PowerRegulator.h"
 #include "RegularSteeringManager.h"
 #include "RemoteServer.h"
 #include "ServoProxy.h"
 #include "ShortestPathPlaner.h"
 #include "SonicDistanceSensor.h"
 #include "SteeringManager.h"
+#include "SteeringRegulator.h"
 #include "VoltageDivider.h"
 #include "WheelSensors.h"
 
-
-BluetoothModul& Car::getBluetoothModul(){
-	return *bluetoothModul;
-}
-DisplayProxy& Car::getDisplayProxy(){
-	return *displayProxy;
-}
-DisplayServer& Car::getDisplayServer(){
-	return *displayServer;
-}
-EnvironmentKnowledgeBase& Car::getEnvironmentKnowledgeBase(){
-	return *environmentKnowledgeBase;
-}
-Motor& Car::getMotorPowerEngine(){
-	return *motorPowerEngine;
-}
-MotionLogger& Car::getMotionLogger(){
-	return *motionLogger;
-}
-MouseSensorPan101& Car::getMouseSensor(){
-	return *mouseSensor;
-}
-MovementSensor& Car::getMovementSensor(){
-	return *movementSensor;
-}
-PathExecutor& Car::getPathExecutor(){
-	return *pathExecutor;
-}
-PathPlaner& Car::getPathPlaner(){
-	return *pathPlaner;
-}
-PositionCalculator& Car::getPositionCalculator(){
-	return *positionCalculator;
-}
-RemoteServer& Car::getRemoteServer(){
-	return *remoteServer;
-}
-ServoProxy& Car::getServoProxy(){
-	return *servoProxy;
-}
-SonicDistanceSensor** Car::getSonicDistanceSensors(){
-	return sonicDistanceSensors;
-}
-SteeringManager& Car::getSteeringManager(){
-	return *steeringManager;
-}
-Stream& Car::getMainDataStreem(){
-	return *mainDataStreem;
-}
-VoltageDivider& Car::getPowerSupplyVoltageDivider(){
-	return *powerSupplyVoltageDivider;
-}
 WheelSensor& Car::getWheelSensor(){	
 	return *wheelSensor;
 }
 	
 Car::Car(){
-	powerSupplyVoltageDivider = new VoltageDivider(Config::getPinAVolDivPowerSupplay(),Config::getVolDivPowerSupplayRes1(),Config::getVolDivPowerSupplayRes2());
-	//displayProxy = new DisplayProxy();
-	
-	Serial2.begin(9600);
-	mainDataStreem = &Serial2;
-	bluetoothModul = new BluetoothModul(Serial2);
-#if true
-	wheelSensor = new WheelSensor();
-	movementSensor = wheelSensor;
-#else
-	mouseSensor = new MouseSensorPan101();
-	movementSensor = mouseSensor;
-#endif
-	motorPowerEngine = new Motor();
-	servoProxy = new ServoProxy();
-	positionCalculator = new MovementPositionCalculator(getMovementSensor());
-	steeringManager = new RegularSteeringManager(getServoProxy(),getMotorPowerEngine(),getPositionCalculator());
-	
-	environmentKnowledgeBase = new EnvironmentKnowledgeBase();
-	for(uint8_t i = 0; i < Config::getSonicSensorCnt();i++)
-		sonicDistanceSensors[i] = new SonicDistanceSensor(i,getPositionCalculator(),getEnvironmentKnowledgeBase());
-
-	motionLogger = new MotionLogger(getPositionCalculator());
-	pathExecutor = new PathExecutor(getSteeringManager());
-	pathPlaner = new ShortestPathPlaner(getPositionCalculator(),getPathExecutor());
-	
-	remoteServer = new RemoteServer(*this);
-	displayServer = new DisplayServer(*this);
 }
 
-void Car::update(){
-	for(uint8_t i = 0; i < Config::getSonicSensorCnt();i++)
-		sonicDistanceSensors[i]->update();
-	remoteServer->update();
-	displayServer->update();
-	movementSensor->update();
-	positionCalculator->update();
-	remoteServer->update();
-	displayServer->update();
-	movementSensor->update();
-	steeringManager->update();
-	remoteServer->update();
-	displayServer->update();
-	movementSensor->update();
-	pathExecutor->update();
-	remoteServer->update();
-	displayServer->update();
-	movementSensor->update();
-	
-	//motionLogger->update();
-	//displayProxy->update();
+void Car::init(){
+#if true
+	wheelSensor = new WheelSensor();
+	setMovementSensor(wheelSensor);
+#else
+	mouseSensor = new MouseSensorPan101();
+	setMovementSensor(mouseSensor);
+#endif
+	Vehicle::init();
 }

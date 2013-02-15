@@ -11,21 +11,18 @@ StraightAdjustmentCalculation::StraightAdjustmentCalculation()
 StraightAdjustmentCalculation::StraightAdjustmentCalculation(double lowerLimit,double upperLimit)
 	:AdjustmentCalculation(lowerLimit,upperLimit){
 }
-
-void StraightAdjustmentCalculation::setValue(double value){
-	currentResult = value;
-	currentValue = value;
-	//return lastResult;
+void StraightAdjustmentCalculation::prepareValue(){
+	currentResult = getCurrentValue();
 }
 double StraightAdjustmentCalculation::getResult(){
 	return currentResult;
 }
 void StraightAdjustmentCalculation::correctValue(double value, double measuredResult){
 	currentResult += (value-measuredResult);
-	if(currentResult > upperLimit)
-		currentResult = upperLimit;
-	if(currentResult < lowerLimit)
-		currentResult = lowerLimit;
+	if(currentResult > getUpperLimit())
+		currentResult = getUpperLimit();
+	if(currentResult < getLowerLimit())
+		currentResult = getLowerLimit();
 }
 void StraightAdjustmentCalculation::correctLastValue(double mesuredResult){
 	correctValue(currentValue,mesuredResult);

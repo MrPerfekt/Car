@@ -2,10 +2,11 @@
 Copyright 2013 Andreas Gruber
 */
 
-#include "ServoProxy.h"
+#include "PartialAdjustmentCalculation.h"
 #include "RegressionAdjustmentCalculation.h"
-#include "StraightAdjustmentCalculation.h"
 #include <Servo.h>
+#include "ServoProxy.h"
+#include "StraightAdjustmentCalculation.h"
 	
 Servo* steeringServo;
 
@@ -36,12 +37,11 @@ double ServoProxy::convertServoAngleToRadius(double servoAngle){
 double const ServoProxy::getMaxSteeringAngle(){
 	return convertServoToSteeringAngle(Config::getServoMaxAngleDeg()*2.0*PI/360.0);
 }
-double const ServoProxy::getMinRadius(){
-	return Config::getMinSteeringRadius();
-}
 //!================Constructor================
 ServoProxy::ServoProxy(){
 	acalc = new RegressionAdjustmentCalculation(-PI/2,PI/2);
+	acalc = new StraightAdjustmentCalculation(-PI/2,PI/2);
+	acalc = new PartialAdjustmentCalculation(-PI/2,PI/2);
 }
 void ServoProxy::setSteeringServo(Servo* newSteeringServo){
 	steeringServo = newSteeringServo;
@@ -49,10 +49,6 @@ void ServoProxy::setSteeringServo(Servo* newSteeringServo){
 }
 //!================Set Methods================
 uint8_t ServoProxy::setServoAngle(double angle){
-	Serial.print("====:: ");
-	Serial.print(isnan(angle));
-	Serial.print(" ");
-	Serial.println(angle);
 	static double midDeg = Config::getServoAbsAngleMiddleDeg();
 	static double maxDeg = Config::getServoMaxAngleDeg();
 

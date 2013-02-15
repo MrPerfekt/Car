@@ -14,10 +14,9 @@ RegressionAdjustmentCalculation::RegressionAdjustmentCalculation(double lowerLim
 :AdjustmentCalculation(lowerLimit,upperLimit)
 ,regression(new PartialRegression(Config::getMaxSteeringEquationPow())){
 }
-
-void RegressionAdjustmentCalculation::setValue(double value){
-	currentValue = value;
+void RegressionAdjustmentCalculation::prepareValue(){
 }
+
 double RegressionAdjustmentCalculation::getResult(){
 	double currentResult = NAN;
 	for(int i = Config::getMaxSteeringEquationPow(); i >= 0; i--){
@@ -28,16 +27,13 @@ double RegressionAdjustmentCalculation::getResult(){
 	}
 	if(isnan(currentResult))
 		currentResult = 0;
-	if(currentResult > upperLimit)
-		currentResult = upperLimit;
-	if(currentResult < lowerLimit)
-		currentResult = lowerLimit;
+	if(currentResult > getUpperLimit())
+		currentResult = getUpperLimit();
+	if(currentResult < getLowerLimit())
+		currentResult = getLowerLimit();
 	return currentResult;
 }
 void RegressionAdjustmentCalculation::correctValue(double value, double measuredResult){
 	Vector v = Vector(currentValue,measuredResult);
 	regression->addPoint(v);
-}
-void RegressionAdjustmentCalculation::correctLastValue(double mesuredResult){
-	correctValue(currentValue,mesuredResult);
 }

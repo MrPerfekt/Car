@@ -37,7 +37,8 @@ void TurnMovement::setDistanceRadius(double distance, double radius){
 	this->distance = distance;
 	this->radius = radius;
 }
-TurnMovement::TurnMovement(){
+TurnMovement::TurnMovement()
+	:Movement(){
 }
 void TurnMovement::invokeOnSteeringManager(SteeringManager &steeringManager){
 	steeringManager.driveMovement(*this);

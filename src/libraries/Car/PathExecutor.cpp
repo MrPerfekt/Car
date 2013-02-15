@@ -2,8 +2,10 @@
 Copyright 2012 Andreas Gruber
 */
 
+#include "ExecutableMovement.h"
 #include "PathExecutor.h"
 #include "TurnMovement.h"
+#include "SteeringManager.h"
 #include "StraightMovement.h"
 #include "Path.h"
 
@@ -21,13 +23,7 @@ void PathExecutor::update(){
 	if(movementItor == NULL) return;
 	if(steeringManager.hasFinished()){
 		if(movementItor->hasNext()){
-			//! TODO
-			if(movementItor->getCurrent()->getAngle() == 0)
-				((StraightMovement*)movementItor->getCurrent())->invokeOnSteeringManager(steeringManager);
-			else
-				((TurnMovement*)movementItor->getCurrent())->invokeOnSteeringManager(steeringManager);
-			//! TODO
-
+			((StraightMovement*)movementItor->getCurrent())->execute();
 		}else{
 			setPath(NULL);
 			steeringManager.stop(); //!TODO: Notify car main logic instead

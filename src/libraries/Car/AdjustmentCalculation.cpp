@@ -14,3 +14,20 @@ AdjustmentCalculation::AdjustmentCalculation(double lowerLimit,double upperLimit
 	:lowerLimit(lowerLimit)
 	,upperLimit(upperLimit){
 }
+const double AdjustmentCalculation::getUpperLimit() const{
+	return upperLimit;
+}
+const double AdjustmentCalculation::getLowerLimit() const{
+	return lowerLimit;
+}
+
+void AdjustmentCalculation::setValue(const double value){
+	currentValue = value;
+	prepareValue();
+}
+const double AdjustmentCalculation::getCurrentValue() const{
+	return currentValue;
+}
+void AdjustmentCalculation::correctLastValue(const double measuredResult){
+	correctValue(getCurrentValue(),measuredResult);
+}

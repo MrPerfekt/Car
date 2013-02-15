@@ -42,7 +42,7 @@
         <VCCodeMacro Name="REGRESSION" Value="" />
         <VCCodeMacro Name="STRAIGHT_MOVEMENT" Value="" />
         <VCCodeMacro Name="TURN_MOVEMENT" Value="" />
-        <VCCodeMacro Name="DISTANCESENSOR" Value="" />
+        <VCCodeMacro Name="PARTIAL_ADJUSTMENT_CALCULATION" Value="" />
         <VCCodeMacro Name="REMOTE_SERVER" Value="" />
         <VCCodeMacro Name="VECTOR" Value="" />
         <VCCodeMacro Name="ORIENTATION_COORDINATES" Value="" />
@@ -55,7 +55,19 @@
         <VCCodeMacro Name="PARTIAL_REGRESSION" Value="" />
         <VCCodeMacro Name="REGRESSION_ADJUSTMENT_CALCULATION" Value="" />
         <VCCodeMacro Name="STRAIGHT_ADJUSTMENT_CALCULATION" Value="" />
+        <VCCodeMacro Name="POWER_REGULATOR" Value="" />
+        <VCCodeMacro Name="STEERING_REGULATOR" Value="" />
+        <VCCodeMacro Name="CAR_POWER_REGULATOR" Value="" />
+        <VCCodeMacro Name="CAR_STEERING_REGULATOR" Value="" />
+        <VCCodeMacro Name="UNIT_TESTS" Value="" />
+        <VCCodeMacro Name="SEGMENT_ADJUSTMENT_CALCULATION" Value="" />
+        <VCCodeMacro Name="GENERAL_MOVEMENT" Value="" />
+        <VCCodeMacro Name="FIXED_ANGLE_PATH_PLANER" Value="" />
+        <VCCodeMacro Name="VEHICLE" Value="" />
         <VCCodeMacro Name="LIST" Value="" />
+        <VCCodeMacro Name="EXECUTABLE_STRAIGHT_MOVEMENT" Value="" />
+        <VCCodeMacro Name="EXECUTABLE_MOVEMENT" Value="" />
+        <VCCodeMacro Name="EXECUTABLE_TURN_MOVEMENT" Value="" />
         <VCCodeMacro Name="__attribute__" Value="" />
         <VCCodeMacro Name="__inline__" Value="" />
         <VCCodeMacro Name="__asm__" Value="" />
