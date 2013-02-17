@@ -1,7 +1,4 @@
-\section{Projektinhalt}
-
-
-\subsection{Vorstudien, Experimente und Vorbereitung}
+\section{Vorstudien, Experimente und Vorbereitung}
 Als Vorbereitung zu diesem Projekt habe ich neben meiner persönlichen Vorbereitung, wie c++ Training und einem Elektronik Überblick, auch noch ein System vorbereitet auf welchem ich die Software ausführen kann.
 Dieses Testsystem musste auch einige Voraussetzungen erfüllen.
 Das wichtigste ist, dass dieses System auf einen Rollstuhl adaptiert werden kann.
@@ -11,17 +8,43 @@ Auch eine Veränderung des Systems muss einfach und schnell von sich gehen und d
 Mit diesen und vielen weiteren Kriterien habe ich nun einige Techniken und Systeme bewertet und bin zu den Entschluss gekommen, dass ein Lego-Auto die Anforderungen optimal erfüllt.
 Somit habe ich im Vorfeld gleich einmal Lego-Auto konstruiert welches optimal diesen Anforderungen entsprochen hat.
 Leider muss man zugeben, dass durch diese Optimierung das Design etwas gelitten hat, was aber für die Funktion keinen Unterschied macht.
-Im Anhang sind Fotos von diesem Lego-Auto zu Finden.
+Im Anhang sind Fotos von diesem Lego-Auto und seinen Vorgängern zu finden.
 
 
-\subsection{Resultate}
+\section{Methoden, Materialien und Wissensquellen}
+Das Lego alleine nicht genügt um ein autonomes System zu erstellen ist wahrscheinlich jedem sehr einleuchtend.
+Hinzu kommt noch die gesamte Elektronik wie Sensoren und Motoren.
+Als Antriebsmotor würde bei meinem letzten Testsystem ein Lego-Technik Motor verwendet.
+Die Lenkung besteht aus einem Modellbau-Servomotor welcher an einen Lego-Stein geklebt ist.
+Die Steuerung übernimmt in der ersten Version ein Arduino UNO und in der letzten Version dieses Fahrzeugs ein Arduino Mega.
+Ein Arduino ist ein Mikrocontroller welcher bereits auf einer Entwicklungsplatine aufgelötet ist und somit die Ansteuerung wesentlich vereinfacht.
+Die zusätzlich benötigte Elektronik ist momentan Testweise auf einer Steckplatine aufgesteckt und wird bei der ersten Hauptversion auf eine eigene Platine geätzt werden..
+
+Die Software, welche auf dem Rollstuhl läuft, wird ausschließlich in c++ geschrieben und wird momentan in Visual Studio mit der Erweiterung Visual Micro programmiert.
+In Zukunft werde ich die Entwicklungsumgebung entweder auf Netbeans oder Eclipse umstellen.
+Bei der Software selbst wurde das ganze Projekt lang versucht, diese möglichst nach dem Prinzip: "Closed for modification and open for extension" zu designen.
+Übersetzt bedeutet das, dass die Software einfach durch hinzufügen neuer Klassen erweitert werden kann.
+Hierbei muss man die bestehenden Klassen nicht mehr verändern.
+
+Als Wissensquelle habe ich für dieses Projekt sehr viele Verschiedene Möglichkeiten herangezogen.
+Der wichtigste Teil davon war mit Sicherheit, das Internet.
+Allerdings gibt es immer wieder Probleme, welche nur mit Hilfe des Internets nicht lösbar sind.
+In solchen Situationen habe ich mich an meinen immer sehr kooperativen und hilfsbereiten Betreuungslehrer gewandt, der mir entweder mit seinem Fachwissen zur Hilfe gekommen ist oder mich mit Experten auf dem jeweiligen Gebiet bekannt gemacht hat.
+%Technologien
+%Materialien
+%Architekturen
+%Kodierprinzipien
+%Wissensquellen
+
+
+\section{Resultate}
 Das Resultat dieser Diplomarbeit hat mich zugegebener maßen selbst überrascht.
 Mit dem System auf dem aktuellen Stand ist es möglich Kurven und Geraden mit fix vordefinierten Werten zu fahren.
 Dabei überprüft das System immer wieder die exakte Einhaltung dieser Streckenteile.
 
 Weiteres ist es auch möglich durch eine Eingabe einer Koordinate im Raum und einem bestimmten Winkel genau diese Position anzusteuern.
 Sollte ein Fahrfehler aufgrund unerwarteter Faktoren entstehen versucht das System selbständig seine Route zu korrigieren und trotzdem den Zielpunkt mit dem richtigen Winkel zu erreichen.
-Dies ist ein Punkt auf den Ich besonders stolz bin.
+Dies ist ein Punkt auf den ich besonders stolz bin.
 Hierbei wählt der Rollstuhl selbständig eine beliebige Route im Raum.
 Diese Form der Pfadplanung ist bereits für verschiedenste Rollstuhl-Antriebsmodelle verfügbar, selbst welche sich nicht am Stand drehen können.
 Für diese Form von Antrieb war die Entwicklung der Berechnung besonders aufwändig.
@@ -33,7 +56,7 @@ Zusätzlich zu dem Auto habe ich auch eine Anwendung zur Steuerung des Rollstuhl
 In diesem Programm wird auch eine Karte mit den erfassten Objekten und den gefahrenen Weg angezeigt.
 
 
-\subsection{Schlussfolgerungen und Erkenntnisse}
+\section{Schlussfolgerungen und Erkenntnisse}
 Dieses Projekt hat nicht nur sehr viele Resultate sondern auch viele Erkenntnisse mit sich gebracht.
 Neben den Erfahrungen mit c++ und dem Umgang mit selbstgebauter Elektronik habe ich vor allem mein Wissen mit autonomen Systemen sehr erweitert und vertieft.
 So habe ich die Schwierigkeiten und auch die Möglichkeiten von autonomen Systemen kennengelernt.
@@ -42,7 +65,7 @@ Der Bereich einer sehr guten und optimierten Positionsbestimmung auf Basis mehre
 Aus diesem Grund habe ich die Positionsbestimmung momentan noch sehr Schlicht gehalten, allerdings die Softwarestruktur bereits so geplant und entwickelt, dass eine Verbesserung dieser sehr einfach möglich ist.
 
 
-\subsection{Weitere Ziele}
+\section{Weitere Ziele}
 Da ich dieses Projekt auch nach meiner Schulzeit noch weiterentwickeln möchte kann ich hier leider nicht den genauen Endstand beschreiben.
 Allerdings, kann ich hier beschreiben, was ich als nächstes in diesem Projekt vorhabe.
 Mein nächstes Ziel ist, und dass wird noch während der Schulzeit fertig werden, dass die momentane Steuerung, welche auf dem Lego-Auto bereits funktioniert, auf den Rollstuhl adaptiert wird.
@@ -62,7 +85,7 @@ Natürlich sind diese Punkte nicht der Schlussstrich des Projekts.
 Mein Ziel ist es, diese Software so zu verbessern, dass sie einmal wirklich in der Realität angewandt werden kann.
 
 
-\subsection{Arbeitsaufwand}
+\section{Arbeitsaufwand}
 Der genaue Arbeitsaufwand dieses Projekts ist natürlich nicht genau festlegbar.
 Allerdings habe ich mich sowohl mit meinem Projektlehrer als auch mit meinen Freunden und meinem familiären Umfeld beratschlagt und sind auf einen Überschlagswert geeinigt.
 \\ \\
@@ -77,24 +100,5 @@ Stunden & mindestens 3 bis 3.5 Stunden pro Tag & \stunden~Stunden \\
 \end{tabular} \\ \\
 Somit müssten~\stunden~die ungefähre Anzahl an Stunden sein, welche ich direkt vor meinem Schreibtisch verbracht habe.
 Zusätzlich kommen auch noch zahlreiche Stunden welche ich in der Schule für die Diplomarbeit verwendet habe.
-Weiteres kommt auch noch einige Stunden hinzu welche ich zwecks Information im Internet Gesurft habe.
+Weiteres kommt auch noch einige Stunden hinzu welche ich zwecks Information im Internet gesurft habe.
 Schlussendlich benötigt auch die nötige Dokumentation dieses Projekts noch einmal sehr viel Zeit.
-
-
-
-
-\subsection{Anforderungen -- TODO: Löschen}
-Gebt die nötigen Methoden bzw. Materialien an, erklärt die Arbeitsweise, mit der ihr
-vorgegangen seid, bringt Daten, die eure Beobachtungen bzw. Entwicklungen erbracht
-haben.
-Welche Idee/Innovation steckt im Projekt?
-Welche Lösungswege wurden ins Auge gefasst?
-Welche Experimente/Versuche/Studien wurden angestellt?
-Welche Forschungsmethoden wurden angewendet bzw. entwickelt (z.B. bei Datenerhebung mittels Fragebogen oder ähnl.)?
-Wurden Interessensgruppen involviert bzw. wie wurden diese informiert (Wissenstransfer)?
-Welche Ergebnisse wurden (bisher) erzielt?
-Sollte das Projekt noch nicht abgeschlossen sein, sind die vorläufigen Ergebnisse bis dato zu dokumentieren und eine Vorschau auf das weitere Vorhaben zu erstellen.
-Wie wurde kontrolliert, ob das Ziel (bisher) erreicht wurde?
-Welcher Arbeitsaufwand steckte im Projekt?
-Welche Schlussfolgerungen sind (bis dato) daraus zu ziehen?
-Bei Sonderpreis-Projekten ist u.a. die Relevanz der ökologischen, sozialen und ökonomischen Nachhaltigkeit bzw. die wirtschaftliche Machbarkeit anzuführen. ...
