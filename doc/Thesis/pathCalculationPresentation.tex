@@ -1,0 +1,111 @@
+\section{Path Calculation}
+
+
+\subsection{Positioning}
+
+
+\frame
+{
+\frametitle{Sensor Types}
+
+\begin{itemize}
+\item Absolute sensors
+	\begin{itemize}
+	\item Lateration
+		\begin{itemize}
+		\item GPS
+		\item Mobile telephony
+		\end{itemize}
+	\item Environment detection
+		\begin{itemize}
+		\item Image recognition
+		\item Bumper, distance sensoro
+		\end{itemize}
+	\item Relative sensors
+		\begin{itemize}
+		\item Gyro, acceleration, magnetometer
+		\item Rotary encoder
+		\item Mouse sensor
+		\end{itemize}
+	\end{itemize}
+\end{itemize}
+}
+
+
+\frame
+{
+\frametitle{Measure failures}
+
+\begin{itemize}
+\item Methodical
+	\begin{itemize}
+	\item Wrong calibration
+	\item Wrong filter algorithm
+	\end{itemize}
+\item Randomly
+\item Runaway value
+\end{itemize}
+}
+
+
+\frame
+{
+\frametitle{Measure failures}
+\makebox[\textwidth][c]{
+\resizebox{0.75\textwidth}{!}{
+\input{tikz/errorsOfMeasurements}
+}
+}
+}
+
+
+\frame
+{
+\frametitle{Combine different sensor}
+
+\begin{itemize}
+\item Algorithm have to ake care about
+	\begin{itemize}
+	\item Weight of sensor
+	\item Type of sensor
+	\item Measure fault type
+	\item Precision
+	\item Calibration
+	\item Adapted filters
+	\item ...
+	\end{itemize}
+\end{itemize}
+}
+
+
+\frame
+{
+\frametitle{Position specification}
+
+\begin{itemize}
+\item Stored
+	\begin{itemize}
+	\item Position + direction
+		\begin{itemize}
+		\item 2D
+		\item 3D
+		\end{itemize}
+	\item Particle Cloud
+		\begin{itemize}
+		\item Probability
+		\end{itemize}
+	\end{itemize}
+\item Related to
+	\begin{itemize}
+	\item Start point
+	\item Objects (Barriers)
+	\end{itemize}
+\end{itemize}
+}
+
+
+\frame
+{
+\frametitle{Position specification}
+\input{tikz/probabilityCloud}
+}

@@ -1,9 +1,11 @@
 /*!
-Copyright 2012 Andreas Gruber
+Copyright 2013 Andreas Gruber
 */
 
 #include "BluetoothModul.h"
 #include "Car.h"
+#include "CarSteeringRegulator.h"
+#include "CarPowerRegulator.h"
 //#include "Config.h"
 #include "DisplayProxy.h"
 #include "DisplayServer.h"
@@ -27,7 +29,13 @@ Copyright 2012 Andreas Gruber
 #include "VoltageDivider.h"
 #include "WheelSensors.h"
 
-WheelSensor& Car::getWheelSensor(){	
+CarPowerRegulator & Car::getCarPowerRegulator(){
+	return *carPowerRegulator;
+}
+CarSteeringRegulator & Car::getCarSteeringRegulator(){
+	return *carSteeringRegulator;
+}
+WheelSensor & Car::getWheelSensor(){	
 	return *wheelSensor;
 }
 	
@@ -35,6 +43,10 @@ Car::Car(){
 }
 
 void Car::init(){
+	carPowerRegulator = new CarPowerRegulator();
+	carSteeringRegulator = new CarSteeringRegulator();
+	setPowerRegulator(carPowerRegulator);
+	setSteeringRegulator(carSteeringRegulator);
 #if true
 	wheelSensor = new WheelSensor();
 	setMovementSensor(wheelSensor);

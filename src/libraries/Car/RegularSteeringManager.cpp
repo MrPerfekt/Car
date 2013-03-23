@@ -29,7 +29,7 @@ RegularSteeringManager::RegularSteeringManager(ServoProxy& servoProxy,Motor& mot
 }
 
 const double RegularSteeringManager::calculateRadiusByMovement(const Movement& movement) const{
-	return movement.getDistance() * circle / movement.getAngle() / (2*M_PI)/*calculates radius*/;
+	return movement.getDistance() / movement.getAngle();
 }
 
 void RegularSteeringManager::driveStraight(double distance){

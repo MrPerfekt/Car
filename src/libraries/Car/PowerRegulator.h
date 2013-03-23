@@ -1,5 +1,5 @@
 /*!
-Copyright 2012 Andreas Gruber
+Copyright 2013 Andreas Gruber
 */
 
 #ifndef POWER_REGULATOR
@@ -8,13 +8,6 @@ Copyright 2012 Andreas Gruber
 #include "DefineLib.h"
 
 class PowerRegulator {
-private:
-	uint8_t speed;
-	bool on;
-protected:
-	uint8_t getSpeed();
-	bool isOn();
-	virtual void execute() = 0;
 public:
 	PowerRegulator();
 	~PowerRegulator();
@@ -22,12 +15,17 @@ public:
 	Sets the speed of the power device.
 	\param speed The speed of the PowerRegulator
 	*/
-	void setSpeed(uint8_t speed);
+	virtual void setSpeed(uint8_t speed) = 0;
+	/*!
+	Sets the direction of the power device.
+	\param forward True if the power device have to drive forward
+	*/
+	virtual void setDirection(bool forward) = 0;
 	/*!
 	Turns the power device on or off
 	\param on True turns the PowerRegulator on and False off.
 	*/
-	void turnOnOff(bool on);
+	virtual void turnOnOff(bool on) = 0;
 };
 
 #endif

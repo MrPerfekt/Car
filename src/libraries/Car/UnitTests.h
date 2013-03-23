@@ -1,20 +1,20 @@
 /*!
-Copyright 2012 Andreas Gruber
+Copyright 2013 Andreas Gruber
 */
 
 #ifndef UNIT_TESTS
 #define UNIT_TESTS
 
-class Car;
+class Vehicle;
 
 class UnitTests {
 private:
-	Car& car;
+	Vehicle& vehicle;
 protected:
 	bool assert(bool b);
 	bool assertEqual(double a, double b);
 public:
-	UnitTests(Car& car);
+	UnitTests(Vehicle& vehicle);
 	~UnitTests();
 	
 	/*!
@@ -28,18 +28,18 @@ public:
 	/*!
 	Creates a StraightMovement with a distance of 1000mm and executes the same.
 	*/
-	void straightMovementExecutionTest();
-	/*!
-	Creates a TurnMovement with a angle of 2Pi and a radian of 500mm and executes the same.
-	*/
 	void turnMovementExecutionTest();
 	/*!
 	The steeringPowerRegulatorTest has the same testcases as the steeringRegulatorText with the diference that the motor is turned on.
 	*/
+	void straightMovementExecutionTest();
+	/*!
+	Creates a TurnMovement with a angle of 2Pi and a radian of 500mm and executes the same.
+	*/
 	void steeringPowerRegulatorTest();
 	/*!
 	The steeringRegulatorTest has the takt to test the steering device.
-	So first the steering device should do the the following list with a step duration of 500 ms.
+	So first the steering device should do the the following list with a step duration of 1000 ms.
 	- left
 	- straight
 	- right
@@ -48,7 +48,7 @@ public:
 	void steeringRegulatorTest();
 	/*!
 	The powerRegulatorTest has the takt to test the motor.
-	So first the motor should do the the following list with a step duration of 500 ms.
+	So first the motor should do the the following list with a step duration of 1000 ms.
 	- on
 	- off
 	- slowly on
@@ -63,12 +63,13 @@ public:
 	*/
 	void regressionTest();
 
-
+	/*
 	void pathPlanerTest();
 	void itorTest();
 	void pathMemoryTest();
 	void pathTest();
 	void driveTest();
+	*/
 };
 
 #endif

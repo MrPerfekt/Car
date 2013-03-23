@@ -1,5 +1,5 @@
 /*!
-Copyright 2012 Andreas Gruber
+Copyright 2013 Andreas Gruber
 */
 
 #ifndef TURN_MOVEMENT
@@ -26,6 +26,5 @@ public:
 	void setDistanceRadius(double distance, double radius);
 	
 	TurnMovement();
-	/**/void invokeOnSteeringManager(SteeringManager &steeringManager);
 };
 #endif

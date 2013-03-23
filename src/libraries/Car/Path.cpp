@@ -1,5 +1,5 @@
 /*!
-Copyright 2012 Andreas Gruber
+Copyright 2013 Andreas Gruber
 */
 
 #include "Path.h"
@@ -27,7 +27,13 @@ void Path::addMovement(ExecutableMovement*mov){
 
 
 void Path::setFinished(bool finished){
-	if(finished == true) notifyAll();
+	if(finished == true) {
+		notifyAll();
+		if(deleteAfterCompletion){
+			delete this;
+			return;
+		}
+	}
 	this->finished = finished;
 }
 bool Path::hasFinished() const{
@@ -35,6 +41,11 @@ bool Path::hasFinished() const{
 }
 void Path::execute(){
 	setToStart();
+	deleteAfterCompletion = false;
+}
+void Path::executeAndDelete(){
+	execute();
+	deleteAfterCompletion = true;
 }
 void Path::update(){
 	if(finished)

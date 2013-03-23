@@ -1,0 +1,75 @@
+\documentclass[11pt]{report}
+\include{settings}
+\usepackage{spreadtab}
+
+\begin{document}
+
+\chapter{Klassendiagramm}
+\includepdf[pages=1-3]{../../visioFiles/ClassDiagram.pdf}
+
+
+\chapter{Testsystemversionen}
+
+\section{Version 00}
+\includegraphics[width=1\linewidth]{picturesPublic/carV00klein.jpg}
+
+\section{Version 01}
+\includegraphics[width=1\linewidth]{picturesPublic/carV01klein.jpg}
+
+\section{Version 02}
+\includegraphics[width=1\linewidth]{picturesPublic/carV02klein.jpg}
+
+\section{Version 03}
+\includegraphics[width=1\linewidth]{picturesPublic/carV03klein.jpg}
+
+
+\chapter{Zeitplanung}
+\newpage
+\input{tikz/timeGantt}
+
+
+\chapter{Benötigte Ressourcen}
+
+\section{Bauteile und Materialien}
+
+\begin{tabular}{llll}
+Bezeichnung & Preis / Stk. in \euro & Anzahl & Beleg \\
+\hline
+Steckbrett groß	& 13,95	& 1		& $\surd$ \\
+Steckbrett klein	& 10,00	& 1		& \\
+Steckbrücken Set	& 4,95	& 1		& $\surd$ \\
+Drahtbügel Set	& 6,90	& 1		& $\surd$ \\
+Lötdraht			&		& 1		& \\
+Stiftleisten W		& 0,98	& 4		& $\surd$ \\
+Stiftleisten W		&		& 10 	& \\
+Stiftleisten M		&		& 10	& \\
+Widerstands Set	& 1,30	& 13	& $\surd$ \\
+LCD Display		& 33,90	& 1		& $\surd$ \\
+Raspberry PI		& 50,00	& 1		& \\
+Arduino Mega	& 50,00	& 2		& \\
+Arduino UNO		& 26,20	& 1		& $\surd$ \\
+Distanz Sensor	& 5,00	& 5 		& \\
+Motortreiber		& 6,80	& 1		& $\surd$ \\
+Lego Motor Groß	& 9,90	& 2		& $\surd$ \\
+Lego Motor Klein	&		& 2		& \\
+Schmitt-Trigger	& 0,15	& 5		& $\surd$ \\
+Schiebe Register	&		& 5		& $\surd$ \\
+Port Expander	&		& 5		& $\surd$ \\
+Schmitt-Trigger	& 0,15	& 5		& $\surd$ \\
+Operationsverst.	& 0,15	& 5		& $\surd$ \\
+D-FlipFlop		& 0,13	& 5		& $\surd$ \\
+4x2 OR			& 0,13	& 5		& $\surd$ \\
+4x2 XOR			& 0,13	& 5		& $\surd$ \\
+3x3 NAND		& 0,13	& 5		& $\surd$ \\
+\end{tabular}
+
+
+\section{Werkzeuge}
+\begin{tabular}{lll}
+Bezeichnung & Preis / Stk. in \euro & Beleg \\
+\hline
+Computer & & \\
+Lötkolben & 60 & $\surd$  \\
+\end{tabular}
+
+\end{document}

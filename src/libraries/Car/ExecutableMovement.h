@@ -10,20 +10,25 @@ Copyright 2013 Andreas Gruber
 #include "Observer.h"
 
 class PositionCalculator;
+class PowerRegulator;
 class SteeringRegulator;
 
 class ExecutableMovement : public SingleObservable{
 private:
 	bool finished;
 	PositionCalculator &positionCalculator;
+	PowerRegulator &powerRegulator;
 	SteeringRegulator &steeringRegulator;
 protected:
 	void setFinished(bool finished);
+	PositionCalculator & getPositionCalculator();
+	PowerRegulator & getPowerRegulator();
+	SteeringRegulator & getSteeringRegulator();
 public:
-	ExecutableMovement();
-	ExecutableMovement(PositionCalculator &positionCalculator, SteeringRegulator &steeringRegulator);
+	ExecutableMovement(PositionCalculator &positionCalculator,PowerRegulator &powerRegulator, SteeringRegulator &steeringRegulator);
 	virtual void execute() = 0;
 	virtual void update() = 0;
+	virtual void stop();
 	bool hasFinished() const;
 };
 

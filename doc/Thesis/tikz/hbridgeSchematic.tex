@@ -1,0 +1,28 @@
+\begin{circuitikz}
+\draw
+(0,0) to[battery,l=$V_{\text{}}$] ++(0,4)
+++(0,0) -- ++(2,0) coordinate (LT)
+%%%  H-bridge 1st leg
+(LT) ++(2,-1) node [npn,scale=1,name=igbt1] {}
+++(0,-2) node [npn,scale=1,name=igbt3] {}
+(igbt1.C) |- (LT)
+(igbt1.E) -- (igbt3.C)
+(igbt3.E) |- (0,0)
+%%% H-bridge 2nd leg
+(LT) ++(4,-1) node [npn,scale=1,name=igbt2] {}
+++(0,-2) node [npn,scale=1,name=igbt4] {}
+(igbt2.C) |- (LT)
+(igbt2.E) -- (igbt4.C)
+(igbt4.E) |- (0,0)
+%%% Output
+(igbt1.E) node[circ] {} to[short,-o] ++(3,0) node[anchor=west] {Ma}
+(igbt4.C) node[circ] {} to[short,-o] ++(1,0) node[anchor=west] {Mb}
+%%% Motor Control
+(2,-0.5) rectangle (6,-1.5)
+(3,-0.5) |- (igbt1.B)
+(3.2,-0.5) |- (igbt3.B)
+(5,-0.5) |- (igbt2.B)
+(5.2,-0.5) |- (igbt4.B)
+;
+\node (note1) at (4,-1) {Motor Control};
+\end{circuitikz}

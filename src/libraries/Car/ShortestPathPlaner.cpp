@@ -139,7 +139,7 @@ Path* ShortestPathPlaner::calculatePath(const OrientationCoordinates& startPosit
 	*/
 
 	Path*p = new Path();
-	
+	/*
 	ExecutableTurnMovement *tmStart = new ExecutableTurnMovement();
 	tmStart->setAngleRadius(minAngleStart,r*(minFirstLeft ? 1 : -1));
 	p->addMovement(tmStart);
@@ -151,5 +151,6 @@ Path* ShortestPathPlaner::calculatePath(const OrientationCoordinates& startPosit
 	ExecutableTurnMovement*tmEnd = new ExecutableTurnMovement();
 	tmEnd->setAngleRadius(minAngleEnd,r*(minSecondLeft ? 1 : -1));
 	p->addMovement(tmEnd);
+	*/
 	return p;
 }

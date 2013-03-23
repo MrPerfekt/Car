@@ -1,5 +1,6 @@
 \usetikzlibrary{arrows}
 \usetikzlibrary{positioning}
+\usetikzlibrary{calc}
 
 %Used by Geogebra
 \newcommand{\degre}{\ensuremath{^\circ}}
@@ -34,6 +35,6 @@
 	\pgfmathsetmacro{\width}{\onLen + \offLen}
 	\foreach \cpos in {0,...,#2}{
 		\pgfmathsetmacro{\cwidth}{\cpos * \width}
-		\draw (0,0)[#1] plot [const plot] coordinates{ (\cwidth,0) (\cwidth,\scaley) (\cwidth + \onLen,\scaley) (\cwidth + \onLen,0)(\cwidth + \width,0)};
+		\draw (0,0)[#1] plot coordinates{ (\cwidth,0) (\cwidth,\scaley) (\cwidth + \onLen,\scaley) (\cwidth + \onLen,0) (\cwidth + \width,0) };
 	}
 }

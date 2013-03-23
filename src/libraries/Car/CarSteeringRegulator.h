@@ -1,5 +1,5 @@
 /*!
-Copyright 2012 Andreas Gruber
+Copyright 2013 Andreas Gruber
 */
 
 #ifndef CAR_STEERING_REGULATOR
@@ -26,10 +26,6 @@ public:
 	\param currentRadius The real radius of the car
 	*/
 	void correcRadius(double currentRadius);
-	/*!
-	Get minimal radius the car can steer.
-	\return Minimal Radius
-	*/
 	const double getMinRadius() const;
 
 	double static convertRadiusToSteeringWheelAngle(double radius);

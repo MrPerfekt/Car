@@ -1,5 +1,5 @@
 /*!
-Copyright 2012 Andreas Gruber
+Copyright 2013 Andreas Gruber
 */
 
 #include "StraightMovement.h"
@@ -13,21 +13,14 @@ double StraightMovement::getDistance() const{
 double StraightMovement::getAngle() const{
 	return 0;
 }
+double StraightMovement::getRadius() const{
+	return 1/0;//ToDo: use INFINITY
+}
 
 StraightMovement::StraightMovement()
 	:Movement(){
 }
 
-void StraightMovement::execute(){
-	/*
-	bool forward = distance >= 0;
-	servoProxy.setSteeringAngle(0);
-	stopConditionValue = positionCalculator.getFullMovement().getDistance() + (forward ? distance : -distance);
-	setState(forward ? ss_driveStraightForward : ss_driveStraightBackward);
-	motorPowerEngine.motorMove(255,forward);*/
-}
-void StraightMovement::update(){
-}
 void StraightMovement::invokeOnSteeringManager(SteeringManager &steeringManager){
 	steeringManager.driveMovement(*this);
 }

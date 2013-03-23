@@ -1,5 +1,5 @@
 #
-# Copyright 2012 Andreas Gruber
+# Copyright 2013 Andreas Gruber
 #
 
 #Define Lib

@@ -1,0 +1,67 @@
+\pgfmathtruncatemacro{\months}{12}
+\pgfmathtruncatemacro{\verticalLines}{(4*\months)}
+
+\noindent\resizebox{!}{\textheight}{
+\begin{sideways}
+\begin{tikzpicture}
+\begin{ganttchart}[
+%\begin{scope}[shift={(0,\pos )}]
+y unit title=0.4cm,
+y unit chart=0.5cm,
+vgrid,hgrid, 
+title label anchor/.style={below=-1.6ex},
+title left shift=.05,
+title right shift=-.05,
+title height=1,
+bar/.style={fill=gray!50},
+incomplete/.style={fill=white},
+progress label text={},
+bar height=0.7,
+group right shift=0,
+group top shift=.6,
+group height=.3,
+group peaks={}{}{.2}]{\verticalLines}
+%labels
+\gantttitle{Projektaufteilung}{\verticalLines} \\
+\gantttitle{Mai}{4} %0
+\gantttitle{Juni}{4} %1
+\gantttitle{Juli}{4}  %2
+\gantttitle{August}{4} %3
+\gantttitle{September}{4} %4 
+\gantttitle{Oktober}{4} %5
+\gantttitle{November}{4} %6
+\gantttitle{Dezember}{4} %7
+\gantttitle{Januar}{4} %8
+\gantttitle{Februar}{4} %9    %<==
+\gantttitle{März}{4} % 10
+\gantttitle{April}{4} \\ % 11
+%tasks
+\ganttbar{Prototyp des Autos}{1}{6} \\ %0
+\ganttbar{Einfache Auto Steuerung}{3}{7} \\ %1
+\ganttbar{Rad-Drehsensor}{8}{10} \\ %2
+\ganttbar{Lenküberwachung}{8}{17} \\ %3
+\ganttbar{Optimierung des Autos}{15}{24} \\ %4
+\ganttbar{Maussensor}{15}{20} \\ %5
+\ganttbar{Drehsensor Optimierung}{19}{26} \\ %6
+\ganttbar{Distanzsensor}{25}{29} \\ %7
+\ganttbar{Umwelt-Software}{30}{32} \\ %8
+\ganttbar{Remote Anwendung}{25}{32} \\ %9
+\ganttbar{Softwareoptimierung}{33}{36} \\ %10
+\ganttbar[progress=50]{Rollstuhl Software}{37}{(48} \\ %11
+\ganttbar[progress=10]{Montage auf Rollstuhl}{40}{48} %12
+
+%relations 
+\ganttlink{elem0}{elem2}
+\ganttlink{elem0}{elem3}
+\ganttlink{elem0}{elem4}
+\ganttlink{elem1}{elem2}
+\ganttlink{elem1}{elem3}
+\ganttlink{elem2}{elem6}
+\ganttlink{elem4}{elem7}
+\ganttlink{elem7}{elem8}
+\ganttlink{elem10}{elem11}
+\ganttlink{elem10}{elem12}
+\end{ganttchart}
+\end{tikzpicture}
+\end{sideways}
+}

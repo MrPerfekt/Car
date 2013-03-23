@@ -1,22 +1,32 @@
 /*!
-Copyright 2012 Andreas Gruber
+Copyright 2013 Andreas Gruber
 */
 
 #include "ExecutableStraightMovement.h"
+#include "GeneralMovement.h"
+#include "PositionCalculator.h"
+#include "PowerRegulator.h"
+#include "SteeringRegulator.h"
 
-ExecutableStraightMovement::ExecutableStraightMovement()
-	:ExecutableMovement(){
-}
-ExecutableStraightMovement::ExecutableStraightMovement(PositionCalculator &positionCalculator, SteeringRegulator &steeringRegulator)
-	:ExecutableMovement(positionCalculator,steeringRegulator){
+ExecutableStraightMovement::ExecutableStraightMovement(StraightMovement &straightMovement,PositionCalculator &positionCalculator, PowerRegulator &powerRegulator, SteeringRegulator &steeringRegulator)
+	:ExecutableMovement(positionCalculator,powerRegulator,steeringRegulator)
+	,straightMovement(straightMovement){
 }
 
 void ExecutableStraightMovement::execute(){
-	/*bool forward = distance >= 0;
-	servoProxy.setSteeringAngle(0);
-	stopConditionValue = positionCalculator.getFullMovement().getDistance() + (forward ? distance : -distance);
-	setState(forward ? ss_driveStraightForward : ss_driveStraightBackward);
-	motorPowerEngine.motorMove(255,forward);*/
+	getSteeringRegulator().setRadius(0);
+	if(straightMovement.getDistance() == 0) return;
+	setFinished(false);
+	stopConditionDistance = getPositionCalculator().getFullMovement().getDistance() + straightMovement.getDistance();
+	getPowerRegulator().setDirection(straightMovement.getDistance() >= 0);
 }
 void ExecutableStraightMovement::update(){
+	if(hasFinished()) return;
+	Movement& m = getPositionCalculator().getLastMovement();
+	if(m.getDistance() == 0) return;
+	getSteeringRegulator().correcRadius(m.getRadius());
+	bool forward = straightMovement.getDistance() >= 0;
+	if((forward && stopConditionDistance <= getPositionCalculator().getFullMovement().getDistance()) ||
+	   (!forward && stopConditionDistance >= getPositionCalculator().getFullMovement().getDistance()))
+		   setFinished(true);
 }

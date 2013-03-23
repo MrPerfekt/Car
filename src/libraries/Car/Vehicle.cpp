@@ -1,5 +1,5 @@
 /*!
-Copyright 2012 Andreas Gruber
+Copyright 2013 Andreas Gruber
 */
 
 #include "BluetoothModul.h"
@@ -8,6 +8,7 @@ Copyright 2012 Andreas Gruber
 #include "DisplayProxy.h"
 #include "DisplayServer.h"
 #include "EnvironmentKnowledgeBase.h"
+#include "ExecutableMovement.h"
 #include "MotionLogger.h"
 #include "MotorTB6612FNG.h"
 #include "MouseSensorPan101BSI.h"
@@ -41,6 +42,12 @@ DisplayServer& Vehicle::getDisplayServer(){
 EnvironmentKnowledgeBase& Vehicle::getEnvironmentKnowledgeBase(){
 	return *environmentKnowledgeBase;
 }
+void Vehicle::setCurrentExecutingMovement(ExecutableMovement *currentExecutingMovement){
+	this->currentExecutingMovement = currentExecutingMovement;
+}
+ExecutableMovement & Vehicle::getCurrentExecutingMovement(){
+	return *currentExecutingMovement;
+}
 Motor& Vehicle::getMotorPowerEngine(){
 	return *motorPowerEngine;
 }
@@ -68,6 +75,9 @@ PositionCalculator& Vehicle::getPositionCalculator(){
 PowerRegulator& Vehicle::getPowerRegulator(){
 	return *powerRegulator;
 }
+void Vehicle::setPowerRegulator(PowerRegulator *powerRegulator){
+	this->powerRegulator = powerRegulator;
+}
 RemoteServer& Vehicle::getRemoteServer(){
 	return *remoteServer;
 }
@@ -82,6 +92,9 @@ SteeringManager& Vehicle::getSteeringManager(){
 }
 SteeringRegulator& Vehicle::getSteeringRegulator(){
 	return *steeringRegulator;
+}
+void Vehicle::setSteeringRegulator(SteeringRegulator *steeringRegulator){
+	this->steeringRegulator = steeringRegulator;
 }
 Stream& Vehicle::getMainDataStreem(){
 	return *mainDataStreem;
@@ -124,8 +137,8 @@ Vehicle& Vehicle::getInstance(){
 }
 
 void Vehicle::update(){
-	for(uint8_t i = 0; i < Config::getSonicSensorCnt();i++)
-		sonicDistanceSensors[i]->update();
+	//for(uint8_t i = 0; i < Config::getSonicSensorCnt();i++)
+	//	sonicDistanceSensors[i]->update();
 	remoteServer->update();
 	displayServer->update();
 	movementSensor->update();
@@ -133,11 +146,11 @@ void Vehicle::update(){
 	remoteServer->update();
 	displayServer->update();
 	movementSensor->update();
-	steeringManager->update();
+	if(currentExecutingMovement != NULL) currentExecutingMovement->update();
 	remoteServer->update();
 	displayServer->update();
 	movementSensor->update();
-	pathExecutor->update();
+	if(currentExecutingMovement != NULL) currentExecutingMovement->update();
 	remoteServer->update();
 	displayServer->update();
 	movementSensor->update();

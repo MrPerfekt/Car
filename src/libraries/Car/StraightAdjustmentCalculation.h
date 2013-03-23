@@ -10,18 +10,12 @@ Copyright 2013 Andreas Gruber
 
 class StraightAdjustmentCalculation  : public AdjustmentCalculation{
 private:
-	double currentValue;
 	double currentResult;
 protected:
 	void prepareValue();
 public:
 	StraightAdjustmentCalculation();
 	StraightAdjustmentCalculation(double lowerLimit,double upperLimit);
-	/*!
-	param value The input value
-	return The wanted result
-	*/
-	void setValue(double value);
 	/*!
 	return The wanted result of the last getValue command
 	*/
@@ -32,10 +26,6 @@ public:
 	param measuredResult The correct result of the value.
 	*/
 	void correctValue(double value, double measuredResult);
-	/*!
-	Corrects the last value at the pararmeter of getValue
-	*/
-	void correctLastValue(double mesuredResult);
 };
 
 #endif

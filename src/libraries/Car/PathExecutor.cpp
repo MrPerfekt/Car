@@ -1,5 +1,5 @@
 /*!
-Copyright 2012 Andreas Gruber
+Copyright 2013 Andreas Gruber
 */
 
 #include "ExecutableMovement.h"
@@ -23,7 +23,7 @@ void PathExecutor::update(){
 	if(movementItor == NULL) return;
 	if(steeringManager.hasFinished()){
 		if(movementItor->hasNext()){
-			((StraightMovement*)movementItor->getCurrent())->execute();
+			movementItor->getCurrent()->execute();
 		}else{
 			setPath(NULL);
 			steeringManager.stop(); //!TODO: Notify car main logic instead

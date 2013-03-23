@@ -18,12 +18,9 @@ double StraightAdjustmentCalculation::getResult(){
 	return currentResult;
 }
 void StraightAdjustmentCalculation::correctValue(double value, double measuredResult){
-	currentResult += (value-measuredResult);
+	currentResult -= measuredResult;
 	if(currentResult > getUpperLimit())
 		currentResult = getUpperLimit();
 	if(currentResult < getLowerLimit())
 		currentResult = getLowerLimit();
-}
-void StraightAdjustmentCalculation::correctLastValue(double mesuredResult){
-	correctValue(currentValue,mesuredResult);
 }

@@ -1,5 +1,5 @@
 /*!
-Copyright 2012 Andreas Gruber
+Copyright 2013 Andreas Gruber
 */
 
 #ifndef CAR
@@ -8,6 +8,8 @@ Copyright 2012 Andreas Gruber
 #include "Vehicle.h"
 
 class BluetoothModul;
+class CarPowerRegulator;
+class CarSteeringRegulator;
 class DisplayProxy;
 class DisplayServer;
 class MotionLogger;
@@ -30,10 +32,14 @@ class EnvironmentKnowledgeBase;
 
 class Car : public Vehicle{
 private:
-	WheelSensor* wheelSensor;
+	CarPowerRegulator *carPowerRegulator;
+	CarSteeringRegulator *carSteeringRegulator;
+	WheelSensor *wheelSensor;
 protected:
 public:
-	WheelSensor& getWheelSensor();
+	CarPowerRegulator &getCarPowerRegulator();
+	CarSteeringRegulator &getCarSteeringRegulator();
+	WheelSensor &getWheelSensor();
 
 	void init();
 	

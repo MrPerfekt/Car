@@ -17,6 +17,7 @@ protected:
 public:
 	virtual double getDistance() const = 0;
 	virtual double getAngle() const = 0;
+	virtual double getRadius() const = 0;
 };
 
 #endif

@@ -1,5 +1,5 @@
 /*!
-Copyright 2012 Andreas Gruber
+Copyright 2013 Andreas Gruber
 */
 
 #ifndef EXECUTABLE_TURN_MOVEMENT
@@ -9,11 +9,12 @@ Copyright 2012 Andreas Gruber
 #include "ExecutableMovement.h"
 #include "TurnMovement.h"
 
-class ExecutableTurnMovement : public ExecutableMovement, public TurnMovement{
+class ExecutableTurnMovement : public ExecutableMovement{
 private:
+	double stopConditionAngle;
+	TurnMovement &turnMovement;
 public:
-	ExecutableTurnMovement();
-	ExecutableTurnMovement(PositionCalculator &positionCalculator, SteeringRegulator &steeringRegulator);
+	ExecutableTurnMovement(TurnMovement &turnMovement, PositionCalculator &positionCalculator, PowerRegulator &powerRegulator, SteeringRegulator &steeringRegulator);
 
 	void execute();
 	void update();

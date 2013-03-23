@@ -63,7 +63,7 @@ Also müssen zusätzlich zu GPS auch noch andere Sensoren wie zum Beispiel Drehe
 Auch die Installierung von Lagesensoren kann für den Betroffenen lebensrettend agieren.
 So kann im Falle eines Sturzes automatisch ein Alarm in Form einer Nachricht an einen Betreuer gesendet werden.
 
-Eine mögliche Erweiterung wäre natürlich auch Fitnessdaten wie Blutdruck, Puls, Blutzucker des Betroffenen zu Messen und im Notfall wieder ein Alarm los gesendet werden.
+Eine mögliche Erweiterung wäre natürlich auch Fitnessdaten wie Blutdruck, Puls, Blutzucker des Betroffenen zu messen und im Notfall wieder ein Alarm los gesendet werden.
 Um in einem Ernstfall wie zum Beispiel ein Herzinfarkt wichtige Zeit zu sparen, kann der Rollstuhl aufgrund seiner gesammelten Daten nun auch zu einer optimalen Position für die Rettungskräfte fahren.
 Diese Position kann zum Beispiel die Wohnungstür sein.
 
@@ -72,7 +72,7 @@ Diese Position kann zum Beispiel die Wohnungstür sein.
 Ein solches System würde die Lebensqualität von Menschen, welche vom Schicksal einer körperlichen Beeinträchtigung betroffen sind, enorm steigern.
 Aber nicht nur die Lebensqualität, sondern auch die Mobilität könnte von einem solchen System ganz neu definiert werden.
 Besonders muss man aber betonen, dass das System keinesfalls die Funktion des Betreuers ersetzen soll, sondern den Betreuer des Betroffenen unterstützen soll.
-Dadurch soll der Betreuer entlastet werden von der Tätigkeit den Betroffenen zu Fahren und zu Lenken und kann sich stattdessen vollkommen um den Beeinträchtigten kümmern.
+Dadurch soll der Betreuer entlastet werden von der Tätigkeit den Betroffenen zu fahren und zu lenken und kann sich stattdessen vollkommen um den Beeinträchtigten kümmern.
 
 
 \section{Ziel der Diplomarbeit}
@@ -86,47 +86,47 @@ Dieses Ziel war, dass das Lego Auto, welches als Testsystem für diese Arbeit ag
 Dabei sollte der Lego Rollstuhl seinen Weg immer wieder aktualisieren und im Falle einer Fehlnavigation durch bestimmte Fehler, wie einen Schlupf bei den Rädern, diese Fehlnavigation wieder ausgleichen.
 
 Nach dieser Aufgabe, welche bereits implementiert ist und sehr gut funktioniert hat haben wir noch weitere Pläne für die Fortsetzung des Projektes geschmiedet.
-Bei diesen Überlegungen zu unserem Projekt haben wir uns auf die nächsten Optimierung mit der höchsten Priorität geeinigt.
-Erstens soll die Lenkung des System, mit einem verbesserten Ausgleichsalgorithmus versehen werden.
+Bei diesen Überlegungen zu unserem Projekt haben wir uns auf die nächsten Optimierungen mit der höchsten Priorität geeinigt.
+Erstens soll die Lenkung des Systems, mit einem verbesserten Ausgleichsalgorithmus versehen werden.
 Dieser Punkt ist nach der Positionsberechnung ein wesentlicher Teil meiner Arbeit.
 Hierbei erhält das Auto von den Sensoren immer wieder den realen Lenkeinschlag und muss aufgrund dieser Daten und den zuvor eingestellten Lenkeinschlag immer wieder nachkorrigieren.
 
-Zweitens soll nun die Struktur der Software noch einmal verändert werden um Kompatibilität mit jeder Sorte an Fahrzeugen zu schaffen.
+Zweitens soll nun die Struktur der Software noch einmal verändert werden, um Kompatibilität mit jeder Sorte an Fahrzeugen zu schaffen.
 Sollte nun eine weitere Art an Fahrzeug unterstützt werden müssen nur noch einzelne Komponenten hinzugefügt werden allerdings, und das ist das Wichtigste, es muss kein vorhandener Code wieder verändert werden.
 Diese Komponenten, welche für neue Fahrzeugtypen ergänzt werden müssen, beschreiben die genaue Ansteuerung der Lenkung.
-Durch diese Verbesserungen werden nun verschiedenste Antriebs- und Lenksysteme an Rollstühlen optimal unterstützt auch wenn die Lenksysteme sehr unterschiedlich sind.
+Durch diese Verbesserungen werden nun verschiedenste Antriebs- und Lenksysteme an Rollstühlen optimal unterstützt, auch wenn die Lenksysteme sehr unterschiedlich sind.
 
 
 \section{Nötige Recherchen und Vorbereitungen}
-Um diese Anforderungen, welche ein solches System stellt, optimal erfüllen zu können benötigt man vor allem ein ordentliches Grundwissen in der Programmierung.
-Weil dieses System auf einem Mikrocontroller laufen soll ist es eine Voraussetzung, dass dieses System in c++ geschrieben ist.
+Um diese Anforderungen, welche ein solches System stellt, optimal erfüllen zu können, benötigt man vor allem ein ordentliches Grundwissen in der Programmierung.
+Weil dieses System auf einem Mikrocontroller laufen soll, ist es eine Voraussetzung, dass dieses System in c++ geschrieben ist.
 Da wir in der Schule nur c und als objektorientierte Programmiersprachen nur c\# und Java gelernt haben ist somit zwingend notwendig gewesen, dass ich mir im Vorfeld die Besonderheiten von c++ ansehen musste.
 Bei dieser genaueren Erforschung dieser Sprache war mir mein Betreuungslehrer, Peter Bauer sehr hilfreich.
 Er, der ein eingefleischter c++ Programmierer ist, hat mir dabei immer wieder Tipps gegeben und neue Dinge gezeigt.
 Auch bei der Strukturierung der Software haben wir gemeinsam mit Roland meinen Software Entwurf immer wieder erweitert, verfeinert und verbessert.
 
 Weiteres war es auch noch wichtig, mir ein Grundwissen im Bereich, der Elektronik anzueignen, da ich in diesem Bereich noch sehr unerfahren war.
-Ein große Hilfe war dabei die Nachbarabteilung unserer Schule welche sich darauf spezialisiert hat.
+Ein große Hilfe war dabei die Nachbarabteilung unserer Schule, welche sich darauf spezialisiert hat.
 Dabei haben mir immer wieder Schüler der Elektronik-Abteilung Tipps zur Verbesserung meiner Hardware gegeben.
 
 Als letzten Punkt hat natürlich auch die Anbindung meiner Software an den Rollstuhl untersucht werden müssen.
-Hierbei haben sich ich und mein Betreuungslehrer mehrere Arten überlegt wie ein Rollstuhl motorisiert werden kann.
+Hierbei haben sich ich und mein Betreuungslehrer mehrere Arten überlegt, wie ein Rollstuhl motorisiert werden kann.
 Auch die spezifischen Vor- und Nachteile der einzelnen Varianten haben wir getestet und versuch die Fehler durch Optimierungen zu verkleinern.
 
 
 \section{Planung und Timing}
-Ein wichtiger Punkt war auch die Planungsmethode welche bei diesem Projekt angewendet werden sollte.
+Ein wichtiger Punkt war auch die Planungsmethode, welche bei diesem Projekt angewendet werden sollte.
 Bei unserem ersten Treffen haben wir uns dazu entschieden die Planung etappenweise zu gestalten.
 Dabei habe wir bei jedem unserer Treffen neue Möglichkeiten zur Weiterentwicklung diskutiert und diese nach Priorität gereiht.
 Die wichtigsten dieser Aufgaben haben wir schließlich als mein Ziel bis zum nächsten Meeting gemacht.
-Allerdings habe ich, beim Auftreten von Problemen, per E-Mail mit Roland diese Aufgaben immer wieder besprochen und, falls es nötig gewesen ist, diese Abgeändert.
+Allerdings habe ich, beim Auftreten von Problemen, per E-Mail mit Roland diese Aufgaben immer wieder besprochen und, falls es nötig gewesen ist, diese abgeändert.
 Zur detaillierten Zeitplanung finden sie im Anhang eine genauere Visualisierung der Aufgaben und die zeitliche Einreihung.
 
 
-Naja; musst halt ein paar Meilensteine festlegen (im Nachhinein). 
-Wann hast die Arduino Plattform einigermaßen vestanden gehabt: Datum x).
-In die Zielplattform eingearbeitet: Datum x. Erster Prototyp: Datum y, Feature Definition: Datum z, …
-[16:25:34] Peter Bauer: . War "Kunde". Aufgabe: Definition der Requirements. Technischer Ansprechpartner.
+%Naja; musst halt ein paar Meilensteine festlegen (im Nachhinein). 
+%Wann hast die Arduino Plattform einigermaßen verstanden gehabt: Datum x).
+%In die Zielplattform eingearbeitet: Datum x. Erster Prototyp: Datum y, Feature Definition: Datum z, …
+%[16:25:34] Peter Bauer: . War "Kunde". Aufgabe: Definition der Requirements. Technischer Ansprechpartner.
 
 
 \section{Aufgabenverteilung und Ressourcenplanung}

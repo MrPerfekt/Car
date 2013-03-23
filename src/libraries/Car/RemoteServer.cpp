@@ -1,5 +1,5 @@
 /*!
-Copyright 2012 Andreas Gruber
+Copyright 2013 Andreas Gruber
 */
 
 #include "Arduino.h"
@@ -52,18 +52,20 @@ void RemoteServer::update(){
 			int8_t powerSign = (buffer[1] == 'F' ? 1 : -1);
 			Movement *m;
 			if(buffer[2] == 'S'){
-				ExecutableStraightMovement sm = ExecutableStraightMovement();
+				StraightMovement sm = StraightMovement();
+				ExecutableStraightMovement esm = ExecutableStraightMovement(sm,vehicle.getPositionCalculator(),vehicle.getPowerRegulator(),vehicle.getSteeringRegulator());
 				sm.setDistance(1000 * powerSign);
-				sm.execute();
+				esm.execute();
 			}
 			else
 			{
-				ExecutableTurnMovement tm = ExecutableTurnMovement();
+				TurnMovement tm = TurnMovement();
+				ExecutableTurnMovement etm = ExecutableTurnMovement(tm,vehicle.getPositionCalculator(),vehicle.getPowerRegulator(),vehicle.getSteeringRegulator());
 				tm.setAngleRadius(
 					2*PI * powerSign,
 					100 * steeringSign
 					);
-				tm.execute();
+				etm.execute();
 			}
 			break;}
 		case 'T':{ //! Target

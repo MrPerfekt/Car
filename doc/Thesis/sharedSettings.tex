@@ -1,0 +1,77 @@
+\usepackage[german,english]{babel}
+
+%\usepackage{algorithmic} %program
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{babel}
+%\usepackage{background}
+%%\usepackage{blindtext}
+\usepackage{booktabs}
+\usepackage{calc} 
+\usepackage{cancel}
+\usepackage{caption}
+%\usepackage{circuitikz}
+\usepackage[americaninductor,european]{circuitikz}
+%\usepackage[symbols]{circuitikz}
+\usepackage{courier}
+\usepackage{dcolumn}
+\usepackage{epstopdf}
+%\usepackage{etoolbox}
+\usepackage[left]{eurosym}
+\usepackage{fancyhdr}
+\usepackage[T1]{fontenc}
+\usepackage{forloop}
+\usepackage{fp} %\usepackage{l3fp}
+\usepackage{geometry}                % See geometry.pdf to learn the layout options. There are lots.
+\usepackage{graphicx}
+\usepackage{hyperref}
+\usepackage{ifthen}
+%\usepackage[latin9]{inputenc}
+\usepackage[utf8]{inputenc}
+%\usepackage{intcalc}
+\usepackage{lcg}
+%%\usepackage{lipsum}
+%%%\usepackage{listings} %!beamer
+%\usepackage{lmodern}
+\usepackage{longtable}
+%\usepackage{makeidx}
+\usepackage{mathpazo}
+\usepackage{mathptmx}
+%\usepackage{mathtools}
+\usepackage{moreverb}
+\usepackage{multirow}% => pdflatex
+%\usepackage[parfill]{parskip}    % Activate to begin paragraphs with an empty line rather than an indent
+\usepackage{pdfpages}
+\usepackage{pgf}% Portable Graphics Formant
+%%%\usepackage{pgfmath}% !beamer
+%%%\usepackage{pgfplots}% !beamer
+%\usepackage{pgfgantt} % Draw a Gantt. Have to be initialiced after pgfplots.
+%\usepackage[pdftex,active,tightpage]{preview} \PreviewEnvironment{tikzpicture}
+%\usepackage{program} % algorithmic
+\usepackage{rotating}
+\usepackage{sagetex}
+\usepackage{savesym}
+%\usepackage{siunitx}
+\usepackage{verbatim}
+%\usepackage[usenames,dvipsnames,pdftex]{xcolor}
+
+%
+% Variables
+%
+\newcommand{\varTitle}{High Level Movement Control for Autonomous Vehicle}
+\newcommand{\varAuthor}{Andreas Gruber}
+\newcommand{\varSupervisors}{Peter Bauer, Roland Richter}
+\newcommand{\varLocation}{St. Peter am Wimberg}
+
+%
+%Tikz
+%
+\input{./tikz/tikzLib}
+
+%
+% Leaning Labels
+%
+\newcommand*{\zerobox}[2][l]{\raisebox{0pt}[0pt][0pt]{\makebox[0pt][#1]{#2}}}
+\newcommand*{\slantedLabel}[1]{\rotatebox{60}{\zerobox{\bfseries #1}}}
+\newcommand*{\leaningLabel}[1]{\slantedLabel{\zerobox{#1}}}
+\newcommand*{\leaningLabelB}[1]{\multicolumn{1}{c}{\leaningLabel{#1}}}

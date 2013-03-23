@@ -1,5 +1,5 @@
 /*!
-Copyright 2012 Andreas Gruber
+Copyright 2013 Andreas Gruber
 */
 
 #ifndef PATH
@@ -12,6 +12,7 @@ Copyright 2012 Andreas Gruber
 class Path : public Observer, public SingleObservable{
 private:
 	bool finished;
+	bool deleteAfterCompletion;
 	void setFinished(bool finished);
 	List<ExecutableMovement*>* movements;
 	Iterator<ExecutableMovement*>* movementItor;

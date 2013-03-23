@@ -1,5 +1,5 @@
 /*!
-Copyright 2012 Andreas Gruber
+Copyright 2013 Andreas Gruber
 */
 
 #include "CarSteeringRegulator.h"
@@ -13,9 +13,9 @@ Copyright 2012 Andreas Gruber
 
 CarSteeringRegulator::CarSteeringRegulator()
 	:servoProxy(new ServoProxy())
-	,adjustmentCalculation(new StraightAdjustmentCalculation())
-	//,adjustmentCalculation(new PartialAdjustmentCalculation())
-	//,adjustmentCalculation(new RegressionAdjustmentCalculation())
+	,adjustmentCalculation(new StraightAdjustmentCalculation(-PI/2,PI/2))
+	//,adjustmentCalculation(new PartialAdjustmentCalculation(-PI/2,PI/2))
+	//,adjustmentCalculation(new RegressionAdjustmentCalculation(-PI/2,PI/2))
 {
 }
 CarSteeringRegulator::~CarSteeringRegulator(){
@@ -46,10 +46,6 @@ void CarSteeringRegulator::setSteeringServoAngle(double angle){
 	servoProxy->setServoAngle(adjustmentCalculation->getResult());
 }
 //!================Correct Methods================
-/*!
-Because the steering mechanism can has mechanical tollerances the radius can be updated based on measured values.
-\param currentRadius The real radius of the car
-*/
 void CarSteeringRegulator::correcRadius(double currentRadius){
 	correctSteeringServoAngle(convertRadiusToSteeringWheelAngle(currentRadius)); //! This is not correct but the best existing solution.
 }

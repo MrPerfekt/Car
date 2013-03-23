@@ -1,5 +1,5 @@
 /*!
-Copyright 2012 Andreas Gruber
+Copyright 2013 Andreas Gruber
 */
 
 #include "TurnMovement.h"
@@ -39,7 +39,4 @@ void TurnMovement::setDistanceRadius(double distance, double radius){
 }
 TurnMovement::TurnMovement()
 	:Movement(){
-}
-void TurnMovement::invokeOnSteeringManager(SteeringManager &steeringManager){
-	steeringManager.driveMovement(*this);
 }

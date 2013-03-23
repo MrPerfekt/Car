@@ -1,11 +1,12 @@
 /*!
-Copyright 2012 Andreas Gruber
+Copyright 2013 Andreas Gruber
 */
 
+#include "DefineLib.h"
 #include "Observer.h"
 
 void SingleObservable::notifyAll() const{
-	if(observer != 0)
+	if(observer != NULL)
 		observer->getNotified();
 }
 void SingleObservable::addObserver(Observer *observer){

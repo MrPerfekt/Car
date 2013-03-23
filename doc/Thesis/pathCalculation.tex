@@ -5,7 +5,6 @@ To decide how the single components have to act at which time first the car need
 However, the next thing is to compute a path based on different informations.
 For this problem there exist a big amount of solutions because for each type of vehicle there exist again a big amount of different algorithms to compute a path to another point.
 
-
 \section{Position Calculation}
 
 
@@ -28,61 +27,103 @@ The only disadvantage is that this structure doesn't contain the probability of 
 
 
 \subsubsection{Probability Cloud}
-This kind of the specification of a position have the disadvantage, that only the most possible position can be stored.
-Another solution is to store a cloud of points with the different possibilities that this is the real position the the vehicle.
+Another solution is to store a cloud of points with the different possibilities that this is the real position of the vehicle.
+This method to store the current position of the vehicle is much more precise than the storage as a simple point in a Cartesian Coordinate System but there are also a big amount of disadvantages.
+First the microcontroller have to store a big amount of points.
+This is a very critical point because the available amount of memory is limited by the memory of the used microcontroller.
 
-\begin{tikzpicture}
-	\draw[->] (0,0) -- (10,0);
-	\draw[->] (0,0) -- (0,6);
-	\begin{scope}[shift={(5,3)},rotate=30]
-		\foreach \x in {0,0.5,...,2}{
-			\fill  [fill=black, semitransparent] (0,0) ellipse ({2 * \x} and {\x});
-		}
-		\draw[->,color=white,line width=3pt] (-0.5,0) -- +(1,0);
-	\end{scope}
-\end{tikzpicture}
+Figure~\ref{fig:probabilityCloud} shows a simple example how a position can be stored in a probability cloud.
+In this figure the arrow shows the position and the direction where the car is with the highest probability.
 
-
-\subsection{Sensors based Methods}
+\begin{figure}
+\input{tikz/probabilityCloud}
+\caption{Probability Cloud}
+\label{fig:probabilityCloud}
+\end{figure}
 
 
-\subsubsection{Absolute Sensors}
-
-
-\subsubsection{Relative Sensor}
-
-
-\subsubsection{Environment Sensors}
+%What did I mean with this?
+%\subsection{Sensors based Methods}
+%\sub subsection{Absolute Sensors}
+%\sub subsection{Relative Sensor}
+%\sub subsection{Environment Sensors}
 
 
 \section{Path Calculation}
 
 
+\subsection{Introduction}
+The path calculation is a important part of an autonomous vehicle.
+But this part is very specific for each type of vehicle.
+As example vehicles with a steering mechanism like a car are not able to turn around on the same spot.
+So it is possible to calculate a path which can be driven by most types of vehicles but for some types it is recommended to optimize it for the specific attributes of each type.
+
+
 \subsection{Crawler Typed Vehicles}
+A very easy task is it to implement a path calculation for a crawler typed vehicle.
+This algorithm contains three steps.
+\begin{itemize}
+\item First: Rotate around it's own to the right angle
+\item Second: Drive straight until the target place is reached
+\item Last: Rotate to the target angle
+\end{itemize}
+To make the path better and rounder it is possible to calculate and use the path of a car like vehicle.
 
 
 \subsection{Car Like Vehicles}
+A algorithm for a vehicle with a steering mechanism like a car is much more difficult.
+For such a vehicle there are much more requirements which have to be considered.
+An examples for such a requirements is the driven radius.
+Each vehicle have different minimal driving radius.
+Another example is if and how a vehicle can drive backward.
+So problems can appear if the vehicle have a trailer.
+
+For this problem to create a good path planing algorithm there are a big amount of solutions.
+In the following sections there are listed and explained some of such solutions.
 
 
-\subsubsection{Path based on a circle}
+\subsubsection{Path based on a circle}\label{sec:AtoBcircle}
+The simplest method to calculate a path from A to B is to search a circle where the start and endpoint are part of it and the current direction is vertical to the center.
+This circle is the simplest path from A to B but there are lots of disadvantages.
+First the ending angle cannot be selected because it is the same as the start angle.
+The next disadvantage is that the distance which have to be driven can be very long if the start angle is to large.
+And for some endpoints there do not exist even a solution because the distance is near infinity.
+Figure~\ref{fig:AtoBcircle} is an illustration for this method.
+
 \begin{figure}
 \input{./tikz/AtoBcircle}
-\caption{A to B path calculation}
+\caption{A to B path based on a circle}
 \label{fig:AtoBcircle}
 \end{figure}
 
 
-\subsubsection{Path based on a circle and a line}
+\subsubsection{Path based on a circle and a line}\label{sec:AtoBcs}
+Another algorithm to plan a path from A to B is to start with an circle and when the target point is in front of the vehicle then it can drive straight.
+If the radius of the circle is the minimal radius then this method returns the minimal path from A to B.
+So this solution is much better than the solution where the path is based on a circle \ref{sec:AtoBcircle} but it is not possible to chose a own ending angle.
+A very useful fact is that this solution return two possible solutions.
+So the shortest solution can be selected.
+The second path can also be used if the first one contains some known barriers.
+Figure~\ref{fig:AtoBcs} is an illustration for this method.
+
 \begin{figure}
 \input{./tikz/AtoBcs}
-\caption{A to B path calculation}
-\label{fig:AtoBcircle}
+\caption{A to B path based on a circle and a line}
+\label{fig:AtoBcs}
 \end{figure}
 
 
 \subsubsection{Path based on a circle, a line and another circle}
+A algorithm where most criteria are considered is this one.
+First the path starts like the path which is based on a circle and a line \ref{sec:AtoBcs} but at least there is another circle.
+This method needs a little bit more computing power but it have a lot of advantages.
+The main important advantage is that the start and the end angle can be every angle.
+This means that every input returns a very good solution.
+The next advantage is that this method returns eight paths which can be used.
+Figure~\ref{fig:AtoBcsc} is an illustration for this method.
+
 \begin{figure}
 \input{./tikz/AtoBcsc}
-\caption{A to B path calculation}
-\label{fig:AtoBcircle}
+\caption{A to B path based on two circles and a line}
+\label{fig:AtoBcsc}
 \end{figure}

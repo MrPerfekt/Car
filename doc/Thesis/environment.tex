@@ -1,6 +1,6 @@
 \section{Introduction} \label{sec:environmentIntroduction}
 In this chapter the setup of the autonomous vehicle is presented. 
-Here all microcontroller which were cousidered to be used are listed.
+Here all microcontroller which were considered to be used are listed.
 Also the main usage of most of them is shown.
 Another topic of this chapter is an introduction to the environment of Arduino.
 Last but not least the different types which were used in this project of sensors are shown.
@@ -346,11 +346,13 @@ The schematic is shown in figure~\ref{fig:schmittTriggerSchematic}.
 Schmitt-triggers with a constant hysteresis can also be bought as an IC.
 The hysteresis is the voltage difference between the voltage which is needed to set the Schmitt Trigger's output to high and the voltage which is needed to set the Schmitt Trigger's output to low.
 For an illustration see figure~\ref{fig:schmittTriggerInputOutputDiagram}.
+
 \begin{figure}
 \input{./tikz/schmittTriggerSchematic}
 \caption{Inverting Schmitt Trigger Schematic}
 \label{fig:schmittTriggerSchematic}
 \end{figure}
+
 \begin{figure}
 \input{./tikz/schmittTriggerDiagram}
 \caption{Schmitt Trigger Input Output Diagram}
@@ -358,8 +360,28 @@ For an illustration see figure~\ref{fig:schmittTriggerInputOutputDiagram}.
 \end{figure}
 
 
-
 \subsection{H-Bridge}\label{sec:hBridge}
+This electronic circuit is used to control a motor.
+The main advantage against a usual MOSFET or Transistor is that the H-bridge can swap the direction of the motor power supply and so it is possible to let the motor turn backward.
+A H-bridge consists of four relays, transistors or MOSFETs.
+The detailed circuit is shown in Figure~\ref{fig:hbridgeSchematic}.
+H-bridges can be bought in a single IC with different interfaces and different allowed power.
+
+A example for an H-bridge IC is the TB6612FNG.
+This IC can handle two different motors.
+The interface of this IC consists of three pins for each motor and one general power down pin.
+From the three pins are two pins which control if the motor is on forward, on backward, off or like a brake.
+The third pin control the speed of the motor.
+The input signal of this pin have to be a PWM signal.
+
+\begin{figure}
+\makebox[\textwidth][c]{
+\input{./tikz/hbridgeSchematic}
+}
+\caption{H-Bridge Schematic}
+\label{fig:hbridgeSchematic}
+\end{figure}
+
 
 
 \section{Mathematic Algorithms}\label{sec:mathematicAlgorithms}

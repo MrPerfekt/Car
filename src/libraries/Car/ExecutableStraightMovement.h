@@ -1,5 +1,5 @@
 /*!
-Copyright 2012 Andreas Gruber
+Copyright 2013 Andreas Gruber
 */
 
 #ifndef EXECUTABLE_STRAIGHT_MOVEMENT
@@ -9,11 +9,12 @@ Copyright 2012 Andreas Gruber
 #include "ExecutableMovement.h"
 #include "StraightMovement.h"
 
-class ExecutableStraightMovement : public ExecutableMovement, public StraightMovement{
+class ExecutableStraightMovement : public ExecutableMovement{
 private:
+	double stopConditionDistance;
+	StraightMovement &straightMovement;
 public:
-	ExecutableStraightMovement();
-	ExecutableStraightMovement(PositionCalculator &positionCalculator, SteeringRegulator &steeringRegulator);
+	ExecutableStraightMovement(StraightMovement &straightMovement,PositionCalculator &positionCalculator, PowerRegulator &powerRegulator, SteeringRegulator &steeringRegulator);
 	
 	void execute();
 	void update();
